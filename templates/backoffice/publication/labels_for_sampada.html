@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+.left-col {
+    float: left;
+    width:224px;
+    height:97px;
+    /*padding-right:8px;*/
+    padding-top:36.5px;
+    padding-left:21px;
+    border: 2px solid white;
+}
+p.serif {
+  font-family: "Times New Roman", Times, serif;
+}
+
+
+  </style>
+</head>
+<body>
+{% for data in record_list %}
+        <div class="left-col"  style="font-size:10px;">
+             <p class="serif">
+             <b>{{data.company_name}}</b><br>
+             {{data.correspond_address}}<br>
+             {{data.City_no}}<br>
+             <!-- {{data.personal_no}}<br>
+             {{data.cell_no}} -->
+          </p>
+        </div>
+
+{% endfor %}
+</body>
+</html>

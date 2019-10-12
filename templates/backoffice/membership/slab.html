@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!-- BEGIN HEAD -->
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8"/>
+    <title>MCCIA | Slab </title>
+    {% include 'backoffice/base_css.html' %}
+
+</head>
+<!-- END HEAD -->
+
+
+<style type="text/css">
+
+
+th.dt-center, td.dt-center {
+    text-align: center;
+}
+
+</style>
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+<!-- BEGIN HEADER -->
+<div id="processing" style="display:none;">
+    <div id="loading">
+        <img src="{% static 'assets/loading-bars.gif' %}" style="height : 100px;">
+
+    </div>
+</div>
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="index.html">
+                <img src="{% static 'assets/MCCIA-logo.png' %}" alt="logo"
+                     class="logo-default"/> </a>
+            <div class="menu-toggler sidebar-toggler">
+                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+            </div>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+           data-target=".navbar-collapse"> </a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN PAGE TOP -->
+        <div class="page-top">
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
+                            <!-- <img alt="" class="img-circle" src="{% static 'assets/layouts/layout2/img/avatar3_small.jpg" /> -->
+                            <span class="username username-hide-on-mobile"> {{ request.session.login_user }} </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a href="/edit-profile/?user_id={{request.session.login_user}}">
+                                    <i class="fa fa-user" aria-hidden="true"></i> My Profile </a>
+                            </li>
+                            <li>
+                                <a href="/log-out/">
+                                    <i class="icon-key"></i> Log Out </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END PAGE TOP -->
+    </div>
+    <!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+
+<!-- BEGIN HEADER & CONTENT DIVIDER -->
+<div class="clearfix"></div>
+<!-- END HEADER & CONTENT DIVIDER -->
+
+
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            {% include 'backoffice/membership/side-panel.html' %}
+        </div>
+    </div>
+    <!-- END SIDEBAR -->
+
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet light  ">
+
+                        <div class="page-bar">
+                            <ul class="page-breadcrumb">
+                                 <li>
+                                    <a href="/backofficeapp/backoffice/" style="color: #3eb199;font-size: 16px;">Membership</a>
+                                        <i class="fa fa-angle-right"></i>
+                                </li>
+                                <li>
+                                    <span style="color: #00448b;font-size: 16px;">Slab</span>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="row ">
+                            <div class="col-lg-12">
+                                <!--<div class="col-lg-2">-->
+                                <!--<div class="input-group form-group">-->
+                                <!--<span class="input-group-btn">-->
+                                <!--<span style=" height: 34px;"-->
+                                <!--class="btn btn btn-default">-->
+                                <!--<span class="fa fa-search"></span>-->
+                                <!--</span>-->
+                                <!--</span>-->
+                                <!--<input style=" font-size: 14px; " type="text"-->
+                                <!--class="form-control " id="search_slab_text"-->
+                                <!--placeholder="Search Slab" name="search_slab_text">-->
+                                <!--</div>-->
+                                <!--</div>-->
+
+                                <div class="col-lg-2"
+                                     style="border: none !important;  margin-top: 6px;font-size: 16px; ">
+                                    <span>Filter By Category:  </span>
+                                </div>
+
+                                <div class="col-lg-3"
+                                     style="border: none !important;  font-size: 16px;">
+                                    <select id="select_category" class="form-control select2">
+                                        <option style="font-size: 14px" value="show_all">Show All</option>
+                                        {% for item in membership_category_list %}
+                                        <option value="{{item.id}}">{{item.membership_category}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="input-group form-group">
+                                <span class="input-group-btn">
+                                    <span style=" height: 34px;"
+                                          class="btn btn btn-default">
+                                        <span class="fa fa-search"></span>
+                                    </span>
+                                </span>
+                                        <input style=" font-size: 14px; " type="text"
+                                               class="form-control " id="search_slab_text"
+                                               placeholder="Search Slab" name="search_slab_text">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-lg-2"
+                                     style="border: none !important;  margin-top: 6px;font-size: 16px;  ">
+                                    <span>Filter By Status:  </span>
+                                </div>
+                                <div class="col-lg-3"
+                                     style="border: none !important;  font-size: 16px;">
+                                    <select id="select_slab_status" class="form-control select2">
+                                        <option style="font-size: 14px" value="show_all">Show All</option>
+                                        <option style="font-size: 14px" value="True">Active</option>
+                                        <option style="font-size: 14px" value="False">Inactive</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-offset-1 col-lg-2">
+                                    <center>
+                                        <div style="color: #797979;">
+                                            <a style="font-size: 16px; width:  80%;" type="button"
+                                               class="btn done_btn" onclick="filter_slab_table()"
+                                               href="#">Filter
+                                            </a>
+                                        </div>
+                                    </center>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="pull-right " style="color: #797979;">
+                                        <a style="font-size: 16px; " type="button"
+                                           class="btn done_btn " data-toggle="modal"
+                                           href="/backofficeapp/add-new-slab/">Add New Slab
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="hre">
+                        <div class="portlet-body form">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="portlet-body">
+                                        <div class="actions">
+                                            <div class="btn-group pull-right">
+                                                <a class="btn red btn-outline btn-circle"
+                                                   href="javascript:;"
+                                                   data-toggle="dropdown">
+                                                    <i class="fa fa-share"></i>
+                                                    <span class="hidden-xs"> Tools </span>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right"
+                                                    id="slab_details_tools">
+                                                    <li>
+                                                        <a href="javascript:;" data-action="0"
+                                                           class="tool-action">
+                                                            <i class="icon-printer"></i> Print</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="javascript:;" data-action="2"
+                                                           class="tool-action">
+                                                            <i class="icon-doc"></i> PDF</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;" data-action="3"
+                                                           class="tool-action">
+                                                            <i class="icon-paper-clip"></i> Excel</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;" data-action="4"
+                                                           class="tool-action">
+                                                            <i class="icon-cloud-upload"></i> CSV</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <table class="table table-striped table-bordered table-hover table-checkable order-column"
+                                               id="slab_details">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center"> Sr. No</th>
+                                                <th> Membership Category</th>
+                                                <th class="text-center"> Slab</th>
+                                                <th> Applicable For</th>
+                                                <th> Annual Fees</th>
+                                                <th> Entrance Fees</th>
+                                                <th> Status</th>
+                                                <th class="text-center"> Action</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- END FORM-->
+                            </div>
+                        </div>
+                        <!-- END PORTLET-->
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+    </div>  <!-- END PORTLET-->
+</div>
+<!-- END CONTAINER -->
+
+<div class="modal fade draggable-modal" id="active_deactive_mem_slab" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <input type="text" id="membership_slab_status" name="membership_slab_status" hidden>
+                    <input type="text" id="membership_slab_id" name="membership_slab_id" hidden>
+                    <div class="form-body">
+                        <h4 class="text-center" id="active_deactive_mem_slab_text"></h4>
+                    </div>
+                </form>
+            </div>
+            <div style="text-align:center !important;" class="modal-footer">
+                <button type="button" data-dismiss="modal" onclick="update_mem_slab_status()" class="btn green">
+                    Yes
+                </button>
+                <button type="button" class="btn green" data-dismiss="modal">No</button>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<div class="modal fade draggable-modal" id="edit_slab_details_modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:50%;">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                Edit Slab Details
+            </div>
+            <div class="modal-body">
+                <form id="slabForm" role="form" enctype="multipart/form-data" name="slabForm" method="POST">
+                    <div class="row">
+                        <input type="hidden" id="slab_id" name="slab_id" class="form-control"/>
+                        <div class="col-xs-12">
+
+
+                            <label class="control-label">Membership Category
+                                <span class="required"> * </span>
+                            </label>
+                            <select name="MembershipCategory" id="MembershipCategory" class="form-control "
+                                    required="">
+                            </select>
+
+                            <label id="MembershipCategory_error" class="error"
+                                   style="color:red; display:none;"></label>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <label class="control-label"> <br> Enroll Type
+                                <span class="required"> * </span>
+                            </label>
+
+                            <select name="EnrollType" id="EnrollType"
+                                    class="form-control " required="">
+                                <option value="">Select</option>
+                                <option value="Annual">Annual</option>
+                                <option value="Life Membership">Life Membership</option>
+
+
+                            </select>
+                            <label id="EnrollType_error"
+                                   style="color:red; display:none;"></label>
+
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <label class="control-label"> <br>Slab Enroll Type
+                                <span class="required"> * </span>
+                            </label>
+
+                            <select name="SlabEnrollType" id="SlabEnrollType"
+                                    class="form-control " required="">
+                                <option value="">Select</option>
+                                <option value="Individual">Individual</option>
+                                <option value="Organizational">Organizational</option>
+
+
+                            </select>
+                            <label id="SlabEnrollType_error"
+                                   style="color:red; display:none;"></label>
+
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="control-label">Slab
+                                <span class="required"> * </span>
+                            </label>
+
+                            <textarea id="slab" name="slab" class="form-control"> </textarea>
+                            <label id="slab_error" class="error"
+                                   style="color:red; display:none;"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <label class="control-label"> <br> Applicable To
+                                <span class="required"> * </span>
+                            </label>
+
+                            <select name="ApplicableTo" id="ApplicableTo" class="form-control "
+                                    required="">
+                                <option value="">Select</option>
+
+                                <option value="Associates">Associates</option>
+                                <option value="Members">Members</option>
+                                <option value="Individual">Individual</option>
+
+
+                            </select>
+                            <label id="ApplicableTo_error" style="color:red; display:none;"></label>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <label class="control-label"> <br> Criteria
+                                <span class="required"> * </span>
+                            </label>
+
+                            <select name="criteria" id="criteria" class="form-control" required="">
+
+
+                            </select>
+                            <label id="criteria_error" style="color:red; display:none;"></label>
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="control-label">Annual Fees (Upto 2 Decimal)
+                                <span class="required"> * </span>
+                            </label>
+                            <input id="AnnualFees" name="AnnualFees" class="form-control"/>
+                            <label id="AnnualFees_error" class="error"
+                                   style="color:red; display:none;"></label>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="control-label">Entrance Fees (Upto 2 Decimal)
+                                <span class="required"> * </span>
+                            </label>
+                            <input id="EntranceFees" name="EntranceFees" class="form-control"/>
+                            <label id="EntranceFees_error" class="error"
+                                   style="color:red; display:none;"></label>
+                        </div>
+                    </div>
+
+
+                    <br>
+                </form>
+
+                <div class="row" style="  margin-top: 30px;">
+                    <div class="col-xs-12 text-right">
+
+                        <button type="button" class="btn btn-outline grey_color "
+                                onclick="location.href = '/backofficeapp/slab/';">Cancel
+                        </button>
+                        <button type="button" id="edit-slab" class="btn btn-outline done_btn">Submit
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+
+<div class="modal fade draggable-modal" id="success_modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center">Slab Updated successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <a type="button" href="/backofficeapp/slab/" class="btn green">OK</a>
+
+                    </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<div class="modal fade draggable-modal" id="delete_user" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+
+                <img style="width: 18%;"
+                     src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+            </div>
+            <div class="modal-body">
+
+                <div style="text-align:center !important;" class="modal-footer">
+                    <button type="button" onclick="inactive_user()" class="btn green">Yes</button>
+                    <button type="button" class="btn green" data-dismiss="modal">No</button>
+
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+    <div class="modal fade draggable-modal" id="reactivate_user" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog" style="width:35%;">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+
+                    <img style="width: 18%;"
+                         src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+                </div>
+                <div class="modal-body">
+                    <form action="index.html" class="form-horizontal form-row-seperated">
+                        <div class="form-body">
+                            <h4 class="text-center">Do you want to re-activate User ?</h4>
+                        </div>
+                </div>
+                <div style="text-align:center !important;" class="modal-footer">
+                    <button type="button" onclick="activate_user()" class="btn green">Yes</button>
+                    <button type="button" class="btn green" data-dismiss="modal">No</button>
+
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+    <div class="modal fade draggable-modal" id="remove_user" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog" style="width:35%;">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+
+                    <img style="width: 18%;"
+                         src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+                </div>
+                <div class="modal-body">
+                    <form action="index.html" class="form-horizontal form-row-seperated">
+                        <div class="form-body">
+                            <h4 class="text-center" id="pro_deact">User deactivated successfully</h4>
+                        </div>
+                        <div style="text-align:center !important;" class="modal-footer">
+                            <button type="button" onclick="location.reload()" class="btn green" data-dismiss="modal">
+                                OK
+                            </button>
+
+
+                        </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+
+    <div class="modal fade draggable-modal" id="error-modal" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog" style="width:35%;">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+
+                    <img style="width: 18%;"
+                         src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+                </div>
+                <div class="modal-body">
+                    <form action="index.html" class="form-horizontal form-row-seperated">
+                        <div class="form-body">
+                            <h4 class="text-center">Username already exists</h4>
+                        </div>
+                        <div style="text-align:center !important;" class="modal-footer">
+                            <button type="button" class="btn green" data-dismiss="modal">OK</button>
+
+                        </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+
+
+    <div class="modal fade draggable-modal" id="update_user" role="basic" aria-hidden="true">
+        <div class="modal-dialog" style="width:35%;">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+
+                    <img style="width: 18%;"
+                         src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+                </div>
+                <div class="modal-body">
+                    <form action="index.html" class="form-horizontal form-row-seperated">
+                        <div class="form-body">
+                            <h4 class="text-center">User updated successfully</h4>
+                        </div>
+                        <div style="text-align:center !important;" class="modal-footer">
+                            <button type="button" onclick="location.reload()" class="btn green" data-dismiss="modal">
+                                OK
+                            </button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade draggable-modal" id="user_active_modal" role="basic" aria-hidden="true">
+        <div class="modal-dialog" style="width:35%;">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+
+                    <img style="width: 18%;"
+                         src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+                </div>
+                <div class="modal-body">
+                    <form action="index.html" class="form-horizontal form-row-seperated">
+                        <div class="form-body">
+                            <h4 class="text-center">User re-activated successfully</h4>
+                        </div>
+                        <div style="text-align:center !important;" class="modal-footer">
+                            <button type="button" onclick="location.reload()" class="btn green" data-dismiss="modal">
+                                OK
+                            </button>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade draggable-modal" id="error-modal" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+
+                    <img style="width: 10%;"
+                         src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+                </div>
+                <div class="modal-body">
+                    <form action="index.html" class="form-horizontal form-row-seperated">
+                        <div class="form-body">
+                            <h4 class="text-center">Username already exists</h4>
+                        </div>
+                        <div style="text-align:center !important;" class="modal-footer">
+                            <button type="button" class="btn green" data-dismiss="modal">OK</button>
+
+                        </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+    <div class="modal fade draggable-modal" id="success_modal" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <form action="index.html" class="form-horizontal form-row-seperated">
+                        <div class="form-body">
+                            <h4 class="text-center">Slab Updated Successfully</h4>
+                        </div>
+                        <div style="text-align:center !important;" class="modal-footer">
+                            <button type="button" class="btn green" onclick="location.href = '/backofficeapp/slab/';"
+                                    data-dismiss="modal">OK
+                            </button>
+
+                        </div>
+                    </form>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        <div class="page-footer-inner"> 2018 © Bynry Technologies
+
+        </div>
+        <div class="scroll-to-top">
+            <i class="icon-arrow-up"></i>
+        </div>
+    </div>
+</div>
+<!-- END FOOTER -->
+
+<!-- BEGIN CORE PLUGINS -->
+{% include 'backoffice/base_js.html' %}
+<!-- END THEME LAYOUT SCRIPTS -->
+
+<script type="text/javascript">
+
+$("#member_anchor").addClass("tab-active");
+$("#member_nav").addClass("active");
+$("#member_icon").addClass("icon-active");
+$("#member_active").css("display","block");
+$("#member_nav").addClass("active");
+		
+
+
+ $(document).ready(function(){
+    $(".sel2").select2({
+            width: '100%'
+        })
+        var select_slab_status = 'show_all';
+        var select_category = 'show_all';
+	    get_slab_datatable(select_slab_status, select_category);
+ 		});
+
+
+
+function get_slab_datatable(select_slab_status, select_category){
+    var table = $('#slab_details');
+    var oTable = table.dataTable({
+        "processing": true,
+        "serverSide": true,
+        "destroy": true,
+        "ajax": '/backofficeapp/get-slab-details-datatable/?select_slab_status='+select_slab_status+'&select_category='+select_category,
+        "searching": true,
+        "Filter": true,
+        "ordering": false,
+        "paging": true,
+        "columnDefs": [
+            {"className": "dt-center", "targets": 0, "orderable": false},
+            {"className": "dt-center", "targets": 1, "orderable": false},
+            {"className": "dt-center", "targets": 2, "orderable": false},
+            {"className": "dt-center", "targets": 3, "orderable": false},
+            {"className": "dt-center", "targets": 4, "orderable": false},
+            {"className": "dt-center", "targets": 5, "orderable": false},
+            {"className": "dt-center", "targets": 6, "orderable": false},
+            {"className": "dt-center", "targets": 7, "orderable": false},
+        ],
+       buttons: [
+            { extend: 'print', className: 'btn dark btn-outline',
+                exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6] },
+            },
+            { extend: 'copy', className: 'btn red btn-outline',
+                exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6] },
+            },
+            { extend: 'pdf', className: 'btn green btn-outline',
+                exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6] },
+            },
+            { extend: 'excel', className: 'btn yellow btn-outline',
+                exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6] },
+            },
+            { extend: 'csv', className: 'btn purple btn-outline',
+                exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6] },
+            },
+            { extend: 'colvis', className: 'btn dark btn-outline', text: 'Columns'}
+        ],
+
+        responsive: false,
+
+        "order": [[0, 'asc']],
+
+        "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
+
+        "pageLength": 10,
+
+    });
+
+    $(".dataTables_filter").hide();
+
+    $("#search_slab_text").keyup(function() {
+        oTable.fnFilter($("#search_slab_text").val());
+    });
+
+    $('#slab_details_tools > li > a.tool-action').on('click', function() {
+        var action = $(this).attr('data-action');
+        $('#slab_details').DataTable().button(action).trigger();
+    });
+}
+
+    function filter_slab_table(){
+        var select_slab_status = $("#select_slab_status").val();
+        var select_category = $("#select_category").val();
+        get_slab_datatable(select_slab_status, select_category);
+    }
+
+
+
+function inactive_user() {
+        var user_id = xyz;
+        $.ajax({
+            type: 'POST',
+            url: '/delete-user/',
+            data: {'user_id': user_id},
+            success: function (response) {
+
+	 		  	if (response.success == 'Expired') {		
+ 		  			location.href = '/subscriber-portal/?status=Expired'
+ 		  		}            
+            console.log(response);
+                if (response.success == 'true') {
+                	$("#delete_user").modal('hide');
+                  $("#remove_user").modal('show');
+                }
+                if (response.success == 'false') {
+                    alert(response.message);
+                }
+            },
+            beforeSend: function () {
+   $("#processing").css('display','block');
+   },
+   complete: function () {
+       $("#processing").css('display','none');
+   },
+            error: function (response) {
+            console.log(response);
+                alert('error');
+            },
+        });    
+    }
+
+    function activate_user() {
+        var  user_id = xyz;
+        $.ajax({
+            type: 'POST',
+            url: '/activate-user/',
+            data: {'user_id': user_id},
+            success: function (response) {
+				  	if (response.success == 'Expired') {		
+			  			location.href = '/backoffice/?status=Expired'
+			  		}
+            
+            console.log(response);
+                if (response.success == 'true') {
+                    $("#reactivate_user").modal('hide');
+                  $("#user_active_modal").modal('show');
+                }
+                if (response.success == 'false') {
+                    alert(response.message);
+                }
+            },
+            beforeSend: function () {
+   $("#processing").css('display','block');
+   },
+   complete: function () {
+       $("#processing").css('display','none');
+   },
+            error: function (response) {
+            console.log(response);
+                alert('error');
+            },
+        });    
+    }
+       
+
+        
+ function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57 || charCode == 43 || charCode == 45 ))
+            return false;
+        return true;
+    }
+
+    function validateFloatKeyPresss(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('+');
+        var number1 = el.value.split('-');
+        if (charCode != 45 && charCode != 43 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        //just one dot
+        if (number.length > 1 && charCode == 43) {
+            return false;
+        }
+        if (number1.length > 1 && charCode == 45) {
+            return false;
+        }
+        return true;
+    }
+
+
+
+function editSlabDetailsModal(slab_id){
+
+$("#edit_slab_details_modal").modal('show');
+
+        $.ajax({
+                type: "GET",
+                url : '/backofficeapp/show-slab-details/',
+                data : {
+                'slab_id':slab_id
+                },
+
+              success: function (response) {
+                     if (response.success == "true") {                     
+                $('#slab_id').val(response.slabDetails.slab_id);
+                $('#slab').val(response.slabDetails.slab);
+                console.log(response.slabDetails);
+                $.each(response.slabDetails.membershipCategoryList, function (index,item) {
+                data = '<option value="'+ item.id +'">'+ item.membershipCategory +'</option>'
+                $("#MembershipCategory").append(data);
+                });
+
+                $('#MembershipCategory').val(response.slabDetails.membershipCategory);
+                $('#ApplicableTo').val(response.slabDetails.ApplicableTo);
+                $('#AnnualFees').val(response.slabDetails.AnnualFees);
+                $('#EntranceFees').val(response.slabDetails.EntranceFees);
+                $('#SlabEnrollType').val(response.slabDetails.SlabEnrollType);
+                $('#EnrollType').val(response.slabDetails.EnrollType);
+                $.each(response.slabDetails.slabCriteriaList, function (index,item) {
+                data = '<option value="'+ item.id +'">'+ item.slab_criteria +'</option>'
+                $("#criteria").append(data);
+                });
+
+                $('#criteria').val(response.slabDetails.criteria);                
+               }
+                },
+               error : function(response){
+                    alert("_Error");
+                }
+           });
+  }
+
+
+$("#edit-slab").click(function(event)  {
+	event.preventDefault();
+	if(validateData()){
+	    var formData= new FormData();
+		formData.append("slab_id",$('#slab_id').val());
+		formData.append("MembershipCategory",$('#MembershipCategory').val());
+		formData.append("slab_name",$('#slab').val());
+		formData.append("ApplicableTo",$('#ApplicableTo').val());
+		formData.append("criteria",$('#criteria').val());
+		formData.append("AnnualFees",$('#AnnualFees').val());
+		formData.append("EntranceFees",$('#EntranceFees').val());
+		formData.append("EnrollType",$('#EnrollType').val());
+		formData.append("SlabEnrollType",$('#SlabEnrollType').val());
+
+  			$.ajax({
+				  type	: "POST",
+				   url : '/backofficeapp/edit-slab-details/',
+ 					data : formData,
+					cache: false,
+		         processData: false,
+		    		contentType: false,
+              success: function (response) {
+
+	              if(response.success == "true"){
+	                    $("#edit_slab_details_modal").modal('hide');
+	           	  		$("#success_modal").modal('show');
+	           	  		filter_slab_table();
+	              	}
+	      			if (response.success == "false") {
+							$("#error-modal").modal('show');
+							filter_slab_table();
+	       			}
+               },
+               	beforeSend: function () {
+            $("#processing").css('display','block');
+            },
+            complete: function () {
+                $("#processing").css('display','none');
+            },
+               error : function(response){
+                  	alert("_Error");
+            	}
+           });
+  }
+});
+
+
+
+function validateData(){
+
+	if(checkMembershipCategory("#MembershipCategory")&checkslab_name("#slab")&checkApplicableTo("#ApplicableTo")&checkEnrollType(EnrollType)&checkSlabEnrollType(SlabEnrollType)
+&checkcriteria("#criteria")&checkAnnualFees("#AnnualFees")&checkEntranceFees("#EntranceFees"))
+	{
+		return true;	
+	}
+	return false;
+}
+
+function checkMembershipCategory(MembershipCategory){
+  if($(MembershipCategory).val()!='' && $(MembershipCategory).val()!=null)
+   {
+    $("#MembershipCategory_error").css("display", "none");
+   return true;
+   }else{
+    $("#MembershipCategory_error").css("display", "block");
+    $("#MembershipCategory_error").text("Please select Membership Category");
+   return false; 
+   }
+}
+
+
+function checkApplicableTo(ApplicableTo){
+  if($(ApplicableTo).val()!='' && $(ApplicableTo).val()!=null)
+   {
+   $("#ApplicableTo_error").css("display", "none");
+   return true;
+   }else{
+    $("#ApplicableTo_error").css("display", "block");
+    $('#ApplicableTo_error').text("Please Select Valid Option");
+   return false; 
+   }
+}	
+
+function checkcriteria(criteria){
+  if($(criteria).val()!='' && $(criteria).val()!=null)
+   {
+   $("#criteria_error").css("display", "none");
+   return true;
+   }else{
+    $("#criteria_error").css("display", "block");
+    $('#criteria_error').text("Please Select Criteria");
+   return false; 
+   }
+}	
+
+function checkAnnualFees(AnnualFees){
+	AnnualFees = $(AnnualFees).val()   
+  	var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+   
+   if(AnnualFees!='' & namePattern.test(AnnualFees)){
+ 	$('#AnnualFees_error').css("display", "none");
+   return true;
+   }else{
+    $('#AnnualFees_error').css("display", "block");
+    $('#AnnualFees_error').text("Please enter valid Annual Fees");
+   return false; 
+   }
+}
+
+function checkEntranceFees(EntranceFees){
+
+	EntranceFees = $(EntranceFees).val()   
+  	var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+   
+   if(EntranceFees!='' & namePattern.test(EntranceFees)){
+ 	$('#EntranceFees_error').css("display", "none");
+   return true;
+   }else{
+    $('#EntranceFees_error').css("display", "block");
+    $('#EntranceFees_error').text("Please enter valid Entrance Fees");
+   return false; 
+   }
+}
+
+function checkslab_name(slab){
+	slab = $(slab).val()   
+  	var namePattern = /[a-zA-Z0-9]$/;
+   
+   if(slab!='' & namePattern.test(slab)){
+ 	$('#slab_error').css("display", "none");
+   return true;
+   }else{
+    $('#slab_error').css("display", "block");
+    $('#slab_error').text("Please enter valid Slab");
+   return false; 
+   }
+}
+function checkEnrollType(EnrollType){
+  if($(EnrollType).val()!='' && $(EnrollType).val()!=null)
+   {
+   $("#EnrollType_error").css("display", "none");
+   return true;
+   }else{
+   	$("#EnrollType_error").css("display", "block");
+    $('#EnrollType_error').text("Please Select Valid Option");
+   return false;
+   }
+}
+
+
+function checkSlabEnrollType(SlabEnrollType){
+  if($(SlabEnrollType).val()!='' && $(SlabEnrollType).val()!=null)
+   {
+   $("#SlabEnrollType_error").css("display", "none");
+   return true;
+   }else{
+   	$("#SlabEnrollType_error").css("display", "block");
+    $('#SlabEnrollType_error').text("Please Select Valid Option");
+   return false;
+   }
+}
+
+
+// Update Membership Slab Status
+function activeInactiveMemSlab(status,membership_slab_id){
+    if (status == "False"){
+        $("#active_deactive_mem_slab_text").html('').text('Do you want to Activate Slab Detail ?');
+        $("#membership_slab_status").val(status);
+        $("#membership_slab_id").val(membership_slab_id);
+    }
+    else{
+        $("#active_deactive_mem_slab_text").html('').text('Do you want to Deactivate Slab Detail ?');
+        $("#membership_slab_status").val(status);
+        $("#membership_slab_id").val(membership_slab_id);
+    }
+}
+
+function update_mem_slab_status(){
+    var mem_slab_id = $("#membership_slab_id").val();
+
+    $.ajax({
+        type: "GET",
+        url: '/backofficeapp/update-membership-slab-status/',
+        data: {'mem_slab_id': mem_slab_id  },
+
+        success: function(response){
+            if (response.success == 'true'){
+                filter_slab_table();
+            }
+            else{
+                filter_slab_table();
+            }
+        },
+    });
+}
+    
+
+
+
+
+
+</script>
+
+</body>
+</html>

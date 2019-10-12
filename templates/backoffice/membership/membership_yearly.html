@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+
+<style type="text/css">
+ @font-face {
+        font-family: 'ITC Eras Demi';
+        src:url('/static/assets/fonts/ITC_Eras_Demi.woff');
+        font-weight: normal;
+        font-style: normal;
+        }
+      page {
+        display: block;
+    }
+
+    @media print {
+        body, page {
+            margin: 0;
+            box-shadow: 0;
+        }
+    }
+
+
+    .bg {
+        background-image: url('/static/images/mccia_blue.jpg');
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+         background-size: cover;
+    }
+    .txt {
+        font-size: 12px;
+        font-family: 'ITC Eras Demi';
+        word-spacing: 5px;
+        line-height: 18px;
+    }
+
+
+    .president {
+        font-size: 12px;
+        font-family: arial, sans-serif;
+        margin-bottom:65px;
+
+    }
+
+    .dg {
+        font-size: 12px;
+        font-family: arial, sans-serif;
+        margin-bottom:75px;
+    }
+
+
+    .child_div_1 {
+        float: left;
+        margin-left: 5px;
+        margin-bottom: 70px;
+        font-size: 12px;
+        font-family: arial, sans-serif;
+        }
+
+    table.d {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+
+    .col_a {
+        width: 200px;
+    }
+
+     .col_b {
+        width: 650px;
+    }
+
+    .row_a {
+        height: 453px;
+        font-size:45px
+        
+    }
+
+    .row_b {
+        height: 133px;
+
+    }
+
+    .row_c {
+        height: 70px;
+
+    }
+
+    .row_d {
+        height: 30px
+    }
+
+
+
+</style>
+{% load staticfiles %}
+</head>
+<body>
+<page class="bg">
+    <table class="d">
+        <tr>
+            <th class="col_a" width="243px">&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+        </tr>
+         <tr class="row_a">
+            <td>&nbsp;</td>
+            <td class="col_b" colspan="2" valign="bottom" style="font-family:'ITC Eras Demi'; color:black; font-size:30px; text-align: center; padding-right: 55px;">
+                <b><p>{{company_name}}</p></b>
+            </td>                        
+        </tr>
+        <tr class="row_b">
+            <td>&nbsp;</td>
+            <td valign="bottom"><p class="txt" style="font-size:18px; word-spacing: 3px; font-weight: 1000; line-height: 1.6;">
+                <i><b>IS AN ESTEEMED MEMBER<br>OF THE CHAMBER<br>FOR THE YEAR {{for_year}}</b></i></p></td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr class="row_c">
+            <td>&nbsp;</td>
+            <td valign="bottom">
+                <div class="president" style="line-height: 140%;">
+                    <img src="{{president_sign}}" width="150px" height="60px" hspace="20">
+                        <br>_______________________________________<br>
+                     <b style="font-size:15px; word-spacing: 3px;font-weight: 100;line-height: 1.6;">{{president_obj.name}}</b>
+                        <br>
+                    <b style="font-size:14px; word-spacing: 2px; font-weight: 100;">President, MCCIA</b>
+                </div>
+            </td>
+           <td><br><br><br><br><br><br>
+                 <img src="{% static 'images/stamp.gif' %}" width="150px" height="150px" >
+            </td>
+        </tr>
+        <tr class="row_d">
+            <td>&nbsp;</td>
+            <td valign="bottom">
+                <div class="dg" style="line-height: 140%;">
+                    <img src="{{dg_sign}}" width="150px" height="60px" hspace="20">
+                        <br>_______________________________________<br>
+                    <b style="font-size:15px; word-spacing: 3px;font-weight: 100; line-height: 1.6;">{{dg_obj.name}}</b>
+                        <br>
+                    <b style="font-size:14px; word-spacing: 2px; font-weight:100; ">Director General, MCCIA</b>
+                </div>
+            </td>
+            <td>
+                <div class="child_div_1"><b style="font-size:14px; word-spacing: 3px;font-weight: 100;">Membership No. : {{membership_no}}<br> <br>Date: {{payment_date}} </b></div>
+            </td>
+        </tr>
+    </table>
+</page>
+</body>
+</html>

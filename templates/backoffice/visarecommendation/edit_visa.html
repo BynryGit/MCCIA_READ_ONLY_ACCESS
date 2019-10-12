@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!-- BEGIN HEAD -->
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8"/>
+    <title>MCCIA | Edit Visa </title>
+    {% include 'backoffice/base_css.html' %}
+    <!-- END THEME LAYOUT STYLES --> 
+	<style type="text/css">
+	
+		.myRadioClass {
+		    margin-left: 0px;
+		    right: 0px;
+		}
+	</style>    
+    </head>
+<!-- END HEAD -->
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+<!-- BEGIN HEADER -->
+<div id="processing" style="display:none;">
+    <div id="loading">
+        <img src="{% static 'assets/loading-bars.gif' %}" style="height : 100px;">
+
+    </div>
+</div>
+
+
+<!-- BEGIN HEADER & CONTENT DIVIDER -->
+<div class="clearfix"></div>
+<!-- END HEADER & CONTENT DIVIDER -->
+
+
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            {% include 'backoffice/membership/side-panel.html' %}
+        </div>
+    </div>
+    <!-- END SIDEBAR -->
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+            <div class="portlet light">
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <a href="/visarecommendationapp/manage-visa/" style="color: #3eb199;font-size: 16px;">Manage
+                                Visa</a>
+                        </li>
+                        <i class="fa fa-angle-right"></i>
+                        <li>
+                            <span style="color: #00448b;font-size: 16px;">Edit Visa Recommendation Details </span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- BEGIN FORM-->
+                <div class="row" id="main_div">                   
+                    <div class="col-md-8">
+                            <!-- BEGIN SAMPLE FORM PORTLET-->
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-settings font-dark"></i>
+                                        <span class="caption-subject font-dark sbold uppercase">Visa Recommendation Form</span>
+                                    </div>                                    
+                                </div>
+                                <div class="portlet-body form">
+                                    <form id="visa_recommendations_form" name="visa_recommendations_form" method="POST" class="form-horizontal" role="form">
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <label class="col-md-3">Ticket Number</label>
+                                                <div class="col-md-9 has-success">
+                                                    <input type="text" class="form-control" readonly="" value="{{visa_recommendation_no}}" id="visa_recommendation_no" name="visa_recommendation_no">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Registration Date</label>
+                                                <div class="col-md-3">
+                                                    <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" >
+                                                        <input id="txtRDate" name="txtRDate" type="text" class="form-control" readonly value="{{registration_date}}">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn default" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">To which Country</label>
+                                                <div class="col-md-9">                                                                                                       
+												               <div class="form-md-line-input has-success" id="drpCountryDiv">
+							                                <select id="drpCountry" name="drpCountry" class="form-control input-sm select2">
+								                                <option value="">Select Country</option>
+								                                 {% for i in countryObj %}
+								                                     {% if to_which_country == i.id %}
+					                                         		 	<option selected="" value="{{i.id}}">{{i.country_name}}</option>
+					                                         		 {% else %}
+					                                         		 	<option value="{{i.id}}">{{i.country_name}}</option>
+					                                         		 {% endif %}
+					                                          {% endfor%}
+								                            </select>								                          
+								                           </div>					                            					                            
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Place of Application for Visa</label>
+                                                <div class="col-md-9">                                                                                                       
+												               <div class="form-md-line-input has-success" id="drpEmbasyDiv">
+							                                <select id="drpEmbasy" name="drpEmbasy" class="form-control input-sm select2">
+								                                <option value="">Select Embassy</option>								                             
+								                                 {% for i in embassyObj %}
+								                                     {% if place_of_embassy == i.id %}
+					                                         		 	<option selected="" value="{{i.id}}">{{i.embassy_name}}, {{i.city}}</option>
+					                                         		 {% else %}
+					                                         		 	<option value="{{i.id}}">{{i.embassy_name}}, {{i.city}} </option>
+					                                         		 {% endif %}
+					                                          {% endfor%}
+								                            </select>
+								                           </div>					                            					                            
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Name as on Passport</label>
+                                                <div class="col-md-1" style="margin-top: -10px; padding-left: 31px;width: 90px;">
+											               <div class="form-group form-md-line-input has-success" id="select_event_typeDiv">
+
+                                                        <select id="PersonTitle" name="PersonTitle" class="form-control input-sm select2">
+                                                           {% if person_title == 'Mr.' %}
+                                                                  <option selected="" value="Mr.">Mr.</option>
+                                                          <option value="Mrs.">Mrs.</option>
+                                                          <option value="Ms.">Ms.</option>
+                                                       {% endif %}
+                                                       {% if person_title == 'Mrs' %}
+                                                                  <option value="Mr.">Mr.</option>
+                                                          <option selected=""  value="Mrs.">Mrs.</option>
+                                                          <option value="Ms.">Ms.</option>
+                                                       {% endif %}
+                                                                                                       
+                                                       {% if person_title == 'Ms.' %}
+                                                          <option value="Mr.">Mr.</option>
+                                                          <option value="Mrs.">Mrs.</option>
+                                                          <option selected="" value="Ms.">Ms.</option>
+                                                       {% endif %}
+                                                        </select>
+
+							                           </div>
+						                             </div>
+												           <div class="col-md-7 has-success" id="txtNameDiv">
+                                                    <input type="text" class="form-control" placeholder="Enter Name as on Passport" value="{{person_name}}" id="txtName" name="txtName">
+                                                </div> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Designation</label>
+                                                <div class="col-md-9 has-success">
+                                                    <input type="text" class="form-control" placeholder="Enter Designation" value="{{person_designation}}" id="txtDesg" name="txtDesg">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3">Name of Company</label>
+                                                <div class="col-md-9 has-success">
+                                                    <input id="txtCompany" name="txtCompany" type="text" class="form-control" placeholder="Enter Company Name" value="{{company_name}}">
+                                                </div>
+                                            </div>       
+                                            <div class="form-group">
+                                                <label class="col-md-3">Address</label>
+                                                <div class="col-md-9 has-success">
+                                                    <textarea id="txtAdd" name="txtAdd" class="form-control" rows="3">{{address}}</textarea>
+                                                </div>
+                                            </div>      
+                                            <div class="form-group">
+                                                <label class="col-md-3">Contact No.</label>
+                                                <div class="col-md-9 has-success">
+                                                    <input id="txtContact" name="txtContact" type="text" class="form-control" placeholder="Enter Contact No." value="{{mobile_no}}">
+                                                </div>
+                                            </div>                                 
+                                            <div class="form-group">
+                                                <label class="col-md-3">Email to send Acknowledge</label>
+                                                <div class="col-md-9 ">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-envelope"></i>
+                                                        </span>
+                                                        <input id="txtEmail" name="txtEmail" type="email" class="form-control" placeholder="Email Address" value="{{email}}"> </div>
+                                                </div>
+                                           </div>
+                                           <div class="form-group">
+                                                <label class="col-md-3">Purpose to Visit</label>
+                                                <div class="col-md-9">                                                                                                       
+												               <div class="form-md-line-input has-success" id="PurposeToVisitDiv">
+							                                <select id="PurposeToVisit" name="PurposeToVisit" class="form-control input-sm select2">
+								                                <option value="">Select Purpose</option>
+								                                 {% if purpose_to_visit == 'BU' %}
+                                                        			<option selected="" value="BU">Business</option>
+                                                        			<option value="WV">Work Visit</option>
+                                                        	{% elif purpose_to_visit == 'WV' %}
+                                                        			<option value="BU">Business</option>
+                                                        			<option selected="" value="WV">Work Visit</option>
+                                                        	{% else %}
+                                                        			<option value="BU">Business</option>
+                                                        			<option value="WV">Work Visit</option>
+                                                        	{% endif %}
+								                            </select>
+								                           </div>					                            					                            
+                                                </div>
+                                           </div>
+                                           <div class="form-group">
+                                                <label class="col-md-3">From Date</label>
+                                                <div class="col-md-3">
+                                                    <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" >
+                                                        <input id="txtFDate" name="txtFDate" type="text" class="form-control" readonly value="{{visiting_from_date}}">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn default" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                           <div class="form-group">
+                                                <label class="col-md-3">Type</label>
+                                                <div class="col-md-9">                                                                                                       
+												               <div class="form-md-line-input has-success" id="VisaTypeDiv">
+							                                <select id="VisaType" name="VisaType" class="form-control input-sm select2" onchange="VisaTypeDivShow();">
+								                                <option value=""> Select Type</option>	                                                     	                                                     
+	                                                      {% if visa_type == 'Single' %}
+                                                        			<option selected="" value="Single">Single Entry</option>
+	                                                   		   <option value="Multiple">Multiple Entry</option>
+                                                        	{% elif visa_type == 'Multiple' %}
+                                                        			<option value="Single">Single Entry</option>
+	                                                   		   <option selected="" value="Multiple">Multiple Entry</option>
+                                                        	{% else %}
+                                                        			<option value="Single">Single Entry</option>
+	                                                   		   <option value="Multiple">Multiple Entry</option>
+                                                        	{% endif %}                                                        	                                                        	
+								                            </select>
+								                           </div>					                            					                            
+                                                </div>
+                                           </div>
+                                           <input type="hidden" id="hidden_visaduration" value="{{visitDurations}}">
+                                           <input type="hidden" id="hidden_visatotalduration" value="{{total_visit_durations}}">
+                                           <input type="hidden" id="hidden_radiochoice" value="{{radio_choice}}">
+                                           <div class="form-group" id="row0Div" style="display: none;">
+															<div class="col-md-3">
+																<label>Visit duration</label>
+															</div>
+															<div class="col-md-9">	
+	                                             <div class="icheck-inline">
+	                                                 <label>
+	                                                     <input onclick="radioButtonChange();" id="ctl00_user_rdoDay" value="ctl00_user_rdoDay" type="radio" name="ctl00_user_visit_duration" class="icheck"> Day </label>
+	                                                 <label>
+	                                                     <input onclick="radioButtonChange();" id="ctl00_user_rdoWeek" value="ctl00_user_rdoWeek" type="radio" name="ctl00_user_visit_duration" class="icheck" > Week </label>
+	                                                 <label>
+	                                                     <input onclick="radioButtonChange();" id="ctl00_user_rdoMonth" value="ctl00_user_rdoMonth" type="radio" name="ctl00_user_visit_duration" class="icheck"> Month </label>
+	                                             </div>
+                                             </div>																																													                                           
+                                           </div>
+                                           <div class="form-group" id="row1Div" style="display: none;">
+															<div class="col-md-3">
+																<label></label>
+															</div>
+															<div class="col-md-9 has-success">	
+	                                             <div class="icheck-inline" style="display: none;" id="txtdaysDiv">
+                                                    <select class="form-control input-sm select2" name="txtdays"
+                                                        id="txtdays">
+                                                          <option Value="">--- Select ---</option>
+                                                          <option Value="One Day">One</option>
+                                                          <option Value="Two Days">Two </option>
+                                                          <option Value="Three Days">Three</option>
+                                                          <option Value="Four Days">Four</option>
+                                                          <option Value="Five Days">Five</option>
+                                                          <option Value="Six Days">Six</option>
+                                                          <option Value="Seven Days">Seven</option>
+                                                          <option Value="Eight Days">Eight</option>
+                                                          <option Value="Nine Days">Nine</option>
+                                                          <option Value="Ten Days">Ten</option>
+                                                          <option Value="Eleven Days">Eleven</option>
+                                                          <option Value="Twelve Days">Twelve</option>
+                                                          <option Value="Thirteen Days">Thirteen</option>
+                                                          <option Value="Fourteen Days">Fourteen</option>
+                                                          <option Value="Fifteen Days">Fifteen</option>
+                                                          <option Value="Sixteen Days">Sixteen</option>
+                                                          <option Value="Seventeen Days">Seventeen</option>
+                                                          <option Value="Eighteen Days">Eighteen</option>
+                                                          <option Value="Nineteen Days">Nineteen</option>
+                                                          <option Value="Twenty Days">Twenty</option>
+                                                          <option Value="Twenty One Days">Twenty One</option>
+                                                          <option Value="Twenty Two Days">Twenty Two</option>
+                                                          <option Value="Twenty Three Days">Twenty Three</option>
+                                                          <option Value="Twenty Four Days">Twenty Four</option>
+                                                          <option Value="Twenty Five Days">Twenty Five</option>
+                                                          <option Value="Twenty Six Days">Twenty Six</option>
+                                                          <option Value="Twenty Seven Days">Twenty Seven</option>
+                                                          <option Value="Twenty Eight Days">Twenty Eight</option>
+                                                          <option Value="Twenty Nine Days">Twenty Nine</option>
+                                                          <option Value="Thirty Days">Thirty</option>
+                                                          <option Value="Thirty One Days">Thirty One</option>
+                                                          <option Value="Thirty Two Days">Thirty Two</option>
+                                                          <option Value="Thirty Three Days">Thirty Three</option>
+                                                          <option Value="Thirty Four Days">Thirty Four</option>
+                                                          <option Value="Thirty Five Days">Thirty Five</option>
+                                                          <option Value="Thirty Six Days">Thirty Six</option>
+                                                          <option Value="Thirty Seven Days">Thirty Seven</option>
+                                                          <option Value="Thirty Eight Days">Thirty Eight</option>
+                                                          <option Value="Thirty Nine Days">Thirty Nine</option>
+                                                          <option Value="Forty Days">Forty</option>
+                                                          <option Value="Forty One">Forty One</asp:ListItem>
+                                                          <option Value="Forty Two Days">Forty Two</option>
+                                                          <option Value="Forty Three Days">Forty Three</option>
+                                                          <option Value="Forty Four Days">Forty Four</option>
+                                                          <option Value="Forty Five Days">Forty Five</option>
+                                                          <option Value="Forty Six Days">Forty Six</option>
+                                                          <option Value="Forty Seven Days">Forty Seven</option>
+                                                          <option Value="Forty Eight Days">Forty Eight</option>
+                                                          <option Value="Forty Nine Days">Forty Nine</option>
+                                                          <option Value="Fifty Days">Fifty</option>
+                                                          <option Value="Fifty One Days">Fifty One</option>
+                                                          <option Value="Fifty Two Days">Fifty Two</option>
+                                                          <option Value="Fifty Three Days">Fifty Three</option>
+                                                          <option Value="Fifty Four Days">Fifty Four</option>
+                                                          <option Value="Fifty Five Days">Fifty Five</option>
+                                                          <option Value="Fifty Six Days">Fifty Six</option>
+                                                          <option Value="Fifty Seven Days">Fifty Seven</option>
+                                                          <option Value="Fifty Eight Days">Fifty Eight</option>
+                                                          <option Value="Fifty Nine Days">Fifty Nine</option>
+                                                          <option Value="Sixty Days">Sixty</option>
+                                                </select>
+                                              </div>
+                                              <div class="icheck-inline" style="display: none;" id="txtWeekDiv">
+                                                <select  class="form-control input-sm select2" name="txtWeek"
+                                                        id="txtWeek">
+                                                    <option value="">--- Select ---</option>
+                                                    <option value="One Week">One</option>
+                                                    <option value="Two Weeks">Two</option>
+                                                    <option value="Three Weeks">Three</option>
+                                                    <option value="Four Weeks">Four</option>
+                                                    <option value="Five Weeks">Five</option>
+                                                    <option value="Six Weeks">Six</option>
+                                                    <option value="Seven Weeks">Seven</option>
+                                                    <option value="Eight Weeks">Eight</option>
+                                                    <option value="Nine Weeks">Nine</option>
+                                                    <option value="Ten Weeks">Ten</option>
+                                                    <option value="Eleven Weeks">Eleven</option>
+                                                    <option value="Twelve Weeks">Twelve</option>
+                                                </select>
+                                              </div>
+                                              <div class="icheck-inline" style="display: none;" id="txtMonthDiv">
+                                                <select class="form-control input-sm select2" name="txtMonth"
+                                                                id="txtMonth" >
+                                                     <option value="">--- Select ---</option>
+                                                     <option value="One Month">One</option>
+                                                     <option value="Two Months">Two</option>
+                                                     <option value="Three Months">Three</option>
+                                                     <option value="Four Months">Four</option>
+                                                     <option value="Five Months">Five</option>
+                                                     <option value="Six Months">Six</option>
+                                                     <option value="Seven Months">Seven</option>
+                                                     <option value="Eight Months">Eight</option>
+                                                     <option value="Nine Months">Nine</option>
+                                                     <option value="Ten Months">Ten</option>
+                                                     <option Value="Eleven Months">Eleven</option>
+                                                     <option Value="Twelve Months">Twelve</option>
+                                                     <option Value="Thirteen Months">Thirteen</option>
+                                                     <option Value="Fourteen Months">Fourteen</option>
+                                                     <option Value="Fifteen Months">Fifteen</option>
+                                                     <option Value="Sixteen Months">Sixteen</option>
+                                                     <option Value="Seventeen Months">Seventeen</option>
+                                                     <option Value="Eighteen Months">Eighteen</option>
+                                                     <option Value="Nineteen Months">Nineteen</option>
+                                                     <option Value="Twenty Months">Twenty</option>
+                                                     <option Value="Twenty One Months">Twenty One</option>
+                                                     <option Value="Twenty Two Months">Twenty Two</option>
+                                                     <option Value="Twenty Three Months">Twenty Three</option>
+                                                     <option Value="Twenty Four Months">Twenty Four</option>
+                                             </select>
+	                                             </div>
+                                             </div>																																													                                           
+                                           </div>
+                                           <br>
+                                           <div class="form-group" id="row2Div" style="display: none;">
+                                                <label class="col-md-3">Total Duration of Visa Recommendation
+                                                       Requested</label>
+                                                <div class="col-md-9">                                                                                                       
+												               <div class="form-md-line-input has-success">
+							                                <select class="form-control input-sm select2" name="drpMonth"
+                                                        id="drpMonth">
+                                                          <option value="">--- Select ---</option>
+                                                          <option Value="One Month">One Month</option>
+                                                          <option Value="Two Months">Two Months</option>
+                                                          <option Value="Three Months">Three Months</option>
+                                                          <option Value="Four Months">Four Months</option>
+                                                          <option Value="Five Months">Five Months</option>
+                                                          <option Value="Six Months">Six Months</option>
+                                                          <option Value="Seven Months">Seven Months</option>
+                                                          <option Value="Eight Months">Eight Months</option>
+                                                          <option Value="Nine Months">Nine Months</option>
+                                                          <option Value="Ten Months">Ten Months</option>
+                                                          <option Value="Eleven Months">Eleven Months</option>
+                                                          <option Value="One Year">One Year</option>
+                                                          <option Value="Two Years">Two Years</option>
+                                                          <option Value="Three Years">Three Years</option>
+                                                          <option Value="Four Years">Four Years</option>
+                                                          <option Value="Five Years">Five Years</option>
+                                                          <option Value="Six Years">Six Years</option>
+                                                          <option Value="Seven Years">Seven Years</option>
+                                                          <option Value="Eight Years">Eight Years</option>
+                                                          <option Value="Nine Years">Nine Years</option>
+                                                          <option Value="Ten Years">Ten Years</option>
+                                                    </select>
+								                           </div>					                            					                            
+                                                </div>
+                                           </div>    
+                                           <br>                                                                                                                                                             
+                                           <div class="form-group">
+                                                <label class="col-md-3">Passport No.</label>
+                                                <div class="col-md-9 has-success">
+                                                    <input id="txtPassportNo" name="txtPassportNo" type="text" class="form-control" placeholder="Enter Passport No." value="{{passport_no}}">
+                                                </div>
+                                            </div>     
+                                            <div class="form-group">
+                                                <label class="col-md-3">Passport Valid From Date</label>
+                                                <div class="col-md-3">
+                                                    <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy" >
+                                                        <input id="txtVFDate" name="txtVFDate" type="text" class="form-control" readonly value="{{passport_valid_from_date}}">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn default" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                          
+                                                        
+                                           <div class="form-group">
+                                                <label class="col-md-3">Passport Valid To Date </label>
+                                                <div class="col-md-3">
+                                                    <div class="input-group input-medium date date-picker" data-date-format="dd-mm-yyyy">
+                                                        <input id="txtVTDate" name="txtVTDate" type="text" class="form-control" readonly value="{{passport_valid_to_date}}">
+                                                        <span class="input-group-btn">
+                                                            <button class="btn default" type="button">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                           </div>
+                                           <div class="form-group">
+                                                <label class="col-md-3">From where would like to collect Visa Recommendation letter</label>
+                                                <div class="col-md-9">                                                                                                       
+												               <div class="form-md-line-input has-success" id="McciaLocationDiv">
+							                                <select id="McciaLocation" name="McciaLocation" class="form-control input-sm select2">
+								                                <option value=""> Select Location</option>
+		                                                  {% for i in locationObj %}
+		                                                     {% if location == i.id %} 
+		                                                   	   <option selected="" value="{{i.id}}">{{i.location}}</option>
+		                                                     {% else %}
+		                                                         <option value="{{i.id}}">{{i.location}}</option>
+		                                                     {% endif %}
+		                                                  {% endfor%}
+								                            </select>
+								                           </div>					                            					                            
+                                                </div>
+                                          </div>                                       					                                                                                                                                         
+                                          <div class="form-actions">                                         
+                                            <div class="row">
+                                            <div class="col-xs-12 text-right">
+                                                <button type="button" class="btn btn-outline grey_color "
+                                                        onclick="location.href = '/visarecommendationapp/manage-visa/'">
+                                                    Cancel
+                                                </button>
+                                                <button type="button" id="edit-continue"
+                                                        class="btn btn-outline done_btn" onclick="save_member_visa()">Submit
+                                                </button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                       </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade draggable-modal" id="success_modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center">Hall Updated Successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <a type="button" href="/backofficeapp/manage-halls/" class="btn green">OK</a>
+
+                    </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<div style="overflow-y:hidden;" id="error-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <img style="width: 100px; height: 29px; margin-top: -11px; margin-left: 236px;"
+                     src="#" alt="logo" class="logo-default">
+
+            </div>
+            <div class="modal-body">
+                <div class="form-body">
+                    <h4 id="error_msg" class="text-center"></h4>
+                </div>
+                <div style="text-align:center !important;" class="modal-footer">
+                    <input data-dismiss="modal" type="submit" value="OK"
+                           class="btn btn-primary" id="btn-loading-demo">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="page-footer-inner"> 2018 © Bynry Technologies
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+<!-- END FOOTER -->
+
+
+<!-- BEGIN CORE PLUGINS -->
+{% include 'backoffice/base_js.html' %}
+<script src="{% static 'custom-js/visarecommendationapp/edit_visa_recommendations.js' %}" type="text/javascript"></script>
+</body>
+</html>
+
+

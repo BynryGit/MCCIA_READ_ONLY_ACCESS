@@ -1,0 +1,369 @@
+a {
+	transition: all 0.5s;
+}
+.JoinTodaySection { padding-top:9px; padding-bottom:54px;}
+.JoinTodaySection h2 { font-size:32px; font-weight:700; color:#161d28; margin:0;padding-top: 100px;
+    padding-left: 55px; }
+.JoinTodaySection h2 span { display:block; font-size:16px; margin-bottom:8px;  }
+.JoinTodayinforpanel {  font-family: 'Lato', sans-serif; color:#5a5e62; font-size:15px; padding:66px 32px 0 60px; text-align:justify; line-height:24px;}
+.JoinTodayinforpanel p { margin-bottom:25px;}
+.JoinTodayinforpanel a {    
+	color: #2a2d30;
+    font-size: 14px;
+    font-family: 'Merriweather', serif;
+    background: #47ce85;
+    padding: 17px 25px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+	    display: inline-block; font-weight:400}
+.JoinTodayinforpanel a:hover { text-decoration:none; text-decoration: none;
+    background: #0167b2;
+    color: #fff;}
+.JoinTodayinforpanel a.firstBtn { margin-right:36px;}
+.SuccessWeDeserveSection {
+    background: #f2f6f7;
+    padding-top: 38px;
+    padding-bottom: 38px;
+    position: relative;
+}
+.SuccessWeDeserveSection:before {
+    content: '';
+    position: absolute;
+    width: 205px;
+    height: 214px;
+    background: #dedfdf;
+    top: 0;
+    left: 0;
+}
+.SuccessWeDeserveSection:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 214px 0 0px 200px;
+    border-color: transparent transparent transparent #dedfdf;
+    top: 0;
+    left: 205px;
+}
+.SuccessWedeserve h4 {
+    color: #161d28;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
+    margin-bottom: 0;
+    line-height: 25px;
+    margin: 0;
+}
+.SuccessWedeserve h4 span{
+    display: block;
+    color: #161d28;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
+}
+.SuccessWedeserve {
+    position: relative;
+    z-index: 999999;
+    padding-top: 40px;
+}
+.SuccessWeDeserveSection h3 {
+    color: #193651;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 100px;
+    font-family: 'Merriweather', serif;
+    display: inline-block;
+}
+.SuccessWeDeserveSection span{
+    color: #193651;
+    font-size: 24px;
+    font-weight: 700;
+}
+.SuccessWeDeserveSection h5{
+    color:#2a2d30;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: 'Merriweather', serif;
+    text-align: center;
+}
+.WelcomeNewMembers {
+    padding-top: 50px;
+    padding-bottom: 80px;
+}
+.WelcomeNewMembers h2 {
+    color: #161d28;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-family: 'Merriweather', serif;
+}
+.IndividualsMembers {
+    box-shadow: 4px 6px 27px 13px #d7d7d7;
+    padding: 30px;
+    border-radius: 4px;
+}
+.IndividualsMembers h3 {
+    margin-top: 0;
+    display: inline-block;
+    color: #161d28;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
+    margin-bottom: 20px;
+}
+.IndividualsMembers span {
+    float: right;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
+}
+ul.ShowMember {
+    list-style: none;
+}
+ul.ShowMember li:first-child{
+    background: #02ab50;
+}
+ul.ShowMember li{
+    background: #e5e6e6;
+    color: #161d28;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
+    padding: 10px 15px;
+    border-radius: 3px;
+}
+ul.ShowMember li a {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Merriweather', serif;
+    text-decoration: none;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+ul.ShowMember li a:hover{
+    color: #000;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.IndividualsMembers .carousel-inner .item ul {
+	margin-bottom: 0;
+}
+.IndividualsMembers .carousel-inner .item ul li {
+    color: #5a5e62;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
+    border-bottom: 1px solid #cccccc;
+    line-height: 20px;
+    padding: 15px;
+}
+.IndividualsMembers .carousel-inner .item ul li:last-child{
+    /*border-bottom: none;*/
+}
+.IndividualsMembers .carousel-inner .item ul li:first-child {
+    /*margin-top: 15px;*/
+}
+.ShowAllMembers {
+    background: #0167b2;
+    overflow: hidden;
+    padding: 10px 15px;
+    border-radius: 3px;
+}
+.ShowAllMembers .panelleft {
+    float: left;
+}
+.ShowAllMembers .panelleft a {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.ShowAllMembers .panelleft a:hover{
+    color: #000;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.ShowAllMembers .panelright{
+    float: right;
+    margin-right: 45px;
+}
+.ShowAllMembers .panelright span {
+    color: #ffffff;
+}
+.IndividualsMembers a i {
+    color: #a3a3a3;
+}
+.IndividualsMembers .carousel-control {
+    opacity: 1;
+    position: relative;
+    top: -2px;
+}
+.IndividualsMembers .carousel-control.left {
+    background: none;
+    right: 75px;
+    left: inherit;
+    width: 15px;
+    height: 30px;
+}
+.IndividualsMembers .carousel-control.right {
+    right: 0px;
+    width: 15px;
+    height: 30px;
+}
+.OrganizationMembers {
+    box-shadow: 4px 6px 27px 13px #d7d7d7;
+    padding: 30px;
+    border-radius: 4px;
+}
+.Pright{
+    padding-right: 35px;
+}
+.Pleft{
+    padding-left: 35px;
+}
+.navarrowpanel{
+    float: right;
+}
+.navarrowpanel1 {
+    float: right;
+    margin-top: -34px;
+    margin-right: 15px;
+}
+/*===== Responsive Css Start Here =====*/
+
+@media (max-width: 1199px){
+.JoinTodayinforpanel {
+    padding: 0px 0px 0 60px;
+}
+.SuccessWeDeserveSection:after {
+    border-width: 234px 0 0px 141px;
+}
+.SuccessWeDeserveSection:before {
+    height: 234px;
+}
+}
+
+@media (min-width: 992px){
+
+}
+
+@media (max-width: 991px){
+.JoinTodaySection h2 {
+    padding-top: 30px;
+    padding-bottom: 25px;
+    padding-left: 0;
+}
+.JoinTodayinforpanel {
+    padding: 0px;
+    margin-bottom: 30px;
+}
+.SuccessWeDeserveSection:after {
+    display: none;
+}
+.SuccessWedeserve h4 {
+    font-size: 15px;
+}
+ul.ShowMember li {
+    font-size: 14px;
+}
+.Pright {
+    padding-right: 15px;
+}
+.Pleft {
+    padding-left: 15px;
+}
+.JoinTodayinforpanel a.firstBtn {
+    margin-right: 13px;
+}
+.JoinTodayinforpanel a {
+    padding: 17px 20px;
+    font-size: 13px;
+}
+.JoinTodaySection {
+    padding-top: 9px;
+    padding-bottom: 30px;
+}
+}
+
+
+@media (max-width: 767px){
+.JoinTodaySection img {
+    width: 100%;
+}
+.SuccessWeDeserveSection:before {
+    display: none;
+}
+.SuccessWedeserve {
+    position: relative;
+    z-index: 999999;
+    padding-top: 18px;
+}
+.smallDevice {
+    margin-bottom: 30px;
+}
+.SuccessWedeserve h4 {
+    font-size: 15px;
+    text-align: center;
+}
+.WelcomeNewMembers .IndividualsMembers {
+    margin-bottom: 50px;
+    padding: 30px;
+}
+.WelcomeNewMembers {
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+ul.ShowMember li {
+    font-size: 15px;
+}
+.SuccessWeDeserveSection {
+    padding-bottom: 10px;
+}
+}
+
+
+@media (max-width: 580px){
+
+}
+
+@media (max-width: 480px){
+
+}
+@media (max-width: 375px){
+.JoinTodayinforpanel a.firstBtn {
+    margin-right: 13px;
+    margin-bottom: 15px;
+}
+.JoinTodayinforpanel a {
+    padding: 15px 20px;
+    width: 100%;
+    text-align: center;
+}
+}
+@media (max-width: 320px){
+.smallDevice{
+    width: 100%;
+    margin-bottom: 50px;
+} 
+.WelcomeNewMembers .IndividualsMembers {
+    margin-bottom: 50px;
+    padding: 10px;
+}
+.IndividualsMembers .carousel-control.left {
+    right: 60px;
+}
+.IndividualsMembers span {
+    margin-right: -6px;
+}
+}
+
+
+

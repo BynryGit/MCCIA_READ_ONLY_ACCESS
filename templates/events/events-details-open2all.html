@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+</head>
+<style>
+   table {border-collapse:collapse; table-layout:fixed; width:310px;}
+   table td {border:solid 1px #fab; width:100px; word-wrap:break-word;}
+   </style>
+<style type="text/css">
+
+.carsulwindowheight{
+height: 138px !important;
+width: 100%;
+}
+.WhentToAttendSidebar ul li span {
+    display: block;
+    font-weight: 300;
+    font-size: 14px;
+    padding-top: 2px;
+    color: #0aec06;
+}
+@media only screen and (max-width: 600px) {
+   .carsulheight{
+   height:100px;
+	width: 100%;
+   }
+   .margin_top{
+   margin-top: 10px;}
+}
+
+
+
+</style>
+<body>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!-- internal banner section starts here -->
+<section class="InternalBannerSection" style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h2>Events</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/eventsapp/events-home/">Events </a></li>
+                        <li class="active"><a href="#">{{event_title}}</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- internal banner section Ends here -->
+<!-- Member form section starts here -->
+<section class="FormArea internalSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8  col-lg-8 col-sm-12 col-xs-12">
+                <div class="FormTitleArea">
+                    <h2 style="word-wrap: break-word;">{{event_title}} -
+                        {% if status %}
+                        [<span style="font-size: 14px;color: #1a9838;">{{status}}</span>]
+                        {% endif %}
+                    </h2>
+                    <h3 style="word-wrap: break-word;"><span>Organised By:</span> {{organised_by}}</h3>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="col-md-12 col-xs-12">
+                    <div class="col-md-2 col-xs-2">
+                    </div>
+                    <div class="col-md-8 col-xs-8" style="text-align: center;">
+                        {% if sponsor_image_doc_list %}
+                        <h2>Sponsors</h2>
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                {% for obj in sponsor_image_doc_list %}
+                                {% if forloop.counter == 1 %}
+                                <li data-target="#myCarousel" data-slide-to="{{forloop.counter}}" class="active"></li>
+                                {% else %}
+                                <li data-target="#myCarousel" data-slide-to="{{forloop.counter}}"></li>
+                                {% endif %}
+                                {% endfor %}
+                            </ol>
+
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                {% for obj in sponsor_image_doc_list %}
+                                {% if forloop.counter == 1 %}
+                                <div class="item active">
+                                    <img src="{{obj}}" alt="No Image" class="carsulwindowheight carsulheight">
+                                </div>
+                                {% else %}
+                                <div class="item">
+                                    <img src="{{obj}}" alt="No Image" class="carsulwindowheight carsulheight">
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+
+                            <!-- Left and right controls -->
+                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12" style="padding-top:10px">
+            </div>
+        </div>
+
+        <input type="hidden" id="hidden_eventdetails_id" name="hidden_eventdetails_id" value="{{id}}">
+        <input id="non_member_id" type="hidden" name="non_member_id">
+        {% if status_flag == 1 or request.session.user_type == 'backoffice' %}
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="container">
+                <div class="row CommonInternalpadding">
+                    <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading0">
+                                <h5 class="panel-title"><a class="collapsed" data-toggle="collapse"
+                                                           data-parent="#accordion2" href="#collapse0"
+                                                           aria-expanded="false"
+                                                           aria-controls="collapseThree">
+                                    <div class="headingText"><span class="fa fa-plus"></span> Click here to Register
+                                    </div>
+                                </a></h5>
+                            </div>
+                            <div id="collapse0" class="panel-collapse collapse" role="tabpanel"
+                                 aria-labelledby="heading0"
+                                 aria-expanded="false" style="height: 0px;">
+                                <div class="panel-body">
+                                    <div class="FormTitleArea">
+                                        <div class="radio " id="head_div">
+                                            <div class="radiobox">
+                                                <input type="radio" id="radiobtn1" name="radiobtn-1" checked=""
+                                                       value="non_member" >
+                                                <label for="radiobtn1">NonMember</label>
+                                            </div>
+                                            <div class="radiobox">
+                                                <input type="radio" id="radiobtn2" name="radiobtn-1" value="member">
+                                                <label for="radiobtn2">Member</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row margin_top">
+                                        <div class="col-lg-12 col-md-12" id="nonmem_div">
+                                            <div class="FormInnerArea clearfix">
+                                                <form id="event_details_form" method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="validateContainer">
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label" for="enrolled_by" id="enrolled_by">You are <span class="mandatory">*</span></label>
+                                                            <div class="radio">
+                                                                <input type="radio" name="enroll_type" value="IN" id="Individual" checked="" onclick="change_ind()">
+                                                                <label for="Individual">Individual</label>
+                                                                <input type="radio" name="enroll_type" value="CO" id="Company"  onclick="change_comp()">
+                                                                <label for="Company">Company</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <div id="inddiv">
+                                                                <label class="col-md-4 control-label" for="Name of Applicant">Enter Your Name<span class="mandatory">*</span></label>
+                                                            </div>
+                                                             <div id="compdiv">
+                                                                <label class="col-md-4 control-label" for="Name of Organization"> Enter Name of Your Organization<span class="mandatory">*</span></label>
+                                                            </div>
+
+                                                            <div class="col-md-7">
+                                                                <!--<div class="validateField" id="org_name_inpu_div">-->
+                                                                <!--<input type="text" class="form-control validateRequired validateAlphaonly"-->
+                                                                <!--name="Organizationname" id="Organizationname" maxlength="50">-->
+                                                                <!--</div>-->
+                                                                <div class="validateField selectdiv"
+                                                                     id="org_name_inpu_div_ind">
+                                                                    <div>
+                                                                    <div style="position: relative;  z-index: 20;" class="form-group form-md-line-input has-success">
+                                                                        <select onchange="get_nonmem_detail();"
+                                                                                style="width: 321px;"
+                                                                                class="form-control validateRequired eventclass input-sm select2"
+                                                                                name="Organizationname"
+                                                                                id="Organizationname">
+                                                                            <option value="">Select/Enter Your Name
+                                                                            </option>
+                                                                            {% for obj in non_member_company_list %}
+                                                                            <option value="{{obj.id}}">
+                                                                                {{obj.company.company_name}}
+                                                                            </option>
+                                                                            {% endfor %}
+                                                                        </select>
+                                                                    </div>
+                                                                        </div>
+                                                                    <p>(If you do not find your name in the drop down box, please use it (drop down box) to write your name.)</p>
+                                                                </div>
+
+
+
+                                                                <div class="validateField selectdiv" id="org_name_inpu_div_comp">
+                                                                    <div>
+                                                                    <div style="position: relative;  z-index: 20;" class="form-group form-md-line-input has-success">
+                                                                        <select onchange="get_nonmem_detail_comp();" style="width: 321px;"
+                                                                                class="form-control validateRequired eventclass input-sm select2" name="Organizationnamecomp"
+                                                                                id="Organizationnamecomp">
+                                                                            <option value="">Select/Enter Organization Name</option>
+                                                                            {% for obj in non_member_company_list %}
+                                                                            <option value="{{obj.id}}">
+                                                                                {{obj.company.company_name}}
+                                                                            </option>
+                                                                            {% endfor %}
+                                                                        </select>
+                                                                    </div>
+                                                                        <p>(If you do not find your name in the drop down box, please use it (drop down box) to write your name.)</p>
+                                                                    </div>
+                                                                </div>
+                                                                <!--<div class="validateField selectdiv" style="display: none;" id="org_name_select2_div">-->
+                                                                <!--<select  onchange="get_membership_no();" class="form-control validateRequired" name="selectOrganizationname" id="selectOrganizationname">-->
+                                                                <!--<option value="">Select Organization</option>                                          -->
+                                                                <!--{% for obj in user_company_objs_list %}-->
+                                                                <!--<option value="{{obj.id}}">{{obj.company.company_name}}</option>-->
+                                                                <!--{% endfor %}-->
+                                                                <!--</select>-->
+                                                                <!--</div>-->
+                                                                <div class="validateField selectdiv"
+                                                                     style="display: none;" id="org_name_select2_div_ind">
+                                                                    <div class="form-group form-md-line-input has-success">
+                                                                        <select style="width: 321px;"
+                                                                                onchange="get_membership_no();"
+                                                                                class="form-control validateRequired eventclass input-sm select2"
+                                                                                name="selectOrganizationname"
+                                                                                id="selectOrganizationname">
+                                                                            <option value="">Select/Enter Your Name M
+                                                                            </option>
+                                                                            {% for obj in user_company_objs_list %}
+                                                                            <option value="{{obj.id}}">
+                                                                                {{obj.company.company_name}}
+                                                                            </option>
+                                                                            {% endfor %}
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="validateField selectdiv"
+                                                                     style="display: none;" id="org_name_select2_div_comp">
+                                                                    <div class="form-group form-md-line-input has-success">
+                                                                        <select style="width: 321px;"
+                                                                                onchange="get_membership_no_comp();"
+                                                                                class="form-control validateRequired eventclass input-sm select2"
+                                                                                name="selectOrganizationnamecomp"
+                                                                                id="selectOrganizationnamecomp">
+                                                                            <option value="">Select/Enter Organization Name M
+                                                                            </option>
+                                                                            {% for obj in user_company_objs_list %}
+                                                                            <option value="{{obj.id}}">
+                                                                                {{obj.company.company_name}}
+                                                                            </option>
+                                                                            {% endfor %}
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" style="display: none;"
+                                                             id="membership_div">
+                                                            <label class="col-md-4 control-label" for="membership_no">Membership
+                                                                No.
+                                                            </label>
+
+                                                            <div class="col-md-7">
+                                                                <span id="membership_id"
+                                                                      style="font-weight:bold;"></span><br>
+                                                                <span style="color: blue; font-weight: bold">If your name does not appear in the list please ensure that you have renewed your membership for the current financial year.</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label" for="Address">Address</label>
+
+                                                            <div class="col-md-7">
+                                                                <div>
+                                                                    <textarea class="form-control" rows="1" name="address" id="address"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label" for="Contact Person">Contact Person<span
+                                                                        class="mandatory">*</span></label>
+                                                            <div class="col-md-7">
+                                                                <div>
+                                                                    <input type="text" class="form-control validateRequired validateAlphaonly" name="ContactPerson" id="ContactPerson" maxlength="50">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label" for="Email Id">Email
+                                                                Id<span
+                                                                        class="mandatory">*</span></label>
+
+                                                            <div class="col-md-7">
+                                                                <div class="validateField">
+                                                                    <input type="text"
+                                                                           class="form-control validateRequired validateEmail"
+                                                                           name="contact_person_email_id"
+                                                                           id="contact_person_email_id" maxlength="50">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label" for="Contact No">Mobile
+                                                                No 1<span
+                                                                        class="mandatory">*</span></label>
+
+                                                            <div class="col-md-7">
+                                                                <div class="validateField">
+                                                                    <input type="text"
+                                                                           class="form-control validateRequired validateNumber validateMobileNoLimit"
+                                                                           name="contact_person_number"
+                                                                           id="contact_person_number" maxlength="10"
+                                                                           minlength="10">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--<div class="form-group">-->
+                                                            <!--<label class="col-md-4 control-label" for="Contact No">Mobile No 2</label>-->
+
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label">Office Contact
+                                                                No.</label>
+
+                                                            <div class="col-md-7">
+                                                                <div class="validateField">
+                                                                    <input type="text"
+                                                                           class="form-control validateNumber"
+                                                                           name="contact_office_number"
+                                                                           id="contact_office_number"
+                                                                           maxlength="15" minlength="8">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="col-md-4 control-label"
+                                                                   for="No. of Participants">No. of Participants<span
+                                                                    class="mandatory">*</span></label>
+
+                                                            <div class="col-md-4">
+                                                                <div class="validateField selectdiv">
+                                                                    <select onchange="append_part_div();"
+                                                                            class="form-control validateRequired"
+                                                                            name="industry_participant"
+                                                                            id="industry_participant">
+                                                                        <option value="">Select No. of Participants
+                                                                        </option>
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-4" style="display: none;"
+                                                                 id="same_as_above">
+                                                                <div class="checkbox">
+                                                                    <input type="checkbox"
+                                                                           name="same_as_above_check"
+                                                                           id="same_as_above_check">
+                                                                    <label for="same_as_above_check"> Same as above
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group Participantslist" id="
+                                                        participant_div">
+                                                        <div class="col-lg-12" style="display: none;" id="participant_data_div">
+                                                        <div class="table-responsive">
+                                                         <table class="table table-striped table-bordered table-hover " id="participant_data" style="table-layout: fixed; width: 300%"  cellspacing="0">
+                                                            <thead>
+                                                            <tr>
+                                                            <th style="word-wrap: break-word" width="60px">Sr.</th>
+                                                                <th style="word-wrap: break-word" width="200px">Name</th>
+                                                                <th style=" word-wrap: break-word" width="200px">Email ID</th>
+                                                                <th style="word-wrap: break-word" width="150px">Mobile No.</th>
+                                                                <th style="word-wrap: break-word" width="200px">Designation</th>
+                                                                <th style="word-wrap: break-word" width="200px">Department</th>
+                                                            </tr>
+                                            </thead>
+                                            <tbody id="participant_data_body">
+                                                                                      
+                                           </tbody>
+                                        </table>
+                                    </div>
+                                    </div>
+                                                        </div>
+                                                        <!-- <div class="form-group">
+                                                            <label class="col-md-4 control-label" for="state">State<span
+                                                                    class="mandatory">*</span></label>
+
+                                                            <div class="col-md-4">
+                                                                <div class="validateField selectdiv">
+                                                                    <select onchange="get_total_count();"
+                                                                            class="form-control validateRequired"
+                                                                            name="state_id" id="state_id">
+                                                                        <option value="maha" selected="">Maharashtra
+                                                                        </option>
+                                                                        <option value="other">Other</option>
+
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+                                                        <div class="form-group" style="display: none;">
+                                                            <label class="col-md-5 col-sm-5 control-label"
+                                                                   for="Contact No">Total Fees</label>
+
+                                                            <div class="col-md-7 col-sm-7">
+                                                                <label class="colorgreen" id="total_fees"><i
+                                                                        class="fa fa-inr"></i> 0</label>
+                                                                <input id="hidden_total_fees" name="hidden_total_fees"
+                                                                       type="hidden" value="0">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group" style="display: none;">
+                                                            <label class="col-md-5 col-sm-5 control-label"
+                                                                   for="Contact No">Extra GST/IGST</label>
+
+                                                            <div class="col-md-7 col-sm-7">
+                                                                <label class="colorgreen" id="total_gst"><i
+                                                                        class="fa fa-inr"></i> 0</label>
+                                                                <input id="hidden_total_gst" name="hidden_total_gst"
+                                                                       type="hidden" value="0">
+                                                            </div>
+                                                        </div>
+                                                       <!--  <div class="form-group" id="discountDiv" style="display: none;">
+                                                            <label class="col-md-5 col-sm-5 control-label"
+                                                                   for="Contact No">Discount</label>
+
+                                                            <div class="col-md-7 col-sm-7">
+                                                                <label class="colorgreen" id="discount_part"><i
+                                                                        class="fa fa-inr"></i> 0 </label> <label
+                                                                    class="colorgreen"> <span
+                                                                    id="discount_per_id"> </span></label>
+                                                                <input id="hidden_discount_part"
+                                                                       name="hidden_discount_part" type="hidden"
+                                                                       value="0">
+                                                            </div>
+                                                        </div> -->
+                                                        <!-- <div class="form-group" style="display: none;">
+                                                            <label class="col-md-5 col-sm-5 control-label"
+                                                                   for="Contact No">Payable Amount</label>
+
+                                                            <div class="col-md-7 col-sm-7">
+                                                                <label class="colorgreen" id="payable_amount"><i
+                                                                        class="fa fa-inr"></i> 0</label>
+                                                                <input id="hidden_payable_amount"
+                                                                       name="hidden_payable_amount" type="hidden"
+                                                                       value="0">
+                                                            </div>
+                                                        </div> -->
+                                                        <div class="form-group" id="promocode_div1"
+                                                             style="display: none;">
+                                                            <div class="col-md-12 col-sm-12">
+                                                                <a onclick="open_discount_div();">Have a promocode ?</a>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group" style="display: none;"
+                                                             id="promocode_div2">
+                                                            <label class="col-md-4 control-label" for="Contact Person">Apply
+                                                                Promocode</label>
+
+                                                            <div class="col-md-4">
+                                                                <div class="validateField">
+                                                                    <input type="text"
+                                                                           class="form-control validateRequired validateAlphaonly"
+                                                                           name="promocode" id="promocode"
+                                                                           maxlength="50"
+                                                                           style="text-transform: uppercase">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <button type="button" class="btn btn-default" value=""
+                                                                        style="width: 90px;">Done
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <button type="button" class="btn btn-default" value=""
+                                                                        onclick="remove_discount_div();">Remove
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <div class="form-group">
+                                                                <label class="col-md-2 control-label">PAN</label>
+                                                                <div class="col-md-8">
+                                                                    <div class="validateField">
+                                                                        <input type="text" maxlength=10
+                                                                               class="form-control validateRequired validatePanNumber"
+                                                                               style="text-transform: uppercase"
+                                                                               id="CorrespondencePan"
+                                                                               name="CorrespondencePan">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-2">
+                                                                    <div class="checkbox">
+                                                                        <input type="checkbox"
+                                                                               name="CorrespondencePanCheck"
+                                                                               id="CorrespondencePanCheck">
+                                                                        <label for="CorrespondencePanCheck"> NA
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                              <div class="form-group">
+                                                               <label class="col-md-2 control-label">GST</label>
+                                                                <div class="col-md-8">
+                                                                    <div class="validateField">
+                                                                        <input type="text" maxlength=15
+                                                                               class="form-control validateRequired validateGSTNumber"
+                                                                               style="text-transform: uppercase"
+                                                                               id="CorrespondenceGSTText"
+                                                                               name="CorrespondenceGSTText">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-2">
+                                                                    <div class="checkbox">
+                                                                        <input type="checkbox"
+                                                                               name="correspondence_GST"
+                                                                               id="correspondence_GST">
+                                                                        <label for="correspondence_GST"> NA
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="checkbox">
+                                                                        <input type="checkbox"
+                                                                        name="UnderProcess"
+                                                                        id="UnderProcess">
+                                                                        <label for="UnderProcess"> UnderProcess
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+
+
+
+
+                                                            <!-- <div class="form-group validateField"
+                                                                 id="error_correspondence_GST">
+                                                                <label class="col-md-2 control-label">GST</label>
+                                                                <div class="col-md-4">
+                                                                    <div class="form-group form-md-radios validateRequired">
+                                                                        <div class="md-radio-inline">
+                                                                            <div class="md-radio">
+                                                                                <input type="radio" id="UnderProcess"
+                                                                                       name="correspondence_GST"
+                                                                                       value="UnderProcess"
+                                                                                       class="md-radiobtn">
+                                                                                <label for="UnderProcess"
+                                                                                       style="color:black;">
+                                                                                    <span></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span><b> Under
+                                                                                    Process </b> </label>
+                                                                            </div>
+                                                                            <div class="md-radio">
+                                                                                <input type="radio" id="Applicable"
+                                                                                       name="correspondence_GST"
+                                                                                       value="Applicable"
+                                                                                       class="md-radiobtn">
+                                                                                <label for="Applicable"
+                                                                                       style="color:black;">
+                                                                                    <span></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> <b>
+                                                                                    Applicable </b> </label>
+                                                                            </div>
+                                                                            <div class="md-radio">
+                                                                                <input type="radio" id="NotApplicable"
+                                                                                       name="correspondence_GST"
+                                                                                       value="NotApplicable"
+                                                                                       class="md-radiobtn" checked="">
+                                                                                <label for="NotApplicable"
+                                                                                       style="color:black;">
+                                                                                    <span></span>
+                                                                                    <span class="check"></span>
+                                                                                    <span class="box"></span> <b>Not
+                                                                                    Applicable </b></label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6" id="GSTField"
+                                                                     style="display:none">
+                                                                    <div class="form-group validateField">
+                                                                        <input type="text" maxlength=50
+                                                                               class="form-control validateAlphaonly"
+                                                                               id="CorrespondenceGSTText"
+                                                                               placeholder="GST"
+                                                                               name="CorrespondenceGSTText">
+                                                                    </div>
+                                                                </div>
+                                                            </div> -->
+                                                            {% if request.session.user_type == 'backoffice' %}
+                                                            <div class="form-group" id="send_mail_div">
+                                                                <label class="col-md-4 control-label" for="mail">Do You
+                                                                    Want to send Mail?</label>
+
+                                                                <div class="col-md-8">
+                                                                    <div class="radio ">
+                                                                        <div class="radiobox">
+                                                                            <input type="radio" id="radiobtn6"
+                                                                                   name="radiobtn-3" value="No">
+                                                                            <label for="radiobtn6">No</label>
+                                                                        </div>
+                                                                        <div class="radiobox">
+                                                                            <input type="radio" id="radiobtn7"
+                                                                                   name="radiobtn-3" value="Yes"
+                                                                                   checked>
+                                                                            <label for="radiobtn7">Yes</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            {% endif %}
+
+                                                            {% if request.session.user_type != 'backoffice' %}
+                                                            <div class="radiobox">
+                                                                <input type="radio" id="radiobtn7" name="radiobtn-3"
+                                                                       value="Yes" checked>
+                                                            </div>
+                                                            {% endif %}
+
+
+
+                                                            <div class="form-group validateField">
+                                                                <label class="col-md-12 col-xs-12 control-label">Through
+                                                                    which medium have you got event information
+                                                                    ?<span class="mandatory">*</span></label>
+                                                                <div class="col-md-12 col-xs-12">
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group form-md-radios validateRequired">
+                                                                            <div class="md-radio-inline">
+                                                                                <div class="md-radio">
+                                                                                    <input type="radio"
+                                                                                           id="medium_email"
+                                                                                           name="medium" value="0"
+                                                                                           class="md-radiobtn">
+                                                                                    <label for="medium_email"
+                                                                                           style="color:black;">
+                                                                                        <span></span>
+                                                                                        <span class="check"></span>
+                                                                                        <span class="box"></span><b>
+                                                                                        Email from MCCIA </b> </label>
+                                                                                </div>
+                                                                                <div class="md-radio">
+                                                                                    <input type="radio"
+                                                                                           id="medium_website"
+                                                                                           name="medium" value="1"
+                                                                                           class="md-radiobtn">
+                                                                                    <label for="medium_website"
+                                                                                           style="color:black;">
+                                                                                        <span></span>
+                                                                                        <span class="check"></span>
+                                                                                        <span class="box"></span> <b>
+                                                                                        Website </b> </label>
+                                                                                </div>
+                                                                                <div class="md-radio">
+                                                                                    <input type="radio"
+                                                                                           id="medium_socialmedia"
+                                                                                           name="medium" value="2"
+                                                                                           class="md-radiobtn">
+                                                                                    <label for="medium_socialmedia"
+                                                                                           style="color:black;">
+                                                                                        <span></span>
+                                                                                        <span class="check"></span>
+                                                                                        <span class="box"></span> <b>Social
+                                                                                        Media </b></label>
+                                                                                </div>
+                                                                                <div class="md-radio">
+                                                                                    <input type="radio"
+                                                                                           id="medium_other"
+                                                                                           name="medium" value="3"
+                                                                                           class="md-radiobtn"
+                                                                                           checked="">
+                                                                                    <label for="medium_other"
+                                                                                           style="color:black;">
+                                                                                        <span></span>
+                                                                                        <span class="check"></span>
+                                                                                        <span class="box"></span> <b>Referred
+                                                                                        by Other </b></label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6" style="display: none;"
+                                                                         id="social_medium_div">
+                                                                        <div class="form-group form-md-radios validateRequired">
+                                                                            <div class="md-radio-inline">
+                                                                                <div class="md-radio">
+                                                                                    <input type="radio"
+                                                                                           id="social_facebook"
+                                                                                           name="social_medium"
+                                                                                           value="0"
+                                                                                           class="md-radiobtn">
+                                                                                    <label for="social_facebook"
+                                                                                           style="color:black;">
+                                                                                        <span></span>
+                                                                                        <span class="check"></span>
+                                                                                        <span class="box"></span><b>
+                                                                                        Facebook </b> </label>
+                                                                                </div>
+                                                                                <div class="md-radio">
+                                                                                    <input type="radio"
+                                                                                           id="social_linkedIn"
+                                                                                           name="social_medium"
+                                                                                           value="1"
+                                                                                           class="md-radiobtn">
+                                                                                    <label for="social_linkedIn"
+                                                                                           style="color:black;">
+                                                                                        <span></span>
+                                                                                        <span class="check"></span>
+                                                                                        <span class="box"></span> <b>
+                                                                                        LinkedIn </b> </label>
+                                                                                </div>
+                                                                                <div class="md-radio">
+                                                                                    <input type="radio"
+                                                                                           id="social_WhatsApp"
+                                                                                           name="social_medium"
+                                                                                           value="2"
+                                                                                           class="md-radiobtn"
+                                                                                           checked="">
+                                                                                    <label for="social_WhatsApp"
+                                                                                           style="color:black;">
+                                                                                        <span></span>
+                                                                                        <span class="check"></span>
+                                                                                        <span class="box"></span> <b>WhatsApp </b></label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <div class="Formbuttons">
+                                                                    <button type="submit"
+                                                                            class="btn btn-default subbtn checkValidationBtn"
+                                                                            value="Submit"
+                                                                            onclick="save_event_details();">Submit
+                                                                    </button>
+                                                                    <button type="reset" class="btn btn-default reset"
+                                                                            value="Reset">Reset
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="confirm_div"
+                                             style="display: none;">
+                                            <div class="FormInnerArea clearfix">
+                                                <div class="validateContainer">
+                                                      <!--<div class="form-group">-->
+                                                        <!--<label class="col-md-4 control-label" for="Name of Organization">You are</label>-->
+                                                        <!--<div class="col-md-7"><div class="validateFieldLabel">-->
+                                                                <!--<span id="confirm_enrolled"></span>-->
+                                                            <!--</div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label"
+                                                               for="Name of Organization">
+
+                                                            Registration No.</label>
+                                                        <div class="col-md-7">
+                                                            <div class="validateFieldLabel" id="linon">
+                                                                <span id="confirm_reg_no"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label"
+                                                               for="Name of Organization">
+
+                                                            Membership No.</label>
+                                                        <div class="col-md-7">
+                                                            <div class="validateFieldLabel" id="linon">
+                                                                <span id="confirm_membership_no"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label"
+                                                               for="Name of Organization">
+                                                            Name of Organization/Individual</label>
+                                                        <div class="col-md-7">
+                                                            <div class="validateFieldLabel">
+                                                                <span id="confirm_org_name"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label" for="Name of Organization">Address</label>
+                                                        <div class="col-md-7"><div class="validateFieldLabel">
+                                                                <span id="confirm_address"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label"
+                                                               for="Name of Organization">
+                                                            Contact Person </label>
+                                                        <div class="col-md-7">
+                                                            <div class="validateFieldLabel">
+                                                                <span id="confirm_contact_person"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label"
+                                                               for="Name of Organization">
+                                                            Email Id </label>
+                                                        <div class="col-md-7">
+                                                            <div class="validateFieldLabel">
+                                                                <span id="confirm_email"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label"
+                                                               for="Name of Organization">
+                                                            Contact No. </label>
+                                                        <div class="col-md-7">
+                                                            <div class="validateFieldLabel"><span
+                                                                    id="confirm_contact_no"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-4 control-label"
+                                                               for="Name of Organization">
+
+                                                            No. of Participants </label>
+                                                        <div class="col-md-7">
+                                                            <div class="validateFieldLabel"><span
+                                                                    id="confirm_no_part"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                   <!--  <div id="_ctl0_ContentPlaceHolder1_disc" class="form-group"
+                                                         style="display:;">
+                                                        <label class="col-md-4 control-label"
+                                                               for="Name of Organization">
+                                                            Discount </label>
+                                                        <div class="col-md-7">
+                                                            <div class="validateFieldLabel">
+                                                                <span id="confirm_discount"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
+                                                  <!--   <div id="_ctl0_ContentPlaceHolder1_Amt" class="form-group"
+                                                         style="display:;">
+                                                        <label class="col-md-4 control-label"
+                                                               for="Name of Organization">
+
+                                                            Payable Amount</label>
+                                                        <div class="col-md-7">
+                                                            <div class="validateFieldLabel">
+                                                                <span id="confirm_payable_amt"><img
+                                                                        src='https://demo.mcciapune.com/images/rupee.png'>  </span>
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
+<!-- 
+                                                    <div id="_ctl0_ContentPlaceHolder1_Pay" class="form-group">
+                                                        <label class="col-md-4 control-label"
+                                                               for="Name of Organization">
+
+
+                                                            Payment Mode </label>
+                                                        <div class="col-md-7">
+                                                            <div class="validateFieldLabel">
+                                                                <span id="confirm_pay_mode"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
+
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-12 control-label">
+                                                            Participant's Details - </label>
+
+                                                        <div class="col-md-12">
+                                                            <div class="table-responsive TableCustomStyle">
+                                                                <table class="table table-striped" cellspacing="0"
+                                                                       cellpadding="0" align="Center" border="0"
+                                                                       id="confirm_participant_table"
+                                                                       style="font-weight:normal;font-style:normal;text-decoration:none;width:100%;border-collapse:collapse;" >
+                                                                   <tr class="title">
+                                                                                            <td align="center" style="width:20%;">Sr. No.</td><td style="width:25%;">Name</td><td style="width:25%;">Email</td>
+                                                                                            <td style="width:20%;">Contact No.</td><td style="width:20%;">Designation</td>
+                                                                                            <td style="width:20%;">Department</td>
+                                                                                        </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="Formbuttons">
+                                                                <input type="hidden" id="hidden_event_reg_id"
+                                                                       name="hidden_event_reg_id">
+                                                                <input onclick="confirm_save_event_details();"
+                                                                       type="submit" name="" value="CONFIRM"
+                                                                       class="btn btn-default subbtn"/>&nbsp;&nbsp;
+                                                                <input class="btn btn-default subbtn" value="CANCEL"
+                                                                       type="button"
+                                                                       onclick="window.location = '/eventsapp/events-home/';"/>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="container">
+                <div class="row CommonInternalpadding">
+                    <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default headingActive">
+                            <div class="panel-heading" role="tab" id="heading8">
+                                <h5 class="panel-title"><a class="collapsed" data-toggle="collapse"
+                                                           data-parent="#accordion2" href="#collapse1"
+                                                           aria-expanded="true"
+                                                           aria-controls="collapseThree">
+                                    <div class="headingText"><span class="fa fa-minus"></span>Programme Details</div>
+                                </a></h5>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse in" role="tabpanel"
+                                 aria-labelledby="collapse1"
+                                 aria-expanded="true" style="height: 0px;">
+                                <div class="panel-body">
+                                    <div align="justify" class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                        <div id="program_detail_id" style="color: #afb0b3;height: 100%;"></div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                        <div class="WhentToAttendSidebar">
+                                            <ul>
+                                                <li>When to Attend<span>{{when_to_attend}}</span></li>
+                                                <li>What time to Attend <span>{{time_to_attend}}</span></li>
+                                                <li> Where to Attend<span>{{event_location}}</span></li>
+                                                <li> Event Objective<span>{{event_objective}}</span></li>
+                                                <li> Event Mode<span>{{event_mode}}</span></li>
+                                                <li>Organizing Committee <span>{{organising_committee}}</span></li>
+                                            </ul>
+                                        </div>
+                                        <div class="ContactPerson">
+                                            <h3>Contact</h3>
+                                            <ul>
+                                                <li><i class="fa fa-user-o"></i>{{contact_person_name}},
+                                                    {{designation_name}}
+                                                </li>
+                                                <li><i class="fa fa-volume-control-phone"></i>{{contact_person_number}}
+                                                </li>
+                                                <li><i class="fa fa-envelope-o"></i>{{contact_person_email_id}}</li>
+
+                                            </ul>
+                                            {% if contact_person_name2 != '' %}
+                                            <hr style="border-top: dotted 2px;"/>
+                                            <ul>
+                                                <li><i class="fa fa-user-o"></i>{{contact_person_name2}},
+                                                    {{designation_name2}}
+                                                </li>
+                                                <li><i class="fa fa-volume-control-phone"></i>{{contact_person_number2}}
+                                                </li>
+                                                <li><i class="fa fa-envelope-o"></i>{{contact_person_email_id2}}</li>
+                                            </ul>
+                                            {% endif %}
+                                        </div>
+                                        {% if hall_location_flag %}
+                                        <div class="ContactPerson">
+                                            <h3>Event Location</h3>
+                                            <ul>
+                                                <div id="gmap"
+                                                     class="c-content-contact-1-gmap" style="height: 200px;"></div>
+                                            </ul>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- acoordion starts here -->
+
+<!-- Member form section ends here -->
+<div id="service_register_modal" class="modal fade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-body">
+                    <label>Thanks for interest in our service. Kindly note the reference no. for future. </label>
+                    <label class="bold">Service ID - <span id="serv_id"></span></label>
+                    <label>
+                        Please download the service form from your registered email id and submit it at nearest CSD
+                        center with supporting documents.</label>
+                </div>
+                <div class="modal-footer" style="text-align:center;">
+                    <a type="button" data-dismiss="modal" class="btn dark btn-outline">OK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_block %}
+<script src="{%static 'custom-js/eventapp/event_details_open2all_form.js' %}" type="text/javascript"></script>
+<script src="https://maps.google.com/maps/api/js?libraries=geometry&v=3.22&key=AIzaSyDV7B5iJWyOQq-OyNuVR1VcarXPz3yL6Y8"></script>
+<script src="{% static 'custom-js/backofficeapp/events/maplace.min.js' %}" type="text/javascript"></script>
+{% endblock %}
+</body>
+</html>

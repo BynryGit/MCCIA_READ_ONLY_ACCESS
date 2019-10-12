@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+
+    <style>
+        .demo {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: left;
+        padding-left: 16px;
+        font-family: arial, sans-serif;
+        }
+        .demo tr:nth-child(even) {
+        background-color: #000000;
+        }
+        .main{
+        border: 1px solid black;
+        background-color: #ffffff;
+        }
+
+        .solid {
+            border: 1px solid black;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 50px;
+            padding-bottom: 40px;
+            position: absolute;
+            top: 5%;
+            left: 20%;
+            right: 20%;
+          }
+        .fon {size: small; }
+
+        .left-bottom {
+          position: absolute;
+          top: 120%;
+          left: 5%;
+          right: 20%;
+        }
+        
+        table {
+			    font-family: arial, sans-serif;
+			    border-collapse: collapse;
+			    width: 100%;
+			}
+
+			td, th {
+				    text-align: left;
+				    padding: 7px;
+				}
+
+</style>
+</head>
+<body>
+<br><br>
+<div class="container">
+	<div class="row">
+        <div class="col-md-offset-1 col-md-10 col-md-offset-1 solid">
+
+                        <center><img alt="" src="http://www.mcciapune.com/static/assets/images/mccia-logo-footer.png" ></center>
+                        <br>
+                        <center><b> MAHRATTA CHAMBER OF COMMERCE INDUSTRIES AND AGRICULTURE </b></center>
+                        <center> <span style="font-size: 12px"> 505 A & B Wing, 5th floor, MCCIA Trade Tower, Senapati Bapat Road, Pune 411 016 Maharashtra , Tel.(020) 25709114 / 25709000 Fax (020) 25709021</span>
+                        </center>
+                        <center><span style="font-size: 13px">GSTIN - <b>27AAATM5559Q1ZS</b> &emsp;&emsp;&emsp; PAN - <b>AAATM5559Q</b></span></center>
+                        <br>
+                        <br>
+                        <span>We acknowledge the following hall booking done by you.</span>
+								{% if send_mail_count == 'FIRST' %}
+                        <span>You will receive the Proforma Invoice Shortly.</span>
+                        {% endif %}
+                        <br>
+                        <br>
+                        {% if send_mail_count != 'FIRST' %}
+                        <table border="1">
+									<tr>
+										<td>Name</td>
+										<td>
+											<label><b>{{hall_booking_obj.name}}</b></label>
+										</td>
+										<td>Proforma Invoice</td>
+										<td>
+											<label><b>{{sb_pi_no}}</b></label><br>
+											<label><b>{{tilak_pi_no}}</b></label><br>
+											<label><b>{{bpi_pi_no}}</b></label><br>
+											<label><b>{{hpi_pi_no}}</b></label><br>
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="3">Address</td>
+										<td rowspan="3">
+											<label><b>{{booking_detail_obj.address}}</b></label>
+										</td>
+										<td>Date</td>
+										<td>
+											<label><b>{{date}}</b></label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>Membership No.</label>
+										</td>
+										<td>
+											<label><b>{% if hall_booking_obj.member %}{{ hall_booking_obj.member.member_associate_no }}{% endif %}</b></label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>Hall Booking No.</label>
+										</td>
+										<td>
+											<label><b>{{hall_booking_obj.booking_no}}</b></label>
+										</td>
+									</tr>
+
+									<tr>
+										<td>GSTIN</td>
+										<td>
+											<label><b>{% if hall_booking_obj.member.gst_in == 'AP' %}{{hall_booking_obj.member.gst}}{% elif hall_booking_obj.gst_no %}{{hall_booking_obj.gst_no}}{% endif %}</b></label>
+										</td>
+										<td colspan="2" rowspan="4"><label><b>MCCIA Contact Person</b></label><br><br>
+											{% if sb_contact_person %}
+												{{sb_contact_person}}<br>
+										   {% endif %}
+										   {% if tilak_contact_person %}
+												{{tilak_contact_person}}<br>
+										   {% endif %}
+										   {% if bpi_contact_person %}
+												{{bpi_contact_person}}<br>
+										   {% endif %}
+										   {% if hpi_contact_person %}
+												{{hpi_contact_person}}<br>
+										   {% endif %}
+										 </td>
+									</tr>
+									<tr>
+										<td>Contact Person</td>
+										<td>
+											<label><b>{{booking_detail_obj.contact_person}}</b></label>
+										</td>
+									</tr>
+									<tr>
+										<td>Phone No.</td>
+										<td>
+											<label><b>{% if booking_detail_obj.mobile_no %}{{booking_detail_obj.mobile_no}}{% elif booking_detail_obj.tel_o %}{{booking_detail_obj.tel_o}}{% else %}{{booking_detail_obj.tel_r}}{% endif %}</b></label>
+										</td>
+									</tr>
+									<tr>
+										<td>Email</td>
+										<td>
+											<label><b>{{booking_detail_obj.email}}</b></label>
+										</td>
+									</tr>
+
+								</table>
+								{% endif %}
+								<br>
+							   <br>
+								<table border="1">
+									<tr>
+										<th style="text-align: center;background-color: rgb(193, 193, 193); word-wrap:break-word;">Sr. No.</th>
+										<th style="text-align: center;background-color: rgb(193, 193, 193); width: 40%; word-wrap:break-word;">Name of Hall</th>
+										<th style="text-align: center;background-color: rgb(193, 193, 193); width: 20%; word-wrap:break-word;">Event Date</th>
+										<th style="text-align: center;background-color: rgb(193, 193, 193); width: 20%; word-wrap:break-word;">Time</th>
+										{% if send_mail_count != 'FIRST' %}
+										<th style="text-align: center;background-color: rgb(193, 193, 193); word-wrap:break-word;">Amount</th>
+										{% endif %}
+									</tr>
+									{% for item in booking_info_list %}
+	                            <tr>
+	                                <td style="text-align: center;">{{item.sr_no}}</td>
+	                                <td style="text-align: left	;">{{item.hall_name}}</td>
+	                                <td style="text-align: center;">{{item.booking_date}}</td>
+	                                <td style="text-align: center;">{{item.booking_time}}</td>
+												{% if send_mail_count != 'FIRST' %}
+	                                <td style="text-align: center;">{{item.amount}}</td>
+	                                {% endif %}
+	                            </tr>
+	                            {% if item.facility_info_list %}
+	                              {% for facility in item.facility_info_list %}
+			                            <tr>
+			                                <td style="text-align: center;">{{facility.sr_no}}</td>
+			                                <td style="text-align: left	;">{{facility.facility_name}}</td>
+			                                <td style="text-align: center;">{{facility.booking_date}}</td>
+			                                <td style="text-align: center;">{{facility.hour_used}}</td>
+			                                {% if send_mail_count != 'FIRST' %}
+			                                <td style="text-align: center;">{{facility.amount}}</td>
+			                                {% endif %}
+			                            </tr>
+			                         {% endfor %}
+	                            {% endif %}
+
+                           {% endfor %}
+									{% if send_mail_count != 'FIRST' %}
+									<tr>
+										<td colspan="3"></td>
+										<td><b> Sub Total </b></td>
+										<td style="text-align: center;"><b>{{sub_total}}</b></td>
+									</tr>
+
+									{% if sub_discount_total %}
+									   <tr>
+											<td colspan="3" style="text-align: right;"><b>Total Discount</b></td>
+											<td></td>
+											<td style="text-align: center;">{{discount_got}}</td>
+										</tr>
+										<tr>
+											<td colspan="3" style="text-align: right;"><b>Sub Total after Discount</b></td>
+											<td></td>
+											<td style="text-align: center;">{{sub_discount_total}}</td>
+										</tr>
+									{% endif %}
+
+									<tr>
+										<td colspan="3" ></td>
+										<td><b>Tax Rate</b></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td colspan="3" style="text-align: right;">Add : Central Goods & Service Tax</td>
+										<td>9%</td>
+										<td style="text-align: center;">{{half_gst_amount}}</td>
+									</tr>
+									<tr>
+										<td colspan="3" style="text-align: right;">Add : State Goods & Service Tax</td>
+										<td>9%</td>
+										<td style="text-align: center;">{{half_gst_amount}}</td>
+									</tr>
+									<tr>
+										<td colspan="3" style="text-align: right;">Add: Integrated Goods & Service Tax (Other than Maharashtra)</td>
+										<td>18%</td>
+										<td style="text-align: center;">-</td>
+									</tr>
+									<tr>
+										<td colspan="3" ></td>
+										<td><b>Total Tax</b></td>
+										<td style="text-align: center;"><b>{{total_tax}}</b></td>
+									</tr>
+									<tr>
+										<td colspan="3" style="text-align: right;">Refundable Security Deposit  {% if sd_remark %} {{sd_remark}} {% endif %}</td>
+										<td></td>
+										<td style="text-align: center;"><b>{{security_deposit}}</b></td>
+									</tr>
+									<tr>
+										<td colspan="3" ></td>
+										<td><b>Total Rs.</b></td>
+										<td style="text-align: center;"><b>{{final_total}}</b></td>
+									</tr>
+									<tr>
+									   <td style="text-align: center;"><b>SAC</b></td>
+										<td colspan="3" style="text-align: center;"><b>Service Description</b></td>
+										<td colspan="2" rowspan="2"></td>
+									</tr>
+									<tr>
+									   <td>997212</td>
+										<td colspan="3">Rental or leasing services involving own or leased non-residential property</td>
+									</tr>
+									<tr>
+										<td colspan="2">Payment Status :<br>
+                                            {% if booking_payment_obj.payment_mode == 0 %}
+                                                Offline Booking
+                                            {% else %}
+                                                Paid Online.<br>
+                                                Amount Paid: {{booking_payment_obj.paid_amount}}<br>
+                                                Payment Date: {{booking_payment_obj.payment_date|date:"D, d M, Y h:i A"}}
+                                            {% endif %}
+                                        </td>
+                              <td colspan="2"><span style="font-size: 12px">
+                              	<b><label>MCCIA Bank Details</label></b><br>
+                                 HDFC BANK LTD<br>
+											SAVINGS ACCOUNT<br>
+											BRANCH NAME : BHANDARKAR ROAD,PUNE.<br>
+											ACCOUNT NO : 50100015743490<br>
+											IFSC CODE : HDFC0000007<br>
+											SWIFT CODE : HDFCINBBPNE<br>
+											MICR : 411240002</span></td>
+
+                                        <!--<br><br> Inv PI/18-19/314 Rs. 10155 and Inv 18-19/559 Rs. 73420/- <br>-->
+										                                            <!--chq no 000199 / 22.8.18 hdfc bank pune 7 Rs. 83575/-<br><br>-->
+										                                            <!--<span style="font-size: 10px;"><b>THE TAX INVOICE WOULD BE ISSUED SHORTLY.</b></span><br>-->
+										                                            <!--<span style="font-size: 10px;">Cheque / DD should be drawn in favour of <b>"MCCIA"</b></span><br><br>-->
+										<td colspan="2" style="text-align: center;"> <span style="font-size: 12px">For MCCIA</span> <br><br><br><br><br>{{booking_detail_obj.hall_location.contact_person1.name}}</td>
+									</tr>
+								</table>
+								<br>
+								<center>*** MCCIA Hall Booking Terms and Conditions & Cancellation Policy Applicable ***</center>
+								
+								<br>
+								<!-- <table border="1">
+									<tr>
+										<td><b>Sr.No.</b></td>
+										<td><b>Cancellation request made by the customer from the date for which</b></td>
+										<td><b>% Cancellation charges to be levied</b></td>
+									</tr>
+									<tr>
+										<td style="text-align: center">1</td>
+										<td>30 days before date for which hall is booked</td>
+										<td style="text-align: center">NIL</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">2</td>
+										<td>16 days to 29 days before the date for which hall is booked</td>
+										<td style="text-align: center">10%</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">3</td>
+										<td>11 days to 15 days before the date for which hall is booked</td>
+										<td style="text-align: center">35%</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">4</td>
+										<td>1 day to 10 days before the date for which hall is booked</td>
+										<td style="text-align: center">100%</td>
+									</tr>
+								</table> -->
+								<!-- </table> -->
+								<br><center><b>(This is a Computer Generated Invoice and therefore needs no signature)</b>
+                        </center>
+                        <br>                        
+							{% else %}
+							</table>
+							{% endif %}
+							{% if chck_flag_val != True %}
+
+								<input type="text" id="final_total" value="{{final_total}}" hidden>
+								<input type="text" id="booking_id" value={{booking_id}} hidden>
+								
+							<button type="button"  class="btn dark btn-outline" style="float:right;height: 35px;background-color: #4CAF50;" onclick="send_proforma_invoice_mail()">Send Mail</button>  &nbsp&nbsp &nbsp&nbsp 
+                        	<button type="button"  class="btn dark btn-outline" style="float:right;height: 35px;background-color: #4CAF50;" onclick="edit_proforma_invoice_mail(booking_id)">Edit Invoice</button>   
+                        	{% endif %}
+                         <br><br>
+			                <!--{% if send_mail_count != 'FIRST' %}-->
+
+						  <!--<table border="1">-->
+                <!--<tr>-->
+                    <!--<th style="text-align: center;background-color: rgb(193, 193, 193); word-wrap:break-word;">Sr. No.-->
+                    <!--</th>-->
+                    <!--<th style="text-align: center;background-color: rgb(193, 193, 193); width: 40%; word-wrap:break-word;">-->
+                        <!--Payment Method-->
+                    <!--</th>-->
+                    <!--<th style="text-align: center;background-color: rgb(193, 193, 193); word-wrap:break-word;">Paid-->
+                        <!--Amount-->
+                    <!--</th>-->
+                <!--</tr>-->
+                <!--{% for item in result %}-->
+
+                <!--<tr>-->
+                    <!--<td style="text-align: center;">{{item.sr_no}}</td>-->
+                    <!--<td style="text-align: center;">{{item.payment_mode}}</td>-->
+                    <!--<td style="text-align: center;">{{item.paid_amount}}</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+
+
+                <!--{% endfor %}-->
+                    <!--<td colspan="2" style="text-align: center;"><b>Total paid amount.</b></td>-->
+                    <!--<td style="text-align: center;"><b>{{total}}</b></td>-->
+                <!--</tr>-->
+
+
+                <!--<tr>-->
+                    <!--<td colspan="2" style="text-align: center;"><b>Remaining amount.</b></td>-->
+                    <!--<td style="text-align: center;"><b>{{remaining_amt}}</b></td>-->
+                <!--</tr>-->
+            <!--</table>-->
+			  <!--{% endif %}-->
+
+
+        </div>
+</div>
+</div>
+<!--  Models End -->
+{% include 'backoffice/base_js.html' %}
+<script src="{% static 'custom-js/backofficeapp/Hall_Booking/hall_registration.js' %}" type="text/javascript"></script>
+</body>
+</html>

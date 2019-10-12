@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+    <style type="text/css">
+        #preview{
+            position:absolute;
+            border:3px solid #ccc;
+            background:#333;
+            padding:5px;
+            display:none;
+            color:#fff;
+            box-shadow: 4px 4px 3px rgba(103, 115, 130, 1);
+        }
+        body {
+			    font-family: Arial, Helvetica, Tahoma, sans-serif;
+			    font-size: 0.8em;
+			    padding: 10px 5px;
+			}
+		  .searchbox {
+			    border:1px solid #456879;
+			    border-radius:6px;
+			    height: 22px ;
+			    width: 382px ;
+			    margin-top: 5px;
+
+			}
+
+        @media only screen and (max-width: 480px){
+                .time-table-input{
+                    width:130% !important;
+                    margin-bottom: 3px !important;
+                }
+                .time-table-select{
+                    width:130% !important;
+                    padding-left: 0% !important;
+                    padding-right: 0% !important;
+                }
+            }
+
+    </style>
+		
+</head>
+<body>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!-- Breadcrumb section starts here -->
+<section class="InternalBannerSection hallBookingBannerSection" style="background: #1a394f;">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h2>Hall Bookings</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li class="active"><a href="#">Hall Bookings</a></li>
+                    </ol>
+                </div>
+            </div>
+
+            <div id="location_div" class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="hallLocation">
+                        <p>Select Location:</p>
+                        <ul class="nav nav-pills">
+                            {% for j in locationObj %}
+                                {% if j.location != 'all' %}
+                                <li role="presentation" class="{% if j.id == locationObj.id %} active {% endif %}" id="locationlistID_{{j.id}}" onclick="get_hall_of_location({{j.id}})">
+                                    <a>
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                       {{j.location}}
+                                    </a>
+                                </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb section end here -->
+
+<!-- Booking landing section start here -->
+<div id="hall_booking_landing_div">
+    <section class="internalSection hallBookingMainSection">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h2 id="location_name_h2">{{hall_location.location}}</h2>
+
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <strong>Announcement:</strong>
+                    <span>Please note that security deposit refund cheque will be drawn on the same name given as company name or individual name. Read Terms and Conditions before you book a hall</span>
+                </div>               
+                <ul class="hallBookingShortForms">
+                    <li>"M=MEMBER" and "NM=NON MEMBER"</li>
+                    <li id="hall_time">Halls are available from {{hall_detail_obj.booking_start_time | time:'h:i A'}} to {{hall_detail_obj.booking_end_time | time:'h:i A'}}</li>
+                </ul>
+
+                <p class="note">Online Hall Booking can be done 10 AM to 4 PM on all working days of MCCIA</p>                
+
+            </div>
+            <div id="hall_detail_list" class="row">
+            <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                    {% for i in hall_detail_dict %}
+                    <div class="hallBookingListing">
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <h4>
+                                <span>{{i.hall_name}}</span>
+
+                                <div class="Formbuttons">
+                                    {% if request.session.user_type == 'backoffice' %}
+                                   	 <a type="submit" class="btn btn-default subbtn" onclick="show_hall_booking_form({{i.id}},'{{i.hall_name}}')">Book Now</a>
+                                    {% else %}
+                                        {% if book_now_flag == 1 %}
+                                    			<a style="display: block;" type="submit" class="btn btn-default subbtn" onclick="show_hall_booking_form({{i.id}},'{{i.hall_name}}')">Book Now</a>
+                                    	{% else %}
+                                    	  	   <a style="display: none;" type="submit" class="btn btn-default subbtn" onclick="show_hall_booking_form({{i.id}},'{{i.hall_name}}')">Book Now</a>
+                                    	{% endif %} 	   
+                                    {% endif %}
+                                    <input type="text" id="start_time_{{i.id}}" value="{{i.start_time}}" hidden>
+                                    <input type="text" id="end_time_{{i.id}}" value="{{i.end_time}}" hidden>
+                                </div>
+                            </h4>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="media">
+                                <div class="media-left">                                  
+                                        <img class="media-object zoom_hall_image" src="{{i.hall_imag}}"
+                                             alt="hall-bookings-img">                                   
+                                </div>
+                                <div class="media-body">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 col-sm-3 col-xs-3 hallDetailsPoints">
+                                            <h5>{{i.capacity}}<span>Seating</span></h5>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-3 col-xs-3 hallDetailsPoints">
+                                            <h5>{{i.seating_style}}<span>Seating Style</span></h5>
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 col-sm-6 col-xs-6 hallDetailsFacilitiesPoints">
+                                          {% if i.paid_facility_list %}
+                                          <div class="row">                                            
+                                            <div class="col-lg-12"> 
+                                              <span>Facilities on Additional Payment </span>
+	                                            <ul class="facilities">
+	                                                {% for kk in i.paid_facility_list %}
+	                                                {% if kk == "Video Conferencing" %}
+	                                                <li>
+	                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/video-icon.png' %}" alt="" title=""
+	                                                         data-toggle="tooltip" data-placement="bottom"
+	                                                         data-original-title="Video Conferencing">
+	                                                </li>
+	
+	                                                {% elif kk == "Audio Conferencing"  %}
+	                                                <li>
+	                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/audio-icon.png' %}" alt="" title=""
+	                                                         data-toggle="tooltip" data-placement="bottom"
+	                                                         data-original-title="Audio Conferencing">
+	                                                </li>
+	                                                {% elif kk == "Wi-Fi"  %}
+	                                                <li>
+	                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/wifi-icon.png' %}" alt="" title=""
+	                                                         data-toggle="tooltip" data-placement="bottom"
+	                                                         data-original-title="WiFi">
+	                                                </li>
+	                                                {% elif kk == "Podium"  %}
+	                                                <li>
+	                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/podium.png' %}" alt="" title=""
+	                                                         data-toggle="tooltip" data-placement="bottom"
+	                                                         data-original-title="Podium">
+	                                                </li>
+	                                                {% elif kk == "Projector"  %}
+	                                                <li>
+	                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/projector.png' %}" alt="" title=""
+	                                                         data-toggle="tooltip" data-placement="bottom"
+	                                                         data-original-title="Projector">
+	                                                </li>
+	                                                {% elif kk == "PA System"  %}
+	                                                <li>
+	                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/pa_system.png' %}" alt="" title=""
+	                                                         data-toggle="tooltip" data-placement="bottom"
+	                                                         data-original-title="PA System">
+	                                                </li>
+	                                                {% elif kk == "Dias"  %}
+	                                                <li>
+	                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/dias.jpeg' %}" alt="" title=""
+	                                                         data-toggle="tooltip" data-placement="bottom"
+	                                                         data-original-title="Dias">
+	                                                </li>
+	                                                {% elif kk == "Air Conditioner"  %}
+	                                                <li>
+	                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/air.png' %}" alt="" title=""
+	                                                         data-toggle="tooltip" data-placement="bottom"
+	                                                         data-original-title="Air Conditioner">
+	                                                </li>
+	                                                {% elif kk == "White Board with Marker"  %}
+	                                                <li>
+	                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/whiteboard.jpg' %}" alt="" title=""
+	                                                         data-toggle="tooltip" data-placement="bottom"
+	                                                         data-original-title="White Board with Marker">
+	                                                </li>
+	                                                {% elif kk == "LAN"  %}
+	                                                <li>
+	                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/plug_lan.png' %}" alt="" title=""
+	                                                         data-toggle="tooltip" data-placement="bottom"
+	                                                         data-original-title="LAN">
+	                                                </li>
+	                                                {% endif %}
+	                                                {% endfor %}
+	                                            </ul>
+                                           </div>
+                                           </div>
+                                          {% endif %}
+                                          {% if i.free_facility_list %}
+                                           <div class="row">
+                                            <div class="col-lg-12"> 
+                                              <span>Included in Hall Rental</span>
+                                            <ul class="facilities">
+                                                {% for kk in i.free_facility_list %}
+                                                {% if kk == "Video Conferencing" %}
+                                                <li>
+                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/video-icon.png' %}" alt="" title=""
+                                                         data-toggle="tooltip" data-placement="bottom"
+                                                         data-original-title="Video Conferencing">
+                                                </li>
+
+                                                {% elif kk == "Audio Conferencing"  %}
+                                                <li>
+                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/audio-icon.png' %}" alt="" title=""
+                                                         data-toggle="tooltip" data-placement="bottom"
+                                                         data-original-title="Audio Conferencing">
+                                                </li>
+                                                {% elif kk == "Wi-Fi"  %}
+                                                <li>
+                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/wifi-icon.png' %}" alt="" title=""
+                                                         data-toggle="tooltip" data-placement="bottom"
+                                                         data-original-title="WiFi">
+                                                </li>
+                                                {% elif kk == "Podium"  %}
+                                                <li>
+                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/podium.png' %}" alt="" title=""
+                                                         data-toggle="tooltip" data-placement="bottom"
+                                                         data-original-title="Podium">
+                                                </li>
+                                                {% elif kk == "Projector"  %}
+                                                <li>
+                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/projector.png' %}" alt="" title=""
+                                                         data-toggle="tooltip" data-placement="bottom"
+                                                         data-original-title="Projector">
+                                                </li>
+                                                {% elif kk == "PA System"  %}
+                                                <li>
+                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/pa_system.png' %}" alt="" title=""
+                                                         data-toggle="tooltip" data-placement="bottom"
+                                                         data-original-title="PA System">
+                                                </li>
+                                                {% elif kk == "Dias"  %}
+                                                <li>
+                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/dias.jpeg' %}" alt="" title=""
+                                                         data-toggle="tooltip" data-placement="bottom"
+                                                         data-original-title="Dias">
+                                                </li>
+                                                {% elif kk == "Air Conditioner"  %}
+                                                <li>
+                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/air.png' %}" alt="" title=""
+                                                         data-toggle="tooltip" data-placement="bottom"
+                                                         data-original-title="Air Conditioner">
+                                                </li>
+                                                {% elif kk == "White Board with Marker"  %}
+                                                <li>
+                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/whiteboard.jpg' %}" alt="" title=""
+                                                         data-toggle="tooltip" data-placement="bottom"
+                                                         data-original-title="White Board with Marker">
+                                                </li>
+                                                {% elif kk == "LAN"  %}
+                                                <li>
+                                                    <img style="margin-top: 5px;width: 26px;border-radius: 50%;border: 2px solid #8d8e8f" src="{% static 'assets/images/icons/plug_lan.png' %}" alt="" title=""
+                                                         data-toggle="tooltip" data-placement="bottom"
+                                                         data-original-title="LAN">
+                                                </li>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                           </div>
+                                           </div>
+                                          {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <ul class="hallDetailsList">
+                                                {% for k,v in i.hall_charges %}
+
+                                                <li>
+                                                    <div class="hallDetails">
+                                                        <h4>{{k}} HRS.</h4>
+                                                        <p>
+                                                            <span>M: {{v.0}}</span>
+                                                            <span>NM: {{v.1}}</span>
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                                {% endfor %}
+                                                </ul>
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                    {% endfor %}
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+
+                <div class="hallBookingContactPerson">
+                    <h4>Contact Person:</h4>
+
+                    {% for contact in contact_data %}
+                    <div class="caption" style="margin-bottom:5px;">
+                        <p>
+                            <img src="{% static 'assets/images/icons/contact-person-icon-white.png' %}"/> <strong>{{contact.name}}</strong><br/>
+                            <img src="{% static 'assets/images/icons/phone-icon-white.png' %}"/> Phone: {{contact.phone}}<br/>
+                            <img src="{% static 'assets/images/icons/email-icon-white.png' %}"/> Email: <a
+                                href="mailto:satishj@mcciapune.com">{{contact.email}}</a>
+                        </p>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+
+                <div class="hallBookingAvailability">
+                    <a type="button" onclick="check_hall_availbility_status();">Check Hall Availability <i class="fa fa-calendar-check-o" aria-hidden="true"></i></a>
+                </div>
+
+                <div class="hallBookingLinks">
+                    <ul>
+                        <li><a href="/hallbookingapp/terms-condition/#TermsConditions">Terms and Conditions</a></li>
+                        <li><a href="/hallbookingapp/terms-condition/#CancellationPollicy">Cancellation Policy</a></li>
+                    </ul>
+                </div>
+		          <div class="row">   
+						  <div class="col-md-12 col-sm-12 col-xs-12">  					                	
+							<h4>Want to generate business in a professional set up at Low Rates?</h4>
+								<h6>MCCIA provides such facilities at five different locations in Pune and Ahmednagar. We have offices in Central Areas at Prime Locations.  The amenities are equipped with the State of the Art Technology.  We operate through the online user friendly Hall Booking Software.   We invite you to use our Offices to impress your clients and expand your business.  </h6>
+							<br />
+							<ul>
+							  <li>Meeting / Conference / Board Room / Auditorium with various seating capacities (from 7 to 200)</li>
+							  <li>Equipped with AV Systems (like Interactive Board, Projector, PA System, White Board etc.)</li>
+							  <li>Central Air Conditioning</li>
+							  <li>Furnished Facility (like Chairs, Dias, Podium etc.) </li>
+							  <li>Video Conferencing  </li>
+							  <li>Audio Conferencing </li>
+							  <li>Wifi / LAN </li>
+							  <li>Registration and pre-functional Areas </li>
+							  <li>Assistance for Add on Services (like Stage, Catering Services, Floral Decoration etc.) </li>
+							  <li>Immediate assistance if required during the Meet / Event </li>
+							</ul>  					                    
+						 </div> 
+			     </div>
+
+            </div>
+           </div>
+        </div>
+        
+        <div class="row" >
+            <h3>Our Valued Clients</h3>
+        		<div class="col-md-4 col-sm-4 col-xs-4">  					                							
+							<br />
+							<ul>
+							  <li>Kirloskar Group</li>
+							  <li>Elantas Beck India Ltd.</li>
+							  <li>Opel Lifts Pvt. Ltd.</li>
+							  <li>Indo Schottle Auto Parts Pvt.Ltd. </li>
+							</ul>  					                    
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-4">  					                							
+							<br />
+							<ul>
+							  <li>Finnovators Solutions Pvt. Ltd.</li>
+							  <li>GL & V India Pvt.Ltd.</li>
+							  <li>Jendamark Techcellency Automation (I) Pvt Ltd.</li>
+							  <li>Pune Smart City Development Corporation Ltd.</li>
+							</ul>  					                    
+				</div> 
+				<div class="col-md-4 col-sm-4 col-xs-4">  					                							
+							<br />
+							<ul>
+							  <li>Sudarshan Chemical Industries Ltd.</li>
+							  <li>Vuclip India Private Limited</li>
+							</ul>  					                    
+				</div> 
+        </div>
+
+    </div>
+</section>
+
+</div>
+
+<input type="text" id="booking_id" name="booking_id" value="" hidden>
+<!--hall booking form start-->
+<div id="hall_booking_form_div">
+    <section class="FormArea internalSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="FormTitleArea">
+                    <h2><span>Booking For:</span><span id="booking_hall_name"></span></h2>
+
+                    <p>Please check hall availability before booking</p>
+
+                    {% if not request.user.is_anonymous %}
+                        {% if request.session.user_type == 'backoffice' %}
+                        <input type="text" value="{{request.session.user_type}}" id="user_type" hidden>
+                        {% else %}
+                        <input type="text" value="" id="user_type" hidden>
+                        {% endif %}
+                    {% endif %}
+                    <div class="radio" id="user_type_div">
+                        <div id="non_member_radio" class="radiobox">
+                            <input type="radio" id="radiobtn1" value="nm" name="radiobtn-1"
+                                   onchange="check_member(this.value)" checked="checked">
+                            <label for="radiobtn1">NonMember</label>
+                        </div>
+                        <input type="text" value="{{request.user.is_anonymous}}" id="check_user" hidden>
+                        <div id="member_radio" class="radiobox">
+                            <input type="radio" id="radiobtn2" value="m"
+                                   onchange="check_member(this.value)" name="radiobtn-1">
+                            <label for="radiobtn2">Member</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row validateContainer">
+            <form name="check_hall_booking_form" id="check_hall_booking_form" method="POST"
+                    onSubmit="add_table(); return false;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="FormInnerArea">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                            <div class="">
+                                <div class="form-group" id="member_note">
+                                    <div class="col-md-9">
+                                        <span class="yellowNote">The cheque towards the refund, on account of cancellation / excess payment / any other will be issued in the same name as mentioned in this form in ‘Name of the Company/Individual Name’.</span>
+                                    </div>
+                                </div>
+
+
+                                 <div  id="backoffice_hide_div">
+                                <div class="form-group">
+                                    <input type="text" value="" id="hall_id" name="hall_id" hidden>
+                                    <input type="text" value="" id="hall_name" name="hall_name" hidden>
+                                    <input type="text" value="{{user_detail_id}}" id="user_detail_id" name="user_detail_id" hidden>
+                                    <label class="col-md-3 control-label" for="Company / Individual Name">Company /
+                                        Individual Name</label>
+
+                                    <div class="col-md-6" id="nonmember_list">
+                                        <div class="validateField" id="nonmember_div">
+                                            <div  style="position: relative;  z-index: 20;" class="form-group form-md-line-input has-success">
+                                                <select  name="CompanyIndividualName" id="CompanyIndividualName" class="form-control validateRequired mmclass input-sm select2"
+						                                onchange="getNonmemberData();">
+                                                    <option value="">Search by Company / Individual Name</option>
+							                                {% for member in non_member_list %}
+                                                    <option value="{{member.id}}">{{member.company}}</option>
+	                                                  {% endfor %}			                                										                               					                                	                                
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>                              
+                                    <br>
+                                    <div class="col-md-6" id="member_list">
+                                        <div class="validateField" id="member_div">
+                                            <div  style="position: relative;  z-index: 10;" class="form-group form-md-line-input has-success">
+                                                <select name="company_list" id="company_list" class="form-control validateRequired mmclass input-sm select2"
+						                                onchange="get_membership_no();">
+                                                    <option value="">Search by Company / Individual Name</option>
+							                                {% for member in member_list %}
+                                                    <option value="{{member.id}}"  onclick="get_membership_no()">{{member.company.company_name}}</option>
+		                                               {% endfor %}		                                										                               					                                	                                
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-6" id="company_name_text_div" style="display: none;">
+                                            <input readonly="" type="text" class="form-control"
+                                                   name="CompanyIndividualNameDiv" id="CompanyIndividualNameDiv">
+                                    </div>
+                                </div>
+                                <div class="form-group" id="member_note2">
+                                    <div class="col-md-offset-3 col-md-6">
+                                        <p style="color: blue;">If your name does not appear in the list please ensure that you have renewed your membership for the current financial year.</p>
+                                    </div>
+                                </div>
+
+
+                                      <!--<div  id="backoffice_hide_div">-->
+                                <div class="form-group" id="membership_row">
+                                    <label class="col-md-3 control-label" for="membership_no">Membership No.</label>
+                                    <div class="col-md-6">
+                                        <div class="validateField">
+                                            <label class="control-label" for="membership_no"><span id="membership_no" style="font-weight: bold;"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="form-group" id="nonmember_note">
+                                        <label class="col-md-9"><span class="yellowNote">The cheque towards the refund, on account of cancellation / excess payment / any other will be issued in the same name as mentioned in this form in ‘Name of the Company/Individual Name’.</span></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="Address">Address</label>
+
+                                    <div class="col-md-6">
+                                        <div class="validateField">
+                                            <textarea maxlength="250" placeholder="Address" class="form-control validateRequired" rows="1" id="address"
+                                                      name="address" title="Enter Your Address"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="ContactPerson">Contact Person</label>
+
+                                    <div class="col-md-6">
+                                        <div class="validateField">
+                                            <input placeholder="Contact Person" type="text" class="form-control validateRequired validateAlphanumaric"
+                                                   name="ContactPerson" id="ContactPerson" maxlength="50" title="Enter Name of Contact Person">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="Designation">Designation</label>
+
+                                    <div class="col-md-6">
+                                        <div class="validateField">
+                                            <input placeholder="Designation" type="text" class="form-control validateRequired validateAlphanumaric"
+                                                   name="Designation" id="Designation" maxlength="50" title="Enter your Designation">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="Contact Details">Contact Details</label>
+
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <label class="col-lg-3 col-md-4 control-label"
+                                                           style="color: #8d8e8f94;" for="Tel.(O)">Tel.(O)</label>
+
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <div class="validateField">
+                                                            <input type="text"
+                                                                   class="form-control validateRequired validateNumber "
+                                                                   name="Tel" id="Tel" maxlength="12" minlength="8" placeholder="Tel.(O)" title="Enter TelePhone No">
+
+                                                            <!--<input type="text"-->
+                                                                   <!--class="form-control validateRequired validateNumber validateTelephoneNoLimit"-->
+                                                                   <!--name="Tel" id="Tel" maxlength="12" minlength="8">-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <label class="col-lg-3 col-md-4 control-label"
+                                                           style="color: #8d8e8f94;" for="Mobile">Mobile</label>
+
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <div class="validateField">
+                                                            <input type="text"
+                                                                   class="form-control validateRequired validateNumber validateMobileNoLimit"
+                                                                   name="Mobile" id="Mobile" maxlength="10"
+                                                                   minlength="10" placeholder="Mobile" title="Enter Mobile No.">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="GSTIN">GSTIN</label>
+                                    <div class="col-md-6">
+                                        <div class="validateField">
+                                            <input type="text"
+                                                   class="form-control validateGSTNumber"
+                                                   name="GSTIN" id="GSTIN" maxlength="15"
+                                                   minlength="15" placeholder="GSTIN" title="Enter GSTIN Number">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="Email">Email</label>
+
+                                    <div class="col-md-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control validateRequired validateEmail"
+                                                   name="email" id="email" maxlength="50"  placeholder="Email" title="Enter your E-mail ID">
+                                        </div>
+                                    </div>
+                                </div>
+                                    </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="Nature of the Event">Nature of the
+                                        Event</label>
+
+                                    <div class="col-md-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control validateRequired validateAlphanumaric"
+                                                   name="NatureoftheEvent" id="NatureoftheEvent" maxlength="50"  placeholder="Nature of Event" title="Enter Nature of Event">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="FromDate">From Date</label>
+
+                                    <div class="col-md-6">
+
+                                        <div class="input-group">
+                                            <div class="validateField">
+                                                {% if not request.user.is_anonymous and request.session.user_type == 'backoffice'%}
+                                                    <input  placeholder="From Date" class="form-control validateRequired validateDate dateField"
+                                                           id="FromDate" name="FromDate" type="text" data-date=""
+                                                            data-date-format="dd/mm/yyyy" data-date-start-date="0" />
+                                                {% else %}
+                                                    <input  placeholder="From Date" class="form-control validateRequired validateDate dateField"
+                                                           id="FromDate" name="FromDate" type="text" data-date=""
+                                                            data-date-format="dd/mm/yyyy" data-date-start-date="+0d" readonly title="Select from date"/>
+                                                {% endif %}
+                                            </div>
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar">
+                                                </i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="ToDate">To Date</label>
+
+                                    <div class="col-md-6">
+
+                                        <div class="input-group">
+                                            <div class="validateField">
+                                                {% if not request.user.is_anonymous and request.session.user_type == 'backoffice'%}
+                                                    <input  placeholder="To Date" class="form-control validateRequired validateDate dateField"
+                                                           id="ToDate" name="ToDate" type="text" data-date=""
+                                                            data-date-format="dd/mm/yyyy" data-date-start-date="0" readonly />
+                                                {% else %}
+                                                    <input  placeholder="To Date" class="form-control validateRequired validateDate dateField"
+                                                               id="ToDate" name="ToDate" type="text" data-date=""
+                                                                data-date-format="dd/mm/yyyy" data-date-start-date="+0d" readonly title="Select to date"/>
+                                                {% endif %}
+                                            </div>
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar">
+                                                </i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>                    
+                </div>
+                <div class="col-md-6 col-sm-6">
+							<div class="col-md-12">
+                        <div class="col-md-2"><label style="height: 20px;width: 100%;background-color: #ef0606"></label></div>
+                        <div class="col-md-8"><label> Time slot not available </label></div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="col-md-2"><label style="height: 20px;width: 100%;background-color: #ffdcd0"></label></div>
+                        <div class="col-md-8"><label> National Holiday </label></div>
+                     </div>
+                     <div class="col-md-12">
+                        <div class="col-md-2"><label style="height: 20px;width: 100%;background-color: #dcd0ff"></label></div>
+                        <div class="col-md-8"><label> MCCIA  Holiday</label></div>
+                     </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="form-group pull-right" align="center">
+                        <div class="Formbuttons">
+                            <button type="submit" id="submit_btn" class="btn btn-default subbtn checkValidationBtn"
+                                    value="Submit">Submit
+                            </button>
+                            <button type="submit" id="re_enter_btn" class="btn btn-default subbtn checkValidationBtn"
+                                    value="Re-Enter"
+                                    style="display: none;">Re-Submit
+                            </button>
+                            <button type="reset" id="reset_btn" class="btn btn-default reset" value="Reset">Reset</button>
+                        </div>
+                        <br>
+                        <a href="/hallbookingapp/terms-condition/" target="_blank" class="termsCondisionBtn">Terms and condition</a>
+                        <div class="hallBookingAvailability">
+                            <a type="button" onclick="check_hall_availbility_status();">Check Hall Availability &nbsp;&nbsp;<i class="fa fa-calendar-check-o" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+
+            <!-- <div class="col-md-6 col-sm-6"> -->
+                <!-- <div class="form-group"> -->
+                    <!--<div class="g-recaptcha" data-sitekey="6LcPTV0UAAAAAHlTBrvPhN4oCSqDPDoWpLk70l3d"></div>-->
+
+                    <!--<p class="captchdescription">Fields marked as <span>*</span> are mandatory.</p>-->
+                <!-- </div> -->
+            <!-- </div> -->
+            
+            <br>
+            <div class="row" id="time_slot_row" style="display: none;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <form name="check_hall_form" id="check_hall_form" method="POST">
+                            <div class="col-md-12">
+                            <!--<div class="table-responsive">-->
+	                        <table class="table table-bordered" id="time_table">
+	                            <thead class="form-group">
+		                            <tr>
+		                                <td style="text-align: center">Day</td>
+		                                <td style="text-align: center">From Time</td>
+		                                <td style="text-align: center">To Time</td>
+		                                <td style="text-align: center">Holiday</td>
+                                        <!-- <td style="text-align: center">Add Facility</td> -->
+		                            </tr>
+	                            </thead>
+	                            <tbody class="form-group" id="time_table_body">
+	                            </tbody>
+	                        </table>
+                            </div>
+                            <!--</div>-->
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+				<input value="" id="user_track_id" type="hidden">
+            <div class="row" id="confirm_booking">
+                <div class="col-md-1" style="float: right;">                    
+                    <button id="confirm_booking_btn" class="btn btn-default subbtn" onclick="save_booking()"
+                    style="display: none;">Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+
+
+<!--hall booking form end-->
+
+<!-- Award Details section end here -->
+
+
+<div id="check_hall_availbility_status" class="modal fade bs-modal-lg" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="">
+                <div class="modal-header">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-12 col-xs-12">
+                                <h5 class="modal-title"><label for="selectHallName">Select Hall</label>
+                                    <span>
+                                    <select class="form-control" id="selectHallName" name="selectHallName" onchange="load_hallevent_calender();">
+                                    	<option value="">Select Hall</option>
+													{% for i in hall_detail_dict %}                                    
+														<option value="{{i.id}}">{{i.hall_name}}</option>                                                    
+                                     	{% endfor %}
+                                       </select>
+                                    </span>
+                                </h5>
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                              <button type="button" data-dismiss="modal" class="btn dark btn-outline" style="float:right;">Close</button>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+                 <div class="modal-body">
+                     <div class="scroller" style="height:100%;" data-always-visible="1" data-rail-visible1="1">
+                         <div class="col-md-12 col-sm-12 col-xs-12">
+                             <div class="row">
+                                 <div class="col-md-12 col-sm-12 col-xs-12">
+
+																
+												 <br>
+							                <ul class="eventNotation">
+							                    <li><i class="fa fa-circle OpenToAll"></i> Open to all</li>
+							                    <li><i class="fa fa-circle OnPayment"></i> On payment</li>
+							                    <li><i class="fa fa-circle ByInvitation"></i> By invitation</li>
+							                </ul>
+							
+							               
+							                <div id="hall_event_calendar" style="padding-top: 22px;"></div>
+							                <br>
+							                <br>
+                                 </div>
+                             </div>
+                          </div>
+                     </div>
+                 </div>
+                <div class="modal-footer">
+
+
+                </div>
+            </div>
+     </div>
+</div>
+
+<div class="modal fade draggable-modal" id="add_extra_hour_facility_modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog " style="width:75%;">
+        <div class="modal-content">
+            <div class="modal-header bold ">
+                Additional Facility Details
+            </div>
+            <!--<div class="container">-->
+            <div class="modal-body" >
+                <form id="additional_facility_form" name="additional_facility_form">
+                    <input type="text" id="from_hour_main" hidden>
+                    <input type="text" id="from_minute_main" hidden>
+                    <input type="text" id="from_period_main" hidden>
+                    <input type="text" id="to_hour_main" hidden>
+                    <input type="text" id="to_minute_main" hidden>
+                    <input type="text" id="to_period_main" hidden>
+                    <input type="text" id="hall_name_modal2" name="hall_name_modal2" hidden>
+                    <input type="text" id="company_name_modal2" name = "company_name_modal2" hidden>
+                    <input type="text" id="nature_of_event_modal2" name="nature_of_event_modal2" hidden>
+                    <input type="text" id="booking_from_time_modal2" name="booking_from_time_modal2" hidden>
+                    <input type="text" id="hall_id1" name="hall_id1" hidden>
+                    <input type="text" id="booking_from_to_modal2" name="booking_from_to_modal2" hidden>
+                    <input type="text" id="hall_charges_rent" name="hall_charges_rent" hidden>
+                    <input type="text" id="hall_booking_date" name="hall_booking_date" hidden>
+                        <div class="row">
+                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                            <label class="control-label"><b>Hall Name</b></label>
+                                            <div class="validateFieldLabel">
+                                                <span id="hall_name_modal1" value=""></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="control-label"><b>Company / Individual Name</b></label>
+                                            <div class="validateFieldLabel">
+                                                <span id="company_name_modal1" value=""></span>  
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="control-label"><b>Nature of Event</b></label>
+                                            <div class="validateFieldLabel" id="linon">
+                                                <span id="nature_of_event_modal1" value=""></span>
+                                            </div>
+                                        </div>                           
+                                    </div>
+                                </div>      
+                              </div>
+                              <br>
+                              <div class="row">   
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                            <label class="control-label"><b>Event Date - </b></label>
+                                            <div class="validateFieldLabel">
+                                                <span id="event_date_modal1"></span> <span id="booking_from_time_modal1"></span> To <span id="booking_from_to_modal1"></span>
+                                            </div>
+                                        </div>
+                                                             
+                                    </div>
+                              </div>
+                              </div>
+                              <br>
+                              <div class="row"> 
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                         
+                                  <div class="form-group">
+                                <label class="col-md-12 control-label"><b> Booking Details - </b></label><br><br>
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                         <table class="table table-striped table-bordered table-hover " id="additional_facility_table">
+                                            <thead>
+                                            <tr>
+                                                <th style="text-align: center;">Facility</th>
+                                                <th style="text-align: center;">Rate</th>
+                                                <th style="text-align: center;">From Time</th>
+                                                <th style="text-align: center;">To Time</th>
+                                                <th style="text-align: center;">Amount</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="extra_hour_facility_body">
+                                                                                      
+                                           </tbody>
+                                        </table>
+                                    </div>
+                                    <div id = "time_note"></div>
+                                </div>
+                            </div>
+                           </div> <br/> <br/>                     
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                                                
+                                    <div class="col-md-3">
+                                      <div class="form-group form-md-line-input has-success">
+                                        <label class="text-dark"> Hall Charges
+                                        </label>
+                                        <div class="validateField">
+                                            <label class="col-md-3 text-dark" for="" id="hall_charges"></label>
+                                        </div>
+                                      </div>
+                                    </div>  
+
+                                    <div class="col-md-3">
+                                      <div class="form-group form-md-line-input has-success">
+                                        <label class="text-dark"> Facility Charges
+                                        </label>
+                                        <div class="validateField">
+                                            <label class="col-md-3 text-dark" for="" id="facility_charges"></label>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                      <div class="form-group form-md-line-input has-success">
+                                        <label class="text-dark"> Total Charges
+                                        </label>
+                                        <div class="validateField">
+                                            <label class="col-md-3 text-dark" for="" id="total_charges"></label>
+                                        </div>
+                                      </div>
+                                    </div>  
+                           </div>                 
+                        </div>
+                </form>
+                </div>
+
+                <div style="text-align:center !important;" class="modal-footer">
+                    <div class="col-xs-12 text-right">
+                        <button type="button" class="btn btn-outline grey_color" data-dismiss="modal">Close</button>
+                        <button type="Submit" id="submit_extra_facility" class="btn btn-default done_btn" onclick="submit_extra_facility()">Submit</button>
+                    </div>
+                </div>
+                        <!--</div>-->
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+
+
+<!-- {% endblock %} -->
+{% block js_block %}
+<script src="{% static 'assets/js/Date/date.js' %}" type="text/javascript"></script>
+<script src="{% static 'custom-js/hallbooking/hallbooking_landing.js' %}" type="text/javascript"></script>
+<script src="{% static 'custom-js/hallbooking/hall_booking_form.js' %}" type="text/javascript"></script>
+<script src="{%static 'assets/js/validation/checkvalidation.js' %}" type="text/javascript"></script>
+<script type="text/javascript">
+/*
+  (function ($) {
+
+      $.fn.searchit = function (options) {
+
+          return this.each(function () {
+
+              $.fn.searchit.globals = $.fn.searchit.globals || {
+                  counter: 0
+              }
+              $.fn.searchit.globals.counter++;
+              var $counter = $.fn.searchit.globals.counter;
+
+              var $t = $(this);
+              var opts = $.extend({}, $.fn.searchit.defaults, options);
+
+              // Setup default text field and class
+              if (opts.textField == null) {
+                  $t.before("<input type='textbox' id='__searchit" + $counter + "'><br>");
+                  opts.textField = $('#__searchit' + $counter);
+              }
+              if (opts.textField.length > 1) opts.textField = $(opts.textField[0]);
+
+              if (opts.textFieldClass) opts.textField.addClass(opts.textFieldClass);
+              //MY CODE-------------------------------------------------------------------
+              if (opts.selected) opts.textField.val($(this).find(":selected").val());
+              //MY CODE ENDS HERE -------------------------------------------------------
+              if (opts.dropDown) {
+                  $t.css("padding", "5px")
+                      .css("margin", "-5px -20px -5px -5px");
+
+                  $t.wrap("<div id='__searchitWrapper" + $counter + "' />");
+                  opts.wrp = $('#__searchitWrapper' + $counter);
+                  opts.wrp.css("display", "inline-block")
+                      .css("vertical-align", "top")
+                      .css("overflow", "hidden")
+                      .css("border", "solid grey 1px")
+                      .css("position", "absolute")
+                      .hide();
+                  if (opts.dropDownClass) opts.wrp.addClass(opts.dropDownClass);
+              }
+
+              opts.optionsFiltered = [];
+              opts.optionsCache = [];
+
+              // Save listbox current content
+              $t.find("option").each(function (index) {
+                  opts.optionsCache.push(this);
+              });
+
+              // Save options 
+              $t.data('opts', opts);
+
+              // Hook listbox click
+              $t.click(function (event) {
+                  _opts($t).textField.val($(this).find(":selected").text());
+                  _opts($t).wrp.hide();
+                  event.stopPropagation();
+              });
+
+              // Hook html page click to close dropdown
+              $("html").click(function () {
+                  _opts($t).wrp.hide();
+              });
+
+              // Hook the keyboard and we're done
+              _opts($t).textField.keyup(function (event) {
+                  if (event.keyCode == 13) {
+                      $(this).val($t.find(":selected").text());
+                      _opts($t).wrp.hide();
+                      return;
+                  }
+                  setTimeout(_findElementsInListBox($t, $(this)), 50);
+              })
+
+          })
+
+
+          function _findElementsInListBox(lb, txt) {
+
+              if (!lb.is(":visible")) {
+                  _showlb(lb);
+              }
+
+              _opts(lb).optionsFiltered = [];
+              var count = _opts(lb).optionsCache.length;
+              var dropDown = _opts(lb).dropDown;
+              var searchText = txt.val().toLowerCase();
+
+              // find match (just the old classic loop, will make the regexp later)
+              $.each(_opts(lb).optionsCache, function (index, value) {
+                  if ($(value).text().toLowerCase().indexOf(searchText) > -1) {
+                      // save matching items 
+                      _opts(lb).optionsFiltered.push(value);
+                  }
+
+                  // Trigger a listbox reload at the end of cycle    
+                  if (!--count) {
+                      _filterListBox(lb);
+                  }
+              });
+          }
+
+          function _opts(lb) {
+              return lb.data('opts');
+          }
+
+          function _showlb(lb) {
+              if (_opts(lb).dropDown) {
+                  var tf = _opts(lb).textField;
+                  lb.attr("size", _opts(lb).size);
+                  _opts(lb).wrp.show().offset({
+                      top: tf.offset().top + tf.outerHeight(),
+                      left: tf.offset().left
+                  });
+                  _opts(lb).wrp.css("width", tf.outerWidth() + "px");
+                  lb.css("width", (tf.outerWidth() + 25) + "px");
+              }
+          }
+
+          function _filterListBox(lb) {
+              lb.empty();
+
+              if (_opts(lb).optionsFiltered.length == 0) {
+                  lb.append("<option>" + _opts(lb).noElementText + "</option>");
+              } else {
+                  $.each(_opts(lb).optionsFiltered, function (index, value) {
+                      lb.append(value);
+                  });
+                  lb[0].selectedIndex = 0;
+              }
+          }
+      }
+
+      $.fn.searchit.defaults = {
+          textField: null,
+          textFieldClass: null,
+          dropDown: true,
+          dropDownClass: null,
+          size: 5,
+          filtered: true,
+          noElementText: "No elements found",
+          //MY CODE------------------------------------------
+          selected: false
+          //MY CODE ENDS ------------------------------------
+      }
+
+  }(jQuery))
+
+   $("#CompanyIndividualName, #company_list").searchit({
+      textFieldClass: 'searchbox',
+      selected: true
+  }); */
+
+    var date_input=$('.dField'); //our date input has the name "date"
+    var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+    date_input.datepicker({
+        format: 'dd/mm/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    });
+
+
+</script>
+{% endblock %}
+
+</body>
+</html>

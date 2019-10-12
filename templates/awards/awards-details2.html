@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+</head>
+<body>
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<!-- Breadcrumb section starts here -->
+<section class="InternalBannerSection" style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h2>G. S. PARKHE FOR INNOVATION IN ENTERPRENEURSHIP AWARD</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/awardsapp/awards-home/">Awards</a></li>
+                        <li class="active"><a href="#">G. S. PARKHE FOR INNOVATION IN ENTERPRENEURSHIP AWARD</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb section end here -->
+
+<!-- Award Details section start here -->
+<section class="internalSection">
+    <div class="container">
+        <div class="row">
+            <!--<div class="col-md-12 col-sm-12 col-xs-12">
+                  <h2>B. G. Deshmukh IAS Award for CSR</h2>
+            </div> -->
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <div class="AwardDetailPanel">
+                    <h2>G. S. PARKHE FOR INNOVATION IN ENTERPRENEURSHIP AWARD</h2>
+                    <h5>Innovation in Entrepreneurship</h5>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#AwardDetails" aria-controls="AwardDetails"
+                                                                  role="tab" data-toggle="tab" aria-expanded="true">Award
+                            Details</a></li>
+
+                        <li role="presentation" class=""><a href="#ViewAwardees" aria-controls="ViewAwardees" role="tab"
+                                                            data-toggle="tab" aria-expanded="false">View Awardees</a>
+                        </li>
+
+                        <li role="presentation" class=""><a href="#Photogallery" aria-controls="Photogallery" role="tab"
+                                                            data-toggle="tab" aria-expanded="false">Photogallery</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="AwardDetails">
+                            <div class="AwardInfoPanel">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <img class="media-object" src="{% static 'assets/images/awards-img1.jpg' %}"
+                                             alt="...">
+                                    </div>
+                                    <div class="media-body">
+                                        <p align="justify">
+                                        Mr. G. S. Parkhe of the Parkhe Group
+                                            instituted the award in the memory of
+                                            his younger brother who was an
+                                            innovator and entrepreneur.<br>
+                                        This award is for innovative product/
+                                            process/design/service or import
+                                            substitute items.<br>
+                                        It is the oldest industrial award in the
+                                            country.<br>
+                                        The Award was initiated to encourage innovation and new
+                                            product development.<br>
+                                        Over 72 years of legacy that the award carries; it brings
+                                            fame and recognition to the awardees.<br>
+                                        Presented since 1947 to select deserving entrepreneurs.<br>
+                                        Hallmark of Recognition of innovations and acceptance in the market.</br>
+                                        Stringent selection process.<br>
+                                        More than 400 Entrepreneurs recognized so far.<br>
+                                        <b style="font-weight: 900;">Nature of the Award:</b> Trophy and a
+                                            Certificate.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="ViewAwardees">
+                            <div class="AwardInfoPanel">
+                                <div class="table-responsive TableCustomStyle">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Product</th>
+                                            <!-- <th>Value</th>
+                                            <th>Particulars</th> -->
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Orbittal Electromech Engineering Projects Pvt Ltd</td>
+                                            <td>prakash@orbittal.com</td>
+                                            <td>Solution based R&D, LED lighting</td>
+                                            <!-- <td>Dec 14, 2017</td>
+                                            <td>Lorem ipsum dolor sit amet consectetur</td> -->
+                                        </tr>
+                                        <tr>
+                                            <td>Versa Controls</td>
+                                            <td>uddhav@versacontrols.com</td>
+                                            <td>Versa Controls Make PneuGage </td>
+                                            <!-- <td>Dec 14, 2017</td>
+                                            <td>Sed do eiusmod tempor incididunt</td> -->
+                                        </tr>
+                                        <tr>
+                                            <td>Pahwa  Metaltech Pvt. Ltd.</td>
+                                            <td>Lalit@pahwametaltech.co.in</td>
+                                            <td>Copper Titanium Alloys and products like non sparking handtools,Special tools,Plunger tips, cooling Plates & welding Electrodes made from this unique alloy.</td>
+                                            
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="Photogallery">
+                            <div class="AwardInfoPanel">
+                                <ul>
+                                    <li style="margin-right: 1%;"><img src="{% static 'assets/media/awards/SKG_2249.JPG' %}" class="img-responsive"
+                                             alt=""></li>
+                                    <li style="margin-right: 1%;"><img src="{% static 'assets/media/awards/SKG_2261.JPG' %}" class="img-responsive"
+                                             alt=""></li>
+                                    <li style="margin-right: 1%;"><img src="{% static 'assets/media/awards/SKG_2266.JPG' %}" class="img-responsive"
+                                             alt=""></li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="AwardContactPanel">
+                    <h4>Contact Person:</h4>
+
+                    <p><i class="fa fa-user-o"></i> Mr. Satish Joshi</p>
+                    <p><i class="fa fa-volume-control-phone"></i>Phone:<a href="tel: 912025709162">91-20-25709162</a>
+                    </p>
+                    <p><i class="fa fa-mobile"></i>Mobile:<a href="tel: 9881127658">9881127658</a>
+                    </p>
+
+                    <p><i class="fa fa-envelope-open"></i>Email:<a href="mailto:satishj@mcciapune.com">satishj@mcciapune.com</a>
+                    </p>
+
+                    <p></p>
+
+                    <div class="EnrollOnlinebox">
+                        <h5>Last date of registration is October 30, 2019</h5>
+                        <a href="/awardsapp/awards-registration/2">
+                            Enroll Online
+                        </a>
+                    </div>
+                    <!--<div class="selectdiv">
+                        <select class="form-control">
+                          <option value="">View other awards</option>
+                          <option value=""><a href="http://demo.mcciapune.com/home.aspx">Awards</a></option>
+                          <option value="">Awards</option>
+                          <option value="">Awards</option>
+                          <option value="">Awards</option>
+                        </select>
+                    </div>-->
+
+                    <div class="dropdown ViewOtherAwardsDropdown">
+                        <a class="dropdownBtn" id="dLabel" data-target="#" href="http://example.com"
+                           data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            View other awards
+                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li><a style="font-size: 12px;" href="/awardsapp/awards-details">B. G. DESHMUKH IAS AWARD</a></li>
+                            <li><a style="font-size: 12px;" href="/awardsapp/awards-details2">G. S. PARKHE AWARD</a></li>
+                            <li><a style="font-size: 12px;" href="/awardsapp/awards-details3">HARIMALINI JOSHI AWARD</a></li>
+                            <li><a style="font-size: 12px;" href="/awardsapp/awards-details4">LATE KIRAN NATU UDYOJAKTA PURASKAR</a></li>
+                            <li><a style="font-size: 12px;" href="/awardsapp/awards-details5">R J RATHI AWARD</a></li>
+                            <li><a style="font-size: 12px;" href="/awardsapp/awards-details6">RAMABAI JOSHI AWARD</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Award Details section end here -->
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <style type="text/css">
+        @page {
+            size: letter portrait;
+            margin: 1.2cm;
+            border: 0pt solid white;
+            @frame header_frame {           /* Static Frame */
+                 -pdf-frame-content: header_content;
+                left: 30pt; width: 550pt; top: 20pt; height: 50pt;
+                border: 0pt solid white;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                 -pdf-frame-content: footer_content;
+                left: 30pt; width: 550pt; top: 750pt; height: 20pt;
+                border: 0pt solid white;
+            }
+        }
+
+        .boxed-all {
+            border: 1px solid black;
+        }
+
+        .boxed-top {
+            border-top: 1px solid black;
+        }
+
+        .boxed-bottom {
+            border-bottom: 1px solid black;
+        }
+
+        .boxed-left {
+            border-left: 1px solid black;
+        }
+
+        .boxed-right {
+            border-right: 1px solid black;
+        }
+
+        .inside_box{
+            padding:2px;
+            padding-top:3px;
+        }
+
+        .bold_label{
+            font-weight : 700;
+            font-size: 15px;
+        }
+
+        .semi_bold_label{
+            font-weight : 700;
+            font-size: 14px;
+        }
+
+        label{
+            font-size: 13px;
+        }
+
+        .text-center{
+            text-align:center;
+        }
+
+        .text-right{
+            text-align:right;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="header_content" style="border-bottom:1px solid black; text-align:center; padding-bottom:5px;">
+        <img src="/srv/wsgi/NEW_MCCIA_BACKOFFICE/MCCIA_BACKOFFICE/static/assets/MCCIA-logo.png" style="width: 130px" class="img-circle m-b" alt="logo">
+        <label class="bold_label">Membership Certificate</label>
+    </div>
+    <br><br><br>
+    <div id="footer_content" style="text-align: right; border-top:1px solid black; padding-top: 5px; margin-top: 5px">
+        {#    page <pdf:pagenumber> of <pdf:pagecount>#}
+        page <pdf:pagenumber>
+        </pdf:pagenumber>
+    </div>
+    <br>
+
+    <label class="semi_bold_label">Note: </label><label>This is a system generated certificate .</label>
+</body>
+
+</html>

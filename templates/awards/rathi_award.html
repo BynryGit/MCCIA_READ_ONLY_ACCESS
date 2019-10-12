@@ -1,0 +1,162 @@
+<section class="FormArea internalSection" id="rathi_div">
+    <div class="container">
+        <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="">
+                        <form id="rathi_div_form" name="rathi_div_form" method="POST"
+                        onSubmit="save_rathi_award(); return false;">
+                            {% csrf_token %}
+                            <div class="validateContainer">
+                                <div class="FormInnerArea clearfix">
+                                    <div class="">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Company Name (in capitals)</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateRequired"
+                                                               name="rathi_company_name"
+                                                               id="rathi_company_name" placeholder="Company Name"
+                                                               maxlength="200">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="rathi_concerned_person_name">Concerned
+                                                    Person Name (in capitals)</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control"
+                                                               name="rathi_concerned_person_name"
+                                                               id="rathi_concerned_person_name"
+                                                               maxlength="50" placeholder="Person Name">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Address</label>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <div class="validateField">
+                                                                <textarea class="form-control validateRequired"
+                                                                          name="rathi_address" placeholder="Address"
+                                                                          id="rathi_address"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="rathi_city">City</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <select id="rathi_city" name="rathi_city"
+                                                                class="form-control validateRequired">
+                                                            <option value="">Select City</option>
+                                                            {% for city_obj in city_list %}
+                                                            <option value="{{city_obj.id}}">{{city_obj.city_name}}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <label class="col-md-1 control-label" for="rathi_pin">Pin</label>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateRequired validateNumber"
+                                                               name="rathi_pin" id="rathi_pin" maxlength="6" placeholder="Pin-Code">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="rathi_telephone_no">Telephone
+                                                    No.</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control"
+                                                               name="rathi_telephone_no" id="rathi_telephone_no"
+                                                               maxlength="50" placeholder="Telephone No">
+                                                    </div>
+                                                </div>
+                                                <label class="col-md-1 control-label" for="rathi_fax_no">Fax No.</label>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control" placeholder="Fax No"
+                                                               name="rathi_fax_no" id="rathi_fax_no" maxlength="50">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="rathi_establish_year">Year of
+                                                    Establishment</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateRequired validateNumber"
+                                                               name="rathi_establish_year" id="rathi_establish_year"
+                                                               maxlength="4" placeholder="Establish Year">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="rathi_chief_org_name">Name of Chief
+                                                    of
+                                                    the Organization</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control"
+                                                               name="rathi_chief_org_name" id="rathi_chief_org_name"
+                                                               maxlength="50" placeholder="Name">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="rathi_chief_org_designation">Designation
+                                                    of Chief of the Organization</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control"
+                                                               name="rathi_chief_org_designation"
+                                                               id="rathi_chief_org_designation"
+                                                               maxlength="50" placeholder="Designation">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12 control-label" for="rathi_initiative_content">Brief
+                                                    description of the green initiatives undertaken by the Company which
+                                                    includes any activity which has helped to reduce pollution,
+                                                    contribution towards green environment, or any other activity which
+                                                    would help to protect to promote a green environment including
+                                                    initiatives to reduce global warming (Please provide maximum
+                                                    information, data in order to establish your claims)</label>
+                                                <div class="col-md-12">
+                                                    <div class="validateField">
+                                                    <textarea class="form-control" placeholder="Brief Description"
+                                                              name="rathi_initiative_content"
+                                                              id="rathi_initiative_content"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <div class="Formbuttons pull-right">
+                                                        <button type="submit" class="btn btn-default subbtn checkValidationBtn"
+                                                                id="rathi_div_btn" value="Submit">Submit
+                                                        </button>
+                                                        <input type="button" class="btn btn-default reset"
+                                                               onclick="location.href='/awardsapp/awards-home/';"
+                                                               value="Cancel"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>

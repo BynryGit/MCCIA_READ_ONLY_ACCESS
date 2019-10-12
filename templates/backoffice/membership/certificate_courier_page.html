@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+.left-col {
+    float: left;
+    width:224px;
+    height:97px;
+    /*padding-right:8px;*/
+    padding-top:36.5px;
+    padding-left:21px;
+    border: 2px solid white;
+}
+p.serif {
+  font-family: "Times New Roman", Times, serif;
+}
+
+
+/*.center-col {
+    float: left;
+    width:30.3%;
+    height:135px;
+    padding-right:7px;
+    padding-left:7px;
+}
+
+.right-col {
+    float: left;
+    width:30.3%;
+    height:135px;
+    padding-right:7px;
+    padding-left:7px;
+}*/
+    </style>
+</head>
+<body>
+{% for data in record_list %}
+        <div class="left-col"  style="font-size:9px;">
+             <p class="serif"><b>{{data.company_name}}</b><br>
+             {{data.correspond_address}}<br>
+             {{data.City_no}}<br>
+             Contact No. {{data.cell_no}}</p>
+        </div>
+        <!--<div class="center-col" style="font-size:10px; font-family:Times New Roman;">-->
+             <!--<p>Company Name: {{data.company_name}}</p>-->
+                    <!--<p>Correspond Address: {{data.correspond_address}}</p>-->
+                    <!--<p>Contact Number: {{data.cell_no}}</p>-->
+        <!--</div>-->
+        <!--<div class="right-col" style="font-size:10px; font-family:Times New Roman;">-->
+             <!--<p>Company Name: {{data.company_name}}</p>-->
+                    <!--<p>Correspond Address: {{data.correspond_address}}</p>-->
+                    <!--<p>Contact Number: {{data.cell_no}}</p>-->
+        <!--</div>-->
+{% endfor %}
+</body>
+</html>

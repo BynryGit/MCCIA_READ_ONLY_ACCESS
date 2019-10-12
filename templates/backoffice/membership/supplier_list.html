@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html lang="en">
+{% load my_template_tag %}
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8"/>
+    <title>MCCIA | Membership</title>
+
+    {% include 'backoffice/base_css.html' %}
+
+</head>
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid ">
+
+<!-- BEGIN HEADER -->
+
+
+<div class="clearfix"></div>
+<div class="page-container">
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            {% include 'backoffice/membership/side-panel.html' %}
+        </div>
+    </div>
+    <!-- END SIDEBAR -->
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+
+            <!-- END PAGE HEADER-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet light  ">
+                        <div class="portlet-body form">
+
+                            <label class="control-label font-18 font-bold font-blue">Membership </label>
+
+                            <!-- BEGIN FORM-->
+                            
+                            <div class="row">
+                                <div class="col-lg-12">
+                                 <div class="portlet-body">   
+                                        <hr>
+                                        <div class="row " style="margin-top: -40px;">
+                                        <div class="col-md-2">
+                                        <a href="/backofficeapp/members-details/" class="box-text">
+                                        <div class="feature-item col-md-12 text-center">
+                                            <i class="icon-user-follow"></i>
+                                            <h4>Membership Registration</h4>
+                                        </div>
+                                    </a>
+                                    </div>
+                                            {% if request.session.privileges|check_previlege:'Valid / Invalid Member' == 'true' %}
+                                            <div class="col-md-2">
+                                                <a href="/backofficeapp/valid-invalid-member/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+                                                        <i class="icon-magnifier"></i>
+                                                        <h4>Valid/Invalid Members </h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+
+
+                                               {% if request.session.privileges|check_previlege:'Membership Report' == 'true' %}
+                                            <div class="col-md-2">
+                                                <a href="/reportapp/membership-report-landing/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+                                                        <i class="icon-docs"></i>
+                                                        <h4>Report</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+
+                                            {% if request.session.privileges|check_previlege:'Membership Certificate Dispatched' == 'true' %}
+                                            <div class="col-md-2">
+                                                <a href="/backofficeapp/membership-certificate/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+                                                        <i class="icon-user"></i>
+                                                        <h4>Membership Certificate</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+
+                                            {% if request.session.privileges|check_previlege:'Membership Details' == 'true' %}
+                                            <div class="col-md-2">
+                                                <a href="/backofficeapp/membership-details/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+                                                        <i class="icon-user"></i>
+                                                        <h4>Membership Status</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                            {% if request.session.privileges|check_previlege:'Membership Registration' == 'true' %}
+                                                {% if request.user.username != 'mandarg' %}
+                                                                                
+                                            <div class="col-md-2">
+                                                <a href="/backofficeapp/download-payment-label/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+                                                        <i class="icon-cloud-download"></i>
+                                                        <h4>Download Payment Detail</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                            {% endif %}
+                                            
+                                            </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="row">
+
+                                            {% if request.session.privileges|check_previlege:'Slab' == 'true' %}
+                                            <div class="col-md-2">
+                                                <a href="/backofficeapp/slab/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+                                                        <i class="icon-wallet"></i>
+                                                        <h4>Slab</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+
+
+                                            {% if request.session.privileges|check_previlege:'Membership Category' == 'true' %}
+                                            <div class="col-md-2">
+                                                <a href="/backofficeapp/membership-category/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+                                                        <i class="icon-layers "></i>
+                                                        <h4>Membership Category</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+
+                                                {% if request.session.privileges|check_previlege:'Industry Details' == 'true' %}
+
+                                            <div class="col-md-2">
+                                                <a href="/backofficeapp/industry-details/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+                                                        <i class="icon-home"></i>
+                                                        <h4>Industry Details</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+
+                                            {% if request.session.privileges|check_previlege:'Legal Details' == 'true' %}
+
+                                            <div class="col-md-2">
+                                                <a href="/backofficeapp/legal-details/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+                                                        <i class="icon-envelope-letter "></i>
+                                                        <h4>Legal Details</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+
+
+                                            
+<!-- 
+                                            {% if request.session.privileges|check_previlege:'Exclude Mail Member' == 'true' %}
+
+                                            <div class="col-md-2">
+                                                <a href="/backofficeapp/exclude-mailing-members/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+                                                        <i class="icon-ban"></i>
+                                                        <h4>Exclude From Mailing</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %} -->
+
+                                           <!--  {% if request.session.privileges|check_previlege:'Top 3 Members' == 'true' %}
+                                            <div class="col-md-2">
+                                                <a href="#" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+
+                                                        <i class="icon-trophy"></i>
+                                                        <h4>Top 3 Members</h4>
+
+                                                        <i class="icon-docs"></i>
+                                                        <h4>Report</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                        </div>
+                                            <div class="row">
+                                            {% if request.session.privileges|check_previlege:'Membership Configuration' == 'true' %}
+                                            <div class="col-md-2" >
+                                                <a href="/backofficeapp/membership-configuration/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center ">
+                                                        <i class="icon-wrench"></i>
+                                                        <h4>Membership Configuration</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %} -->
+
+                                            
+
+
+                                            
+
+                                            
+
+                                            {% if request.session.privileges|check_previlege:' Executive Committee Member' == 'true' %}
+                                        <!--</div>-->
+
+                                        <!--<div class="row ">-->
+                                            <div class="col-md-2">
+                                                <a href="/backofficeapp/executive-committee-members/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+                                                        <i class="icon-user-following"></i>
+                                                        <h4>Executive Committee Members</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+
+                                            {% if request.session.privileges|check_previlege:'Renewal Configuration' == 'true' %}
+                                            <div class="col-md-2">
+                                                <a href="/backofficeapp/renewal-config-landing/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+                                                        <i class="icon-refresh"></i>
+                                                        <h4>Renewal Configuration</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            {% endif %}
+                                         
+                                        </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <!-- END FORM-->
+                                </div>
+                            </div>
+                            <!-- END PORTLET-->
+                        </div>
+                    </div>
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+    </div>
+
+    <!-- END CONTAINER -->
+
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        <div class="page-footer-inner"> 2018 © Bynry Technologies
+        </div>
+        <div class="scroll-to-top">
+            <i class="icon-arrow-up"></i>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+    <div class="modal fade draggable-modal" id="delete_user" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <div class="form-body">
+                        <h4 class="text-center">Do you want to deactivate Subscriber ?</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <button type="button" onclick="inactive_user()" class="btn green">Yes</button>
+                        <button type="button" class="btn green" data-dismiss="modal">No</button>
+
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+
+    <div class="modal fade draggable-modal" id="delete_users" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <div class="form-body">
+                        <h4 class="text-center">This Subscriber has active adverts. Do you still want to deactivate this
+                            Subscriber?</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <button type="button" onclick="inactive_users()" class="btn green">Yes</button>
+                        <button type="button" class="btn green" data-dismiss="modal">No</button>
+
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+    <div class="modal fade draggable-modal" id="remove_user" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <img style="width: 100px; height: 29px; margin-top: -11px; margin-left: 236px;"
+                         src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-body">
+                        <h4 class="text-center">Subscriber has been deactivated successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <button type="button" onclick="location.reload();" class="btn green" data-dismiss="modal">OK
+                        </button>
+
+
+                    </div>
+                    h1, h2, h3, h4, h5, h6
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+    <div class="modal fade draggable-modal" id="active_premium_service" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img style="width: 100px; height: 29px; margin-top: -11px; margin-left: 236ph1, h2, h3, h4, h5, h6x;"
+                         src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-body">
+                        <h4 class="text-center">Do you want to activate Subscriber ?</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <button type="button" onclick="activate_subscriber()" class="btn green">Yes</button>
+                        <button type="button" class="btn green" data-dismiss="modal">No</button>
+                        h1, h2, h3, h4, h5, h6
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        h1, h2, h3, h4, h5, h6
+    </div>
+    <div class="modal fade draggable-modal" id="activate_premium_service" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <img style="width: 100px; height: 29px; margin-top: -11px; margin-left: 236px;"
+                         src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-body">
+                        <h4 class="text-center">Subscriber has been activated successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <a href="/view-subscriber-list/?country_var={{country_var}}&state_var={{state_var}}&city_var={{city_var}}&sort_by={{sort_by}}"><input
+                                type="submit" value="OK"
+                                class="btn btn-primary" id="btn"></a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bs-modal-lg" id="createNew" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 style=" font-size: 18px;">Apply Filters</h4>
+                </div>
+                <form id="scheduleFrm">
+                    <div class="row">
+                        <input id="supplier_id" name="supplier_id" hidden type="text" value="110">
+                    </div>
+                    <div class="modal-body">
+                        <!--  <div class="row">
+                             <div class="form-group col-lg-12">
+                                     <label style=" font-size: 16px;">
+                                         City
+                                        <span class="required"> * </span>
+                                         </label>
+                                     <br>
+                                     <select class="form-control sel2" style="font-size: 14px;color: #797979;"
+                                             name="city_id" id="city_id">
+                                         <option value=""><b>Select City </b></option>
+                                         <option value="all">All</option>
+                                         {% for obj_cat in city_list %}
+                                         <option value="{{obj_cat.city_id}}">{{obj_cat.city_name}}</option>
+                                         {%endfor%}
+                                     </select>
+                                             <label class="error"
+                                          style="color:red; display:none;"></label>
+                                 </div>
+                              </div> -->
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <label style=" font-size: 16px;"> Time </label>
+                                <br>
+                                <input id="One_week" type="button" class="btn btn-outline green" name="Time"
+                                       value="1W" style="width: 19%;"
+                                >
+                                <input id="One_month" type="button" class="btn btn-outline green" name="Time"
+                                       value="1M" style="width: 19%;"
+                                >
+                                <input id="Three_month" type="button" class="btn btn-outline green" name="Time"
+                                       value="3M" style="width: 19%;">
+
+                                <input id="Six_month" type="button" class="btn btn-outline green" name="Time"
+                                       value="6M" style="width: 19%;"
+                                >
+                                <input id="date_range" type="button" class="btn btn-outline green" name="Time"
+                                       value="Date Range" style="width: 19%;"
+                                >
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="form-group col-lg-12">h1, h2, h3, h4, h5, h6
+                                <label style=" font-size: 16px;">
+                                    Created
+                                </label>
+
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row ">
+                            <div id="active_date" class="form-group col-md-12 "
+                                 style=" margin-left: -14px;    margin-bottom: 0px;margin-top: -22px;">
+                                <div class="form-group col-md-1 ">
+                                    <label class="control-label" style="    margin-top: 5px; font-size: 16px;">
+                                        From</label>
+                                </div>
+                                <div class="form-group col-md-5 ">
+                                    <div class="input-append date form_datetime">
+                                        <input type="text"
+
+                                               name="startDate"
+                                               id="startDate"
+                                               class="form-control date-picker"
+                                        >
+                                        <input type="text"
+                                               readonly
+                                               name="startDate"
+                                               id="startDate1"
+                                               class="form-control "
+                                        >
+                                        <label class="error"
+                                               style="color:red; display:none;"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-1 ">
+                                    <label style="    margin-top: 5px; font-size: 16px;">
+                                        To</label>
+                                </div>
+                                <div class="form-group col-md-5 ">
+                                    <div class="input-append date form_datetime">
+                                        <input type="text"
+
+                                               name="endDate"
+                                               id="endDate"
+                                               class="form-control date-picker"
+                                        >
+                                        <input type="text"
+                                               readonly
+                                               name="endDate"
+                                               id="endDate1"
+                                               class="form-control"
+                                        >
+                                        <label class="error"
+                                               style="color:red; display:none;"></label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12 ">
+                                <label style=" font-size: 16px;"> Status </label>
+                            </div>
+
+                            <div class="form-group col-lg-12">
+                                <div class=" col-lg-4">
+                                    <label class="font-15 font-regular">
+                                        <input type="radio"
+                                               id="Active" name="stat"
+                                               value="1"
+                                               class="telephone_radio"/>Active</label>
+                                </div>
+                                <div class=" col-lg-4">
+                                    <label class="font-15 font-regular">
+                                        <input type="radio"
+                                               id="Expired" name="stat"
+                                               value="0"
+                                               class="telephone_radio"/>In-active</label>
+                                </div>
+                                <div class=" col-lg-4">
+                                    <label class="font-15 font-regular">
+                                        <input type="radio"
+                                               id="Show_All" name="stat"
+                                               value=""
+                                               class="telephone_radio"/>Show All</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline grey_color " data-dismiss="modal">Cancel
+                            </button>
+                            <button type="button" id="submit_btn" onclick="filter_advert();"
+                                    class="btn btn-outline done_btn">Apply
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- END CONTAINER -->
+
+    <!--[if lt IE 9]>
+    <script src="../assets/global/plugins/respond.min.js"></script>
+    <script src="../assets/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    <!-- BEGIN CORE PLUGINS -->
+    {% include 'backoffice/base_js.html' %}
+    <script type="text/javascript">
+        $("#member_anchor").addClass("tab-active");
+        $("#member_nav").addClass("active");
+        $("#member_icon").addClass("icon-active");
+        $("#member_active").css("display","block");
+        $("#member_nav").addClass("active");
+    </script>
+
+</body>
+</html>

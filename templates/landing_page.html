@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+<body>
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<div id="hashblu-chat"></div>
+<!-- Banner Section Start here -->
+<section class="bannerSlider">
+    <div id="mcciaslider" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            {% for obj in banner_doc_list %}
+            {% if forloop.counter == 1 %}
+            <li data-target="#mcciaslider" data-slide-to="{{forloop.counter}}" class="active"></li>
+            {% else %}
+            <li data-target="#mcciaslider" data-slide-to="{{forloop.counter}}"></li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            {% for obj in banner_doc_list %}
+            {% if forloop.counter == 1 %}
+            <div class="item active">
+                <a href="{{obj.banner_link}}"><img src="{{obj.docs_address}}" style="width: 100%;height: 100%;"></a>
+            </div>
+            {% else %}
+            <div class="item">
+                <a href="{{obj.banner_link}}"><img src="{{obj.docs_address}}" style="width: 100%;height: 100%;"></a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#mcciaslider" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#mcciaslider" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+<!-- Banner Section End here -->
+
+<!-- Upcomming Event Section Start here -->
+<section class="UpcommingEventSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="backgnd">
+                    <h2 class="Title">Upcoming Events</h2>
+                    <a href="/eventsapp/events-home/">View full calendar</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <div class="upcomingEventsCarousel">
+                    <div class="owl-carousel owl-theme" id="upcomingEventsCarousel">
+                        {% for obj in final_event_list %}
+                        <a href="/eventsapp/events-details/?event_detail_id={{obj.id}}">
+                            <div class="item">
+                                <div class="EventBox">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <img style="    width: 149px;height: 150px;" class="media-object"
+                                                 src="{{obj.docs_address}}"
+                                                 alt="...">
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">{{obj.event_title}}</h4>
+                                            <span>{{obj.event_date}}</span>
+
+                                            <p>{{obj.when_to_attend}}<br>at {{obj.event_location}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                        <!-- <div class="item">
+                            <div class="EventBox">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <img class="media-object" src="{% static 'assets/images/meeting.jpg'%}"
+                                             alt="...">
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Meetings with Delegates from Automotive Sectorfrom
+                                            Busan</h4>
+                                        <span>25</span>
+
+                                        <p>Date: April 25, 2018<br>Where: Pune</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="EventBox">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <img class="media-object" src="{% static 'assets/images/finance-sale.jpg'%}"
+                                             alt="...">
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Finance for Sales and <br>Marketing</h4>
+                                        <span>25</span>
+
+                                        <p>Date: April 25, 2018<br>Where: Pune</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="EventBox">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <img class="media-object" src="{% static 'assets/images/meeting.jpg'%}"
+                                             alt="...">
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Meetings with Delegates from Automotive Sectorfrom
+                                            Busan</h4>
+                                        <span>25</span>
+
+                                        <p>Date: April 25, 2018<br>Where: Pune</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+
+                <div id="UpcomingEvents" class="carousel slide" data-ride="carousel" style="display: none;">
+                    <!-- Indicators -->
+                    <!--<ol class="carousel-indicators">
+                      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    </ol>-->
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 deviceeventcol">
+                                    <div class="EventBox">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img class="media-object"
+                                                     src="{% static 'assets/images/finance-sale.jpg'%}" alt="...">
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Finance for Sales and <br>Marketing</h4>
+                                                <span>25</span>
+
+                                                <p>Date: April 25, 2018<br>Where: Pune</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 deviceeventcol">
+                                    <div class="EventBox1">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img class="media-object" src="{% static 'assets/images/meeting.jpg'%}"
+                                                     alt="...">
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Meetings with Delegates from Automotive
+                                                    Sectorfrom Busan</h4>
+                                                <span>25</span>
+
+                                                <p>Date: April 25, 2018<br>Where: Pune</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 deviceeventcol">
+                                    <div class="EventBox">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img class="media-object"
+                                                     src="{% static 'assets/images/finance-sale.jpg' %}" alt="...">
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Finance for Sales and <br>Marketing</h4>
+                                                <span>25</span>
+
+                                                <p>Date: April 25, 2018<br>Where: Pune</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 deviceeventcol">
+                                    <div class="EventBox1">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <img class="media-object" src="{% static 'assets/images/meeting.jpg' %}"
+                                                     alt="...">
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Meetings with Delegates from Automotive Sector
+                                                    from Busan</h4>
+                                                <span>25</span>
+
+                                                <p>Date: April 25, 2018<br>Where: Pune</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#UpcomingEvents" role="button" data-slide="prev">
+
+                        <img src="{% static 'assets/images/blue-left-arrow.png' %}" alt="">
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#UpcomingEvents" role="button" data-slide="next">
+
+                        <img src="{% static 'assets/images/blue-right-arrow.png' %}" alt="">
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Upcomming Event Section End here -->
+
+<!-- Services Section Start here -->
+<section class="ServicesSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="backgnd">
+                    <h2 class="Title">Services</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="upcomingEventsCarousel">
+                    <div class="owl-carousel owl-theme" id="servicesCarousel">
+                        <div class="item">
+                            <a href="/hallbookingapp/open-hallbooking-page/">
+                                <div class="HollBooking">
+                                    <div class="HollBookingbox">
+                                        <img src="{% static 'assets/images/holl-booking.png' %}" alt="Hall Booking"
+                                             title="Hall Booking">
+                                    </div>
+                                    <h5>Hall Booking</h5>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item">
+
+                            <a href="/visarecommendationapp/visa-pre-condition/">
+                                <div class="HollBooking">
+                                    <div class="Visabox">
+                                        <img src="{% static 'assets/images/visa.png' %}" alt="Visa Recommendation"
+                                             title="Visa Recommendation">
+                                    </div>
+                                    <h5>Visa Recommendation</h5>
+                                </div>
+                            </a>
+
+                        </div>
+                        <div class="item">
+                            <div class="HollBooking">
+                                <a href="/hallbookingapp/certificate-of-origin/">
+                                    <div class="Certificatebox">
+                                        <img src="{% static 'assets/images/certificate.png' %}"
+                                             alt="Certificate of Origin"
+                                             title="Certificate of Origin">
+                                    </div>
+                                    <h5>Certificate of Origin</h5>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="HollBooking">
+                                <a href="/hallbookingapp/library/">
+
+                                    <div class="Librarybox">
+                                        <img src="{% static 'assets/images/library.png' %}" alt="Library"
+                                             title="Library">
+                                    </div>
+                                    <h5>Library</h5>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <a href="/membershipapp/membership-form/">
+                                <div class="HollBooking">
+                                    <div class="Memberbox">
+                                        <img src="{% static 'assets/images/be-members.png' %}" alt="Be a Member"
+                                             title="Be a Member"></div>
+                                    <h5>Be a Member</h5>
+                                </div>
+                            </a>
+                        </div>
+                        <!--<a href="http://loyalty.mcciapune.com/" target="_blank">-->
+                        <!-- <div class="item">
+                            
+                            <a href="#">
+                                <div class="HollBooking">
+                                    <div class="LoyaltyProgram">
+                                        <img src="{% static 'assets/images/loyalty-program.png' %}" alt="Loyalty Program"
+                                             title="Loyalty Program">
+                                    </div>
+                                    <h5>Loyalty Program</h5>
+                                </div>
+                            </a>
+                        </div> -->
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <!--<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 ServicesCol">
+                <div class="HollBooking">
+                    <div class="HollBookingbox">
+                    <img src="images/holl-booking.png" alt="Hall Booking" title="Hall Booking">
+                    </div>
+                    <h5>Hall Booking</h5>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 ServicesCol">
+                <div class="HollBooking">
+                    <div class="Visabox">
+                    <img src="images/visa.png" alt="Visa Recommendation" title="Visa Recommendation">
+                    </div>
+                    <h5>Visa Recommendation</h5>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 ServicesCol">
+                <div class="HollBooking">
+                    <div class="Certificatebox">
+                    <img src="images/certificate.png" alt="Certificate of Origin" title="Certificate of Origin">
+                    </div>
+                    <h5>Certificate of Origin</h5>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 ServicesCol">
+                <div class="HollBooking">
+                    <div class="Librarybox">
+                    <img src="images/library.png" alt="Library" title="Library">
+                    </div>
+                    <h5>Library</h5>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 ServicesCol">
+                <div class="HollBooking">
+                    <div class="Memberbox">
+                    <img src="images/be-members.png" alt="Be a Member" title="Be a Member"></div>
+                    <h5>Be a Member</h5>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</section>
+<!-- Services Section End here -->
+
+<!-- International Delegation & Publications Section Start here -->
+<section class="InternationalDelegationNPublicationsSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="backgnd">
+                    <h2 class="Title">Photo Gallery</h2>
+                </div>
+                <div class="InternationalDelegationPanel">
+                    <div id="InternationalDelegationSlider" class="carousel slide" data-ride="carousel">
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <div class="item active">
+                                <img src="{% static 'assets/media/photogallery/SKG_7316.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7292.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7331.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7347.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7360.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7374.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7418.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7439.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7530.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7548.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7558.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7570.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7585.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7643.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7655.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7689.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7725.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_7743.jpg' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_7311.jpg' %}" alt="...">
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_3930.JPG' %}" alt="...">
+                                <!-- <div class="caption">
+                                    <p>Session with Dr. Anat Lea Bonshtien Chairperson and Director of the Fuel Choices and Smart Mobility Initiative, Government of Israel</p> 
+                                </div> -->
+                            </div>
+                            <div class="item ">
+                                <img src="{% static 'assets/media/photogallery/SKG_3933.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_3939.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_3946.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_3949.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_3953.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_3956.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_3959.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_3964.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_3971.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_3975.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_3982.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_3984.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_3991.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_4003.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_4008.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_4010.JPG' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/SKG_4011.JPG' %}" alt="...">
+                            </div>
+
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/gal_1.jpg' %}" alt="...">
+                            </div>
+                             <div class="item">
+                                <img src="{% static 'assets/media/photogallery/gal_2.jpg' %}" alt="...">
+                            </div>
+                             <div class="item">
+                                <img src="{% static 'assets/media/photogallery/gal_3.jpg' %}" alt="...">
+                            </div>
+                            <div class="item">
+                                <img src="{% static 'assets/media/photogallery/gal_4.jpg' %}" alt="...">
+                            </div>
+                             <div class="item">
+                                <img src="{% static 'assets/media/photogallery/gal_5.jpg' %}" alt="...">
+                            </div>
+                             <div class="item">
+                                <img src="{% static 'assets/media/photogallery/gal_6.jpg' %}" alt="...">
+                            </div>
+                             <div class="item">
+                                <img src="{% static 'assets/media/photogallery/gal_7.jpg' %}" alt="...">
+                            </div>
+                             <div class="item">
+                                <img src="{% static 'assets/media/photogallery/gal_8.jpg' %}" alt="...">
+                            </div>
+                             <div class="item">
+                                <img src="{% static 'assets/media/photogallery/gal_9.jpg' %}" alt="...">
+                            </div>
+                             <div class="item">
+                                <img src="{% static 'assets/media/photogallery/gal_10.jpg' %}" alt="...">
+                            </div>
+
+
+                        </div>
+                        <span class="num"></span>
+
+                        <a class="left carousel-control" href="#InternationalDelegationSlider" role="button"
+                           data-slide="prev">
+
+                            <img src="{% static 'assets/images/lightgray-left-arrow.png' %}" alt="">
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#InternationalDelegationSlider" role="button"
+                           data-slide="next">
+                            <img src="{% static 'assets/images/lightgray-right-arrow.png' %}" class="rightIcon" alt="">
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="backgnd">
+                    <h2 class="Title">Publications</h2>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 deviceCol">
+                        <div class="PublicationPanel">
+                            <!-- <a href="{% static 'December_2018_Webfinal.pdf'%}" target="_blank"> -->
+                            <!-- <img src="{% static 'assets/images/SAMPADA_COVER_DEC_2018.jpg' %}" class="img-responsive" alt="" style="height: 312px;"> -->
+
+                            <a href="sitemedia/{{publication_list.0.file_path}}" target="_blank">
+                                <img src="sitemedia/{{publication_list.0.cover_path}}" class="img-responsive" alt=""
+                                     style="height: 312px;">
+                            </a>
+                            <!-- <p>Sampada - March Issue 2019</p> -->
+                            <p>Sampada - {{publication_list.0.publish_date|date:'F'}} Issue {{publication_list.0.publish_date|date:'Y'}}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 deviceCol">
+                        <!-- <div class="PublicationPanel">
+                            <a href="{% static 'MCCIA_Report.pdf'%}" target="_blank">
+                            <img src="{% static 'assets/images/Photo_Photo_AnnualReport84.jpg' %}" class="img-responsive" alt="">
+                            </a>
+                            <p>84th Annual Report 2017-2018</p>
+                        </div> -->
+                        <div class="PublicationPanel">
+                            <div id="InternationalDelegationSlider1" class="carousel slide" data-ride="carousel">
+
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="item active">
+                                        <!-- <a href="{% static 'MCCIA_AR_FINAL_compressed.pdf'%}" target="_blank">
+                                            <img src="{% static 'assets/images/Photo_Photo_AnnualReport84.jpg' %}" class="img-responsive" alt="" style="height: 312px;">
+                                          </a> -->
+                                        <a href="sitemedia/{{publication_list.1.file_path}}" target="_blank">
+                                            <img src="sitemedia/{{publication_list.1.cover_path}}"
+                                                 class="img-responsive" alt="" style="height: 312px;">
+                                        </a>
+                                        <p>Annual Report 2017-18</p>
+                                    </div>
+                                    <div class="item">
+                                        <!-- <a href="{% static 'WOB_No_3912_December2018.pdf'%}" target="_blank">
+                                            <img src="{% static 'assets/images/WOB_cover.jpg' %}" class="img-responsive" alt="" style="height: 312px;">
+                                          </a> -->
+                                        <a href="sitemedia/{{publication_list.2.file_path}}" target="_blank">
+                                            <img src="{% static 'assets/images/WOB_cover.jpg' %}" class="img-responsive"
+                                                 alt="" style="height: 312px;">
+                                        </a>
+                                        <p>World of Business</p>
+                                        <!-- <div class="caption">
+                                            <p>Session with Dr. Anat Lea Bonshtien Chairperson and Director of the Fuel Choices and Smart Mobility Initiative, Government of Israel</p> 
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <!-- <span class="num"></span> -->
+                                <a class="left carousel-control" href="#InternationalDelegationSlider1" role="button"
+                                   data-slide="prev">
+
+                                    <img src="{% static 'assets/images/lightgray-left-arrow.png' %}" alt="">
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="right carousel-control" href="#InternationalDelegationSlider1" role="button"
+                                   data-slide="next">
+                                    <img src="{% static 'assets/images/lightgray-right-arrow.png' %}" class="rightIcon"
+                                         alt="">
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <a href="/publicationapp/show-publication-details/" class="viewAll"> More Publications </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- International Delegation & Publications Section End here -->
+
+<!-- Members Speak Section Start here -->
+<!-- <section class="MemberSpeakSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="backgnd">
+                    <h2 class="Title">Members Speak</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <div id="MemberSpeakSlider" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#MemberSpeakSlider" data-slide-to="0" class="active">
+                            <img src="{% static 'assets/images/indicators.png' %}" alt="">
+                        </li>
+                        <li data-target="#MemberSpeakSlider" data-slide-to="1">
+                            <img src="{% static 'assets/images/indicators.png' %}" alt="">
+                        </li>
+                        <li data-target="#MemberSpeakSlider" data-slide-to="2">
+                            <img src="{% static 'assets/images/indicators.png' %}" alt="">
+                        </li>
+                        <li data-target="#MemberSpeakSlider" data-slide-to="3">
+                            <img src="{% static 'assets/images/indicators.png' %}" alt="">
+                        </li>
+                    </ol>
+
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                pariatur.</p>
+                            <span>John Markus - CEO</span>
+                        </div>
+                        <div class="item">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                pariatur.</p>
+                            <span>John Markus - CEO</span>
+                        </div>
+                        <div class="item">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                pariatur.</p>
+                            <span>John Markus - CEO</span>
+                        </div>
+                        <div class="item">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                pariatur.</p>
+                            <span>John Markus - CEO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!-- Members Speak Section End here -->
+
+<!-- MCCIA Members Section Start here -->
+<section class="MCCIAMemberSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="backgnd">
+                    <h2 class="Title">MCCIA Members</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div id="wrapper1">
+                    <div id="carousel">
+                        <!-- <div>
+                           <img src="{% static 'assets/images/client_logo_1.jpg' %}" alt="fruit1" width="165" height="73"
+                                title="A RAYMOND FASTNERS INDIA PVT. LTD"/>
+                       </div>
+                       <div>
+                           <img src="{% static 'assets/images/client_logo_3.jpg' %}" alt="fruit1" width="165" height="73"
+                                title="ASMITA ENGINEERING PVT.LTD"/>
+                       </div> -->
+                        <div>
+                            <img src="{% static 'assets/images/client_logo_4.jpg' %}" alt="fruit1" width="165"
+                                 height="73"
+                                 title="Bank-of-Maharashtra"/>
+                        </div>
+
+                        <div>
+                            <img src="{% static 'assets/images/client_logo_5.jpg' %}" alt="fruit1" width="165"
+                                 height="73"
+                                 title="BAJAJ AUTO LTD"/>
+                        </div>
+                        <div>
+                            <img src="{% static 'assets/images/kirloskar-logo.png' %}" alt="fruit1" width="165"
+                                 height="73"
+                                 title="Kirloskar"/>
+                        </div>
+                        <div>
+                            <img src="{% static 'assets/images/persistent.png' %}" alt="fruit1" width="165" height="73"
+                                 title="Persistent"/>
+                        </div>
+
+                        <div>
+                            <img src="{% static 'assets/images/client_logo_6.jpg' %}" alt="fruit1" width="165"
+                                 height="73" title="BHARAT FORGE LIMITED"/>
+                        </div>
+                        <div>
+                            <img src="{% static 'assets/images/client_logo_7.png' %}" alt="fruit1" width="165"
+                                 height="73" title="DEEPAK NITRITE LTD"/>
+                        </div>
+                        <div>
+                            <img src="{% static 'assets/images/client_logo_8.png' %}" alt="fruit1" width="165"
+                                 height="73" title="ELECTRONICA PLASTIC MACHINES LTD"/>
+                        </div>
+                        <div>
+                            <img src="{% static 'assets/images/client_logo_9.png' %}" alt="fruit1" width="165"
+                                 height="73" title="FIAT INDIA AUTOMOBILES PVT LTD"/>
+                        </div>
+
+                        <div>
+                            <img src="{% static 'assets/images/client_logo_10.jpg' %}" alt="fruit1" width="165"
+                                 height="73" title="FORCE MOTORS LTD"/>
+                        </div>
+                        <div>
+                            <img src="{% static 'assets/images/client_logo_11.png' %}" alt="fruit1" width="165"
+                                 height="73" title="Garware Beststrech Ltd"/>
+                        </div>
+                        <div>
+                            <img src="{% static 'assets/images/client_logo_12.png' %}" alt="fruit1" width="165"
+                                 height="73" title="GESTAMP PUNE AUTOMOTIVE PVT LTD"/>
+                        </div>
+                        <div>
+                            <img src="{% static 'assets/images/client_logo_13.png' %}" alt="fruit1" width="165"
+                                 height="73" title="Kinetic Engineering Ltd"/>
+                        </div>
+                        <!-- <div>
+                            <img src="{% static 'assets/images/client_logo_14.jpg' %}" alt="fruit1" width="165"
+                                 height="73" title="KPIT"/>
+                        </div> -->
+                        <!-- <div>
+                            <img src="{% static 'assets/images/persistent.png' %}" alt="fruit1" width="165" height="73"
+                                 title="Persistent"/>
+                        </div> -->
+
+
+                        <!-- <div>
+                            <img src="{% static 'assets/images/client_logo_1.jpg' %}" alt="fruit1" width="165" height="73"
+                                 title="A RAYMOND FASTNERS INDIA PVT. LTD"/>
+                        </div>
+                        <div>
+                            <img src="{% static 'assets/images/client_logo_2.jpg' %}" alt="fruit2" width="165" height="73"
+                                 title="USGS"/>
+                        </div>
+                        <div>
+                            <img src="{% static 'assets/images/client_logo_3.jpg' %}" alt="fruit3" width="165" height="73"
+                                 title="Intel"/>
+                        </div>
+                        <div>
+                            <img src="{% static 'assets/images/client_logo_4.jpg' %}" alt="fruit4" width="165" height="73"
+                                 title="Citrix"/>
+                        </div>
+                        <div>
+                            <img src="{% static 'assets/images/client_logo_5.jpg' %}" alt="fruit5" width="165" height="73"
+                                 title="Paytm"/>
+                        </div>
+                        <div>
+                            <img src="{% static 'assets/images/kirloskar-logo.png' %}" alt="fruit6" width="165"
+                                 height="73"
+                                 title="Mahindra Rise"/>
+                        </div> -->
+                        <!-- <div>
+                            <img src="{% static 'assets/images/persistent.png' %}" alt="fruit1" width="165" height="73"
+                                 title="LG"/>
+                        </div> -->
+                        <!--  <div>
+                             <img src="{% static 'assets/images/usgs.jpg' %}" alt="fruit2" width="165" height="73"
+                                  title="USGS"/>
+                         </div>
+                         <div>
+                             <img src="{% static 'assets/images/intel.jpg' %}" alt="fruit3" width="165" height="73"
+                                  title="Intel"/>
+                         </div>
+                         <div>
+                             <img src="{% static 'assets/images/citrix.jpg' %}" alt="fruit4" width="165" height="73"
+                                  title="Citrix"/>
+                         </div>
+                         <div>
+                             <img src="{% static 'assets/images/paytm.jpg' %}" alt="fruit5" width="165" height="73"
+                                  title="Paytm"/>
+                         </div>
+                         <div>
+                             <img src="{% static 'assets/images/mahindra-rise.jpg' %}" alt="fruit6" width="165"
+                                  height="73"
+                                  title="Mahindra Rise"/>
+                         </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- MCCIA Members Section End here -->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://hbconsole.hashblu.com/botscripts/CognitiveServices.min.js"></script>
+<script type="text/javascript" src="https://hbconsole.hashblu.com/botscripts/hashbluchatbot.min.js"></script>
+{% endblock %}
+
+
+{% block js_block %}
+<script>
+    $(document).ready(function() {
+    $.fn.hashbluChat({hashbluChatSettingKey: "32ac0f41-46cb-4fff-b431-62381b44f134"});
+    $('#upcomingEventsCarousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        responsiveClass: true,
+        nav: true,
+        navText: ["<img src='{% static 'assets/images/blue-left-arrow.png' %}'>", "<img src='{% static 'assets/images/blue-right-arrow.png' %}'>"],
+        responsive: {
+            0: {
+                items: 1,
+                nav: true
+            },
+            600: {
+                items: 1,
+                nav: true
+            },
+            1000: {
+                items: 2,
+                nav: true,
+                loop: true,
+                margin: 20
+            }
+        }
+    });
+
+    $('#servicesCarousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        responsiveClass: true,
+        nav: true,
+        navText: ["<img src='{% static 'assets/images/blue-left-arrow.png' %}'>", "<img src='{% static 'assets/images/blue-right-arrow.png' %}'>"],
+        autoplay: true,
+        autoplayTimeout: 3000,
+        autoplayHoverPause: true,
+        responsive: {
+            0: {
+                items: 2,
+                nav: true
+            },
+            600: {
+                items: 3,
+                nav: true
+            },
+            1000: {
+                items: 5,
+                nav: true,
+                loop: true,
+                margin: 10
+            }
+        }
+    })
+
+    // console.log('in');
+    // var $c = $('#carousel'),
+    //     $w = $(window);
+
+    // $c.carouFredSel({
+    //     align: false,
+    //     items: 3,
+    //     scroll: {
+    //         items: 1,
+    //         duration: 2000,
+    //         timeoutDuration: 0,
+    //         easing: 'linear',
+    //         pauseOnHover: 'immediate'
+    //     }
+    // });
+
+
+    // $w.bind('resize.example', function() {
+    //     var nw = $w.width();
+    //     if (nw < 990) {
+    //         nw = 990;
+    //     }
+
+    //     $c.width(nw * 3);
+    //     $c.parent().width(nw);
+
+    // }).trigger('resize.example');        
+});
+
+    // var totalItems = $('#InternationalDelegationSlider .item').length;
+    // var currentIndex = $('#InternationalDelegationSlider div.active').index() + 1;
+    // $('.num').html(''+currentIndex+' OF '+totalItems+'');
+
+    // $('#InternationalDelegationSlider').bind('slide.bs.carousel', function() {
+    //     currentIndex = $('#InternationalDelegationSlider div.active').index() + 1;
+    //     $('.num').html(''+currentIndex+' OF '+totalItems+'');
+    // });
+
+
+</script>
+
+<script src="{%static 'custom-js/landing_page.js' %}" type="text/javascript"></script>
+{% endblock %}
+</body>
+</html>

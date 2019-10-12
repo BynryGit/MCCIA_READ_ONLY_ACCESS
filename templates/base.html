@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load my_template_tag %}
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+
+    <style type="text/css">
+        #processing{
+            height: 100vh;
+            position: fixed;
+            width: 100%;
+            margin: 0px auto;
+            z-index: 9999;
+            background-color: #FFF;
+            background-image: none;
+            background-attachment: scroll;
+            background-position: 0% 0%;
+            background-clip: border-box;
+            background-origi html, body {
+   overflow-x: hidden;
+ }n: padding-box;
+            background-repeat: repeat;
+            background-size: inherit;
+            opacity: 0.5;
+        }
+        #loading{
+            width: 36%;
+            height: 22px;
+            position: absolute;
+            top: 26%;
+            left: 32%;
+            margin: -28px 0px 0px -25px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            color: #000;
+        }
+
+        body, html{
+            overflow-x: hidden;
+        }
+        .form-group {
+             position: relative
+                    }
+            .form-group input[type="newpassword"] {
+            padding-right: 30px
+                       }
+             .form-group .glyphicon {
+            right: 20px;
+            position:absolute;
+            top:12px
+}
+    </style>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/custom.css' %}" rel="stylesheet">
+
+    
+    
+<link href="{% static 'backoffice/assets/global/plugins/select2/css/select2.min.css' %}" rel="stylesheet" type="text/css"/>
+	  <link href="{% static 'backoffice/assets/global/plugins/select2/css/select2-bootstrap.min.css' %}" rel="stylesheet"
+	          type="text/css"/>    
+
+
+
+
+    <!-- Font Awesome link -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    
+     
+     <link rel="stylesheet" href="https://hbconsole.hashblu.com/botscripts/hashbluchatbot.min.css" />     
+
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+
+    <!-- Owl Stylesheets -->
+    <link rel="stylesheet" href="{% static 'assets/css/owlcarousel/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owlcarousel/owl.theme.default.min.css' %}">
+
+    <!-- Datepicker Stylesheets -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    <!-- form css -->
+    <link href="{% static 'assets/css/form.css' %}" rel="stylesheet">
+    <!-- form css -->
+    <link href="{% static 'assets/css/validation/validation.css' %}" rel="stylesheet">
+
+    <!-- calendar css -->
+    <link href="{% static 'assets/css/calendar/equinox.css' %}" rel="stylesheet" type="text/css">
+        
+    <link href="{% static 'assets/css/fullcalender/fullcalendar.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/global/plugins/bootstrap-toastr/toastr.min.css' %}" rel="stylesheet" type="text/css" />
+    <!--Time Picker CSS-->
+    <link href="{% static 'assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="{% static 'assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet" type="text/css" />
+
+     <!-- Newly Full Calender added end -->
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body>
+
+<!-- Loading & Processing Start -->
+<div id="processing" style="display:none;">
+    <div id="loading">
+        <img src="{% static 'assets/loading-bars.gif' %}" style="height : 100px;">
+    </div>
+</div>
+
+
+<!-- Header Section Start here -->
+<section class="TopHeader">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="LoginPanel">
+                    <ul>
+                        {% if request|check_login:'Dashboard' == 'true' %}
+                            <!--<li><a href="/membershipapp/membership-form/" target="_blank"><i class="fa fa-user-plus"></i>Join the Chamber</a></li>-->
+                         {% if not request.user.is_anonymous %}
+                            {% if request.session.user_type == 'backoffice' %}
+                                <li><a href="/membershipapp/membership-form-admin/" target="_blank"><i class="fa fa-user-plus"></i>Join the Chamber</a></li>
+                            {% else %}
+                                <li><a href="/membershipapp/membership-form/" target="_blank"><i class="fa fa-user-plus"></i>Join the Chamber</a></li>
+                            {% endif %}
+                        {% else %}
+                            <li><a href="/membershipapp/membership-form/" target="_blank"><i class="fa fa-user-plus"></i>Join the Chamber</a></li>
+                        {% endif %}
+
+                            <li class="dropdown dropdown-user" id="open_dropdown">
+                                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                                       data-close-others="true">
+                                        <span class="username username-hide-on-mobile"> {{ request.user.username}} </span>
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                <ul class="dropdown-menu" aria-labelledby="dLabel">
+                                    <li><a href="/membershipapp/edit-member-profile/"><i class="fa fa-user" aria-hidden="true"></i>Edit Profile</a> </li>
+                                    <li><a href="/membershipapp/member-timeline/"><i class="" aria-hidden="true"></i>View Timeline</a> </li>
+                                    {% if request.session.member_type != 'Life Membership' %}
+                                        <li style="color:Red"><a href="/membershipapp/renew-member-profile-page/"><b>Membership Renewal - {{request.session.renewal_year}} </b></a>
+                                    {% endif %}
+                                    <li><a href="/visarecommendationapp/visa-pre-condition/">Visa Recommendation</a> </li>
+                                    <li><a href="#" data-toggle="modal" data-target="#change_password_model" class="modal_login"><i></i>Change Password</a></li>
+                                    <li><a href="/authenticate/mem-log-out/"><i class="fa fa-key"></i>Logout</a></li>
+                                </ul>
+                            </li>
+                       {% else %}
+                        <li><a href="/membershipapp/membership-form/" target="_blank"><i class="fa fa-user-plus"></i>Join the Chamber</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#memberLoginModal" class="modal_login"><i class="fa fa-lock"></i>Member
+                            Login</a></li>
+                         {% endif %}
+
+                        <li class="hidden-xs">
+                            <a href="https://www.facebook.com/PuneMCCIA" title="Facebook" target="_blank" style="padding: 8px 6px 8px 18px;
+    border-left: 1px solid #01528e;">
+                                <i class="fa fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li class="hidden-xs">
+                            <a href="https://twitter.com/MCCIA_Pune" title="Twitter" target="_blank" style="padding: 8px 6px;">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="hidden-xs">
+                            <a href="https://www.linkedin.com/company/mahratta-chamber-of-commerce-industries-&-agriculture/" title="Linkedin" target="_blank" style="padding: 8px 6px;">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li class="hidden-xs">
+                            <a href="https://www.youtube.com/user/punemccia" title="YouTube" target="_blank" style="padding: 8px 6px;">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                        <!-- <li class="hidden-xs">
+                            <a href="" data-toggle="modal" data-target="#searchModal" title="Search" style="    padding: 8px 6px 8px 12px;
+    border-left: 1px solid #01528e;">
+                                <i class="fa fa-search"></i>
+                            </a>
+                            <div class="modal fade" id="searchModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" style="display: none;">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span></button>
+
+                                        </div>
+                                        <div class="modal-body searchWrap">
+                                            <div class="navbar-form" role="search" novalidate>
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="Search">
+                                                </div>
+                                                <button type="submit" class="btn btn-default"><i
+                                                        class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Navbar -->
+<nav class="navbar navbar-default MainMenu">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" title="MCCIA">
+                <img src="{% static 'assets/images/mccia-logo-footer.png' %}" alt="">
+                <h5>MAHRATTA CHAMBER OF COMMERCE,<br/>INDUSTRIES AND AGRICULTURE</h5>
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">About Us <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="myClickClass" href="/membershipapp/about-us/#vision_tab">Vision and Mission</a></li>
+                        <li><a class="myClickClass" href="/membershipapp/about-us/#history_tab">History</a></li>
+                        <li><a class="myClickClass" href="/membershipapp/about-us/#leadership_tab">MCCIA Leadership</a></li>
+                        <li><a class="myClickClass" href="/membershipapp/about-us/#team_tab">MCCIA Team</a></li>
+                        <li><a class="myClickClass" href="/membershipapp/about-us/#affiliation_tab">Affiliations</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Membership <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/membershipapp/membership-home/"
+                           >Membership Benefits</a></li>
+                        <li><a href="/membershipapp/eligibility-criteria/">Eligibility Criteria</a></li>
+                        <!--<li><a href="#">Membership Fee</a></li>-->
+
+                        {% if not request.user.is_anonymous %}
+                            {% if request.session.user_type == 'backoffice' %}
+                                <li><a href="/membershipapp/membership-form-admin/">Apply Online</a></li>
+                            {% else %}
+                                <li><a href="/membershipapp/membership-form/">Apply Online</a></li>
+                            {% endif %}
+                        {% else %}
+                            <li><a href="/membershipapp/membership-form/">Apply Online</a></li>
+                        {% endif %}
+
+                        <li><a target="_blank" href="{% static 'MCCIA_ArticlesofAssociation.pdf' %}">Articles of Association</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Services <i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/hallbookingapp/advisory/">Advisory<!--Services--></a></li>
+                         <li><a href="/sustainabilityapp/sustainability-desk/">Sustainability Desk</a></li>
+                        <li><a href="/hallbookingapp/certificate-of-origin/">Certificate of Origin</a></li>
+                        <li><a href="/hallbookingapp/open-hallbooking-page/">Hall Booking</a></li>
+                        <li><a href="/hallbookingapp/library/">Library</a></li>
+                        <li><a href="/visarecommendationapp/visa-pre-condition/">Visa Recommendation</a></li>
+                        <!--<li><a href="#">Infrastructure</a></li>-->
+                    </ul>
+                </li>
+
+                <li><a href="/eventsapp/events-home/">Events</a>
+
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Committees <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu Committees-dropdown-menu">
+                        <li><a href="/committeeapp/agriculture/">Agriculture</a></li>
+                        <li><a href="/committeeapp/ahmednagar/">Ahmednagar</a></li>
+                        <li><a href="/committeeapp/civil-aviation/">Civil Aviation</a></li>
+                        <li><a href="/committeeapp/corporate-legislation/">Corporate Legislation</a></li>
+                        <li><a href="/committeeapp/defence/">Defence</a></li>
+                        <li><a href="/committeeapp/electronics/">Electronics</a></li>
+                        <li><a href="/committeeapp/food-processing/">Food Processing</a></li>
+                        <li><a href="/committeeapp/foreign-trade/">Foreign Trade</a></li>
+                        <li><a href="/committeeapp/higher-education-skill-development/">Higher Education and Skill Development</a></li>
+                        <li><a href="/committeeapp/hr/">HR & IR</a></li>
+                        <li><a href="/committeeapp/IT-ITES/">IT & ITES</a></li>
+                        <li><a href="/committeeapp/innovation-incubation/">Innovation & Incubation</a></li>
+                        <li><a href="/committeeapp/sme/">MSME</a></li>
+                        <li><a href="/committeeapp/taxation/">Taxation</a></li>
+                        <li><a href="/committeeapp/women-entrepreneurs/">Women Entrepreneurs</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false"><!--Centers-->Inititatives <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/initiativesapp/electronic-clusture/">Electronic Cluster</a></li>
+
+                        <li><a href="/initiativesapp/technology-transfer/">Technology Transfer</a></li>
+
+                        <li><a href="/initiativesapp/mfg-lean/">Mfg. Lean Cluster</a></li>
+
+                        <!-- <li><a href="/initiativesapp/apprenticeship/">Apprenticeship</a></li> -->
+
+                        <!--<li><a href="/initiativesapp/enterpreneurship/">Entrepreneurship</a></li>-->
+                        <li><a href="/awardsapp/awards-home/">Awards</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="/media-home/">Media</a></li> 
+
+                <li><a href="/contact-us/">Contact Us</a></li>
+
+            </ul>
+
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<!-- Header Section End here -->
+
+{% block content %}
+
+{% endblock %}
+
+<!-- Social Media Section Start here -->
+<section class="SocialMediaSection" style="display:none">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="SocialMediaBox">
+                    <div class="ConnectSocialMedia">
+                        <p>Connect with MCCIA on Social Media</p>
+                    </div>
+                    <div class="SocialMediaIcon">
+                        <ul>
+                            <li><a href="https://www.facebook.com/PuneMCCIA" title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
+                            <li><a href="https://twitter.com/MCCIA_Pune" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/company/mahratta-chamber-of-commerce-industries-&-agriculture/" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#" title="Google+"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="https://www.youtube.com/user/punemccia" title="Youtube"><i class="fa fa-youtube"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Social Media Section End here -->
+
+<!-- Footer Section Start here -->
+<section class="TopFooter">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 devicetopfootercol">
+                <div class="SiteLogo">
+                    <img src="{% static 'assets/images/mccia-logo-footer.png' %}" alt="MCCIA" title="MCCIA">
+                    <h5>Mahratta Chamber of Commerce, Industries and Agriculture</h5>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-4 col-xs-6 devicetopfootercol">
+                <div class="contactbox">
+                    <h5>Contact</h5>
+                    <ul>
+                        <li><a href="https://goo.gl/maps/Lk6HJyczoHC2" target="_blank"><img
+                                src="{% static 'assets/images/map-location-icon.png' %}" alt="Map Location">Senapati
+                            Bapat Road </a></li>
+                        <li><a href="https://goo.gl/maps/bVDjLuHFr7K2" target="_blank"><img
+                                src="{% static 'assets/images/map-location-icon.png' %}" alt="Map Location">Tilak Road|
+                        </a></li>
+                        <li><a href="https://goo.gl/maps/NuFsvguQ8bH2" target="_blank"><img
+                                src="{% static 'assets/images/map-location-icon.png' %}" alt="Map Location">Bhosari</a>
+                        </li>
+                        <li><a href="https://goo.gl/maps/2ZpRNcNstFT2" target="_blank"><img
+                                src="{% static 'assets/images/map-location-icon.png' %}"
+                                alt="Map Location">Ahmednagar</a></li>
+                        <li><a href="https://goo.gl/maps/11aV6gP9pjm" target="_blank"><img
+                                src="{% static 'assets/images/map-location-icon.png' %}" alt="Map Location">
+                            Hadapsar</a></li>
+                    </ul>
+                    <p class="locationIcon">505, A-Wing, MCCIA Trade Tower, ICC Complex,<br> 403, Senapati Bapat Road,
+                        Pune-411 016 INDIA.</p>
+
+                    <p><span>Tel:</span>+91 020 2570 9000</p>
+
+                    <p><span>Fax No.:</span>+91 020 2570 9021</p>
+
+                    <p><span>Email:</span><a href="mailto:info@mcciapune.com">info@mcciapune.com</a></p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 devicetopfootercol">
+                <div class="SingUp">
+                    <h3>Sign Up for latest updates</h3>
+
+                    <p>Stay updated with our weekly newsletter</p>
+
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="exampleInputEmail3"
+                                   placeholder="Email Address">
+                        </div>
+                        <button type="submit" class="btn btn-default button"><i class="fa fa-paper-plane"></i></button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="copyrightContainer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <p>Copyright © MCCIA 2018. All rights reserved.</p>
+
+                <p class="poweredBy">:::| <a
+                        title="Website Design &amp; Development Company In Pune | Digital Marketing Company in Pune, Search Engine Optimization, Web Hosting Company in Pune"
+                        target="_blank" href="https://bynry.com/">Powered By Bynry Technologies </a>
+                    |:::</p>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 hidden-xs">
+                <p class="BestView">Best viewed in IE 10+, Firefox 20+, Chrome , Safari5+, Opera12+ </p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End here -->
+
+<!-- Member Login modal start here -->
+<div class="modal fade memberLoginModal in" id="memberLoginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <form class="login-form" id="login_form" method="post">
+                    {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 hidden-xs">
+                        <img src="{% static 'assets/images/member-login-logo.png' %}"
+                             class="member-login-img">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="member-login-form">
+                            <h2>Member Login</h2>
+
+                            <div class="form-group">
+                                <input name="username" type="text" id="username" class="form-control"
+                                       placeholder="Membership No.">
+                            </div>
+                            <div class="form-group">
+                                <input name="password" type="password" id="mpassword" class="form-control"
+                                       placeholder="Password">
+                            </div>
+
+                            <div class="Formbuttons">
+                                <a onclick="Login();" id="_ctl0_imgLogin"
+                                   class="btn btn-default btn-block subbtn">Sign In</a>
+                            </div>
+
+                            <p>
+                                <a href="/membershipapp/membership-form/">Not yet a member?</a><br>
+                                <!-- <a href="#">Forgot Password</a> -->
+                                <a onclick="open_forgot_modal()" href="#">Forgot Password</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade memberLoginModal in" id="memberforgotModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <form class="login-form" id="forgot_form" method="post">
+                    {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 hidden-xs">
+                        <img src=" {% static 'assets/images/member-login-logo.png' %}"
+                             class="member-login-img">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="member-login-form">
+                            <h2>Forgot Password</h2>
+
+                            <div class="form-group">
+                                <input name="membership_no" type="text" id="membership_no" class="form-control"
+                                       placeholder="Membership No.">
+                            </div>
+
+                            <div class="Formbuttons">
+                                <a onclick="forgot_password();" id="_ctl0_imgForgot" class="btn btn-default btn-block subbtn">Submit</a>
+                            </div>
+
+                            <p>
+                                <a onclick="openloginmodal()" href="#">Login</a><br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade draggable-modal" id="login_modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-body">
+                    <h4 class="text-center">Please enter valid Username </h4>
+                </div>
+                <div style="text-align:center !important;" class="modal-footer">
+                    <button type="button" class="btn red" data-dismiss="modal">OK</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade draggable-modal" id="password" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-body">
+                    <h4 class="text-center">Please enter valid Password </h4>
+                </div>
+                <div style="text-align:center !important;" class="modal-footer">
+                    <button type="button" class="btn red" data-dismiss="modal">OK</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade draggable-modal" id="deactivate_user" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-body">
+                    <h4 class="text-center">This user is Deactivated. Please contact to Membership Department. </h4>
+                </div>
+                <div style="text-align:center !important;" class="modal-footer">
+                    <button type="button" class="btn red" data-dismiss="modal">OK</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade draggable-modal" id="not_found" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-body">
+                    <h4 class="text-center">Username does not exists. </h4>
+                </div>
+                <div style="text-align:center !important;" class="modal-footer">
+                    <button type="button" class="btn red" data-dismiss="modal">OK</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Member Login modal end here -->
+
+
+<!----------Change Password modal Start from  Here------------->
+<div class="modal fade memberLoginModal in" id="change_password_model" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <form class="change-passsword-form"  id="change_password_form" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 hidden-xs">
+                            <img src=" {% static 'assets/images/member-login-logo.png' %}"
+                                 class="member-login-img">
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="member-change-passsword-form">
+                                <h3>Change Password</h3>
+
+                                <div class="form-group">
+                                    <input name="currentpassword" type="password" id="currentpassword" class="form-control" placeholder="Current Password">
+                                    <label id="currentpassword_error" style="font-size: small; color: red; display: none;">*Required Field</label></div>
+                                <div class="form-group">
+                                    <input name="newpassword" type="password" id="newpassword" class="form-control" placeholder=" New Password">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+
+                                    <label id="newpassword_error" style="font-size: small; color: red; display: none;">*Required Field</label>
+                                    <label id="newpassword_pattern_error" style="font-size: small; color: red; display: none;">Password should contain <br>one digit <br>one special character <br> 8 minimum character </label>
+
+
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="confirmpassword" type="password" id="confirmpassword" class="form-control" placeholder=" Confirm Password">
+                                       <label id="confirmpassword_error" style="font-size: small; color: red; display: none;">*Required Field</label>
+                                </div>
+
+                                <div class="Formbuttons">
+                                    <a onclick="change_password()" id="change_password" class=" btn btn-default">Change Password</a>
+                                    <a class=" btn btn-default reset" data-dismiss="modal" id="cancil_button">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade draggable-modal" id="password_change_modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-body">
+                    <h4 class="text-center">Please enter correct current password</h4>
+                </div>
+                <div style="text-align:center !important;" class="modal-footer">
+                    <button type="button" class="btn red" data-dismiss="modal">OK</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade draggable-modal" id="changepassword_modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-body">
+                    <h4 class="text-center">New & Confirm password does not match</h4>
+                </div>
+                <div style="text-align:center !important;" class="modal-footer">
+                    <button type="button" class="btn red" data-dismiss="modal">OK</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!----------Change Password modal End Here------------->
+
+
+
+<!-- Return to Top -->
+<a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'backoffice/assets/global/plugins/select2/js/select2.full.min.js' %}" type="text/javascript"></script>   
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{% static 'assets/js/validation/jquery.validate.min.js' %}"></script>
+<script src="{% static 'assets/js/validation/additional-methods.min.js' %}"></script>
+<script src="{% static 'assets/js/validation/checkvalidation.js' %}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="{% static 'assets/js/calendar/equinox.min.js' %}"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{% static 'assets/js/jquery.carouFredSel-6.0.4-packed.js' %}" type="text/javascript"></script>
+
+<script src="{%static 'custom-js/bootbox.min.js' %}" type="text/javascript"></script>
+
+<!-- owlcarousel javascript -->
+<script src="{% static 'assets/js/owlcarousel/owl.carousel.js' %}"></script>
+
+<script type="text/javascript" src="https://hbconsole.hashblu.com/botscripts/CognitiveServices.min.js"></script>
+<script type="text/javascript" src="https://hbconsole.hashblu.com/botscripts/hashbluchatbot.min.js"></script>
+
+<script src="{% static 'assets/global/scripts/datatable.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/global/plugins/datatables/datatables.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js' %}"
+     type="text/javascript"></script>
+
+<script type="text/javascript" src="{% static 'assets/js/fullcalender/fullcalendar.min.js' %}"></script>
+<script src="{% static 'assets/global/plugins/bootstrap-toastr/toastr.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/pages/scripts/ui-toastr.min.js' %}" type="text/javascript"></script>
+<script src="{%static 'custom-js/membershipapp/membership_invoice.js' %}" type="text/javascript"></script>
+<!--Time Picker JS-->
+<script src="{% static 'assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' %}" type="text/javascript"></script>
+<script>
+
+
+    toastr.options = {
+      "closeButton": true,
+      "debug": false,
+      "positionClass": "toast-top-center",
+      "onclick": null,
+      "showDuration": "1000",
+      "hideDuration": "1000",
+      "timeOut": "5000",
+      "extendedTimeOut": "1000",
+      "showEasing": "swing",
+      "hideEasing": "linear",
+      "showMethod": "fadeIn",
+      "hideMethod": "fadeOut"
+    }
+
+    $('.collapse').on('shown.bs.collapse', function(){
+        $(this).parent().find(".fa-plus").removeClass("fa-plus").addClass("fa-minus").parents(".panel-default").addClass("headingActive");
+    }).on('hidden.bs.collapse', function(){
+        $(this).parent().find(".fa-minus").removeClass("fa-minus").addClass("fa-plus").parents(".panel-default").removeClass("headingActive");;
+    });
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    // ===== Scroll to Top ====
+    $(window).scroll(function() {
+        if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+            $('#return-to-top').fadeIn(200);    // Fade in the arrow
+        } else {
+            $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+        }
+    });
+    $('#return-to-top').click(function() {      // When arrow is clicked
+        $('body,html').animate({
+            scrollTop : 0                       // Scroll to top of body
+        }, 500);
+    });
+</script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-127033364-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-127033364-1');
+</script>
+
+
+<script>
+
+    / * change url for admin --- of membership form * /
+    function change_admin_url()
+    {
+            var pathname = window.location.pathname; // Returns path only
+            location_url_ID= pathname.split('/')[2]
+
+            if ( location_url_ID == "membership-form-admin"){
+                 location.href = "/membershipapp/membership-form-admin/";
+            }
+            else{
+                location.href = '/membershipapp/membership-form/'
+            }
+      }
+
+    /* Date picker script */
+    $(document).ready(function(){
+    
+   
+ 
+  // Initialize select2
+  $(".mmclass").select2({
+  		tags: true
+  });
+  $(".eventclass").select2({
+  		tags: true
+  });  
+  
+  
+        var date_input=$('.dateField'); //our date input has the name "date"
+        var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'mm/dd/yyyy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })                                              
+
+        var url_string = window.location.href
+        var url = new URL(url_string);
+        if (url.searchParams != undefined){
+            var lf = url.searchParams.get("lf");
+            if (lf == 'true') {
+                    $("#open_dropdown").addClass('open');
+            }
+        }
+        
+        /* For calender in event */
+        $('.CalendarNList ul li').click(function(){
+            $('.CalendarNList li').removeClass("active");
+            $(this).addClass("active");
+        });
+    })
+
+    /* For calender in event */
+    $('.event-calendar').equinox({
+        events: [{
+
+            start: '2018-06-20 12:30',
+            end: '2018-06-20 17:30',
+            title: 'Opportunities in Agri-Food Export',
+            url: '/eventsapp/events-details/',
+            class: 'OpenToAll',
+            color: '',
+            data: {}},
+            {
+            start: '2018-05-20 18:30',
+            end: '2018-05-20 22:30',
+            title: 'Five S & Kaizen – The ‘Mantras’ for Workplace Improvement ',
+            url: '/event-details/',
+            class: 'OnPayment',
+            color: '',
+            data: {}},
+            {
+            start: '2018-05-22 12:30',
+            end: '2018-05-22 17:30',
+            title: 'Opportunities in Agri-Food Export',
+            url: '/event-details/',
+            class: 'ByInvitation',
+            color: '',
+            data: {}
+        }]
+    });
+
+
+    $('.collapse').on('shown.bs.collapse', function(){
+      $(this).parent().find(".fa-plus").removeClass("fa-plus").addClass("fa-minus").parents(".panel-default").addClass("headingActive");
+    }).on('hidden.bs.collapse', function(){
+    $(this).parent().find(".fa-minus").removeClass("fa-minus").addClass("fa-plus").parents(".panel-default").removeClass("headingActive");
+    });
+
+
+$('#memberLoginModal').on('shown.bs.modal', function (e) {
+    $(document).keypress(function(event){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13' || keycode == 13){       
+            Login();
+        }
+    });  
+})
+
+function Login(){
+ $.ajax({
+            type : 'POST',
+            url : '/authenticate/member-sign_in/',
+            data : $("#login_form").serialize(),
+            success: function(response) {
+            if(response.success=='true'){
+                var pathname = window.location.pathname; // Returns path only   
+                login_flag = true;
+                window.location.href = pathname+'?lf='+login_flag
+            }else if(response.success=='Invalid User'){
+                $("#deactivate_user").modal('show');
+            }else if(response.success=='Invalid Username'){
+                $("#login_modal").modal('show');
+            }else if(response.success=='Invalid Password'){
+                $("#password").modal('show');
+            }else if(response.success=='Not Found'){
+                $("#not_found").modal('show');
+            }
+            },            
+           error: function(response){
+           alert(response.abc);
+                console.log('error',response);
+       },
+            });
+}
+
+function open_forgot_modal(){
+    $("#memberLoginModal").modal('hide');
+    $("#memberforgotModal").modal('show');
+}
+
+function openforgotpwd(){
+
+}
+
+function openloginmodal(){
+    $("#memberLoginModal").modal('show');
+    $("#memberforgotModal").modal('hide');    
+}
+
+function forgot_password(){
+$.ajax({
+        type : 'POST',
+        url : '/authenticate/send-mail/',
+        data : $("#forgot_form").serialize(),
+        success: function(response) {
+        if(response.success=='true'){
+            bootbox.alert('Password reset link is sent to registered email id.');
+            setTimeout(function(){window.location.href = "/"}, 1000);
+        }else if(response.success=='false'){
+            $("#login_modal").modal('show');
+        }else if(response.success=='Invalid Username'){
+            $("#login_modal").modal('show');
+        }else if(response.success=='Invalid Password'){
+            $("#password").modal('show');
+        }else if(response.success=='false1'){
+            $("#inactive").modal('show');
+        }
+        },
+        beforeSend: function () {
+            $("#processing").css('display','block');
+        },
+        complete: function () {
+            $("#processing").css('display','none');
+        },
+       error: function(response){       
+            console.log('error',response);
+        },
+    });
+}
+
+
+
+function change_password()
+{
+var flag=true;
+    if ($('#currentpassword').val() == '')
+    {
+        flag=false;
+        $("#currentpassword_error").css("display","block");
+    }
+    else{
+         $("#currentpassword_error").css("display","none");
+
+        }
+
+
+    if ($('#confirmpassword').val() == '')
+    {
+     flag=false;
+    $("#confirmpassword_error").css("display","block");
+    }
+    else{
+     $("#confirmpassword_error").css("display","none");
+        }
+
+
+    if ($('#newpassword').val() == ''){
+        flag=false;
+        $("#newpassword_error").css("display","block");
+    }
+    else{
+         $("#newpassword_error").css("display","none");
+         x= $('#newpassword').val();
+         filter =/^(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+    if (!filter.test(x)) {
+         flag=false;
+         $("#newpassword_pattern_error").css("display","block");}
+    else{
+         $("#newpassword_pattern_error").css("display","none");
+        }
+}
+
+
+if (flag){
+    $.ajax({
+        type:'POST',
+        url:'/authenticate/change-password/',
+        data : $('#change_password_form').serialize(),
+        success:function (response){
+        if(response.success=='true'){
+            $('#change_password_model').modal('hide')
+	       bootbox.alert("<span class='center-block text-center'>Password Changed Successfully</span>");
+	    }
+        else if(response.success=='currentpasswordalert'){
+            $("#password_change_modal").modal('show');
+        }else if(response.success=='Passworddoesnotmatch'){
+            $("#changepassword_modal").modal('show');
+        }
+        else if(response.success=='false'){
+            $("#changepassword_modal").modal('show')
+            ;
+        }
+        },
+        beforeSend: function () {
+            $("#processing").css('display','block');
+        },
+        complete: function () {
+            $("#processing").css('display','none');
+        },
+       error: function(response){
+            console.log('error',response);
+        },
+    });
+}
+}
+
+
+$(".glyphicon-eye-open").on("click", function() {
+$(this).toggleClass("glyphicon-eye-close");
+  var type = $("#newpassword").attr("type");
+if (type == "text"){
+  $("#newpassword").prop('type','password');}
+else{
+  $("#newpassword").prop('type','text'); }
+});
+
+
+$('#change_password_model').on('shown.bs.modal', function (e) {
+    $('#change_password_form').trigger("reset");
+    $("#currentpassword_error").css("display","none");
+    $("#confirmpassword_error").css("display","none");
+    $("#newpassword_error").css("display","none");
+    $("#newpassword_pattern_error").css("display","none");
+});
+
+
+</script>
+
+{% block js_block %}{% endblock %}
+
+</body>
+</html>

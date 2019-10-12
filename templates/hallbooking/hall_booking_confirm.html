@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+</head>
+<style type="text/css">
+	.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox] {
+    /* position: absolute; */
+    margin-top: 4px\9;
+    margin-left: -20px;
+    display: none;
+}
+</style>
+<body>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!-- internal banner section starts here -->
+<section class="InternalBannerSection" style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h2>Hall Booking</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/hallbookingapp/open-hallbooking-page/">Hall Booking</a></li>
+                        <li class="active"><a href="#">MCCIA Trade Tower (5th Floor)</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- internal banner section Ends here -->
+<!-- Member form section starts here -->
+<section class="FormArea internalSection">
+    <div class="container">
+        <div class="row">     
+          {% if not request.user.is_anonymous %}
+               {% if request.session.user_type == 'backoffice' %}
+               <input type="text" value="{{request.session.user_type}}" id="user_type" hidden>
+               {% else %}
+               <input type="text" value="" id="user_type" hidden>
+               {% endif %}
+          {% endif %}
+           
+          {% for obj in data %}                 
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 check_class">
+            <div class="FormInnerArea clearfix">
+                  <div class="form-group">
+                     <div class="col-md-3">
+	               			<label class="control-label">
+		                            Hall Name</label>
+		                     <div class="validateFieldLabel">
+		                              <span id="confirm_organisation_name">{{obj.hall_name}}</span>
+		                     </div>
+	               	</div>
+	               	<div class="col-md-3">
+	               			<label class="control-label">
+		                            Company / Individual Name</label>
+		                     <div class="validateFieldLabel">
+		                              <span id="confirm_organisation_name">{{obj.company_name}}</span>
+		                     </div>
+	               	</div>
+	               	<div class="col-md-3">
+	               			<label class="control-label">
+		                            Address</label>
+			                      <div class="validateFieldLabel">
+			                              <span id="confirm_company_address">{{obj.address}}</span>
+			                      </div>
+	               	</div>
+	               	<div class="col-md-3">
+	               			<label class="control-label">
+		                            Contact Person</label>
+			                      <div class="validateFieldLabel">
+			                              <span id="confirm_contact_person">{{obj.contact_person}}</span>
+			                      </div>
+	               	</div>	               	
+	             </div>
+	             <div class="form-group">
+	                  <div class="col-md-3">
+	               			<label class="control-label">
+		                            Contact Details</label>
+			                      <div class="validateFieldLabel">
+			                              <span id="confirm_contact_details1">{{obj.mobile_no}}</span>
+			                      </div>
+	               	</div>
+	               	<div class="col-md-3">
+	               			<label class="control-label">
+		                            Email Id</label>
+		                     <div class="validateFieldLabel">
+		                              <span id="confirm_email_id">{{obj.email}}</span>
+		                     </div>
+	               	</div>
+	               	<div class="col-md-3">
+	               			<label class="control-label">
+		                            Nature of Event</label>
+			                      <div class="validateFieldLabel" id="linon">
+			                              <span id="confirm_nature_event">{{obj.event_nature}}</span>
+			                      </div>
+	               	</div>
+	             </div>
+     
+                <div class="form-group">
+                    <label class="col-md-12 control-label" > Booking Details - </label>                                  
+                         <div class="col-md-12">
+                             <div class="table-responsive">
+                                <table class="table table-bordered">											
+											 <thead>
+										      <tr>
+										        <th>BOOKING DATE</th>
+										        <th>FROM TIME</th>
+										        <th>TO TIME</th>
+										        <th>RENT (Rs.)</th>
+										        <th>Action</th>
+										      </tr>
+										    </thead>
+										    <tbody>
+										      {% for obj2 in obj.booking_detail %}
+											      <tr>
+											        <td>{{obj2.booking_date}}</td>
+											        <td>{{obj2.booking_from_time|upper}}</td>
+											        <td>{{obj2.booking_to_time|upper}}</td>
+											        <td>{{obj2.rent}}</td>
+											        <td><button class="delete btn btn-danger btn-circle" onclick="deleteRow({{obj2.detail_id}},this)" type="button"><i class="fa fa-trash-o" ></i></button></td>
+											      </tr>
+											   {% endfor %}										      
+										    </tbody>            
+                               </table>
+                              </div>
+                         </div>
+                </div>                                        
+           </div>
+          </div>
+        {% endfor %}          
+          <div  class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="FormInnerArea clearfix">
+                {% if booking_obj.deposit == 0 %}
+                  <div class="form-group">
+	               	<div class="col-md-8">
+	               		<label style="color: green">MCCIA already have your deposit balance available </label> 
+	               	</div>
+	               </div>
+	             {% endif %}
+                  <div class="form-group">
+	               	<div class="col-md-3">
+	               			<label class="control-label">
+		                            Total Hall Rent</label>
+		                     <div class="validateFieldLabel">
+		                              <span id="total_rent">{{booking_obj.total_rent}}</span>
+		                     </div>
+	               	</div>
+	               	<div class="col-md-3">
+	               			<label class="control-label">
+		                            GST</label>
+			                      <div class="validateFieldLabel">
+			                              <span id="gst_amount">{{booking_obj.gst_amount}}</span>
+			                      </div>
+	               	</div>
+	               	<div class="col-md-3">
+	               			<label class="control-label">
+		                            Deposit</label>
+			                      <div class="validateFieldLabel">
+			                              <span id="deposit">{{booking_obj.deposit}}</span>
+			                      </div>
+	               	</div>
+	               	<div class="col-md-3">
+	               			<label class="control-label">
+		                            Total Payable</label>
+			                      <div class="validateFieldLabel">
+			                              <span id="total_payable">{{booking_obj.total_payable}}</span>
+			                      </div>
+	               	</div>
+	             </div>     
+	             <br>                             
+	             <br>    
+	             <input type="text" id="hiddden_deposit_amt" name="hiddden_deposit_amt" value="{{booking_obj.deposit}}" hidden>
+	             <div class="form-group">
+                   <!--   <div class="col-md-12">
+                        {% if booking_obj.deposit > 0 %}
+			                <div class="checkbox">
+			                    <input type="checkbox" 
+			                           name="retain_sd"
+			                           id="retain_sd">
+			                    <label align="justify" for="retain_sd" style="font-family: sans-serif;">Do you want to retain SD with MCCIA ? 
+			                    </label>
+			                </div>			                
+				             <div class="checkbox">
+				                    <input type="checkbox"
+				                           name="through_cheque"
+				                           id="through_cheque" onclick="through_cheque();">
+				                    <label align="justify" for="through_cheque" style="font-family: sans-serif;">Do you want to pay SD through Returnable cheque ? 
+				                    </label>
+				             </div>
+				           {% endif %}
+			            </div> -->
+                </div>
+                <!--<div class="col-md-8"><label><b>Make payment within 3 days </b></label></div>-->
+                {% if company_name == 'MCCIA' %}
+                 <div class="form-group">
+                    <div class="col-md-12">
+                      <div class="Formbuttons">
+                        <input type="text" id="booking_id" name="booking_id" value="{{booking_obj.id}}" hidden>
+                        <input onclick="save_booking()" type="submit" name="" value="CONFIRM" class="btn btn-default subbtn" id="conform_id"/>&nbsp;&nbsp;
+                        <input onclick="pay_online()" type="submit" name="" value="PAY" class="btn btn-default subbtn" style="height: 40%;" id="payment_id"/>
+                        <input class="btn btn-default subbtn" value="CANCEL" type="button" onclick="cancel_booking()" style="background-color: #f44336;" />
+                       </div>
+                     </div>
+                </div>  
+                {% else %}   
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Payment Mode</label>
+                    <div class="col-md-6">
+                        <div class="radio">
+                            <div class="radiobox">
+                      			<input type="radio" name="payment" id="online" value="online" onclick="online_payment()">
+                                <label for="online">Online </label>
+                            </div>
+                            <div class="radiobox">
+                                <input type="radio" name="payment" id="offline" value="offline" onclick="offline_payment()" checked>
+                                <label for="offline">Offline</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="text" id="date_list_val" hidden>
+                <div class="form-group">
+                    <div class="col-md-12">
+                      <div class="Formbuttons">
+
+                        <input type="text" id="booking_id" name="booking_id" value="{{booking_obj.id}}" hidden>
+                        <input onclick="confirmterms()" type="submit" name="" value="CONFIRM" class="btn btn-default subbtn" id="conform_id"/>&nbsp;&nbsp;
+                        <input onclick="pay_online()" type="submit" name="" value="PAY" class="btn btn-default subbtn" style="height: 40%;" id="payment_id"/>
+                        <input class="btn btn-default subbtn" value="CANCEL" type="button" onclick="cancel_booking()" style="background-color: #f44336;"/>
+                       </div>
+                     </div>
+                </div>  
+                {% endif %}
+                
+                {% for objs in data %}    
+                <div class="form-group Formbuttons" id="online_payment_note_div" style="display: none;">
+                	<label><b>Submit Rs.&nbsp {{objs.deposit_for_online}} deposit cheque to Hall Booking Officer before start of the Event&nbsp</b><br><b>You have to pay &nbsp {{ objs.online_payable_amount}}&nbsp&nbsp online.</b></label>&nbsp&nbsp&nbsp
+                {% endfor %} 
+
+                </div>
+				{% if company_name != 'MCCIA' %}
+                 <div class="form-group Formbuttons" id="offline_payment_note" style="display: none;">
+					 <label class="col-md-6 control-label"><b>Note :- Please make payment within 3 day's of booking </b></label><br>
+
+                 </div>
+				{% endif %}
+           </div>
+          </div>
+          
+        </div>
+    </div>
+</section>
+
+<div id="static" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false">
+       <div class="modal-dialog">
+           <div class="modal-content" >
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                   <h4 class="modal-title">Terms and Conditions</h4> 
+               </div>
+               <div class="modal-body" style="overflow-y: scroll; height: 500px">
+                 	 <div class="form-group">
+		               
+			             <div class="col-md-12">
+			                    <label for="terms5" style="font-family: sans-serif;">A. Hall Booking, Charges and Refunds
+			                    </label>
+			                    <div class="col-md-12">
+			                       <div class="col-md-12">
+		                             <ul>
+		                                <li>The booking will be treated as confirmed only after receipt of full payment against the Hall Charges and the Security Deposit. In absence of the same, the booking will remain tentative and the hall(s) could be allotted to others without any notice or intimation.
+		                                </li>
+		
+		                                <li>The Hall Charges will be 25% EXTRA on all Saturdays and Sundays & MCCIA Holidays.
+		                                </li>
+		
+		                                <li>No refund against the GST or any other government taxes will be made once the amount is deposited with the Government.
+		                                </li>
+		
+		                                <li>Charges towards extra usage and/or damages to the equipments/facilities will be deducted from the security deposit.  The uncovered amount, if any, will have to be paid by the booking party immediately after the end of the program.
+		                                </li>
+		
+		                                <li>Refund of Security Deposit/excess payment/cancellation/any other will be given within 3 weeks from the date of the event after deducting the applicable amount, if any.  The cheque towards the refund will be drawn in favour of the Customer (name appearing in the Hall Booking Form).
+		                                </li>
+		
+		                                <li>The Hall capacity indicates number of chairs provided in the hall. No additional chairs will be provided.
+		                                </li>
+		
+		                                <li>MCCIA will not provide office boys to carry out the mundane work during the hall usage; organizer should make arrangements for the same.
+		                                </li>
+		
+		                                <li>MCCIA will only recommend the name of the caterer but will not be responsible for the action on part of the caterers or his product or services.
+		                                </li>
+		
+		                                <li>Cooking of food, Lighting of Lamp is prohibited in the premises of the chamber.
+		                                </li>
+		
+		                                <li>Sticking of posters, banners in the MCCIA premise (halls, walls, glass doors etc.)is not allowed.
+		                                </li>
+		
+		                                <li>Advance paid will be refunded as per the prevailing cancellation policy.</li>
+		
+		                                <li>Any postponement in the booking will be considered as cancelled.</li>
+		                            </ul>
+		                          </div>
+                            </div>
+			                <br>			                			                			                			                			                
+			             </div>
+			             <div class="col-md-12">
+			                    <label for="terms5" style="font-family: sans-serif;">B. Hall Utilization
+			                    </label>
+			                    <div class="col-md-12">
+			                       <div class="col-md-12">
+		                             <ul align="justify">
+		                                <li>The hall has to be utilized for the purpose mentioned in the Hall Booking Form.
+		                                </li>
+		
+		                                <li>Hall will not be given for entertainment programs like clutural programmes, family functions / get-togethers etc.
+		                                </li>
+		
+		                                <li>Please handle the equipments/facilities provided in the hall or within the premises carefully.  In case of any problem in the functioning please seek assistance from the hall attendant.  Please do not try to rectify the problem on your own.
+		                                </li>
+		
+		                                <li>Following things are NOT permitted in MCCIA premises – Alcoholic drinks, , Flame & Fire, Cooking, Washing of utensils, Sound Pollution, Fixing of banners / posters / handbills  etc.
+		                                </li>
+		
+		                                <li>Food and Beverages should not to be served in the Hall /Auditorium.  The area allotted outside the Halls / Auditorium should be used for the purpose.
+		                                </li>
+		
+		                                <li>Please instruct the catering agency hired by you to take out wastes and leftover food out of MCCIA premises and maintain cleanliness.</li>
+		                            </ul>
+		                          </div>
+                            </div>
+			                <br>			                			                			                			                			                
+			             </div>
+			             <div class="col-md-12">
+			                    <label for="terms5" style="font-family: sans-serif;">C. Hall Possession and Timings
+			                    </label>
+			                    <div class="col-md-12">
+			                       <div class="col-md-12">
+		                             <ul align="justify">
+		                                <li>The halls are available between 8.00 am to 10.00 pm.  For evening programs, maximum time limit permitted (including dinner) is 10 pm and no extension beyond this time limit will be allowed.
+		                                </li>
+		
+		                                <li>The hall will be made available only 30 minutes before the booking time and should be vacated within 10 minutes from the end time of the booking.
+		                                </li>
+		
+		                                <li>Before taking possession of the hall, please ensure that the arrangements are in good condition.  Please fill up ‘Hall Possession cum Feedback Form’ while occupying and vacating the hall.
+		                                </li>
+		
+		                                <li>MCCIA shall not be responsible or liable, in any manner, for any theft, loss, damage or destruction the property of the organizer or participants or for any physical injury to any person in MCCIA premises.
+		                                </li>
+		
+		                                <li>You will be asked to vacate the hall and premises in case of observance of any misbehavior or violation of terms & conditions by the organizers or participants.
+		                                </li>
+		                            </ul>
+		                          </div>
+                            </div>
+			                <br>			                			                			                			                			                
+			             </div>
+			             <div class="col-md-12">
+			                    <label for="terms5" style="font-family: sans-serif;">D. Parking &amp; Security
+			                    </label>
+			                    <div class="col-md-12">
+			                       <div class="col-md-12">
+		                             <ul align="justify">
+		                                <li>Vehicle parking is strictly based on availability. At S B Road office where the parking is managed by an independent agency, the parking is on Payment basis.
+		                                </li>
+		
+		                                <li>Kindly instruct the participants to your program  to carry their photo identity (driving license/company I card/any other) and the program circular (if any) as the same might be asked for by the security personnel at the building entry point or at MCCIA premises entry point.
+		                                </li>
+		                            </ul>
+		                          </div>
+                            </div>
+			                <br>			                			                			                			                			                
+			             </div>
+			             <div class="col-md-12">
+			                    <label for="terms5" style="font-family: sans-serif;">E. Feedback
+			                    </label>
+			                    <div class="col-md-12">
+			                       <div class="col-md-12">
+		                             <ul align="justify">
+		                                <li>MCCIA thank you for the utilizing the hall(s).  Please fill up Hall Feedback form and provide your candid feedback / suggestions to facilitate improvements in our services.
+		                                </li>		
+		                            </ul>
+		                          </div>
+                            </div>
+			                <br>			                			                			                			                			                
+			             </div>
+			             <div class="col-md-12">
+			               <div class="checkbox">
+			                    <input onclick="check_all_terms()" type="checkbox"
+			                           name="terms1"
+			                           id="terms1">
+			                    <label align="justify" for="terms1" style="font-family: sans-serif;"> The Security Deposit refund cheque would be drawn in favour of the Customer / Company name appearing / entered while booking the hall online (Hall Booking Form.)
+			                    </label>
+			                </div>
+			            </div>
+			            <div class="col-md-12">
+			                <div class="checkbox">
+			                    <input onclick="check_all_terms()" type="checkbox"
+			                           name="terms2"
+			                           id="terms2">
+			                    <label align="justify" for="terms2" style="font-family: sans-serif;">The booking will be treated as confirmed only after receipt of full payment against the Hall Charges and the Security Deposit (Rs.5000/-).
+			                    </label>
+			                </div>
+			            </div>
+			            <div class="col-md-12">
+			                <div class="checkbox">
+			                    <input onclick="check_all_terms()" type="checkbox"
+			                           name="terms3"
+			                           id="terms3">
+			                    <label align="justify" for="terms3" style="font-family: sans-serif;">Food and Beverages should not to be served in the Hall /Auditorium. 
+			                    </label>
+			                </div>
+			            </div>
+			            <div class="col-md-12">
+			                <div class="checkbox">
+			                    <input onclick="check_all_terms()" type="checkbox"
+			                           name="terms4"
+			                           id="terms4">
+			                    <label align="justify" for="terms4" style="font-family: sans-serif;">The hall will be made available only 30 minutes before the booking time and should be vacated within 10 minutes from the end time of the booking. Time extension would be at the sole discretion of MCCIA Authority. 
+			                    </label>
+			                </div>
+			            </div>
+			            <div class="col-md-12">
+			                <div class="checkbox">
+			                    <input onclick="check_all_terms()" type="checkbox"
+			                           name="terms5"
+			                           id="terms5">
+			                    <label align="justify" for="terms5" style="font-family: sans-serif;">I have read the MCCIA Hall Booking Terms and Conditions & Cancellation Policy
+			                    </label>
+			                </div>
+			                <br>			                			                			                			                			                
+			             </div>
+			             <div class="col-md-12">
+                          <p>
+	                          <strong>NOTE:</strong> MCCIA reserves the right to cancel the bookings in case of exigency and/or to make necessary changes in the terms & conditions from time to time.
+	                       </p>
+			                <br>			                			                			                			                			                
+			             </div>			              
+			           </div>
+               </div>                                                                               			    
+               <div class="modal-footer" >
+                   <button type="button" data-dismiss="modal" class="btn dark btn-outline btn-danger">Cancel</button>
+                   <button id="accept_term" type="button" data-dismiss="modal" class="btn green btn-success" disabled=""  onclick="save_booking();">Accept</button>
+               </div>
+           </div>
+       </div>
+   </div>
+
+<div class="modal fade draggable-modal" id="online_payment_model" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:45%; height: 100%">
+        <div class="modal-content">
+            <div class="modal-header bold">
+                Online Payment
+            </div>
+            <!--<div class="container">-->
+                <div class="modal-body">
+                <div class="form-group Formbuttons" id="online_payment_note_div">
+                <center><label><b>Submit Rs.{{ deposit_for_online }} deposit cheque to Hall Booking Officer before start of the Event&nbsp</b><br><b>You have to pay &nbsp {{ online_payable_amount }}&nbsp&nbsp online.</b></label>
+             <input  type="submit" name="" value="YES" onclick="confirmterms()" class="btn btn-default subbtn" style="height: 40%" />
+             <input type="submit" name="" value="NO" class="btn btn-default subbtn" style="height: 40%" data-dismiss="modal"/></center>
+                	
+                </div>
+                </div>
+            <!--</div>-->
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+
+{% endblock %}
+{% block js_block %}
+<script src="{% static 'custom-js/hallbooking/hall_booking_form.js' %}" type="text/javascript"></script>
+<script src="{% static 'custom-js/hallbooking/hall_booking_confirm.js' %}" type="text/javascript"></script>
+<!--<script type="text/javascript" src="https://www.tecprocesssolution.com/proto/P2M/server/lib/checkout.js"></script>-->
+<script type="text/javascript" src="https://www.paynimo.com/Paynimocheckout/server/lib/checkout.js"></script>
+{% endblock %}
+
+
+</body>
+</html>

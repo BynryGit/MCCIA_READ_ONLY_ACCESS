@@ -1,0 +1,246 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*#knowledge .modal-body .form-group {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+*/
+/*.help-block{
+    position: absolute;
+    background: #fff;
+    font-family: 'Roboto Light', 'Roboto';
+    font-weight: 200;
+    font-style: normal;
+    font-size: 12px !important;
+    margin-top: 4px !important;
+    width: 100%;
+    top: 35px;  
+}
+
+.has-error .form-control {
+    border-bottom: 2px solid #a94442 !important;
+}
+
+.has-success .form-control {
+    border-bottom: 2px solid #3AC729 !important;
+}*/
+
+/* validation style */
+
+.mandatory {
+    color: #ed1c24;
+}
+
+.validateContainer {
+    
+}
+
+.validateField {
+    position: relative;
+    width: 100%;    
+    float: left;
+}
+
+.validateField input{
+    position: relative;
+}
+
+.validateField input:focus{
+    box-shadow: none !important;
+}
+
+.validateField.has-error .form-control {
+    border: 0;
+	border-bottom: 1px solid #ed1c24!important;
+    box-shadow: none !important;    
+    margin-bottom: 20px;
+}
+
+.validateField.has-success .form-control {
+    border: 0;
+	border-bottom: 1px solid green !important;
+    box-shadow: none !important;
+}
+
+.validateField.has-error .uploadWork {
+    border-bottom: 2px solid #a94442 !important;
+}
+
+.validateField.has-success .uploadWork {
+    border-bottom: 2px solid #17A007 !important;
+}
+
+
+.validateProfilePhoto.has-error {
+    border-bottom: 2px solid #a94442 !important;
+}
+
+.validateProfilePhoto.has-success {
+    border-bottom: 2px solid #17A007 !important;
+}
+
+
+.validateKeyNoteField.has-error .uploadFile, .validateKeyNoteField.has-error .uploadKeynoteVideoShow {
+    border-bottom: 2px solid #a94442 !important;
+}
+
+.validateKeyNoteField.has-success .uploadFile, .validateKeyNoteField.has-success .uploadKeynoteVideoShow {
+    border-bottom: 2px solid #17A007 !important;
+}
+
+
+
+
+.validateField.has-error .help-block {
+    color: #f33737 !important;
+    /* padding-left: 13px; */
+    font-size: 12px!important;
+        font-family: 'Swis721 BT';
+    font-weight: bold!important;
+        text-align: right;
+}
+.validateField.has-error .help-block:after {
+     content: '\f05a';
+    color: #e01616;
+    font-size: 20px;
+    position: absolute;
+    text-align: center;
+    border-radius: 100%;
+    bottom: 8px;
+    right: -24px;
+    font-family: fontawesome;
+	font-style: normal;
+	display: none;
+}
+
+.validateField.has-success .help-block {
+    color: #3AC729 !important;
+}
+
+.fileUploadError, .fileSizeError, .fileMandatory {
+    bottom: -23px !important;
+}
+
+.validateField label.error {
+    color: #ed1c24 !important;
+}
+
+.myprofile-container .validateKeyNoteField .fileUploadError,
+.myprofile-container .validateKeyNoteField .fileSizeError,
+.myprofile-container .validateKeyNoteField .fileMandatory {
+    bottom: -3px !important;
+}
+
+/*.validateField .help-block{
+    position: absolute;
+    background: #fff;
+    font-family: 'Roboto Light', 'Roboto';
+    font-weight: 200;
+    font-style: normal;
+    font-size: 12px !important;
+    margin-top: 3px !important;
+    width: 100%;
+    top: 35px;
+    height: 20px;
+    z-index: 99;        
+}*/
+
+.validateField .help-block, .validateField label.error {
+	position: absolute;
+    background: none;
+    font-weight: 400 !important;
+    font-size: 11px !important;
+    width: auto;
+    /*bottom: 2px;
+    right: 35px;
+    left: auto;*/
+    bottom: -7px;
+    left: 0;
+    height: 20px;
+    z-index: 1;
+    margin-bottom: 0 !important;
+    text-align: left;
+    line-height: 6px;
+}
+
+.form-float .validateField .help-block {
+    bottom: -20px;
+}
+
+.validateField-xl .help-block{
+    top: 46px;
+}
+
+.validateField > label {
+    margin-bottom: 10px;
+}
+
+.checkValidationBtn {
+
+}
+
+
+
+/******** char count css ********/
+/*.charCountSpan {
+    float: right;
+    position: absolute;
+    right: 0;
+    font-family: 'Roboto Light', 'Roboto';
+    font-weight: 200;
+    font-style: normal;
+    font-size: 12px !important;
+    top: 39px;
+    color: #939393;
+}*/
+.charCountSpan {
+   /* position: relative;
+    right: 0;
+    font-family: 'Roboto Light', 'Roboto';
+    font-weight: 200;
+    font-style: normal;
+    font-size: 12px !important;
+    color: #939393;
+    text-align: right;
+    width: 100%;
+    display: block;
+    margin-top: 4px;*/
+    
+    position: absolute;
+    right: 0;
+    font-family: 'Roboto Light', 'Roboto';
+    font-weight: 200;
+    font-style: normal;
+    font-size: 12px !important;
+    color: #939393;
+    text-align: right;
+    width: 100%;
+    display: block;
+    margin-top: 4px;
+    bottom: 0;  
+    line-height: 1.42857143;
+    z-index: 9; 
+}
+
+.inputHiddenSpan {
+    font-family: 'Roboto Light', 'Roboto';
+    font-weight: 200;
+    font-style: normal;
+    font-size: 12px;
+    color: #6E6E6E;
+    display: block;
+    margin-top: 4px;
+    visibility: hidden;
+    line-height: 1.42857143;    
+}
+
+.panelDisable {
+    pointer-events: none;
+    /*opacity: 0.5;*/   
+}
+
+.panelDisable .panel-title{
+    opacity: 0.3;
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+</head>
+
+<body>
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<!-- Breadcrumb section starts here -->
+<section class="InternalBannerSection hallBookingBannerSection" style="background: #1a394f;">
+    <div class="InternalInnerArea" style="padding-bottom: 22px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <h2>Events</h2>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <ol class="breadcrumb">
+              <li><a href="/">Home</a></li>
+              <li class="active"><a href="#">Events</a></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="CalendarNList">
+              <ul>
+                <li><a href="/eventsapp/events-home/"><i class="fa fa-calendar"></i>Monthly</a></li>
+                <li class="active"><a href="/eventsapp/upcoming-event-list/"><i class="fa fa-list-ul"></i>List</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- Breadcrumb section end here -->
+
+<!-- Award Details section start here -->
+  <section class="internalSection">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-xs-12">              
+          	<h2>Past Events</h2> 
+          </div>
+          
+          
+          <div class="col-lg-8 col-md-8 col-xs-12">
+          </div>
+          <div class="col-lg-4 col-md-4 col-xs-12">
+
+
+		  	<div class="pull-right" style="width: 100%;margin-bottom: 15px;">
+            Committee&nbsp;
+            <select name="_ctl0:ContentPlaceHolder1:drpTaskForce" onchange="javascript:setTimeout('__doPostBack(\'_ctl0$ContentPlaceHolder1$drpTaskForce\',\'\')', 0)" language="javascript" id="_ctl0_ContentPlaceHolder1_drpTaskForce" class="form-control">
+					<option selected="selected" value="0">--- Select ---</option>
+					<option value="55">Agri &amp; Agri Business</option>
+					<option value="37">Civil Aviation</option>
+					<option value="64">Defence</option>
+					<option value="40">Education and Skill Development</option>
+					<option value="41">Electronics</option>
+					<option value="65">Energy</option>
+					<option value="56">Food Processing</option>
+					<option value="45">HR &amp; IR</option>
+					<option value="51">Infrastructure</option>
+					<option value="47">IT &amp; ITES</option>
+					<option value="61">NOT APPLICABLE</option>
+					<option value="52">SME</option>
+					<option value="59">Women Entrepreneurs</option>
+				
+				</select>
+            </div>
+          
+          </div>
+          
+          <div class="col-lg-12 col-md-12 col-md-12 col-xs-12">
+            
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class=""><a href="/eventsapp/upcoming-event-list/">Upcoming Events</a></li>
+
+            <li role="presentation" class="active"><a href="/eventsapp/past-event-list/">Past Events</a></li>       
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="tabber1" style="padding: 20px;">
+              
+         
+            <div class="table-responsive TableCustomStyle">
+        		<table class="table table-striped" cellspacing="0" cellpadding="0" align="Center" border="0" id="_ctl0_ContentPlaceHolder1_grdEvent" style="font-weight:normal;border-collapse:collapse;display:;">
+	<tr class="title">
+		<td style="width:18%;"><a href="javascript:__doPostBack('_ctl0$ContentPlaceHolder1$grdEvent$_ctl2$_ctl0','')"><span title='Date wise list' class='titleSorted'>DATE</span></a></td><td align="center">TIME</td><td align="center">TOPIC</td><td align="center"><a href="javascript:__doPostBack('_ctl0$ContentPlaceHolder1$grdEvent$_ctl2$_ctl1','')"><span title='Committee wise list' class='titleSorted'>COMMITEE</span></a></td><td style="width:16%;">Details</td>
+	</tr><tr>
+		<td nowrap="nowrap">Oct 25, 2017 - Dec 31, 2017</td><td nowrap="nowrap" align="center">10:00:AM - 5:00:PM</td><td>MCCIA is in process of revamping the present website.Pl click to be redirected to new event section.</td><td nowrap="nowrap" align="center">NOT APPLICABLE</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1634'>DETAILS</a></td>
+	</tr><tr class="blue">
+		<td nowrap="nowrap">Sep 18, 2017 - Sep 30, 2017</td><td nowrap="nowrap" align="center">10:00:AM - 5:00:PM</td><td>MCCIA is in process of revamping the present website.Pl click to be redirected to new event section.</td><td nowrap="nowrap" align="center">NOT APPLICABLE</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1633'>DETAILS</a></td>
+	</tr><tr>
+		<td nowrap="nowrap">Sep 16, 2017 - Sep 16, 2017</td><td nowrap="nowrap" align="center">10:15:AM - 5:15:PM</td><td>Full Day Workshop on Self Leadership and Team Work second batch</td><td nowrap="nowrap" align="center">SME</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1627'>DETAILS</a></td>
+	</tr><tr class="blue">
+		<td nowrap="nowrap">Sep 13, 2017 - Sep 13, 2017</td><td nowrap="nowrap" align="center">10:15:AM - 5:15:PM</td><td>full day Workshop on Effective Project Management</td><td nowrap="nowrap" align="center">SME</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1629'>DETAILS</a></td>
+	</tr><tr>
+		<td nowrap="nowrap">Sep 09, 2017 - Sep 09, 2017</td><td nowrap="nowrap" align="center">05:30:PM - 7:30:PM</td><td>INAUGURAL INTERACTIVE SESSION ON SCALE UP GROW UP</td><td nowrap="nowrap" align="center">Electronics</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1626'>DETAILS</a></td>
+	</tr><tr class="blue">
+		<td nowrap="nowrap">Sep 07, 2017 - Sep 07, 2017</td><td nowrap="nowrap" align="center">02:30:PM - 4:30:PM</td><td>An interactive session on Negotiation Skills</td><td nowrap="nowrap" align="center">Women Entrepreneurs</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1630'>DETAILS</a></td>
+	</tr><tr>
+		<td nowrap="nowrap">Sep 07, 2017 - Sep 07, 2017</td><td nowrap="nowrap" align="center">10:00:AM - 6:00:PM</td><td>Interactive Seminar on Awareness and Implementation of Industrial Safety</td><td nowrap="nowrap" align="center">Energy</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1623'>DETAILS</a></td>
+	</tr><tr class="blue">
+		<td nowrap="nowrap">Aug 23, 2017 - Aug 23, 2017</td><td nowrap="nowrap" align="center">10:15:AM - 5:15:PM</td><td>Full Day Workshop on Electrical Safety at Workplace</td><td nowrap="nowrap" align="center">SME</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1624'>DETAILS</a></td>
+	</tr><tr>
+		<td nowrap="nowrap">Aug 22, 2017 - Aug 22, 2017</td><td nowrap="nowrap" align="center">09:30:AM - 5:00:PM</td><td>Full day Interactive session on Leadership skills for HR based on Chanakyas Sutras</td><td nowrap="nowrap" align="center">HR & IR</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1608'>DETAILS</a></td>
+	</tr><tr class="blue">
+		<td nowrap="nowrap">Aug 19, 2017 - Aug 19, 2017</td><td nowrap="nowrap" align="center">10:15:AM - 5:15:PM</td><td>Full Day Workshop on Self Leadership and Team Work</td><td nowrap="nowrap" align="center">SME</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1615'>DETAILS</a></td>
+	</tr><tr>
+		<td nowrap="nowrap">Aug 18, 2017 - Aug 18, 2017</td><td nowrap="nowrap" align="center">02:30:PM - 5:00:PM</td><td>A Seminar on Incident Response and Cloud Security</td><td nowrap="nowrap" align="center">IT & ITES</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1617'>DETAILS</a></td>
+	</tr><tr class="blue">
+		<td nowrap="nowrap">Aug 10, 2017 - Aug 10, 2017</td><td nowrap="nowrap" align="center">02:30:PM - 4:30:PM</td><td>An interactive session on Are you ready with your Go-To-Market Strategy</td><td nowrap="nowrap" align="center">Women Entrepreneurs</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1613'>DETAILS</a></td>
+	</tr><tr>
+		<td nowrap="nowrap">Aug 05, 2017 - Aug 05, 2017</td><td nowrap="nowrap" align="center">09:30:AM - 5:30:PM</td><td>IR Conclave 2017</td><td nowrap="nowrap" align="center">HR & IR</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1571'>DETAILS</a></td>
+	</tr><tr class="blue">
+		<td nowrap="nowrap">Aug 05, 2017 - Aug 05, 2017</td><td nowrap="nowrap" align="center">09:30:AM - 11:30:AM</td><td>MEETING OF THE ELECTRONICS COMMITTEE</td><td nowrap="nowrap" align="center">Electronics</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1621'>DETAILS</a></td>
+	</tr><tr>
+		<td nowrap="nowrap">Jul 29, 2017 - Jul 29, 2017</td><td nowrap="nowrap" align="center">09:30:AM - 5:00:PM</td><td>Interactive Workshop on Social Selling</td><td nowrap="nowrap" align="center">IT & ITES</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1607'>DETAILS</a></td>
+	</tr><tr class="blue">
+		<td nowrap="nowrap">Jul 29, 2017 - Jul 29, 2017</td><td nowrap="nowrap" align="center">10:15:AM - 5:15:PM</td><td>Smart Worker An Organisational Strength</td><td nowrap="nowrap" align="center">SME</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1599'>DETAILS</a></td>
+	</tr><tr>
+		<td nowrap="nowrap">Jul 28, 2017 - Jul 29, 2017</td><td nowrap="nowrap" align="center">09:00:AM - 5:00:PM</td><td>Skill Conclave 2017 Focus on Entrepreneurship</td><td nowrap="nowrap" align="center">Education and Skill Development</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1578'>DETAILS</a></td>
+	</tr><tr class="blue">
+		<td nowrap="nowrap">Jul 27, 2017 - Jul 27, 2017</td><td nowrap="nowrap" align="center">05:30:PM - 8:00:PM</td><td>OPPORTUNITIES FOR MSME’S WITH MAHINDRA DEFENCE SYSTEMS</td><td nowrap="nowrap" align="center">Defence</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1612'>DETAILS</a></td>
+	</tr><tr>
+		<td nowrap="nowrap">Jul 26, 2017 - Jul 26, 2017</td><td nowrap="nowrap" align="center">06:00:PM - 8:00:PM</td><td>Meeting of MCCIA NIPM ISTD HR Forum</td><td nowrap="nowrap" align="center">HR & IR</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1614'>DETAILS</a></td>
+	</tr><tr class="blue">
+		<td nowrap="nowrap">Jul 15, 2017 - Jul 15, 2017</td><td nowrap="nowrap" align="center">10:15:AM - 5:30:PM</td><td>Enhance Personal Effectiveness through Time & Stress Management and Goal Setting</td><td nowrap="nowrap" align="center">SME</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1590'>DETAILS</a></td>
+	</tr><tr>
+		<td nowrap="nowrap">Jul 14, 2017 - Jul 14, 2017</td><td nowrap="nowrap" align="center">06:30:PM - 9:00:PM</td><td>a session on GST with the Commissioner of Central Excise & Service Tax Pune</td><td nowrap="nowrap" align="center">NOT APPLICABLE</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1606'>DETAILS</a></td>
+	</tr><tr class="blue">
+		<td nowrap="nowrap">Jul 12, 2017 - Jul 12, 2017</td><td nowrap="nowrap" align="center">09:45:AM - 5:15:PM</td><td>Excellence in Stores and Warehouse Management</td><td nowrap="nowrap" align="center">SME</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1601'>DETAILS</a></td>
+	</tr><tr>
+		<td nowrap="nowrap">Jul 07, 2017 - Jul 08, 2017</td><td nowrap="nowrap" align="center">09:00:AM - 5:00:PM</td><td>Bio-Energy Urja Utsav</td><td nowrap="nowrap" align="center">Infrastructure</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1596'>DETAILS</a></td>
+	</tr><tr class="blue">
+		<td nowrap="nowrap">Jul 06, 2017 - Jul 06, 2017</td><td nowrap="nowrap" align="center">02:30:PM - 5:00:PM</td><td>A presentation on MSME schemes</td><td nowrap="nowrap" align="center">Women Entrepreneurs</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1603'>DETAILS</a></td>
+	</tr><tr>
+		<td nowrap="nowrap">Jun 30, 2017 - Jun 30, 2017</td><td nowrap="nowrap" align="center">10:00:AM - 6:00:PM</td><td>Interactive Seminar on Awareness and Implementation of Industrial Safety</td><td nowrap="nowrap" align="center">Energy</td><td><a class="registerNow" title='Details' href='/past-event-details.aspx?id=1579'>DETAILS</a></td>
+	</tr>
+</table>
+      </div>
+              <div id="_ctl0_ContentPlaceHolder1_pg" class="pagination" style="display:;">
+                
+                
+                
+                <span id="_ctl0_ContentPlaceHolder1_PagesDisplay1" class="pagination"><a class="active" href="#">1</a><a href=# CausesValidation='false' onclick=ChangePage1(2)>2</a>&nbsp;&nbsp;<a href=# CausesValidation='false' onclick=ChangePage1(3)>3</a>&nbsp;&nbsp;<a href=# CausesValidation='false' onclick=ChangePage1(4)>4</a>&nbsp;&nbsp;<a href=# CausesValidation='false' onclick=ChangePage1(5)>5</a>&nbsp;&nbsp;<a href=# CausesValidation='false' onclick=ChangePage1(6)>6</a>&nbsp;&nbsp;<a href=# CausesValidation='false' onclick=ChangePage1(7)>7</a>&nbsp;&nbsp;<a href=# CausesValidation='false' onclick=ChangePage1(8)>8</a>&nbsp;&nbsp;<a href=# CausesValidation='false' onclick=ChangePage1(9)>9</a>&nbsp;&nbsp;<a href=# CausesValidation='false' onclick=ChangePage1(10)>10</a>&nbsp;&nbsp;</span>
+                <a id="_ctl0_ContentPlaceHolder1_Next1" href="javascript:__doPostBack('_ctl0$ContentPlaceHolder1$Next1','')">></a>
+                <a id="_ctl0_ContentPlaceHolder1_NextPage1" href="javascript:__doPostBack('_ctl0$ContentPlaceHolder1$NextPage1','')">>></a>
+                <a id="_ctl0_ContentPlaceHolder1_LastPage1" href="javascript:__doPostBack('_ctl0$ContentPlaceHolder1$LastPage1','')">Last</a>
+              </div>
+              <a id="_ctl0_ContentPlaceHolder1_PageClick1" href="javascript:__doPostBack('_ctl0$ContentPlaceHolder1$PageClick1','')"></a>
+              <input type="hidden" name="_ctl0:ContentPlaceHolder1:PageNumber1" id="_ctl0_ContentPlaceHolder1_PageNumber1" value="1" />
+              <input type="hidden" name="_ctl0:ContentPlaceHolder1:Pages1" id="_ctl0_ContentPlaceHolder1_Pages1" value="21" />
+              <input type="hidden" name="_ctl0:ContentPlaceHolder1:PageEnd1" id="_ctl0_ContentPlaceHolder1_PageEnd1" value="11" />
+              <input type="hidden" name="_ctl0:ContentPlaceHolder1:PageStart1" id="_ctl0_ContentPlaceHolder1_PageStart1" value="1" />
+              <input type="hidden" name="_ctl0:ContentPlaceHolder1:Last1" id="_ctl0_ContentPlaceHolder1_Last1" value="10" />
+            
+            </div>
+            
+                      
+          </div>
+        </div>
+          
+        </div>
+      </div>
+  </section>
+
+<!-- Award Details section end here -->
+{% endblock %}
+{% block js_block %}
+<script>
+
+
+
+</script>
+{% endblock %}
+</body>
+</html>

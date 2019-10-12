@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MCCIA | Member Timeline</title>
+    <style type="text/css">
+        body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+#chartdiv {
+  width: 100%;
+  height: 350px;
+}
+
+#processing{
+            height: 100vh;
+            position: fixed;
+            width: 100%;
+            margin: 0px auto;
+            z-index: 9999;
+            background-color: #FFF;
+            background-image: none;
+            background-attachment: scroll;
+            background-position: 0% 0%;
+            background-clip: border-box;
+            background-origi html, body {
+   overflow-x: hidden;
+ }n: padding-box;
+            background-repeat: repeat;
+            background-size: inherit;
+            opacity: 0.5;
+        }
+        #loading{
+            width: 36%;
+            height: 22px;
+            position: absolute;
+            top: 26%;
+            left: 32%;
+            margin: -28px 0px 0px -25px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            color: #000;
+        }
+
+    </style>
+</head>
+{% load staticfiles %}
+{% block content %}
+<body>
+<div id="processing" style="display:none;">
+    <div id="loading">
+        <img src="{% static 'assets/loading-bars.gif' %}" style="height : 100px;">
+
+    </div>
+</div>
+<div id="chartdiv"></div>
+{% endblock %}
+{% block js_block %}
+<script src="{%static 'assets/global/plugins/amcharts/amcharts/core.js' %}" type="text/javascript"></script>
+<script src="{%static 'assets/global/plugins/amcharts/amcharts/charts.js' %}" type="text/javascript"></script>
+<script src="{%static 'assets/global/plugins/amcharts/amcharts/themes/animated.js' %}" type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{%static 'custom-js/membershipapp/member_timeline.js' %}" type="text/javascript"></script>
+{% endblock %}
+</body>
+</html>

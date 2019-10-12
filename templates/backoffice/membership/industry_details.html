@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!-- BEGIN HEAD -->
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8"/>
+    <title>MCCIA | Industry Details </title>
+    {% include 'backoffice/base_css.html' %}
+
+
+</head>
+<!-- END HEAD -->
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+<!-- BEGIN HEADER -->
+<div id="processing" style="display:none;">
+    <div id="loading">
+        <img src="{% static 'assets/loading-bars.gif' %}" style="height : 100px;">
+
+    </div>
+</div>
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="index.html">
+                <img src="{% static 'assets/MCCIA-logo.png' %}" alt="logo"
+                     class="logo-default"/> </a>
+
+            <div class="menu-toggler sidebar-toggler">
+                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+            </div>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+           data-target=".navbar-collapse"> </a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN PAGE TOP -->
+        <div class="page-top">
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
+                            <!-- <img alt="" class="img-circle" src="{% static 'assets/layouts/layout2/img/avatar3_small.jpg" /> -->
+                            <span class="username username-hide-on-mobile"> {{ request.session.login_user }} </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a href="/edit-profile/?user_id={{request.session.login_user}}">
+                                    <i class="fa fa-user" aria-hidden="true"></i> My Profile </a>
+                            </li>
+                            <li>
+                                <a href="/log-out/">
+                                    <i class="icon-key"></i> Log Out </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END PAGE TOP -->
+    </div>
+    <!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+
+<!-- BEGIN HEADER & CONTENT DIVIDER -->
+<div class="clearfix"></div>
+<!-- END HEADER & CONTENT DIVIDER -->
+
+
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            {% include 'backoffice/membership/side-panel.html' %}
+        </div>
+    </div>
+    <!-- END SIDEBAR -->
+
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet light  ">
+
+                        <div class="page-bar">
+                            <ul class="page-breadcrumb">
+                                 <li>
+                                    <a href="/backofficeapp/backoffice/" style="color: #3eb199;font-size: 16px;">Membership</a>
+                                        <i class="fa fa-angle-right"></i>
+                                </li>
+                                <li>
+                                    <span style="color: #00448b;font-size: 16px;">Industry Details</span>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="row ">
+                            <div class="col-lg-12">
+                                <div class="col-lg-3">
+                                    <div class="input-group form-group">
+                                <span class="input-group-btn">
+                                    <span style=" height: 34px;"
+                                          class="btn btn btn-default">
+                                        <span class="fa fa-search"></span>
+                                    </span>
+                                </span>
+                                        <input style=" font-size: 14px; " type="text"
+                                               class="form-control " id="search_industry_detail_text"
+                                               placeholder="Search Industry Details" name="search_industry_detail_text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-2"
+                                     style="border: none !important;  margin-top: 6px;font-size: 16px;    width: 95px;">
+                                    <span>Filter By:  </span>
+                                </div>
+                                <div class="col-lg-2"
+                                     style="border: none !important;  font-size: 16px;">
+                                    <select id="select_industry_detail_status" class="form-control select2">
+                                        <option style="font-size: 14px" value="show_all">Show All</option>
+                                        <option style="font-size: 14px" value="True">Active</option>
+                                        <option style="font-size: 14px" value="False">Inactive</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-2">
+                                    <center>
+                                        <div style="color: #797979;">
+                                            <a style="font-size: 16px; width:  80%;" type="button"
+                                               class="btn done_btn" onclick="filter_industry_detail_table()"
+                                               href="#">Filter
+                                            </a>
+                                        </div>
+                                    </center>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="pull-right " style="color: #797979;">
+                                        <a style="font-size: 16px; " type="button"
+                                           class="btn done_btn " data-toggle="modal"
+                                           href="/backofficeapp/add-industry-details/">Add Industry Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="hre">
+                        <div class="portlet-body form">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="portlet-body">
+                                        <div class="actions">
+                                            <div class="btn-group pull-right">
+                                                <a class="btn red btn-outline btn-circle"
+                                                   href="javascript:;"
+                                                   data-toggle="dropdown">
+                                                    <i class="fa fa-share"></i>
+                                                    <span class="hidden-xs"> Tools </span>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right"
+                                                    id="industry_details_table_tools">
+                                                    <li>
+                                                        <a href="javascript:;" data-action="0"
+                                                           class="tool-action">
+                                                            <i class="icon-printer"></i> Print</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="javascript:;" data-action="2"
+                                                           class="tool-action">
+                                                            <i class="icon-doc"></i> PDF</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;" data-action="3"
+                                                           class="tool-action">
+                                                            <i class="icon-paper-clip"></i> Excel</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;" data-action="4"
+                                                           class="tool-action">
+                                                            <i class="icon-cloud-upload"></i> CSV</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <table class="table table-striped table-bordered table-hover table-checkable order-column"
+                                               id="industry_details_table">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center"> Sr. No</th>
+                                                <th class="text-center"> Code</th>
+                                                <th> Description</th>
+                                                <th> Status</th>
+                                                <th class="text-center"> Action</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- END FORM-->
+                            </div>
+                        </div>
+                        <!-- END PORTLET-->
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+    </div>  <!-- END PORTLET-->
+</div>
+<!-- END CONTAINER -->
+
+<div class="modal fade draggable-modal" id="delete_industry_details_modal" tabindex="-1" role="basic"
+     aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                Deactivate Industry Details
+            </div>
+            <input type="hidden" id="industry_id" name="industry_id" class="form-control"/>
+
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center" id="deact_pro">Do you want to deactivate Industry Details ?</h4>
+                    </div>
+            </div>
+            <div style="text-align:center !important;" class="modal-footer">
+                <button type="button" onclick="inactive_industry_details()" class="btn green">Yes</button>
+                <button type="button" class="btn green" data-dismiss="modal">No</button>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+
+<div class="modal fade draggable-modal" id="activate_industry_details_modal" tabindex="-1" role="basic"
+     aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                Re-activate Industry Details
+            </div>
+            <input type="hidden" id="activate_industry_id" name="activate_industry_id" class="form-control"/>
+
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center" id="deact_pro">Do you want to re-activate Industry Details ?</h4>
+                    </div>
+            </div>
+            <div style="text-align:center !important;" class="modal-footer">
+                <button type="button" onclick="activate_industry_details()" class="btn green">Yes</button>
+                <button type="button" class="btn green" data-dismiss="modal">No</button>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<div class="modal fade draggable-modal" id="remove_user" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+            </div>
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center" id="pro_deact">Industry Details deactivated successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <button type="button" onclick="location.reload()" class="btn green" data-dismiss="modal">OK
+                        </button>
+
+
+                    </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+
+<div class="modal fade draggable-modal" id="edit_industry_description_modal" tabindex="-1" role="basic"
+     aria-hidden="true">
+    <div class="modal-dialog" style="width:50%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                Edit Industry Details
+            </div>
+            <div class="modal-body">
+                <form id="edit_industry_code" role="form" enctype="multipart/form-data" name="edit_industry_code"
+                      method="POST">
+                    <input type="hidden" id="industry_code_id" name="industry_code_id" class="form-control"/>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="control-label">Code (Max 3 Digit)
+                                <span class="required"> * </span>
+                            </label>
+                            <input id="edit_industry_code" name="edit_industry_code" class="form-control"/>
+                            <label id="edit_industry_code_error" class="error" style="color:red; display:none;"></label>
+                        </div>
+
+                        <div class="col-md-8">
+                            <label class="control-label">Description (Max 20 Char)
+                                <span class="required"> * </span>
+                            </label>
+                            <input id="edit_industry_descriptions" name="edit_industry_descriptions"
+                                   class="form-control"/>
+                            <label id="edit_industry_descriptions_error" class="error"
+                                   style="color:red; display:none;"></label>
+                        </div>
+
+                    </div>
+
+
+                    <div class="row" style="  margin-top: 30px;">
+
+                    </div>
+
+                </form>
+                <div style="text-align:center !important;" class="modal-footer">
+                    <div class="col-xs-12 text-right">
+
+                        <button type="button" class="btn btn-outline grey_color "
+                                onclick="location.href = '/backofficeapp/industry-details/';">Cancel
+                        </button>
+                        <button type="button" id="edit-countinue" class="btn btn-outline done_btn">Save</button>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+
+<div class="modal fade draggable-modal" id="active_modal" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+
+
+            </div>
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center">Industry Details re-activated successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <button type="button" onclick="location.reload()" class="btn green" data-dismiss="modal">OK
+                        </button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade draggable-modal" id="success_modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center">Industry Details Updated Successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <button type="button" class="btn green"
+                                onclick="location.href = '/backofficeapp/industry-details/';" data-dismiss="modal">OK
+                        </button>
+
+                    </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="page-footer-inner"> 2018 © Bynry Technologies
+
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+<!-- END FOOTER -->
+
+{% include 'backoffice/base_js.html' %}
+<!-- END THEME LAYOUT SCRIPTS -->
+
+<script type="text/javascript">
+
+    $("#member_anchor").addClass("tab-active");
+    $("#member_nav").addClass("active");
+    $("#member_icon").addClass("icon-active");
+    $("#member_active").css("display", "block");
+    $("#member_nav").addClass("active");
+
+    $(".sel2").select2({
+        width: '100%'
+    })
+
+    $(document).ready(function () {
+        var select_industry_detail_status = 'show_all';
+        request_industry_detail_table(select_industry_detail_status);
+    });
+
+    function request_industry_detail_table(select_industry_detail_status){
+        var table = $('#industry_details_table');
+        var oTable = table.dataTable({
+            "processing": true,
+            "serverSide": true,
+            "destroy": true,
+            "ajax": '/backofficeapp/get-industry-details-datatable/?select_industry_detail_status='+select_industry_detail_status,
+            "searching": true,
+            "Filter": true,
+            "ordering": false,
+            "paging": true,
+            "columnDefs": [
+                {"className":"text-center","targets": 0, "orderable": false},
+                {"className":"text-center","targets": 1, "orderable": false},
+                {"className":"text-center","targets": 2, "orderable": false},
+                {"className":"text-center","targets": 3, "orderable": false},
+		        {"className":"text-center","targets": 4, "orderable": false},
+            ],
+            buttons: [
+                {extend: 'print', className: 'btn dark btn-outline',
+                    exportOptions: { columns: [0, 1, 2, 3] },
+                },
+                {extend: 'copy', className: 'btn red btn-outline',
+                    exportOptions: { columns: [0, 1, 2, 3] },
+                },
+                {extend: 'pdf', className: 'btn green btn-outline',
+                    exportOptions: { columns: [0, 1, 2, 3] },
+                },
+                {extend: 'excel', className: 'btn yellow btn-outline',
+                    exportOptions: { columns: [0, 1, 2, 3] },
+                },
+                {extend: 'csv', className: 'btn purple btn-outline',
+                    exportOptions: { columns: [0, 1, 2, 3] },
+                },
+                {extend: 'colvis', className: 'btn dark btn-outline', text: 'Columns'}
+            ],
+
+            responsive: false,
+
+            "order": [[0, 'asc']],
+
+            "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
+
+            "pageLength": 10,
+        });
+
+        $(".dataTables_filter").hide();
+
+        $('#industry_details_table_tools > li > a.tool-action').on('click', function() {
+            var action = $(this).attr('data-action');
+            $('#industry_details_table').DataTable().button(action).trigger();
+        });
+
+        $("#search_industry_detail_text").keyup(function() {
+            oTable.fnFilter($("#search_industry_detail_text").val());
+        });
+
+    }
+
+    function filter_industry_detail_table(){
+        var select_industry_detail_status = $("#select_industry_detail_status").val();
+        request_industry_detail_table(select_industry_detail_status);
+    }
+
+    function editIndustryDescriptionModal(category_code_id) {
+        $("#edit_industry_description_modal").modal('show');
+
+        <!--$.ajax({-->
+        <!--type: "GET",-->
+        <!--url : '/backofficeapp/show-membership-details/',-->
+        <!--data : {-->
+        <!--'category_code_id':category_code_id-->
+        <!--},-->
+
+        <!--success: function (response) {-->
+        <!--if (response.success == "true") {-->
+        <!--$('#category_code_id').val(response.membserhipDetails.category_code_id);-->
+        <!--$('#edit_category_code').val(response.membserhipDetails.membership_code);-->
+        <!--$('#edit_category_descriptions').val(response.membserhipDetails.membership_category);-->
+
+        <!--}-->
+        <!--},-->
+        <!--error : function(response){-->
+        <!--alert("_Error");-->
+        <!--}-->
+        <!--});-->
+    }
+    function change_data() {
+
+        sort_var = $('#sortby :selected').val();
+
+        data = '/get-data/?sort_var=' + sort_var
+
+        $('#industry_details_table').dataTable({
+            "bDestroy": true,
+
+
+            "order": [
+                [0, 'asc']
+            ],
+
+            "ajax": data,
+            "columns": [
+                {"data": "user_name", "sClass": "text-left"},
+                {"data": "usre_email_id"},
+                {"data": "user_contact_no"},
+                {"data": "role_id"},
+                {"data": "status"},
+                {"data": "actions", "sClass": "text-center"},
+            ],
+
+
+        });
+    }
+
+    var xyz;
+    function delete_user_detail(id, name) {
+        xyz = id;
+        nm = name
+        //$('#deact_pro').text("Do you want to Deactivate "+nm+ " user profile ? ");
+        //$('#pro_deact').text("User profile  "+nm+ " Deactivated successfully");
+        $("#delete_user").modal('show');
+    }
+
+    function reactivate_user(id) {
+
+        xyz = id;
+        $("#reactivate_user").modal('show');
+    }
+
+
+    function checkUserName(username) {
+        user_name = $(username).val()
+        var regex = /^[a-zA-Z0-9]+$/;
+        if ($(username).val() != '') {
+            $(username).parent().children('.error').css("display", "none");
+            if (regex.test(user_name)) {
+                //alert('regex if');
+                $(username).parent().children('.error').css("display", "none");
+                return true;
+            }
+            else {
+                //alert('regex else');
+                //alert($(username).parent().children('.error').html());
+                $(username).parent().children('.error').css("display", "block");
+                $(username).parent().children('.error').text("No spaces and special characters allowed");
+                return false;
+            }
+            //return true;
+        } else {
+            $(username).parent().children('.error').css("display", "block");
+            $(username).parent().children('.error').text("Please enter username");
+            return false;
+        }
+    }
+
+
+    function validateData() {
+        if (checkUserName("#username") && checkContactNo("#contact_no") && checkEmail("#email") && checkRole("#user_role") && checkPassword("#password") && checkRePassword("#re-password")) {
+            return true;
+        }
+        return false;
+    }
+
+
+    function deleteIndustryDetailModal(industry_code_id) {
+        $("#delete_industry_details_modal").modal('show');
+
+        $.ajax({
+            type: "GET",
+            url: '/backofficeapp/show-industry-details/',
+            data: {
+                'industry_code_id': industry_code_id
+            },
+
+            success: function (response) {
+                if (response.success == "true") {
+                    $('#industry_id').val(response.industryDetails.industry_code_id);
+                    //$('#edit_industry_code').val(response.membserhipDetails.membership_code);
+                    //$('#edit_industry_descriptions').val(response.membserhipDetails.membership_category);
+                    filter_industry_detail_table();
+
+                }
+            },
+            error: function (response) {
+                alert("_Error");
+            }
+        });
+    }
+
+    function inactive_industry_details() {
+        var industry_id = $('#industry_id').val();
+        $.ajax({
+            type: 'POST',
+            url: '/backofficeapp/delete-industry-details/',
+            data: {'industry_id': industry_id},
+            success: function (response) {
+                if (response.success == 'true') {
+                    $("#delete_industry_details_modal").modal('hide');
+                    $("#remove_user").modal('show');
+                    filter_industry_detail_table();
+                }
+                if (response.success == 'false') {
+                    alert(response.message);
+                    filter_industry_detail_table();
+                }
+            },
+            beforeSend: function () {
+                $("#processing").css('display', 'block');
+            },
+            complete: function () {
+                $("#processing").css('display', 'none');
+            },
+            error: function (response) {
+                console.log(response);
+                alert('error');
+            },
+        });
+    }
+
+    function activateIndustryDetailModal(industry_code_id) {
+        $("#activate_industry_details_modal").modal('show');
+
+        $.ajax({
+            type: "GET",
+            url: '/backofficeapp/show-industry-details/',
+            data: {
+                'industry_code_id': industry_code_id
+            },
+
+            success: function (response) {
+                if (response.success == "true") {
+                    $('#activate_industry_id').val(response.industryDetails.industry_code_id);
+                    filter_industry_detail_table();
+
+                }
+            },
+            error: function (response) {
+                alert("_Error");
+            }
+        });
+    }
+
+    function activate_industry_details() {
+        var industry_id = $('#activate_industry_id').val();
+        $.ajax({
+            type: 'POST',
+            url: '/backofficeapp/activate-industry-details/',
+            data: {'industry_id': industry_id},
+            success: function (response) {
+                if (response.success == 'true') {
+                    $("#activate_industry_details_modal").modal('hide');
+                    $("#active_modal").modal('show');
+                    filter_industry_detail_table();
+                }
+                if (response.success == 'false') {
+                    alert(response.message);
+                    filter_industry_detail_table();
+                }
+            },
+            beforeSend: function () {
+                $("#processing").css('display', 'block');
+            },
+            complete: function () {
+                $("#processing").css('display', 'none');
+            },
+            error: function (response) {
+                console.log(response);
+                alert('error');
+            },
+        });
+    }
+
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57 || charCode == 43 || charCode == 45 ))
+            return false;
+        return true;
+    }
+
+    function validateFloatKeyPresss(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('+');
+        var number1 = el.value.split('-');
+        if (charCode != 45 && charCode != 43 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        //just one dot
+        if (number.length > 1 && charCode == 43) {
+            return false;
+        }
+        if (number1.length > 1 && charCode == 45) {
+            return false;
+        }
+        return true;
+    }
+
+
+    function validateDataEditCategory() {
+        if (checkindustry_code("#edit_industry_code") & checkindustry_descriptions("#edit_industry_descriptions")) {
+            return true;
+        }
+        return false;
+    }
+
+
+    function checkindustry_code(industry_code) {
+
+        industry_code = $(edit_industry_code).val();
+        var namePattern = /^\d{1,3}$/;
+
+        if (industry_code != '' & namePattern.test(industry_code)) {
+
+            $('#edit_industry_code_error').css("display", "none");
+            return true;
+        } else {
+            $('#edit_industry_code_error').css("display", "block");
+            $('#edit_industry_code_error').text("Please enter valid Code");
+            return false;
+        }
+    }
+    function checkindustry_descriptions(edit_industry_descriptions) {
+        industry_descriptions = $(edit_industry_descriptions).val()
+        var len = industry_descriptions.length;
+        var namePattern = /^[A-Za-z0-9_@&.,#&+-\/]+( [A-Za-z0-9_@$.,#&+-\/]+)*$/;
+        if (industry_descriptions != '' & namePattern.test(industry_descriptions) & len >=1 & len <= 20) {
+            $('#edit_industry_descriptions_error').css("display", "none");
+            return true;
+        } else {
+            $('#edit_industry_descriptions_error').css("display", "block");
+            $('#edit_industry_descriptions_error').text("Please enter valid Industry Details");
+            return false;
+        }
+    }
+
+    function editIndustryDescriptionModal(industry_code_id) {
+        $("#edit_industry_description_modal").modal('show');
+
+        $.ajax({
+            type: "GET",
+            url: '/backofficeapp/show-industry-details/',
+            data: {
+                'industry_code_id': industry_code_id
+            },
+
+            success: function (response) {
+                if (response.success == "true") {
+                    $('#industry_code_id').val(response.industryDetails.industry_code_id);
+                    $('#edit_industry_code').val(response.industryDetails.industry_code);
+                    $('#edit_industry_descriptions').val(response.industryDetails.industry_category);
+
+                }
+            },
+            error: function (response) {
+                alert("_Error");
+            }
+        });
+    }
+
+    $("#edit-countinue").click(function (event) {
+
+
+        if (validateDataEditCategory()) {
+
+
+            var formData = new FormData();
+
+            formData.append("industry_code_id", $('#industry_code_id').val());
+            formData.append("edit_industry_code", $('#edit_industry_code').val());
+            formData.append("edit_industry_descriptions", $('#edit_industry_descriptions').val());
+
+
+            $.ajax({
+
+                type: "POST",
+                url: '/backofficeapp/edit-industry-details/',
+                data: formData,
+                cache: false,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+
+                    if (response.success == 'true') {
+                        $("#edit_industry_description_modal").modal('hide');
+                        $("#success_modal").modal('show');
+                        filter_industry_detail_table();
+                    }
+                    if (response.success == "false") {
+                        $("#error-modal").modal('show');
+                        filter_industry_detail_table();
+                    }
+                },
+                beforeSend: function () {
+                    $("#processing").css('display', 'block');
+                },
+                complete: function () {
+                    $("#processing").css('display', 'none');
+                },
+                error: function (response) {
+                    alert("_Error");
+                }
+            });
+        }
+
+    });
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,634 @@
+{% load staticfiles %}
+{% load my_template_tag %}
+
+
+<style>
+
+    .page-header.navbar .page-logo .logo-default {
+        margin: 2px 15px 0;
+        width: 105px;
+        background: #f3f2f2;
+    }
+
+    .page-header.navbar .page-logo {
+        background: #f3f2f2;
+    }
+
+    .page-header.navbar .page-logo {
+        float: left;
+        display: block;
+        width: 195px;
+        height: 68px;
+        padding-left: 0px;
+        padding-right: 20px;
+    }
+
+    .page-sidebar .page-sidebar-menu>li>a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu>li>a {
+        /* fallback */
+        background-color: #0d67e6;
+        background-image: url(images/linear_bg_1.png);
+        background-repeat: repeat-y;
+        color:#fff;
+        font-weight: 500;
+
+
+        /* Safari 4-5, Chrome 1-9 */
+        background: -webkit-gradient(linear, left top, right top, from(#0d67e6), to(#11ca9a));
+
+        /* Safari 5.1, Chrome 10+ */
+        background: -webkit-linear-gradient(left, #0d67e6, #11ca9a);
+
+        /* Firefox 3.6+ */
+        background: -moz-linear-gradient(left, #0d67e6, #11ca9a);
+
+        /* IE 10 */
+        background: -ms-linear-gradient(left, #0d67e6, #11ca9a);
+
+        /* Opera 11.10+ */
+        background: -o-linear-gradient(left, #0d67e6, #11ca9a);
+    }
+
+
+
+    @media (max-width: 767px){
+    .page-header.navbar {
+         background-color: #0d67e6;
+      background-image: url(images/linear_bg_1.png);
+      background-repeat: repeat-y;
+
+      /* Safari 4-5, Chrome 1-9 */
+      background: -webkit-gradient(linear, left top, right top, from(#0d67e6), to(#11ca9a));
+
+      /* Safari 5.1, Chrome 10+ */
+      background: -webkit-linear-gradient(left, #0d67e6, #11ca9a);
+
+      /* Firefox 3.6+ */
+      background: -moz-linear-gradient(left, #0d67e6, #11ca9a);
+
+      /* IE 10 */
+      background: -ms-linear-gradient(left, #0d67e6, #11ca9a);
+
+      /* Opera 11.10+ */
+      background: -o-linear-gradient(left, #0d67e6, #11ca9a);
+    }
+    }
+
+    .page-sidebar .page-sidebar-menu > li > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a {
+        border-top: 1px solid #33b2c9;
+        font-size: 16px;
+    }
+
+    .page-sidebar .page-sidebar-menu > li:last-child > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:last-child > a {
+        border-bottom: 1px solid #33b2c9 !important;
+    }
+
+    .page-sidebar, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover {
+
+        background-color: #0d67e6;
+        background-image: url(images/linear_bg_1.png);
+        background-repeat: repeat-y;
+        color: #ffffff;
+        font-weight:500;
+
+        /* Safari 4-5, Chrome 1-9 */
+        background: -webkit-gradient(linear, left top, right top, from(#0d67e6), to(#11ca9a));
+
+        /* Safari 5.1, Chrome 10+ */
+        background: -webkit-linear-gradient(left, #0d67e6, #11ca9a);
+
+        /* Firefox 3.6+ */
+        background: -moz-linear-gradient(left, #0d67e6, #11ca9a);
+
+        /* IE 10 */
+        background: -ms-linear-gradient(left, #0d67e6, #11ca9a);
+
+        /* Opera 11.10+ */
+        background: -o-linear-gradient(left, #0d67e6, #11ca9a);
+    }
+
+    .page-content-wrapper {
+        float: left;
+        width: 100%;
+
+
+        background-size: 16% auto !important;
+        -webkit-background-size: 16% auto !important;
+        -ms-background-size: 16% auto !important;
+        -o-background-size: 16% auto !important;
+
+
+        background-color: #0d67e6;
+        background-image: url(images/linear_bg_1.png);
+        background-repeat: repeat-y;
+        font-weight:500;
+
+        /* Safari 4-5, Chrome 1-9 */
+        background: -webkit-gradient(linear, left top, right top, from(#0d67e6), to(#11ca9a));
+
+        /* Safari 5.1, Chrome 10+ */
+        background: -webkit-linear-gradient(left, #0d67e6, #11ca9a);
+
+        /* Firefox 3.6+ */
+        background: -moz-linear-gradient(left, #0d67e6, #11ca9a);
+
+        /* IE 10 */
+        background: -ms-linear-gradient(left, #0d67e6, #11ca9a);
+
+        /* Opera 11.10+ */
+        background: -o-linear-gradient(left, #0d67e6, #11ca9a);
+    }
+
+    .nav-toggle{
+        background-color:  #00448b !important;
+    }
+
+    .icon-color{
+        color: #fff !important;
+        font-size: 16px;
+
+    }
+
+    @media (min-width: 992px)
+    .page-sidebar-menu.page-sidebar-menu-hover-submenu li .sub-menu>li>a {
+        margin: 3px;
+        font-size: 16px;
+    }
+
+    .page-sidebar .page-sidebar-menu .sub-menu>li>a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu>li>a {
+        color: #fff;
+        font-size: 16px;
+    }
+
+    .tab-active{
+        background: rgb(13, 103, 230) none repeat scroll 0% 0% !important;
+        color: rgb(16, 245, 182) !important;
+    }
+
+    .icon-active{
+        color: rgb(16, 245, 182) !important;
+    }
+
+    .title{
+        display: inline-block !important;
+        width: 76%;
+        text-align: left !important;
+        font-size: 15px;
+    }
+
+    .icon-active-tab{
+        float:right;
+        padding-top:5px;
+    }
+
+    .page-header.navbar .menu-toggler {
+        background-image: url(/static/assets/sidebar_toggler_icon_darkblue.png);
+    }
+
+    .modal-content {
+    color: #000;
+    }
+
+    
+}
+
+</style>
+
+<div id="processing" style="display:none;">
+    <div id="loading">
+        <img src="{% static 'assets/loading-bars.gif' %}" style="height : 100px;">
+
+    </div>
+</div>
+<div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="#">
+                <img src="{% static 'assets/MCCIA-logo.png' %}" alt="logo" class="logo-default"/> </a>
+
+            <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+           data-target=".navbar-collapse"></a>
+
+            <div class="menu-toggler sidebar-toggler">
+                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+            </div>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+           data-target=".navbar-collapse"> </a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN PAGE TOP -->
+        <div class="page-top">
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+
+                    <li class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
+                            <span class="username username-hide-on-mobile"> {{ request.user.username}} </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <!--<a href="/edit-profile/?user_id={{request.session.login_user}}">-->
+                                <a data-target="#change_password_modal" data-toggle="modal" href="#change_password_modal" >
+                                    <i class="fa fa-pencil" aria-hidden="true"></i> Change Password </a>
+                            </li>
+                            <li>
+                                <a href="/authenticate/log-out/">
+                                    <i class="icon-key"></i> Log Out </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END PAGE TOP -->
+    </div>
+    <!-- END HEADER INNER -->
+</div>
+<ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false"
+    data-auto-scroll="true" data-slide-speed="200">
+    {% if request.session.privileges|check_previlege:'Dashboard' == 'true' %}
+    <!--href="/backofficeapp/dashboard"/-->
+    <li id="dashboard_nav" class="nav-item ">
+        <a id="dashboard_anchor" class="nav-link nav-toggle">
+            <i id="dashboard_icon" class="icon-home icon-color" style="display: inline-block !important;"></i>
+            <span class="title">Dashboard
+                    <i id="dashboard_active" class="icon-active-tab fa fa-chevron-right" style="display:none;"></i>
+                </span>
+            <!--<span class="arrow open"></span>-->
+        </a>
+    </li>
+    {% endif %}
+
+    {% if request.session.privileges|check_previlege:'Membership' == 'true' %}
+    <li id="supplier_nav" class="nav-item  ">
+        <a id="member_anchor" href="/backofficeapp/backoffice/" class="nav-link nav-toggle">
+            <i id="member_icon" class="icon-badge icon-color" style="display: inline-block !important;"></i>
+            <span class="title">Membership
+                    <i id="member_active" class="icon-active-tab fa fa-chevron-right" style="display:none;"></i>
+                </span>
+        </a>
+    </li>
+    {% endif %}
+
+    {% if request.session.privileges|check_previlege:'Hall Booking' == 'true' %}
+
+    <li id="hall_booking" class="nav-item  ">
+        <a id="hall_booking_anchor" href="/backofficeapp/hall_booking/" class="nav-link nav-toggle">
+            <i id="hall_booking_icon" class="icon-check icon-color" style="display: inline-block !important;"></i>
+            <span class="title">Hall Booking
+                    <i id="hall_booking_active" class="icon-active-tab fa fa-chevron-right" style="display:none;"></i>
+                </span>
+        </a>
+    </li>
+    {% endif %}
+
+    {% if request.session.privileges|check_previlege:'Event' == 'true' %}
+
+
+    <li id="events_nav" class="nav-item">
+        <a id="events_anchor" href="/backofficeapp/events/" class="nav-link nav-toggle">
+            <i id="events_icon" class="icon-calendar icon-color" style="display: inline-block !important;"></i>
+            <span class="title">Events
+                    <i id="events_active" class="icon-active-tab fa fa-chevron-right" style="display:none;"></i>
+                </span>
+        </a>
+    </li>
+    {% endif %}
+    
+    {% if request.session.privileges|check_previlege:'Visa' == 'true' %}
+    <li id="visa_nav" class="nav-item">
+        <a id="visa_anchor" href="/visarecommendationapp/visa-backoffice-landing/" class="nav-link nav-toggle">
+            <i id="visa_icon" class="icon-calendar icon-color" style="display: inline-block !important;"></i>
+            <span class="title">Manage Visa
+                    <i id="visa_active" class="icon-active-tab fa fa-chevron-right" style="display:none;"></i>
+            </span>
+        </a>
+    </li>
+    {% endif %}
+    
+    {% if request.session.privileges|check_previlege:'Administrator' == 'true' %}
+    <li id="media_nav" class="nav-item  ">
+        <a id="media_anchor" href="/backofficeapp/media-home/" class="nav-link nav-toggle">
+            <i id="media_icon" class="icon-camera icon-color" style="display: inline-block !important;"></i>
+            <span class="title">Media
+                    <i id="media_active" class="icon-active-tab fa fa-chevron-right" style="display:none;"></i>
+                </span>
+        </a>
+    </li>
+    {% endif %}
+
+    {% if request.session.privileges|check_previlege:'Administrator' == 'true' %}
+    <li id="administration_nav" class="nav-item  ">
+        <a id="administration_anchor" href="/backofficeapp/administrator/" class="nav-link nav-toggle">
+            <i id="administration_icon" class="icon-users icon-color" style="display: inline-block !important;"></i>
+            <span class="title">Administrator
+                    <i id="administration_active" class="icon-active-tab fa fa-chevron-right" style="display:none;"></i>
+                </span>
+        </a>
+    </li>
+    {% endif %}
+
+
+    {% if request.session.privileges|check_previlege:'Publication' == 'true' %}
+    <li id="publication_nav" class="nav-item">
+        <a id="publication_anchor" href="/publicationapp/publication-landing/" class="nav-link nav-toggle">
+            <i id="publication_icon" class="icon-users icon-color" style="display: inline-block !important;"></i>
+            <span class="title">Publication
+                    <i id="publication_active" class="icon-active-tab fa fa-chevron-right" style="display:none;"></i>
+            </span>
+        </a>
+    </li>
+    {% endif %}
+
+
+    <li id="awards_nav" class="nav-item">
+        <a id="awards_anchor" href="/backofficeapp/awards-landing/" class="nav-link nav-toggle">
+            <i id="awards_icon" class="icon-trophy icon-color" style="display: inline-block !important;"></i>
+            <span class="title">Awards
+                    <i id="awards_active" class="icon-active-tab fa fa-chevron-right" style="display:none;"></i>
+            </span>
+        </a>
+    </li>
+
+<!-- change password modal -->
+   <div class="modal fade draggable-modal" id="change_password_modal">
+    <div class="modal-dialog" style="width:50%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Change Password</h4>
+            </div>
+            <div class="modal-body">
+                <form id="change_pswd" role="form" method="POST">
+                    <div class="row">
+<!--                         <input type="hidden" id="change_pswd" name="change_psw" class="form-control"/>
+ -->                        <div class="col-xs-12">
+                         <div class="row">
+
+                             <div class="col-xs-12">
+                                                       <label class="control-label">Current Password
+                                                           <span class="required"> * </span>
+                                                       </label>
+                                                       <input type="password" id="current_pswd" name="current_psw" class="form-control">
+                                                       <label id="current_pswd_error"
+                                                              class="error"
+                                                              style="color:red; display:none;"></label>
+                                                   </div>
+                            <div class="col-xs-12">
+                                                       <label class="control-label">New Password
+                                                           <span class="required"> * </span>
+                                                       </label>
+                                                       <input type="text" id="new_pswd" name="new_psw" class="form-control">
+                                                       <label id="new_pswd_error"
+                                                              class="error"
+                                                              style="color:red; display:none;"></label>
+                                                   </div>
+                             <div class="col-xs-12">
+                                                       <label class="control-label">Confirm New Password
+                                                           <span class="required"> * </span>
+                                                       </label>
+                                                       <input type="password" id="confirm_pswd" name="confirm_pswd" class="form-control">
+                                                       <label id="confirm_pswd_error"
+                                                              class="error"
+                                                              style="color:red; display:none;"></label>
+                                                   </div>
+
+
+                                                    
+                        </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="row" style="">
+                    <div class="col-xs-12 text-right">
+                        <button type="button" class="btn btn-outline grey_color" data-dismiss="modal">Close
+                        </button>
+                        <button type="button" id="changePassword" class="btn btn-outline done_btn" onclick="changePassword();">Update
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- /.modal-content
+        </div>
+        <!- /.modal-dialog -->
+    </div>
+</div> 
+<script type="text/javascript">
+function changePassword(){
+    if (validateData()) {
+                // event.preventDefault();
+                var formData = new FormData();
+                formData.append("current_pass", $('#current_pswd').val());
+                formData.append("new_pass", $('#new_pswd').val());
+                formData.append("confirm_new_pass", $('#confirm_pswd').val());
+                
+                $.ajax({
+                    type: 'POST',
+                    url: '/authenticate/change-backoffice-password/',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        if (response.success == 'true') {
+                            $('#change_password_modal').modal('hide');
+                            bootbox.alert("<span class='center-block text-center'>Password Changed Successfully</span>");
+                        }
+                        else if(response.success == 'wrong_password'){
+                            $("#change_password_modal").modal('show');
+                            bootbox.alert("<span class='center-block text-center'>Please enter correct current password</span>");
+                        }
+                        else {
+                            $("#change_password_modal").modal('show');
+                            bootbox.alert("<span class='center-block text-center'>Sorry for inconvenience, an error occurred.</span>");
+                        }
+                    },                    
+                    beforeSend: function() {
+                        $("#processing").css('display', 'block');
+                    },
+                    complete: function() {
+                        $("#processing").css('display', 'none');
+                    },
+                    error: function(response) {
+                        bootbox.alert("<span class='center-block text-center'>Sorry for inconvenience, an error occurred.</span>");
+                    },
+                });
+            }
+            else{
+                console.log('Failed');
+            }
+        }
+
+
+
+function validateData() {
+    if (checkCurrentPassword("#current_pswd") & checkNewPassword("#new_pswd") & confirmPassword("#confirm_pswd")) {
+        if ($('#new_pswd').val() == $('#confirm_pswd').val()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    } 
+    else{    
+    return false;
+    }
+}
+
+
+function checkCurrentPassword(current_pswd) {
+    current_pswd = $(current_pswd).val();
+
+    if (current_pswd != '') {
+        $('#current_pswd_error').css("display", "none")
+        return true;
+    }
+    else {
+        $('#current_pswd_error').css("display", "block");
+        $('#current_pswd_error').text("Please enter your current password");
+        return false;
+    }
+}
+
+
+
+function checkNewPassword(new_pswd) {
+    new_pswd = $(new_pswd).val();
+    var Pattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    if ((new_pswd != '') & (Pattern.test(new_pswd))) {
+        $('#new_pswd_error').css("display", "none");
+        return true;
+    }
+    else {
+        $('#new_pswd_error').css("display", "block");
+        $('#new_pswd_error').text("Password must be atleast 8 character long and should contain uppercase, lowercase, and number ");
+        return false;
+    }
+}
+
+
+function confirmPassword(confirm_pswd) {
+    confirm_pswd = $(confirm_pswd).val();
+    var Pattern = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+    if ((confirm_pswd != '') & (Pattern.test(confirm_pswd))) {
+        $('#confirm_pswd_error').css("display", "none");
+        return true;
+    }
+    else {
+        $('#confirm_pswd_error').css("display", "block");
+        $('#confirm_pswd_error').text("Password must be atleast 8 character long and should contain uppercase, lowercase, and number");
+        return false;
+    }
+}
+
+
+</script>
+
+    <!--
+      {% if request.session.privileges|check_list:'Admin Management,All' == 'true' %}
+          <li id="administration_nav" class="nav-item ">
+              <a id="administration_anchor" class="nav-link nav-toggle">
+                  <i id="administration_icon" class="icon-user icon-color" style="display: inline-block !important;"></i>
+                  <span class="title">Administration
+                      <i id="administration_active" class="icon-active-tab fa fa-chevron-right" style="display:none;"></i>
+                  </span>
+              </a>
+              <ul class="sub-menu">
+                  <li id="admin_nav" class="nav-item start">
+                      <a id="admin_anchor" href="/user-list/" class="nav-link">
+                          <i id="admin_icon" class="icon-user icon-color" style="display: inline-block !important;"></i>
+                          <span class="title">Users</span>
+                          <span class="badge badge-success"></span>
+                      </a>
+                  </li>
+                  {% if request.session.privileges|check_list:'Assign Roles,All' == 'true' %}
+                      <li id="user_role_nav" class="nav-item start ">
+                          <a href="/role-list/" class="nav-link ">
+                              <i class="icon-user-following icon-color"></i>
+                              <span class="title"> User Role </span>
+                              <span class="badge badge-success"></span>
+                          </a>
+                      </li>
+                  {% endif %}
+                  <li id="city_life_nav" class="nav-item start ">
+                      <a href="/city-life/city-life/" class="nav-link ">
+                          <i class="fa fa-camera-retro icon-color"></i>
+                          <span class="title"> CityLife </span>
+                          <span class="badge badge-success"></span>
+                      </a>
+                  </li>
+                  <li id="ticket_resell_nav" class="nav-item start ">
+                      <a href="/ticket-resell/ticket-resell-home/" class="nav-link ">
+                          <i class="fa fa-ticket icon-color"></i>
+                          <span class="title"> Ticket Resell </span>
+                          <span class="badge badge-success"></span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+      {% endif %}
+      {% if request.session.privileges|check_list:'Rate Card Management,Ref Data Management,Assign Roles,All' == 'true' %}
+          <li id="ref_data_nav" class="nav-item ">
+              <a id="configure_anchor" class="nav-link nav-toggle">
+                  <i id="configure_icon" class="icon-settings icon-color" style="display: inline-block !important;"></i>
+                  <span class="title">Configure
+                      <i id="configure_active" class="icon-active-tab fa fa-chevron-right" style="display:none;"></i>
+                  </span>
+              </a>
+              <ul class="sub-menu">
+                  <li id="city_nav" class="nav-item start ">
+                      <a href="/reference-data/" class="nav-link ">
+                          <i class="icon-pointer icon-color"></i>
+                          <span class="title"> City </span>
+                      </a>
+                  </li>
+                  <li id="category_nav" class="nav-item start ">
+                      <a href="/category/" class="nav-link ">
+                          <i class="icon-notebook icon-color"></i>
+                          <span class="title"> Category </span>
+                          <span class="badge badge-success"></span>
+                      </a>
+                  </li>
+                  {% if request.session.privileges|check_list:'Rate Card Management,All' == 'true' %}
+                  <li id="rate_card_nav" class="nav-item start ">
+                      <a href="/rate-card/" class="nav-link ">
+                          <i class="icon-wallet icon-color"></i>
+                          <span class="title"> Rate Card </span>
+                          <span class="badge badge-success"></span>
+                      </a>
+                  </li>
+                  {% endif %}
+                  <li id="citystar_nav" class="nav-item start ">
+                      <a href="/city-star/citystar_home/" class="nav-link ">
+                          <i class="icon-user icon-color"></i>
+                          <span class="title"> CityStar </span>
+                          <span class="badge badge-success"></span>
+                      </a>
+                  </li>
+              </ul>
+          </li>
+      {% endif %}
+      {% if request.session.privileges|check_list:'View Selected Subscriber Details,View Advert Performance,View Financial Details,View List of TID with Details,Record Payment Module,All' == 'true' %}
+          <li id="reports_nav" class="nav-item  ">
+              <a id="reports_anchor" href="/admin-report/" class="nav-link nav-toggle">
+                  <i id="reports_icon" class="icon-docs icon-color" style="display: inline-block !important;"></i>
+                  <span class="title">Reports
+                      <i id="reports_active" class="icon-active-tab fa fa-chevron-right" style="display:none;"></i>
+                  </span>
+              </a>
+          </li>
+      {% endif %} -->
+<!-- 
+</ul> -->
+
+

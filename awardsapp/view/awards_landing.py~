@@ -1,0 +1,29 @@
+from django.shortcuts import render
+
+
+# Create your views here.
+def awards_home(request):
+    return render(request, 'awards/awards.html')
+
+
+def awards_details(request):
+    return render(request, 'awards/awards-details.html')
+    
+def awards_details1(request):
+    return render(request, 'awards/awards-details1.html')
+    
+def awards_details2(request):
+    return render(request, 'awards/awards-details2.html')
+    
+def awards_details3(request):
+    return render(request, 'awards/awards-details3.html')
+    
+def awards_details4(request):
+    return render(request, 'awards/awards-details4.html')
+    
+def awards_details5(request):
+    return render(request, 'awards/awards-details5.html')
+    
+def awards_details6(request):
+    return render(request, 'awards/awards-details6.html')                        
+

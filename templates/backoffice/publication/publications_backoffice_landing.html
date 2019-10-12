@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+{% load staticfiles %}
+{% load my_template_tag %}
+<head>
+    <meta charset="utf-8"/>
+    <title>MCCIA | Publication</title>
+
+    {% include 'backoffice/base_css.html' %}
+
+</head>
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid ">
+
+<!-- BEGIN HEADER -->
+
+
+<div class="clearfix"></div>
+<div class="page-container">
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            {% include 'backoffice/membership/side-panel.html' %}
+        </div>
+    </div>
+    <!-- END SIDEBAR -->
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+
+            <!-- END PAGE HEADER-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet light  ">
+                        <div class="portlet-body form">
+
+                            <label class="control-label font-18 font-bold font-blue">Publication</label>
+
+                            <!-- BEGIN FORM-->
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="portlet-body">
+                                        <hr>
+                                        <div class="row " style="margin-top: -40px;">
+                                            <div class=" col-md-3 ">
+                                                <a href="/publicationapp/upload-publication/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+                                                        <i class="icon-calendar"></i>
+                                                        <h4>Upload Publication</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+
+                                            <div class=" col-md-3 ">
+                                                <a href="/publicationapp/labels-for-sampada/" class="box-text">
+                                                    <div class="feature-item col-md-12 text-center">
+                                                        <i class="fa fa-download"></i>
+                                                        <h4>Labels For Sampada</h4>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END FORM-->
+                                </div>
+                            </div>
+                            <!-- END PORTLET-->
+                        </div>
+                    </div>
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+        </div>
+    </div>
+    </div>
+
+    <!-- END CONTAINER -->
+
+    <!-- BEGIN FOOTER -->
+    <div class="page-footer">
+        <div class="page-footer-inner"> 2018 © Bynry Technologies
+        </div>
+        <div class="scroll-to-top">
+            <i class="icon-arrow-up"></i>
+        </div>
+    </div>
+    <!-- END FOOTER -->
+    <!-- END CONTAINER -->
+
+    <!--[if lt IE 9]>
+    <script src="../assets/global/plugins/respond.min.js"></script>
+    <script src="../assets/global/plugins/excanvas.min.js"></script>
+    <![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    <!-- BEGIN CORE PLUGINS -->
+    {% include 'backoffice/base_js.html' %}
+
+    <script type="text/javascript">
+$("#publication_anchor").addClass("tab-active");
+$("#publication_nav").addClass("active");
+$("#publication_icon").addClass("icon-active");
+$("#publication_active").css("display","block");
+
+    </script>
+
+</body>
+</html>

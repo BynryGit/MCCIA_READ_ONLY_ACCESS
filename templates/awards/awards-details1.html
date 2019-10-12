@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+</head>
+<body>
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<!-- Breadcrumb section starts here -->
+<section class="InternalBannerSection" style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h2>BEST HUMAN RESPONSE AWARD</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/awardsapp/awards-home/">Awards</a></li>
+                        <li class="active"><a href="#">BEST HUMAN RESPONSE AWARD</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb section end here -->
+
+<!-- Award Details section start here -->
+<section class="internalSection">
+    <div class="container">
+        <div class="row">
+            <!--<div class="col-md-12 col-sm-12 col-xs-12">
+                  <h2>B. G. Deshmukh IAS Award for CSR</h2>
+            </div> -->
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <div class="AwardDetailPanel">
+                    <h2>BEST HUMAN RESPONSE AWARD</h2>
+                    <h5>People's Choice - Industry</h5>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#AwardDetails" aria-controls="AwardDetails"
+                                                                  role="tab" data-toggle="tab" aria-expanded="true">Award
+                            Details</a></li>
+
+                        <li role="presentation" class=""><a href="#ViewAwardees" aria-controls="ViewAwardees" role="tab"
+                                                            data-toggle="tab" aria-expanded="false">View Awardees</a>
+                        </li>
+
+                        <li role="presentation" class=""><a href="#Photogallery" aria-controls="Photogallery" role="tab"
+                                                            data-toggle="tab" aria-expanded="false">Photogallery</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="AwardDetails">
+                            <div class="AwardInfoPanel">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <img class="media-object" src="{% static 'assets/images/awards-img1.jpg' %}"
+                                             alt="...">
+                                    </div>
+                                    <div class="media-body">
+                                        <p>ROTARY CLUB OF POONA WEST (RCPW) AND MAHRATTA CHAMBER OF COMMERCE INDUSTRIES AND AGRICULTURE (MCCIA) 
+                                        INVITES ENTRIES FOR BEST HUMAN RESPONSE AWARD FOR THE YEAR 2016-17</p>
+
+                                        <p>Rotary Club of Poona West and Mahratta Chamber of Commerce, Industries and Agriculture, 
+                                        Pune have instituted the “Best Human Response Award” for medium and large scale 
+                                        manufacturing & service industries in and around Pune region from the year 2009-10.</p>
+
+                                        <p>The objective of this award is to encourage and promote better Employer and 
+                                        Employee relations where the parties endeavor to arrive at solutions with apparently 
+                                        conflicting objectives and values like profit motive and social gain; discipline and
+                                         freedom, authority and industrial democracy; bargaining and co-operation; coupled 
+                                         with conflicting interests of the individuals, groups and the community involved. </p>
+                                         
+                                        <p>We firmly believe that this prestigious award will promote high ethical Employer –Employee 
+                                        Relations practices, which consequently would generate conducive employee response 
+                                        in the industries not only in Pune region but all over Maharashtra state. 
+                                        We also believe this will promote healthy industrial growth and prosperity to its
+                                         constituents.</p> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="ViewAwardees">
+                            <div class="AwardInfoPanel">
+                                <div class="table-responsive TableCustomStyle">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                           <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Product</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                         <tr>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                           
+                                        </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="Photogallery">
+                            <div class="AwardInfoPanel">
+                                <ul>
+                                    <!--<li><img src="{% static 'assets/images/finance-sale.jpg' %}" class="img-responsive"-->
+                                             <!--alt=""></li>-->
+                                    <!--<li><img src="{% static 'assets/images/finance-sale.jpg' %}" class="img-responsive"-->
+                                             <!--alt=""></li>-->
+                                    <!--<li><img src="{% static 'assets/images/finance-sale.jpg' %}" class="img-responsive"-->
+                                             <!--alt=""></li>-->
+                                    <!--<li><img src="{% static 'assets/images/finance-sale.jpg' %}" class="img-responsive"-->
+                                             <!--alt=""></li>-->
+                                    <!--<li><img src="{% static 'assets/images/finance-sale.jpg' %}" class="img-responsive"-->
+                                             <!--alt=""></li>-->
+                                    <!--<li><img src="{% static 'assets/images/finance-sale.jpg' %}" class="img-responsive"-->
+                                             <!--alt=""></li>-->
+                                    <!--<li><img src="{% static 'assets/images/finance-sale.jpg' %}" class="img-responsive"-->
+                                             <!--alt=""></li>-->
+                                    <!--<li><img src="{% static 'assets/images/finance-sale.jpg' %}" class="img-responsive"-->
+                                             <!--alt=""></li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="AwardContactPanel">
+                    <h4>Contact Person:</h4>
+
+                    <p><i class="fa fa-user-o"></i> Mr. Satish Joshi</p>
+
+                    <p><i class="fa fa-volume-control-phone"></i>Phone:<a href="tel: 912025709162">91-20-25709162</a>
+                    </p>
+                    <p><i class="fa fa-mobile"></i>Mobile:<a href="tel: 9881127658">9881127658</a>
+                    </p>
+
+                    <p><i class="fa fa-envelope-open"></i>Email:<a href="mailto:satishj@mcciapune.com">satishj@mcciapune.com</a>
+                    </p>
+
+                    <p></p>
+
+                    <div class="breakline"></div>
+                    <p><i class="fa fa-user-o"></i> Mr. Mandar Marathe</p>
+
+                    <p><i class="fa fa-volume-control-phone"></i>Phone:<a href="tel: 912024440472">91-20-26877010</a>
+                    </p>
+
+                    <p><i class="fa fa-envelope-open"></i>Email:<a href="mailto:mandarm@mcciapune.com">mandarm@mcciapune.com</a>
+                    </p>
+
+                    <div class="EnrollOnlinebox">
+                        <h5>Last date of registration is October 30, 2018</h5>
+                        <a href="#">
+                            Enroll Online
+                        </a>
+                    </div>
+                    <!--<div class="selectdiv">
+                        <select class="form-control">
+                          <option value="">View other awards</option>
+                          <option value=""><a href="http://demo.mcciapune.com/home.aspx">Awards</a></option>
+                          <option value="">Awards</option>
+                          <option value="">Awards</option>
+                          <option value="">Awards</option>
+                        </select>
+                    </div>-->
+
+                    <div class="dropdown ViewOtherAwardsDropdown">
+                        <a class="dropdownBtn" id="dLabel" data-target="#" href="http://example.com"
+                           data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            View other awards
+                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                        </a>
+
+
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li><a style="font-size: 12px;" href="/awardsapp/awards-details">B. G. DESHMUKH IAS AWARD</a></li>
+                            <li><a style="font-size: 12px;" href="/awardsapp/awards-details1">BEST HUMAN RESPONSE AWARD</a></li>
+                            <li><a style="font-size: 12px;" href="/awardsapp/awards-details2">G. S. PARKHE AWARD</a></li>
+                            <li><a style="font-size: 12px;" href="/awardsapp/awards-details3">HARIMALINI JOSHI AWARD</a></li>
+                            <li><a style="font-size: 12px;" href="/awardsapp/awards-details4">LATE KIRAN NATU UDYOJAKTA PURASKAR</a></li>
+                            <li><a style="font-size: 12px;" href="/awardsapp/awards-details5">R J RATHI AWARD</a></li>
+                            <li><a style="font-size: 12px;" href="/awardsapp/awards-details6">RAMABAI JOSHI AWARD</a></li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Award Details section end here -->
+
+{% endblock %}
+</body>
+</html>

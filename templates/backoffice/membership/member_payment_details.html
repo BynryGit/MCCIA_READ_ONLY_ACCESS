@@ -1,0 +1,3005 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <!-- BEGIN HEAD -->
+{% load staticfiles %}
+    <head>
+    <meta charset="utf-8"/>
+    <title>MCCIA | Payment Details </title>
+    {% include 'backoffice/base_css.html' %}
+  
+   </head>
+    <!-- END HEAD -->
+
+
+
+<style type="text/css">
+
+.has-success .control-label{
+    color : #333;
+}
+
+.has-success .form-control {
+    border: 1px solid #C2CAD8;
+}
+
+        div.dataTables_wrapper div.dataTables_info {
+    padding-top: 8px;
+    white-space: nowrap;
+    display: none;
+}
+div.dataTables_wrapper div.dataTables_length label {
+    font-weight: normal;
+    text-align: left;
+    white-space: nowrap;
+    display: none;
+}
+
+div.dataTables_filter label {
+    font-weight: normal;
+    white-space: nowrap;
+    text-align: left;
+    display: none;
+}
+
+.border_s{
+
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+.fa-lg {
+    font-size: 2.333333em;
+    line-height: .75em;
+    vertical-align: -15%;
+}
+
+div.checker span {
+    display: -moz-inline-box;
+    display: inline-block;
+    zoom: 1;
+    text-align: center;
+    background-position: 0 -260px;
+
+}
+
+#processing{
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+    margin: 0px auto;
+    z-index: 9999;
+    background-color: #FFF;
+    background-image: none;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    background-clip: border-box;
+    background-origin: padding-box;
+    background-repeat: repeat;
+    background-size: inherit;
+    opacity: 0.5;
+}
+
+#loading{
+    width: 36%;
+    height: 22px;
+    position: absolute;
+    top: 26%;
+    left: 32%;
+    margin: -28px 0px 0px -25px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: #000;
+}
+
+#user_table_paginate{
+float:right !important;
+}
+
+
+.form-height{
+height: 65px;
+}
+
+.user-image img {
+    max-width: 100%;
+}
+
+.fileinput .thumbnail>img {
+    height: 178px !important;
+}
+
+.fileinput-preview.thumbnail {
+    max-width: 278px;
+}
+
+.btn-azure:hover {
+    background-color: #0095C8;
+    border-color: #0095C8;
+    color: #ffffff;
+}
+
+.btn-file {
+    overflow: hidden;
+    position: relative;
+    vertical-align: middle;
+}
+
+.user-image .user-image-buttons {
+    position: static;
+
+    <!--top: 20%;-->
+    <!--left: 37%;-->
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.btn-red:hover {
+    background-color: #da4f4a !important;
+    border-color: #da4f4a;
+    color: #ffffff;
+    display: none;
+}
+
+.btn-red{
+    display: none;
+}
+
+.btn-sm, .btn-group-sm>.btn {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.btn {
+    transition: all 0.3s ease 0s !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    position: relative;
+}
+
+.fileinput .btn {
+    vertical-align: middle;
+}
+
+.bootstrap-tagsinput {
+    line-height: 35px;
+    width: 980px;
+}
+
+.error{
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12px;
+}
+
+.form-wizard .steps > li.active > a.step .desc {
+    color: #2F353B;
+    font-weight: 700;
+}
+
+.portlet.light {
+    <!--padding: 0px 0px 4px;-->
+    <!--background-color: #eef1f5;-->
+}
+
+.form-wizard .steps, .form-wizard .steps > li > a.step {
+    <!--background-color: #eef1f5;-->
+    background-image: none;
+    border: 0;
+    box-shadow: none;
+    filter: none;
+}
+
+.dropzone .dz-preview, .dropzone-previews .dz-preview{
+    margin: 3px !important;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid #6B6B6B;
+    border-bottom: 0;
+}
+
+
+#tab2 {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.map-wrapper {
+    float: left;
+    margin: 0px 0px 0 0px;
+}
+
+#map {
+    border: 1px solid #DDD;
+    width: 292px;
+    overflow: hidden;
+    height: 223px;
+    margin: 10px 0 10px 0;
+    -webkit-box-shadow: #AAA 0px 0px 15px;
+}
+
+#my-awesome-dropzone-3{
+    border: 3px dashed black !important;
+    min-height: 224px !important;
+    background: #ffffff;
+}
+
+#my-active-dropzone{
+    border: 3px dashed black !important;
+    min-height: 224px !important;
+    background: #ffffff;
+}
+
+.dropzone .dz-preview .dz-details img, .dropzone-previews .dz-preview .dz-details img {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.dropzone .dz-preview, .dropzone-previews .dz-preview {
+    background: rgba(255,255,255,0.8);
+    position: relative;
+    display: inline-block;
+    margin: 4px;
+    vertical-align: top;
+    border: 1px solid #acacac;
+    padding: 6px 6px 6px 6px;
+}
+
+.sel2{
+    width: 100%;
+}
+
+.tab-active{
+    background: rgb(13, 103, 230) none repeat scroll 0% 0% !important;
+    color: rgb(16, 245, 182) !important;
+}
+
+.sel2{
+    width: 100%;
+}
+
+.div-border-top{
+    border: 1px solid #cccccc;
+    border-bottom: none;
+}
+
+.div-border-bottom{
+    border: 1px solid #cccccc;
+    border-top: none;
+}
+
+.div-border-left-right{
+    border: 1px solid #cccccc;
+    border-top: none;
+    border-bottom: none;
+}
+
+.div-border{
+    border: 1px solid #cccccc;
+}
+
+.div-color{
+    background-color: rgb(243, 242, 242);
+    border: 2px solid rgb(204, 204, 204) !important;
+    border-radius: 10px !important;
+    margin-right: 0.5%;
+    margin-left: 0.5%;
+    margin-bottom: 1%;
+}
+
+
+@media (min-width:992px) {
+    .col-lg-4 {
+        width:32.33% !important;
+    }
+}
+
+.form-control {
+    border: 1px solid #c0c0c0;
+}
+
+.brad-crum-1{
+    font-size:16px;
+    color: #3eb199;
+}
+
+.brad-crum-2{
+    font-size:16px;
+    color: #00448b;
+}
+
+.brad-crum-3{
+    font-size:16px;
+    color: #00448b;
+    font-weight:700;
+}
+
+.form-wizard .steps > li.active > a.step .number {
+    background-color: #0d67e6;
+    color: #fff;
+}
+
+.form-wizard .steps > li > a.step .number{
+  /* fallback */
+  background-color: #0d67e6;
+  background-image: url(images/linear_bg_1.png);
+  background-repeat: repeat-y;
+  color: #ffffff;
+  font-weight:500;
+
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(linear, left top, right top, from(#0d67e6), to(#11ca9a));
+
+  /* Safari 5.1, Chrome 10+ */
+  background: -webkit-linear-gradient(left, #0d67e6, #11ca9a);
+
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(left, #0d67e6, #11ca9a);
+
+  /* IE 10 */
+  background: -ms-linear-gradient(left, #0d67e6, #11ca9a);
+
+  /* Opera 11.10+ */
+  background: -o-linear-gradient(left, #0d67e6, #11ca9a);
+}
+
+.grey_color{
+    border: 1px solid rgb(72, 72, 72);
+    color: rgb(255, 255, 255);
+    background: rgb(72, 72, 72) none repeat scroll 0% 0%;
+    border-radius: 20px !important;
+}
+
+.done_btn{
+    color: rgb(255, 255, 255);
+    border-radius: 20px !important;
+    background-color: #0d67e6;
+    background-image: url(images/linear_bg_1.png);
+    background-repeat: repeat-y;
+
+    /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-gradient(linear, left top, right top, from(#0d67e6), to(#11ca9a)) !important;
+    background: -webkit-gradient(linear, left top, right top, from(#0d67e6), to(#11ca9a)) !important;
+
+    /* Safari 5.1, Chrome 10+ */
+    background: -webkit-linear-gradient(left, #0d67e6, #11ca9a) !important;
+    border: -webkit-linear-gradient(left, #0d67e6, #11ca9a) !important;
+
+    /* Firefox 3.6+ */
+    background: -moz-linear-gradient(left, #0d67e6, #11ca9a) !important;
+    border: -moz-linear-gradient(left, #0d67e6, #11ca9a) !important;
+
+    /* IE 10 */
+    background: -ms-linear-gradient(left, #0d67e6, #11ca9a) !important;
+    border: -ms-linear-gradient(left, #0d67e6, #11ca9a) !important;
+
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(left, #0d67e6, #11ca9a) !important;
+    border: -o-linear-gradient(left, #0d67e6, #11ca9a) !important;
+
+}
+
+    .font-14{
+        font-size:14px;
+    }
+
+    .font-12{
+        font-size:12px;
+    }
+
+    .font-16{
+        font-size:16px;
+    }
+
+    .font-15{
+        font-size:15px;
+    }
+
+    .font-18{
+        font-size:18px;
+    }
+
+    .font-green{
+        color: #3eb199 !important;
+    }
+
+    .font-blue{
+        color: #00448b !important;
+    }
+
+    .font-bold{
+        font-weight:700;
+    }
+
+    .font-regular{
+        font-weight:500;
+    }
+
+    @media (min-width:992px) {
+      .box {
+        height: auto !important;
+      }
+    }
+
+    .parent{
+        position: relative;
+    }
+
+    .child{
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        border-bottom-left-radius: 15px !important;
+        border-bottom-right-radius: 15px !important;
+    }
+
+    .no_child{
+        border-bottom-left-radius: 15px !important;
+        border-bottom-right-radius: 15px !important;
+    }
+
+    .vertical_center{
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+    .text_center{
+        position: relative;
+        top: 25%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+    
+.col-lg-4 {
+    width: 36.7% !important;
+}
+#show_data {
+    display:none;
+}
+#show_data:hover #show_all {
+    display:block;
+}    
+.text-left{
+    text-align: left !important;
+    padding-left: 7px !important;
+}
+.sorting_asc{
+    width: 20% !important;
+}
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 34px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.myRadioClass {
+    margin-left: 0px;
+    right: 0px;
+}
+
+</style>
+
+    <!-- END HEAD -->
+ 
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+<!-- BEGIN HEADER -->
+<div id="processing" style="display:none;">
+    <div id="loading">
+        <img src="{% static 'assets/loading-bars.gif' %}" style="height : 100px;">
+
+    </div>
+</div>
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="index.html">
+                <img src="{% static 'assets/MCCIA-logo.png' %}" alt="logo"
+                     class="logo-default"/></a>
+            <div class="menu-toggler sidebar-toggler" id="toggle_menu_bar">
+                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+            </div>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+           data-target=".navbar-collapse"></a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN PAGE TOP -->
+        <div class="page-top">
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
+                            <!-- <img alt="" class="img-circle" src="{% static 'assets/layouts/layout2/img/avatar3_small.jpg" /> -->
+                            <span class="username username-hide-on-mobile"> {{ request.session.login_user }} </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                        <li>
+                                <a href="/edit-profile/?user_id={{request.session.login_user}}">
+                                    <i class="fa fa-user" aria-hidden="true"></i> My Profile </a>
+                            </li>
+                            <li>
+                                <a href="/log-out/">
+                                    <i class="icon-key"></i> Log Out </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END PAGE TOP -->
+    </div>
+    <!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+        
+<!-- BEGIN HEADER & CONTENT DIVIDER -->
+  <div class="clearfix"> </div>
+<!-- END HEADER & CONTENT DIVIDER -->
+  
+        
+ <!-- BEGIN CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+                <div class="page-sidebar navbar-collapse collapse">
+                    {% include 'backoffice/membership/side-panel.html' %}
+                </div>
+            </div>
+    <!-- END SIDEBAR -->
+
+    <input id="userDetail_id" name="userDetail_id" type="hidden">
+ <!-- BEGIN CONTENT -->
+ <div class="page-content-wrapper" >
+    <!-- BEGIN CONTENT BODY -->
+       <div class="page-content">
+       
+              
+         <div class="row">
+                  <div class="col-lg-12">
+                      <div class="portlet light  ">
+                      
+                         <div class="page-bar">
+                        <ul class="page-breadcrumb">
+                            <li>
+                                <span  style="color: #3eb199;font-size: 16px;"> Membership </span>
+                                <i class="fa fa-angle-right"></i>
+                            </li>
+                            <li>
+                                <span style="color: #00448b;font-size: 16px;">Payment Details </span>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                          <div class="row ">
+                                <div class="col-md-12">
+                                            <div class="col-md-2">
+                                                <div  style="color: #797979;">
+                                        <label class="control-label"> Company Name
+                                        </label>
+                                        <div class="show-error has-success">
+                                            <input class="form-control"
+                                                   id="Company_Name" name="Company_Name" type="text"  value="{{userDetail.company.company_name}}"readonly/>
+                                        </div>
+
+                                    </div>
+                                            </div>
+                                          <div class="col-md-2">
+                                                <div class="pull-left" style="color: #797979;">
+                                                    <label class="control-label"> Membership Type
+                                                    </label>
+                                                     <select class="form-control validateRequired" name="MembershipType"
+                                                                    id="MembershipType">
+                                                                <option value="">Select Type</option>
+                                                                <option value="Associate" {% if userDetail.user_type == "Associate" %} selected{% endif %}>Associateship</option>
+                                                                <option value="Member" {% if userDetail.user_type == "Member" %} selected {% endif %}>Membership</option>
+                                                          <option value="Life Membership" {% if userDetail.user_type == "Life Membership" %} selected {% endif %}>Life Membership</option>
+
+                                                         </select>
+                                                    <label id="MembershipType_error" class="error"
+                                       style="color:red; display:none;"></label>
+
+                                                </div>
+                                            </div>
+                                          <div class="col-md-2">
+                                                <div class="pull-left" style="color: #797979;">
+                                                        <label class="control-label"> Member/Asso# No.
+                                                        </label>
+
+
+                                                        <div class="show-error has-success">
+                                                            <input class="form-control"
+                                                                   id="MemberAssoNo" name="MemberAssoNo" value="{% if userDetail.member_associate_no %}{{userDetail.member_associate_no}}{% else %}{% endif %}" type="text"/>
+                                                        </div>
+                                                        <label id="MemberAssoNo_error" class="error"
+                                       style="color:red; display:none;"></label>
+
+                                                </div>
+                                            </div>
+                                          <div class="col-md-3">
+                                                <div class="pull-left" style="color: #797979;">
+                                                        <label class="control-label"> Acceptance Date
+                                                        </label>
+                                                        <div class="input-group">
+                                                            <div class="show-error has-success">
+                                                                <input class="form-control dateField"
+                                                                       id="Acceptance_Date" name="Acceptance_Date" value="{% if AccepatnceDate %}{{AccepatnceDate}}{% else %} {% endif %}"
+                                                                       data-date-end-date="0d" type="text"/ readonly>
+                                                            </div>
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar">
+                                                                </i>
+                                                            </div>
+                                                        </div>
+                                                    <label id="Acceptance_Date_error" class="error"
+                                       style="color:red; display:none;"></label>
+
+
+                                                    </div>
+                                                </div>
+                                          <div class="col-md-3" style="margin-top:24px;">
+
+                                                <button type="Submit" id="Update_user_detail" class="btn btn-default done_btn">Submit</button>
+                                              <button type="button" class="btn btn-outline grey_color" data-dismiss="modal"
+                                                onclick="ClearMemberAcceptance()">Back</button>
+                                          </div>
+
+                                </div>
+                          </div>
+                          <hr class="hre">
+                          <div class="row ">
+
+                                    <div class="col-lg-3">
+                                <span>Payment Date</span>
+                                <div class="input-group input-daterange custom-date-size" >
+                                    <input type="text" class="form-control validateRequired validateDate dateField "
+                                           data-date="10/11/2012" data-date-format="dd/mm/yyyy" id="payment_from"
+                                           name="payment_from" placeholder="From" readonly>
+                                    <span class="input-group-addon"> to </span>
+                                    <input type="text" class="form-control validateRequired validateDate dateField"
+                                           data-date="10/11/2012" data-date-format="dd/mm/yyyy" id="payment_to"
+                                           name="payment_to"
+                                           placeholder="To" readonly style="padding:  6px 8px;">
+                                </div>
+                            </div>
+                                           <div class="col-lg-3">
+                                <span>Receipt Date</span>
+                                <div class="input-group input-daterange custom-date-size">
+                                    <input type="text" class="form-control validateRequired validateDate dateField "
+                                           data-date="10/11/2012" data-date-format="dd/mm/yyyy" id="receipt_from"
+                                           name="receipt_from" placeholder="From" readonly>
+                                    <span class="input-group-addon"> to </span>
+                                    <input type="text" class="form-control validateRequired validateDate dateField"
+                                           data-date="10/11/2012" data-date-format="dd/mm/yyyy" id="receipt_to"
+                                           name="receipt_to"
+                                           placeholder="To" readonly style="padding: 6px 8px;">
+                                </div>
+                            </div>
+
+                                    <div class="col-lg-6" style="margin-top:24px;">
+
+                                                <button type="Submit" id="FilterDate" class="btn btn-default done_btn">GO</button>
+                                              <button type="button" class="btn btn-outline grey_color" data-dismiss="modal"
+                                                onclick="resetAll()">View All</button>
+
+                                        <!-- Comment Add Payment Button Start -->
+                                            <!--<button style="font-size: 16px; " type="button"-->
+                                               <!--class="pull-right btn done_btn" data-toggle="modal" href="#"  id="add_payment">Add Payment-->
+                                            <!--</button>-->
+                                        <!-- Comment Add Payment Button End -->
+                                          </div>
+
+                                </div>
+                            <br>
+                          <div class="row" style="display:none">
+                                <div class="col-md-12">
+                                          <div class="col-md-12">
+                                            <div class="pull-left " style="color: #797979;">
+                                                <a style="font-size: 16px; " type="button"
+                                                   class="btn done_btn " data-toggle="modal" href="#"  id="cheque_user_payment_due_btn">Check here for any due payment if any
+                                                </a>
+                                            </div>
+                                        </div>
+                                </div>
+                          </div>
+
+                <div class="row" style="display:none">
+                    <div class="col-lg-12">
+                        <div class="col-lg-4 " >
+                            <div class="input-group form-group" >
+                                <span class="input-group-btn">
+                                    <span style=" height: 34px;"
+                                          class="btn btn btn-default">
+                                        <span class="fa fa-search"></span>
+                                    </span>
+                                </span>
+                                <input style=" font-size: 14px; " type="text"
+                                       class="form-control " id="txtSearch"
+                                       placeholder="Search Membership Details" name="s">
+                            </div>
+                        </div>
+                        <div class="col-lg-2"
+                             style="border: none !important;  margin-top: 6px;font-size: 16px;    width: 95px;">
+                            <span>Filter By:  </span>
+                        </div>
+                        <div class="col-lg-2"
+                             style="border: none !important;  font-size: 16px;">
+                            <select id="sortby" class="form-control sel2"  onchange="change_data();">
+                                <option style="font-size: 14px" value="show_all">Show All</option>
+                                <option style="font-size: 14px" value="1">Active</option>
+                                <option style="font-size: 14px" value="0">Inactive</option>
+                            </select>
+                        </div>
+                     
+                        <div class="col-lg-4">
+                            <div class="pull-right " style="color: #797979;">
+                                <a style="font-size: 16px; " type="button"                                   
+                                   class="btn done_btn " data-toggle="modal" href="#"  id="add_payment">Add Payment
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr class="hre">
+                 <div class="portlet-body form">
+                          <div class="row">
+                                    <div class="col-lg-12">
+                                                <div class="portlet-body">
+                                                     <div class="actions">
+                                            <div class="btn-group pull-right">
+                                                <a class="btn red btn-outline btn-circle"
+                                                   href="javascript:;"
+                                                   data-toggle="dropdown">
+                                                    <i class="fa fa-share"></i>
+                                                    <span class="hidden-xs"> Tools </span>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right"
+                                                    id="member_payment_table_tools">
+                                                    <li>
+                                                        <a href="javascript:;" data-action="0"
+                                                           class="tool-action">
+                                                            <i class="icon-printer"></i> Print</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="javascript:;" data-action="2"
+                                                           class="tool-action">
+                                                            <i class="icon-doc"></i> PDF</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;" data-action="3"
+                                                           class="tool-action">
+                                                            <i class="icon-paper-clip"></i> Excel</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;" data-action="4"
+                                                           class="tool-action">
+                                                            <i class="icon-cloud-upload"></i> CSV</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                                        <table class="table table-striped table-bordered table-hover table-checkable order-column" id="member_payment_table">
+                                        <thead>
+                                            <tr >
+                                                 <th  class="text-center"> Sr. No </th>
+                                                <th  class="text-center"> Payment On </th>
+                                                <th> F.Y. </th>                                                
+                                                <th> Subn.Slab </th>
+                                                <th> Pro-rata </th>
+                                                <th  class="text-center" > Ent.Fee </th>
+                                                <th  class="text-center" > GST </th>
+                                                <th  class="text-center" > Last Due </th>
+                                                <th  class="text-center" > Last Adv </th>
+                                                <th  class="text-center" > Next Adv </th>
+                                                <th  class="text-center" > Amt.Payable </th>
+                                                <th  class="text-center" > Amt.Paid </th>
+                                                <th  class="text-center" > Payt. Details </th>
+                                                <th  class="text-center" > Action </th>
+                                            </tr>
+                                        </thead>
+                                            </table>    
+                                                </div>
+                                    </div>
+                                    <!-- END FORM-->
+                                </div>
+                            </div>
+                            <!-- END PORTLET-->
+                        </div>
+                    </div>
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+    </div>  <!-- END PORTLET-->       
+  </div>                                   
+<!-- END CONTAINER -->
+
+<!-- Save Payment Detail Start -->
+
+<div class="modal fade draggable-modal" id="submit_user_payment" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:55%;">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                Payment Details
+            </div>
+            <!--<div class="container">-->
+                <div class="modal-body">
+                <form id="add_membership_payment_form" name="add_membership_payment_form" method="POST">
+                    <input type="text" id="mem_pay_receipt_id" name="mem_pay_receipt_id" hidden>
+                    <input type="text" id="invoice_id" name="invoice_id" hidden>
+
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <label class="control-label">Amount Payable
+                                    <span class="required"> * </span>
+                                </label>
+                                <div class="validateField">
+                                    <input id="Amount_Payable_Submit" name="Amount_Payable_Submit"
+                                           class="form-control" readonly />
+                                    <label id="Amount_Payable_Submit_error" class="error"
+                                       style="color:red; display:none;"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label"> Amount Paid
+                                    <span class="required"> * </span>
+                                </label>
+                                <div class="validateField">
+                                    <input id="Amount_Paid_Submit" name="Amount_Paid_Submit"
+                                           class="form-control" placeholder="Amount Paying"/>
+                                    <label id="Amount_Paid_Submit_error" class="error"
+                                           style="color:red; display:none;"></label>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label"> Next Due Amount
+                                <span class="required"> * </span>
+                            </label>
+                            <input id="Next_Due_Amount_Submit" name="Next_Due_Amount_Submit"
+                                   class="form-control" readonly />
+                            <label id="Next_Due_Amount_Submit_error" class="error"
+                                   style="color:red; display:none;"></label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label"> Next Adv Amount
+                                <span class="required"> * </span>
+                            </label>
+                            <input id="Next_Adv_Amount_Submit" name="Next_Adv_Amount_Submit"
+                                   class="form-control" readonly />
+                            <label id="Next_Adv_Amount_Submit_error" class="error"
+                                   style="color:red; display:none;"></label>
+                        </div>
+                        </div>
+                        <br>
+                        <div id="PaymentType_SubmitDiv" style="display:block;">
+                            <div class="col-md-12">
+                                <div class="col-md-4 input-radio">
+                                    <input class="myRadioClass" type="radio" name="paymentType_Submit" id="Cash_Submit" value="ByCash">
+                                    <label class="control-label" for="Cash_Submit">Cash</label>
+                                </div>
+
+                                <div class="col-md-4 input-radio">
+                                    <input class="myRadioClass" type="radio" name="paymentType_Submit" id="Cheque_Submit" value="ByCheque" checked="">
+                                    <label class="control-label" for="Cheque_Submit">Cheque</label>
+                                </div>
+                                <div class="col-md-4 input-radio">
+                                    <input class="myRadioClass" type="radio" name="paymentType_Submit" id="NEFT_Submit" value="ByNEFT">
+                                    <label class="control-label" for="NEFT_Submit">NEFT</label>
+                                </div>
+                            </div>
+                            <div id="PaymentCheque_SubmitDiv" style="display:block;">
+                            <div class="row" >
+                                    <div class="col-md-6">
+                                        <label class="control-label"> Cheque No.
+                                            <span class="required"> * </span>
+                                        </label>
+                                        <input id="Cheque_No_Submit" name="Cheque_No_Submit"
+                                               class="form-control" placeholder="Cheque No"/>
+                                        <label id="Cheque_No_Submit_error" class="error"
+                                               style="color:red; display:none;"></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="control-label"> Cheque Date
+                                            <span class="required"> * </span>
+                                        </label>
+
+                                        <div class="input-group">
+                                            <div class="show-error has-success">
+                                                <input class="form-control dateField" placeholder="Cheque Date"
+                                                       id="Cheque_Date_Submit" name="Cheque_Date_Submit" 
+                                                       autocomplete="off" type="text" readonly />
+                                            </div>
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar">
+                                                </i>
+                                            </div>
+                                        </div>
+                                        <label id="Cheque_Date_Submit_error" class="error"
+                                               style="color:red; display:none;"></label>
+                                    </div>
+
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label class="control-label"> Bank Name
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <input id="Bank_Name_Submit" name="Bank_Name_Submit"
+                                           class="form-control" placeholder="Bank Name"/>
+                                    <label id="Bank_Name_Submit_error" class="error"
+                                           style="color:red; display:none;"></label>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div id="PaymentNEFT_SubmitDiv" style="display:none;">
+
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <label class="control-label">Transfer ID
+                                        <!-- <span class="required"> * </span> -->
+                                    </label>
+                                    <input id="NEFT_Transfer_Submit" name="NEFT_Transfer_Submit"
+                                           class="form-control" placeholder="NEFT Transfer ID"/>
+                                    <label id="NEFT_Transfer_Submit_error" class="error"
+                                           style="color:red; display:none;"></label>
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
+                        </div>
+                        <div id="PaymentCash_SubmitDiv" style="display:none;">
+
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <label class="control-label">Cash Amount
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <input id="cash_amount_Submit" name="cash_amount_Submit"
+                                           class="form-control" placeholder="Amount"/>
+                                    <label id="cash_amount_Submit_error" class="error"
+                                           style="color:red; display:none;"></label>
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
+                        </div>
+                        </div>
+
+                        <!--<div class="row">-->
+                        <!--<div class="col-md-6">-->
+                            <!--<label class="control-label"> Receipt No.-->
+                                <!--<span class="required"> * </span>-->
+                            <!--</label>-->
+                            <!--<input id="Receipt_No_Submit" name="Receipt_No_Submit"-->
+                                   <!--class="form-control"/>-->
+                            <!--<label id=Receipt_No_Submit_error" class="error"-->
+                                   <!--style="color:red; display:none;"></label>-->
+                        <!--</div>-->
+                        <!--<div class="col-md-6">-->
+                            <!--<label class="control-label"> Receipt Date-->
+                                <!--<span class="required"> * </span>-->
+                            <!--</label>-->
+
+
+                            <!--<div class="input-group">-->
+                                    <!--<div class="show-error has-success">-->
+                                        <!--<input class="form-control dateField"-->
+                                               <!--id="Receipt_Date_Submit" name="Receipt_Date_Submit" type="text"/>-->
+                                    <!--</div>-->
+                                    <!--<div class="input-group-addon">-->
+                                        <!--<i class="fa fa-calendar">-->
+                                        <!--</i>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                            <!--<label id="Receipt_Date_Submit_error" class="error"-->
+                                   <!--style="color:red; display:none;"></label>-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                    <br><br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-4 form-group" style="padding-top:  1%;">
+                                <input type="checkbox" value="Cheque Bounce Amount" id="cheque_bounce_check"
+                                class="form-control" onchange="show_textbox();">
+                                <label class="control-label" for="cheque_bounce_check">Cheque Bounce Amount</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input id="chq_bounce_amount" name="chq_bounce_amount"
+                                       class="form-control" style="display: none;" placeholder="Amount" />
+                                <label id="chq_bounce_amount_error" class="error" style="color:red; display:none;"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-5">
+                                <label class="control-label">Do you want to settle amount</label>
+                            </div>
+                            <div class="col-md-2 input-radio">
+                                <input class="myRadioClass" type="radio" name="settle_amount" id="yes" value="Yes">
+                                <label class="control-label" for="yes">Yes</label>
+                            </div>
+
+                            <div class="col-md-2 input-radio">
+                                <input class="myRadioClass" type="radio" name="settle_amount" id="no" value="No" checked>
+                                <label class="control-label" for="no">No</label>
+                            </div>
+
+                            <div class="col-md-3">
+                                    <input id="settle_amount_rs" name="settle_amount_rs"
+                                           class="form-control" placeholder="Settle Amount"/>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-5">
+                                <label class="control-label">Do you want to settle TDS amount</label>
+                            </div>
+                            <div class="col-md-2 input-radio">
+                                <input class="myRadioClass" type="radio" name="settle_tds_amount" id="yestds" value="Yestds">
+                                <label class="control-label" for="yestds">Yes</label>
+                            </div>
+
+                            <div class="col-md-2 input-radio">
+                                <input class="myRadioClass" type="radio" name="settle_tds_amount" id="notds" value="Notds" checked>
+                                <label class="control-label" for="notds">No</label>
+                            </div>
+
+                             <div class="col-md-3">
+                                    <input id="tds_amount" name="tds_amount"
+                                           class="form-control" placeholder="TDS Amount"/>
+                                    <!--<label id="tds_amount_e" class="error"-->
+                                           <!--style="color:red; display:none;"></label>-->
+                                </div>
+                        </div>
+                    </div>
+                    <br><br>
+                    <!--<div class="row">-->
+                        <!--<div class="col-md-12">-->
+                            <!--<div class="col-md-4 form-group" style="padding-top:  1%;">-->
+                                <!--<input type="checkbox" value="reassociate" id="reassociate_check" class="form-control">-->
+                                <!--<label class="control-label" for="reassociate_check">Re-association</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                <div style="text-align:center !important;" class="modal-footer">
+                    <div class="col-xs-12 text-right">
+                        <button type="button" class="btn btn-outline grey_color" data-dismiss="modal">Close</button>
+                        <button type="Submit" id="submit_user_payment_receipt" class="btn btn-default done_btn">Submit</button>
+                    </div>
+
+                </div>
+                </form>
+                </div>
+            <!--</div>-->
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<!-- Save Payment Detail End -->
+
+<!-- Save Payment Receipt Detail Start -->
+
+<div class="modal fade draggable-modal" id="user_payment_receipt" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:55%;">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                Payment Details
+            </div>
+            <!--<div class="container">-->
+                <div class="modal-body">
+                <form id="payment_receipt_form" name="payment_receipt_form" method="POST">
+                    {% csrf_token %}
+                    <input type="text" id="payment_receipt_id" name="payment_receipt_id" hidden>
+                        <div class="row">
+                        <div class="col-md-6">
+                            <label class="control-label"> Receipt No.
+                                <span class="required"> * </span>
+                            </label>
+                            <input id="Receipt_No_Submit" name="Receipt_No_Submit"
+                                   class="form-control"/>
+                            <label id="Receipt_No_Submit_error" class="error"
+                                   style="color:red; display:none;"></label>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label"> Receipt Date
+                                <span class="required"> * </span>
+                            </label>
+                            <div class="input-group">
+                                    <div class="show-error has-success">
+                                        <input class="form-control dateField"
+                                               id="Receipt_Date_Submit" name="Receipt_Date_Submit" type="text" readonly />
+                                    </div>
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar">
+                                        </i>
+                                    </div>
+                                </div>
+
+                            <label id="Receipt_Date_Submit_error" class="error"
+                                   style="color:red; display:none;"></label>
+                        </div>
+                        </div>
+                        <br>
+
+                    <div class="row" style="  margin-top: 30px;">
+                    </div>
+
+
+                <div style="text-align:center !important;" class="modal-footer">
+                    <div class="col-xs-12 text-right">
+
+                        <button type="button" class="btn btn-outline grey_color" data-dismiss="modal"
+                                onclick="#">Close</button>
+                        <button type="Submit" id="submit_payment_receipt" class="btn btn-default done_btn">Submit</button>
+                    </div>
+
+                </div>
+                </form>
+                </div>
+            <!--</div>-->
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<!-- Save Payment Receipt Detail End -->
+
+<!-- Update Slab & Payment Start -->
+
+<div class="modal fade draggable-modal" id="edit_payment_modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:90%;">
+        <div class="modal-content">
+            <div class="modal-header">
+                Edit Payment Details
+            </div>
+            <!--<div class="container">-->
+                <div class="modal-body">
+                    <form id="edit_payment_form" name="edit_payment_form" method="POST"
+                    onsubmit="update_payment_detail(); return false;">
+                        {% csrf_token %}
+                        <input type="text" id="edit_payment_id" name="edit_payment_id" hidden>
+                        <div class="row form-group">
+                            <div class="col-md-3">
+                                <select id="edit_category" name="edit_category" class="form-control select2">
+                                    <option value="">Select Category</option>
+                                    {% for item in category_list %}
+                                    <option value="{{item.cat_id}}" {% if item.cat_id == userDetail.membership_category.id %} selected {% endif %}>{{item.category}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" type="number" maxlength="10" min="0" id="edit_to" name="edit_to" step="0.01"
+                                placeholder="Turnover" value="{{userDetail.annual_turnover_rupees}}">
+                            </div>
+                            <div class="col-md-5">
+                                <select id="edit_slab" name="edit_slab" class="form-control select2">
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <select id="edit_quarter" name="edit_quarter" class="form-control select2">
+                                    <option style="font-size: 14px" value="">Select Quarter</option>
+                                    <option value="2018-2019/ full year">2018 - 2019/ full year</option>
+                                    <option value="2018-2019/ 3 quarters">2018 - 2019/ 3 Quarters</option>
+                                    <option value="2018-2019/ half year">2018 - 2019/ half year</option>
+                                    <option value="2018-2019/ Last Quarters">2018 - 2019/ Last Quarters</option>
+                                    <option value="2019-2020/ full year">2019 - 2020/ full year</option>
+                                    <option value="2019-2020/ 3 quarters">2019 - 2020/ 3 Quarters</option>
+                                    <option value="2019-2020/ half year">2019 - 2020/ half year</option>
+                                    <option value="2019-2020/ Last Quarters">2019 - 2020/ Last Quarters</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div style="text-align:center !important;" class="modal-footer">
+                            <div class=" col-md-12 col-xs-12 text-right">
+                                <button type="button" class="btn btn-outline grey_color" data-dismiss="modal">Close</button>
+                                <button type="Submit" id="submit_edit_payment_btn" class="btn btn-default done_btn">Submit</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            <!--</div>-->
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+<!-- Update Slab & Payment End-->
+
+<!-- Delete Payment Entry Modal Start -->
+
+<div class="modal fade draggable-modal" id="payment_delete_modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:55%;">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                Payment Details
+            </div>
+            <!--<div class="container">-->
+                <div class="modal-body">
+                <form id="payment_delete_form" name="payment_delete_form" method="POST">
+                    {% csrf_token %}
+                    <input type="text" id="payment_id" name="payment_id" hidden>
+                        <div class="row">
+                        <div class="col-md-4">
+                            <div class="input-radio">
+                                <input type="radio" class="myRadioClass" name="delete_payment_radio" id="cheque_bounce"
+                                       value="cheque_bounce" checked>
+                                <label for="cheque_bounce"> Cheque Bounce </label>
+                            </div>
+                            <label id="cheque_bounce_error" class="error" style="color:red; display:none;"></label>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-radio">
+                                <input type="radio" class="myRadioClass" name="delete_payment_radio" id="neft_failed"
+                                       value="neft_failed">
+                                <label for="neft_failed"> NEFT Failed </label>
+                            </div>
+                            <label id="neft_failed_error" class="error" style="color:red; display:none;"></label>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-radio">
+                                <input type="radio" class="myRadioClass" name="delete_payment_radio" id="other_error"
+                                       value="other_error">
+                                <label for="other_error"> Other </label>
+                            </div>
+                            <label id="other_error_error" class="error" style="color:red; display:none;"></label>
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <center>
+                                    <div class="col-md-offset-4 col-md-4">
+                                        <input type="text" class="form-control"  name="payment_error_remark" id="payment_error_remark">
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                        <br>
+
+                    <div class="row" style="  margin-top: 30px;">
+                    </div>
+
+                <div style="text-align:center !important;" class="modal-footer">
+                    <div class="col-xs-12 text-right">
+                        <button type="button" class="btn btn-outline grey_color" data-dismiss="modal">Close</button>
+                        <button type="button" id="delete_payment" class="btn btn-default done_btn">Submit</button>
+                    </div>
+
+                </div>
+                </form>
+                </div>
+            <!--</div>-->
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<!-- Delete Payment Entry Modal End -->
+
+<div class="modal fade draggable-modal" id="success_modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center">User Payment Added Successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <a type="button" href="/backofficeapp/open-member-payment/" class="btn green">OK</a>
+
+                    </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<div class="modal fade draggable-modal" id="success_modal_accept" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center">Member/Associate Number Added Successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <a type="button" href="/backofficeapp/open-member-payment/" class="btn green">OK</a>
+
+                    </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<div class="modal fade draggable-modal" id="success_modal_sumbit_receipt" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center">Payment Detail Submitted Successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <a type="button" href="/backofficeapp/open-member-payment/" class="btn green">OK</a>
+
+                    </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<div style="overflow-y:hidden;" id="error-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <img style="width: 100px; height: 29px; margin-top: -11px; margin-left: 236px;"
+                     src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+            </div>
+            <div class="modal-body">
+                <div class="form-body">
+                    <h4 class="text-center">User Payment is already done</h4>
+                </div>
+                <div style="text-align:center !important;" class="modal-footer">
+                    <input data-dismiss="modal" type="submit" value="OK"
+                           class="btn btn-primary" id="btn-loading-demo">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade draggable-modal" id="success_modal_delete_user" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center">User Payment Entry Deleted Successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <a type="button" class="btn green" data-dismiss="modal">OK</a>
+
+                    </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+
+
+        <!-- BEGIN FOOTER -->
+            <div class="page-footer">
+                <div class="page-footer-inner"> 2018 © Bynry Technologies
+
+                </div>
+                <div class="scroll-to-top">
+                    <i class="icon-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+        <!-- END FOOTER -->
+
+        <!-- BEGIN CORE PLUGINS -->
+       {% include 'backoffice/base_js.html' %}
+        <!-- END THEME LAYOUT SCRIPTS -->
+
+<script type="text/javascript">
+
+$("#member_anchor").addClass("tab-active");
+$("#member_nav").addClass("active");
+$("#member_icon").addClass("icon-active");
+$("#member_active").css("display","block");
+$("#member_nav").addClass("active");
+
+$(".sel2").select2({
+    width: '100%'
+})
+
+
+$(document).ready(function () {
+    $("#toggle_menu_bar").trigger("click");
+    var pathname = window.location.href.split('/?member_id=')[1]; // Returns path only
+    location_url_ID = pathname;
+    $("#userDetail_id").val(location_url_ID);
+    userDetail_id = $("#userDetail_id").val();
+    receipt_from = $("#receipt_from").val();
+    receipt_to = $("#receipt_to").val();
+    payment_from = $("#payment_from").val();
+    payment_to = $("#payment_to").val();
+    get_members_payment_details(userDetail_id,payment_from,payment_to,receipt_from,receipt_to);
+
+});
+
+
+
+function get_members_payment_details(userDetail_id,payment_from,payment_to,receipt_from,receipt_to){
+    userDetail_id = $("#userDetail_id").val();
+    receipt_from = $("#receipt_from").val();
+    receipt_to = $("#receipt_to").val();
+    payment_from = $("#payment_from").val();
+    payment_to = $("#payment_to").val();
+
+    var table = $('#member_payment_table');
+        var oTable = table.dataTable({
+            "processing": true,
+            "serverSide": true,
+            "destroy": true,
+            "ajax": '/backofficeapp/get-members-payment-details/?userDetail_id='+userDetail_id+'&payment_from='+payment_from+'&payment_to='+payment_to+'&receipt_from='+receipt_from+'&receipt_to='+receipt_to,
+            "searching": true,
+            "Filter": true,
+            "ordering": false,
+            "paging": true,
+            "columnDefs": [
+                {"targets": 0, "orderable": false},
+                {"targets": 1, "orderable": false},
+                {"targets": 2, "orderable": false},
+                {"targets": 3, "orderable": false},
+                {"targets": 4, "orderable": false},
+                {"targets": 5, "orderable": false},
+                {"targets": 6, "orderable": false},
+                {"targets": 7, "orderable": false},
+                {"targets": 8, "orderable": false},
+                {"targets": 9, "orderable": false},
+
+            ],
+            buttons: [
+                {extend: 'print', className: 'btn dark btn-outline'},
+                {extend: 'copy', className: 'btn red btn-outline'},
+                {extend: 'pdf', className: 'btn green btn-outline'},
+                {extend: 'excel', className: 'btn yellow btn-outline '},
+                {extend: 'csv', className: 'btn purple btn-outline '},
+                {extend: 'colvis', className: 'btn dark btn-outline', text: 'Columns'}
+            ],
+
+            responsive: false,
+
+            "order": [[0, 'asc']],
+
+            "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
+
+            "pageLength": 10,
+
+            });
+
+        $('#member_payment_table_tools > li > a.tool-action').on('click', function() {
+            var action = $(this).attr('data-action');
+            $('#member_payment_table').DataTable().button(action).trigger();
+        });
+}
+
+
+function resetAll(){
+    userDetail_id = $("#userDetail_id").val();
+    receipt_from = $("#receipt_from").val('');
+    receipt_to = $("#receipt_to").val('');
+    payment_from = $("#payment_from").val('');
+    payment_to = $("#payment_to").val('');
+    get_members_payment_details(userDetail_id,payment_from,payment_to,receipt_from,receipt_to);
+}
+
+
+$("#FilterDate").click(function(){
+    userDetail_id = $("#userDetail_id").val();
+    receipt_from = $("#receipt_from").val();
+    receipt_to = $("#receipt_to").val();
+    payment_from = $("#payment_from").val();
+    payment_to = $("#payment_to").val();
+    get_members_payment_details(userDetail_id,payment_from,payment_to,receipt_from,receipt_to);
+});
+
+
+$("#add_payment").click(function(){
+    $("#add_membership_payment_modal").modal('show');
+});
+
+
+// Show Edit Slab / Payment Modal
+function editPayment(id){
+    $("#edit_payment_id").val(id);
+    $.ajax({
+        type: "GET",
+        url: "/backofficeapp/get-edit-payment-modal/",
+        data: {"edit_payment_id": id},
+        success: function(response){
+            if (response.success == 'true'){
+                $("#edit_slab").append('<option value="">Select Slab</option>');
+
+                $.each(response.slab_list, function(index, item){
+                    option_item = '<option value="'+ item.slab_id +'">'+item.slab_name+'</option>'
+                    $("#edit_slab").append(option_item);
+                });
+
+                $("#edit_slab").val(response.user_slab).change();
+                $("#edit_payment_modal").modal('show');
+            }
+            else{
+                bootbox.alert('Sorry for inconvenience. An error occurred.');
+            }
+        },
+        beforeSend: function () {
+            $("#processing").css('display','block');
+        },
+        complete: function () {
+            $("#processing").css('display','none');
+        },
+        error: function(e){
+            bootbox.alert('Sorry for inconvenience. An error occurred.');
+        }
+    });
+}
+
+
+// Get Slab on change of Category and Turnover
+$("#edit_category, #edit_to").on("change", function(e){
+    get_slab_admin();
+});
+
+
+// Get Slab
+function get_slab_admin(){
+    var membershipCategory = $('#edit_category').val();
+    var annual_turnover_foryear = '';
+    var annual_turnover_Rscrore=$("#edit_to").val();
+    $.ajax({
+        type: 'GET',
+        url: '/membershipapp/get-slab-admin/?membershipCategory='+membershipCategory+"&annual_turnover_foryear="+annual_turnover_foryear+"&annual_turnover_Rscrore="+annual_turnover_Rscrore,
+        success: function(response) {
+            $("#edit_slab").html('').append('<option value="" selected>Select Slab</option>').change();
+            $.each(response.membershipSlabObj, function (index, item) {
+                data = '<option value="'+ item.membershipSlab_id +'">'+item.membershipSlab_name +'</option>'
+                $("#edit_slab").append(data);
+            });
+        },
+        beforeSend: function () {
+            $("#processing").css('display','block');
+        },
+        complete: function () {
+            $("#processing").css('display','none');
+        },
+        error: function(response) {
+            bootbox.alert('Sorry for inconvenience. An error occurred.');
+        },
+    });
+}
+
+
+// Save & update Slab / Payment Detail
+function update_payment_detail(){
+    var check_flag = true;
+    if ($("#edit_category").val() == ''){
+        check_flag = false;
+    }
+    if ($("#edit_to").val() == ''){
+        check_flag = false;
+    }
+    if ($("#edit_slab").val() == ''){
+        check_flag = false;
+    }
+    if ($("#edit_quarter").val() == ''){
+        check_flag = false;
+    }
+
+    if (check_flag){
+        $.ajax({
+            type: "POST",
+            url: "/backofficeapp/update-slab-payment-detail/",
+            data: {"edit_payment_id": $("#edit_payment_id").val(), "edit_category": $("#edit_category").val(),
+                    "edit_to": $("#edit_to").val(), "edit_slab": $("#edit_slab").val(), "quarter": $("#edit_quarter").val()},
+            success: function(response){
+                if (response.success == 'true'){
+                    bootbox.alert('Slab / Payment Details updated successfully.');
+                    $("#edit_payment_modal").modal('hide');
+                    location.reload();
+                }
+                else{
+                    bootbox.alert('Sorry for inconvenience. An error occurred.');
+                }
+            },
+            beforeSend: function () {
+                $("#processing").css('display','block');
+            },
+            complete: function () {
+                $("#processing").css('display','none');
+            },
+            error: function(e){
+                bootbox.alert('Sorry for inconvenience. An error occurred.');
+            }
+        });
+    }
+    else{
+        bootbox.alert('Please enter all required data.');
+    }
+}
+
+$("#cheque_user_payment_due_btn").click(function(){
+    $("#cheque_user_payment_due").modal('show');
+});
+
+
+// Show Payment Modal
+function DeleteUserPaymentModal(id){
+    $("#payment_delete_modal").modal('show');
+    $("#payment_id").val(id);
+    return;
+}
+
+
+// Delete Payment
+$("#delete_payment").click(function(e){
+
+    var formData= new FormData();
+    formData.append("payment_entry_id",$("#payment_id").val());
+    formData.append("delete_payment_radio",$('input[name=delete_payment_radio]:checked').val());
+    formData.append("delete_remark",$('#payment_error_remark').val());
+
+    $.ajax({
+        type: "POST",
+        url: '/backofficeapp/delete-user-payment-entry/',
+        data: formData,
+        cache: false,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            if(response.success=='true'){
+                $("#success_modal_delete_user").modal('show');
+                $("#payment_delete_modal").modal('hide');
+                //location.href="/backofficeapp/open-member-payment/?member_id="+($("#userDetail_id").val())
+                resetAll();
+            }
+            else {
+                $("#error-modal").modal('show');
+            }
+        },
+        beforeSend: function () {
+            $("#processing").css('display','block');
+        },
+        complete: function () {
+            $("#processing").css('display','none');
+        },
+        error : function(response){
+            alert("Sorry for inconvenience. An error occurred.");
+        }
+    });
+});
+
+$('input[name=paymentMode]').change(function(){
+    paymentMode=$('input[name=paymentMode]:checked').val();
+    if (paymentMode == "OnlinePending"){
+        $("#PaymentTypeDiv").css('display','none');
+        $("#Cheque_No_error").css("display", "none");
+        $("#Cheque_Date_error").css("display", "none");
+        $('#Bank_Name_error').css("display", "none");
+    }
+    else{
+        $("#PaymentTypeDiv").css('display','block');
+        paymentType=$('input[name=paymentType]:checked').val();
+        if (paymentType == "ByCheque"){
+            $("#PaymentChequeDiv").css('display','block');
+            $("#PaymentCashDiv").css('display','none');
+            $("#PaymentNEFTDiv").css('display','none');
+            $('#cash_amount_error').css("display", "none");
+            $('#NEFT_Transfer_error').css("display", "none");
+        }
+        else{
+                if (paymentType == "ByCash"){
+                    $("#PaymentChequeDiv").css('display','none');
+                    $("#PaymentCashDiv").css('display','block');
+                    $("#PaymentNEFTDiv").css('display','none');
+                    $("#Cheque_No_error").css("display", "none");
+                    $("#Cheque_Date_error").css("display", "none");
+                    $('#Bank_Name_error').css("display", "none");
+                    $('#NEFT_Transfer_error').css("display", "none");
+                 }
+                 else{
+                    $("#PaymentChequeDiv").css('display','none');
+                    $("#PaymentCashDiv").css('display','none');
+                    $("#PaymentNEFTDiv").css('display','block');
+                    $("#Cheque_No_error").css("display", "none");
+                    $("#Cheque_Date_error").css("display", "none");
+                    $('#Bank_Name_error').css("display", "none");
+                    $('#cash_amount_error').css("display", "none");
+                }
+
+            }
+    }
+});
+
+
+$('input[name=paymentType]').change(function(){
+    paymentType=$('input[name=paymentType]:checked').val();
+    if (paymentType == "ByCheque"){
+        $("#PaymentChequeDiv").css('display','block');
+        $("#PaymentCashDiv").css('display','none');
+        $("#PaymentNEFTDiv").css('display','none');
+        $('#cash_amount_error').css("display", "none");
+        $('#NEFT_Transfer_error').css("display", "none");
+    }
+    else{
+        if (paymentType == "ByCash"){
+            $("#PaymentChequeDiv").css('display','none');
+            $("#PaymentCashDiv").css('display','block');
+            $("#PaymentNEFTDiv").css('display','none');
+            $("#Cheque_No_error").css("display", "none");
+            $("#Cheque_Date_error").css("display", "none");
+            $('#Bank_Name_error').css("display", "none");
+            $('#NEFT_Transfer_error').css("display", "none");
+         }
+         else{
+            $("#PaymentChequeDiv").css('display','none');
+            $("#PaymentCashDiv").css('display','none');
+            $("#PaymentNEFTDiv").css('display','block');
+            $("#Cheque_No_error").css("display", "none");
+            $("#Cheque_Date_error").css("display", "none");
+            $('#Bank_Name_error').css("display", "none");
+            $('#cash_amount_error').css("display", "none");
+        }
+
+    }
+});
+
+
+
+function validateData(){
+
+    paymentMode=$('input[name=paymentMode]:checked').val()
+    if (paymentMode == "OnlinePending"){
+        if(checkAmountPayable("#Amount_Payable")&checkAmountPaid("#Amount_Paid")&checkNextDueAmount("#Next_Due_Amount")&checkNextAdvAmount("#Next_Adv_Amount")&checkReceiptNo("#Receipt_No")&checkReceiptDate("#Receipt_Date"))
+                {
+                    return true;
+                }
+                return false;
+    }
+    else{
+        paymentType=$('input[name=paymentType]:checked').val()
+
+        if (paymentType == "ByCash"){
+
+
+            if(checkAmountPayable("#Amount_Payable")&checkAmountPaid("#Amount_Paid")&checkNextDueAmount("#Next_Due_Amount")&checkNextAdvAmount("#Next_Adv_Amount")&checkReceiptNo("#Receipt_No")&checkReceiptDate("#Receipt_Date")
+                &checkCashAmount("#cash_amount"))
+                    {
+                        return true;
+                    }
+                    return false;
+            }
+
+        else{
+
+            if (paymentType == "ByCheque"){
+
+
+            if(checkAmountPayable("#Amount_Payable")&checkAmountPaid("#Amount_Paid")&checkNextDueAmount("#Next_Due_Amount")&checkNextAdvAmount("#Next_Adv_Amount")&checkReceiptNo("#Receipt_No")&checkReceiptDate("#Receipt_Date")
+                &checkChequeNo("#Cheque_No")&checkChequeDate("#Cheque_Date")&checkBankName("#Bank_Name"))
+                    {
+                        return true;
+                    }
+                    return false;
+            }
+            else{
+                if(checkAmountPayable("#Amount_Payable")&checkAmountPaid("#Amount_Paid")&checkNextDueAmount("#Next_Due_Amount")&checkNextAdvAmount("#Next_Adv_Amount")&checkReceiptNo("#Receipt_No")&checkReceiptDate("#Receipt_Date")
+                &checkNEFTID("#NEFT_Transfer"))
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+
+            }
+
+        }
+
+}
+
+$("#add_user_payment").click(function(event)  {
+
+    event.preventDefault();
+
+    if(validateData()){
+
+
+       var formData= new FormData();
+
+        formData.append("AmountPayable",$('#Amount_Payable').val());
+        formData.append("member_id",$('#userDetail_id').val());
+        formData.append("AmountPaid",$('#Amount_Paid').val());
+        formData.append("NextDueAmount",$('#Next_Due_Amount').val());
+        formData.append("NextAdvAmount",$('#Next_Adv_Amount').val());
+        formData.append("ReceiptNo",$('#Receipt_No').val());
+        formData.append("ReceiptDate",$('#Receipt_Date').val());
+        formData.append("PaymentMode",$('input[name=paymentMode]:checked').val());
+        formData.append("ChequeNo",$('#Cheque_No').val());
+        formData.append("ChequeDate",$('#Cheque_Date').val());
+        formData.append("BankName",$('#Bank_Name').val());
+        formData.append("user_Payment_Type",$('input[name=paymentType]:checked').val());
+        formData.append("cash_amount",$('#cash_amount').val());
+        formData.append("neft_transfer_id",$('#NEFT_Transfer').val());
+
+            $.ajax({
+                  type  : "POST",
+                   url : '/backofficeapp/add-user-payment/',
+                    data : formData,
+                    cache: false,
+                 processData: false,
+                    contentType: false,
+              success: function (response) {
+
+                  if(response.success=='true'){
+                        $("#success_modal").modal('show');
+                        location.href="/backofficeapp/open-member-payment/?member_id="+($("#userDetail_id").val())
+                    }
+                    if (response.success == "false") {
+                            $("#error-modal").modal('show');
+                    }
+               },
+                beforeSend: function () {
+            $("#processing").css('display','block');
+            },
+            complete: function () {
+                $("#processing").css('display','none');
+            },
+               error : function(response){
+                    alert("_Error");
+                }
+           });
+  }
+});
+
+
+
+function checkAmountPayable(AmountPayable){
+  AmountPayable = $(AmountPayable).val()
+    var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+   if(AmountPayable!='' & namePattern.test(AmountPayable)){
+    $('#Amount_Payable_error').css("display", "none");
+   return true;
+   }else{
+    $('#Amount_Payable_error').css("display", "block");
+    $('#Amount_Payable_error').text("Please enter valid Amount Payable");
+   return false;
+   }
+}
+
+function checkAmountPaid(AmountPaid){
+    AmountPaid = $(AmountPaid).val()
+    var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+   if(AmountPaid!='' & namePattern.test(AmountPaid)){
+    $('#Amount_Paid_error').css("display", "none");
+   return true;
+   }else{
+    $('#Amount_Paid_error').css("display", "block");
+    $('#Amount_Paid_error').text("Please enter valid Amount Paid");
+   return false;
+   }
+}
+
+
+function checkNextDueAmount(NextDueAmount){
+
+   NextDueAmount = $(NextDueAmount).val()
+    var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+   if(NextDueAmount!='' & namePattern.test(NextDueAmount)){
+    $('#Next_Due_Amount_error').css("display", "none");
+   return true;
+   }else{
+    $('#Next_Due_Amount_error').css("display", "block");
+    $('#Next_Due_Amount_error').text("Please enter valid Next Due Amount");
+   return false;
+   }
+}
+function checkNextAdvAmount(NextAdvAmount){
+
+   NextAdvAmount = $(NextAdvAmount).val()
+    var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+   if(NextAdvAmount!='' & namePattern.test(NextAdvAmount)){
+    $('#Next_Adv_Amount_error').css("display", "none");
+   return true;
+   }else{
+    $('#Next_Adv_Amount_error').css("display", "block");
+    $('#Next_Adv_Amount_error').text("Please enter valid Next Adv Amount");
+   return false;
+   }
+}
+
+function checkReceiptNo(ReceiptNo){
+  ReceiptNo = $(ReceiptNo).val()
+    var namePattern = /[a-zA-Z0-9]$/;
+
+   if(ReceiptNo!='' & namePattern.test(ReceiptNo)){
+    $('#Receipt_No_error').css("display", "none");
+   return true;
+   }else{
+    $('#Receipt_No_error').css("display", "block");
+    $('#Receipt_No_error').text("Please enter valid Receipt No");
+   return false;
+   }
+}
+
+
+function checkReceiptDate(ReceiptDate){
+
+    if($(ReceiptDate).val()!='' && $(ReceiptDate).val()!=null)
+       {
+         $("#Receipt_Date_error").css("display", "none");
+       return true;
+       }else{
+            $("#Receipt_Date_error").css("display", "block");
+            $('#Receipt_Date_error').text("Please enter Receipt Date");
+       return false;
+       }
+
+}
+
+
+
+function checkChequeNo(ChequeNo){
+    ChequeNo = $(ChequeNo).val()
+    namePattern= /[0-9]{6,}$/
+    if($(ChequeNo).val()!='' && namePattern.test(ChequeNo))
+    {
+    $("#Cheque_No_error").css("display", "none");
+    return true;
+    }else{
+    $("#Cheque_No_error").css("display", "block");
+    $('#Cheque_No_error').text("Please enter Cheque No");
+   return false;
+   }
+}
+
+function checkChequeDate(Cheque_Date){
+    if($(Cheque_Date).val()!='' && $(Cheque_Date).val()!=null)
+       {
+         $("#Cheque_Date_error").css("display", "none");
+       return true;
+       }else{
+            $("#Cheque_Date_error").css("display", "block");
+            $("#Cheque_Date_error").text("Please enter Cheque Date");
+       return false;
+       }
+
+}
+
+
+
+function checkBankName(BankName){
+    BankName = $(BankName).val()
+    var namePattern = /[a-zA-Z0-9]$/;
+
+   if(BankName!='' & namePattern.test(BankName)){
+    $('#Bank_Name_error').css("display", "none");
+   return true;
+   }else{
+    $('#Bank_Name_error').css("display", "block");
+    $('#Bank_Name_error').text("Please enter valid Bank Name");
+   return false;
+   }
+}
+
+function checkCashAmount(CashAmount){
+        CashAmount = $(CashAmount).val()
+        var namePattern = /[0-9]$/;
+
+       if(CashAmount!='' & namePattern.test(CashAmount)){
+        $('#cash_amount_error').css("display", "none");
+       return true;
+       }else{
+        $('#cash_amount_error').css("display", "block");
+        $('#cash_amount_error').text("Please enter cash amount");
+       return false;
+       }
+}
+
+function checkNEFTID(NEFTID){
+        NEFTID = $(NEFTID).val()
+        var namePattern = /[A-Za-z0-9_@./#&+-\s]{64}$/;
+
+       if(NEFTID!='' & namePattern.test(NEFTID)){
+        $('#NEFT_Transfer_error').css("display", "none");
+       return true;
+       }else{
+        $('#NEFT_Transfer_error').css("display", "block");
+        $('#NEFT_Transfer_error').text("Please enter valid Transfer ID");
+       return false;
+       }
+}
+
+
+
+
+
+<!-- Start of user acceptance  -->
+
+
+
+function ClearMemberAcceptance(){
+    $('#MembershipType').prop('selectedIndex',0);
+    $('#MemberAssoNo').val('');
+    $('#Acceptance_Date').val('');
+}
+
+
+
+function validateDataMemberAcceptance(){
+
+    if(checkMembershipType("#MembershipType")&checkMemberAssociateNo("#MemberAssoNo")&checkAcceptanceDate("#Acceptance_Date"))
+        {
+            return true;
+        }
+        return false;
+}
+
+
+
+function checkMembershipType(MembershipType){
+    if($("#MembershipType").val()!=''){
+    $('#MembershipType_error').css("display", "none");
+   return true;
+   }else{
+    $('#MembershipType_error').css("display", "block");
+    $('#MembershipType_error').text("Please Select Membership Type");
+   return false;
+   }
+}
+
+function checkMemberAssociateNo(MemberAssoNo){
+    MemberAssoNo = $(MemberAssoNo).val()
+    var namePattern = /[a-zA-Z0-9_@&.,#&+-\/]$/;
+
+   if(MemberAssoNo!='' & namePattern.test(MemberAssoNo)){
+    $('#MemberAssoNo_error').css("display", "none");
+   return true;
+   }else{
+    $('#MemberAssoNo_error').css("display", "block");
+    $('#MemberAssoNo_error').text("Please enter valid Member/Associate Number");
+   return false;
+   }
+}
+
+function checkAcceptanceDate(Acceptance_Date){
+
+
+     if($(Acceptance_Date).val()!='' && $(Acceptance_Date).val()!=null)
+       {
+         $("#Acceptance_Date_error").css("display", "none");
+       return true;
+       }else{
+            $("#Acceptance_Date_error").css("display", "block");
+            $("#Acceptance_Date_error").text("Please enter Acceptance Date");
+       return false;
+       }
+}
+
+
+$("#Update_user_detail").click(function(event)  {
+    if(validateDataMemberAcceptance()){
+        var formData= new FormData();
+
+        formData.append("Membership_type",$('#MembershipType').val());
+        formData.append("MemberAssociateNo",$('#MemberAssoNo').val());
+        formData.append("AcceptanceDate",$('#Acceptance_Date').val());
+        formData.append("Member_id",$('#userDetail_id').val());
+
+        $.ajax({
+            type: "POST",
+            url : '/backofficeapp/submit-user-acceptance-detail/',
+            data : formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if(response.success=='true'){
+                    $("#success_modal_accept").modal('show');
+                    location.href="/backofficeapp/open-member-payment/?member_id="+($("#userDetail_id").val())
+                }
+                if (response.success == 'exists'){
+                    alert('Membership Number already exists.');
+                }
+                if (response.success == "false") {
+                    $("#error-modal").modal('show');
+                }
+            },
+            beforeSend: function () {
+                $("#processing").css('display','block');
+            },
+            complete: function () {
+                $("#processing").css('display','none');
+            },
+            error : function(response){
+                console.log("ErrorSMN = ",response );
+            }
+        });
+    }
+});
+<!-- End of user acceptance  -->
+
+<!-- receipt submit Start -->
+
+// Get Payment Modal
+
+function SubmitUserPaymentModal(user_payment_id){
+    $("#mem_pay_receipt_id").val(user_payment_id);
+    $.ajax({
+        type: "GET",
+        url: "/backofficeapp/get-payment-modal/",
+        data: {'payment_id': user_payment_id },
+        success: function(response){
+            if (response.success == 'true'){
+                $("#Amount_Payable_Submit").val(response.amount_payable);
+                $("#Amount_Paid_Submit").val(response.amount_payable);
+                $("#Next_Due_Amount_Submit").val(response.last_due_amount);
+                $("#Next_Adv_Amount_Submit").val(response.next_advance_amount);
+                $("#invoice_id").val(response.invoice_id);
+                $("#submit_user_payment").modal('show');
+            }
+            else{
+                $("#submit_user_payment").modal('hide');
+            }
+        },
+        error: function(response){
+            console.log('ErrorP = ',response);
+        }
+    });
+}
+
+
+// Get Payment Receipt Modal
+
+function SubmitUserPaymentReceipt(user_payment_id){
+    $("#payment_receipt_id").val(user_payment_id);
+    $("#user_payment_receipt").modal('show');
+}
+
+
+// Save Payment Receipt Modal
+$("#submit_payment_receipt").click(function(e){
+    if (validateReceipt()){
+        var formData= new FormData();
+        formData.append("payment_receipt_id", $('#payment_receipt_id').val());
+        formData.append("Receipt_No_Submit", $('#Receipt_No_Submit').val());
+        formData.append("Receipt_Date_Submit", $('#Receipt_Date_Submit').val());
+
+        $.ajax({
+            type    : "POST",
+            url : '/backofficeapp/save-payment-receipt/',
+            data : formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if(response.success=='true'){
+                    alert('Receipt details saved successfully.');
+                    location.reload();
+                    location.href="/backofficeapp/open-member-payment/?member_id="+($("#userDetail_id").val())
+                }
+                if (response.success == "false") {
+                    alert('Sorry for inconvenience. An error occurred');
+                    location.reload();
+                    location.href="/backofficeapp/open-member-payment/?member_id="+($("#userDetail_id").val())
+                }
+            },
+            beforeSend: function () {
+                $("#processing").css('display','block');
+            },
+            complete: function () {
+                $("#processing").css('display','none');
+            },
+           error : function(response){
+                console.log("ErroSPR = ",response);
+            }
+       });
+    }
+    else{
+        return false;
+    }
+});
+
+
+// Validate Payment Receipt
+function validateReceipt(){
+    if(checkReceiptNo_Submit("#Receipt_No_Submit")&checkReceiptDate_Submit("#Receipt_Date_Submit")){
+        return true;
+    }
+    return false;
+}
+
+$('input[name=paymentMode_Submit]').change(function(){
+    paymentMode=$('input[name=paymentMode_Submit]:checked').val();
+    if (paymentMode == "OnlinePending"){
+        $("#PaymentType_SubmitDiv").css('display','none');
+        $("#Cheque_No_Submit_error").css("display", "none");
+        $("#Cheque_Date_Submit_error").css("display", "none");
+        $('#Bank_Name_Submit_error').css("display", "none");
+    }
+    else{
+        $("#PaymentType_SubmitDiv").css('display','block');
+        paymentType=$('input[name=paymentType_Submit]:checked').val();
+        if (paymentType == "ByCheque"){
+            $("#PaymentCheque_SubmitDiv").css('display','block');
+            $("#PaymentCash_SubmitDiv").css('display','none');
+            $("#PaymentNEFT_SubmitDiv").css('display','none');
+            $('#cash_amount_Submit_error').css("display", "none");
+            $('#NEFT_Transfer_Submit_error').css("display", "none");
+        }
+        else{
+                if (paymentType == "ByCash"){
+                    $("#PaymentCheque_SubmitDiv").css('display','none');
+                    $("#PaymentCash_SubmitDiv").css('display','block');
+                    $("#PaymentNEFT_SubmitDiv").css('display','none');
+                    $("#Cheque_No_Submit_error").css("display", "none");
+                    $("#Cheque_Date_Submit_error").css("display", "none");
+                    $('#Bank_Name_Submit_error').css("display", "none");
+                    $('#NEFT_Transfer_Submit_error').css("display", "none");
+                 }
+                 else{
+                    $("#PaymentCheque_SubmitDiv").css('display','none');
+                    $("#PaymentCash_SubmitDiv").css('display','none');
+                    $("#PaymentNEFT_SubmitDiv").css('display','block');
+                    $("#Cheque_No_Submit_error").css("display", "none");
+                    $("#Cheque_Date_Submit_error").css("display", "none");
+                    $('#Bank_Name_Submit_error').css("display", "none");
+                    $('#cash_amount_Submit_error').css("display", "none");
+                }
+
+            }
+    }
+});
+
+
+$('input[name=paymentType_Submit]').change(function(){
+    paymentType=$('input[name=paymentType_Submit]:checked').val();
+    if (paymentType == "ByCheque"){
+        $("#PaymentCheque_SubmitDiv").css('display','block');
+        $("#PaymentCash_SubmitDiv").css('display','none');
+        $("#PaymentNEFT_SubmitDiv").css('display','none');
+        $('#cash_amount_Submit_error').css("display", "none");
+        $('#NEFT_Transfer_Submit_error').css("display", "none");
+    }
+    else{
+        if (paymentType == "ByCash"){
+            $("#PaymentCheque_SubmitDiv").css('display','none');
+            $("#PaymentCash_SubmitDiv").css('display','block');
+            $("#PaymentNEFT_SubmitDiv").css('display','none');
+            $("#Cheque_No_Submit_error").css("display", "none");
+            $("#Cheque_Date_Submit_error").css("display", "none");
+            $('#Bank_Name_Submit_error').css("display", "none");
+            $('#NEFT_Transfer_Submit_error').css("display", "none");
+         }
+         else{
+            $("#PaymentCheque_SubmitDiv").css('display','none');
+            $("#PaymentCash_SubmitDiv").css('display','none');
+            $("#PaymentNEFT_SubmitDiv").css('display','block');
+            $("#Cheque_No_Submit_error").css("display", "none");
+            $("#Cheque_Date_Submit_error").css("display", "none");
+            $('#Bank_Name_Submit_error').css("display", "none");
+            $('#cash_amount_Submit_error').css("display", "none");
+        }
+
+    }
+});
+
+
+
+
+function validateDataSubmit(){
+    paymentMode=$('input[name=paymentMode_Submit]:checked').val()
+    if (paymentMode == "OnlinePending"){
+        if(checkAmountPayable_Submit("#Amount_Payable_Submit")&checkAmountPaid_Submit("#Amount_Paid_Submit")&checkNextDueAmount_Submit("#Next_Due_Amount_Submit")&checkNextAdvAmount_Submit("#Next_Adv_Amount_Submit"))
+                {
+                    return true;
+                }
+                return false;
+    }
+    else{
+        paymentType=$('input[name=paymentType_Submit]:checked').val()
+        if (paymentType == "ByCash"){
+            if(checkAmountPayable_Submit("#Amount_Payable_Submit")&checkAmountPaid_Submit("#Amount_Paid_Submit")&checkNextDueAmount_Submit("#Next_Due_Amount_Submit")&checkNextAdvAmount_Submit("#Next_Adv_Amount_Submit")&checkCashAmount_Submit("#cash_amount_Submit"))
+                    {
+                        return true;
+                    }
+                    return false;
+            }
+
+        else{
+            if (paymentType == "ByCheque"){
+            if(checkAmountPayable_Submit("#Amount_Payable_Submit")&checkAmountPaid_Submit("#Amount_Paid_Submit")&checkNextDueAmount_Submit("#Next_Due_Amount_Submit")&checkNextAdvAmount_Submit("#Next_Adv_Amount_Submit")&checkChequeNo_Submit("#Cheque_No_Submit")&checkChequeDate_Submit("#Cheque_Date_Submit")&checkBankName_Submit("#Bank_Name_Submit"))
+                    {
+                        return true;
+                    }
+                    return false;
+            }
+            else{
+                if(checkAmountPayable_Submit("#Amount_Payable_Submit")&checkAmountPaid_Submit("#Amount_Paid_Submit")&checkNextDueAmount_Submit("#Next_Due_Amount_Submit")&checkNextAdvAmount_Submit("#Next_Adv_Amount_Submit")&checkNEFTID_Submit("#NEFT_Transfer_Submit"))
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+        }
+}
+
+
+// Save Payment
+
+$("#submit_user_payment_receipt").click(function(event)  {
+    event.preventDefault();
+    var flag = true;
+    if($("#cheque_bounce_check").prop("checked") == true){
+        chq_bounce_charge = $("#chq_bounce_amount").val()
+        var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+        if(chq_bounce_charge !='' & namePattern.test(chq_bounce_charge)){
+            $('#chq_bounce_amount_error').css("display", "none");
+        }
+        else{
+            $('#chq_bounce_amount_error').css("display", "block");
+            $('#chq_bounce_amount_error').text("Please enter valid Amount Paid");
+            flag = false;
+       }
+    }
+
+    if(validateDataSubmit() && flag){
+        var formData= new FormData();
+        formData.append("AmountPayable",$('#Amount_Payable_Submit').val());
+        formData.append("AmountPaid",$('#Amount_Paid_Submit').val());
+        formData.append("NextDueAmount",$('#Next_Due_Amount_Submit').val());
+        formData.append("NextAdvAmount",$('#Next_Adv_Amount_Submit').val());
+        formData.append("PaymentMode",$('input[name=paymentMode_Submit]:checked').val());
+        formData.append("ChequeNo",$('#Cheque_No_Submit').val());
+        formData.append("ChequeDate",$('#Cheque_Date_Submit').val());
+        formData.append("BankName",$('#Bank_Name_Submit').val());
+        formData.append("user_Payment_Type",$('input[name=paymentType_Submit]:checked').val());
+        formData.append("settle_amount_status",$('input[name=settle_amount]:checked').val());
+        formData.append("settle_tds_amount_status",$('input[name=settle_tds_amount]:checked').val());
+        formData.append("tds_amount",$('#tds_amount').val());
+        formData.append("settle_amount_rs",$('#settle_amount_rs').val());
+        formData.append("cash_amount",$('#cash_amount_Submit').val());
+        formData.append("neft_transfer_id",$('#NEFT_Transfer_Submit').val());
+
+        if($("#cheque_bounce_check").prop("checked") == true){
+            formData.append("is_cheque_bounce_amount",'yes');
+            formData.append("cheque_bounce_amount",$('#chq_bounce_amount').val());
+        }
+        else{
+            formData.append("is_cheque_bounce_amount",'no');
+            formData.append("cheque_bounce_amount",0);
+        }
+
+        if($("#reassociate_check").prop("checked") == true){
+            formData.append("reassociate_check",'yes');
+        }
+        else{
+            formData.append("reassociate_check",'no');
+        }
+
+        formData.append("mem_pay_receipt_id",$('#mem_pay_receipt_id').val());
+        formData.append("member_id", $('#userDetail_id').val());
+        formData.append("invoice_id", $('#invoice_id').val());
+
+        $.ajax({
+            type    : "POST",
+            url : '/backofficeapp/submit-user-receipt-detail/',
+            data : formData,
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if(response.success=='true'){
+                    $("#success_modal_sumbit_receipt").modal('show');
+                    location.reload();
+                    location.href="/backofficeapp/open-member-payment/?member_id="+($("#userDetail_id").val())
+                }
+                if (response.success == "false") {
+                    $("#error-modal").modal('show');
+                    location.reload();
+                    location.href="/backofficeapp/open-member-payment/?member_id="+($("#userDetail_id").val())
+                }
+            },
+            beforeSend: function () {
+                $("#processing").css('display','block');
+            },
+            complete: function () {
+                $("#processing").css('display','none');
+            },
+           error : function(response){
+                console.log("ErroSP = ",response);
+            }
+       });
+    }
+});
+
+
+
+
+function checkAmountPayable_Submit(AmountPayable){
+  AmountPayable = $(AmountPayable).val()
+    var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+   if(AmountPayable!='' & namePattern.test(AmountPayable)){
+    $('#Amount_Payable_Submit_error').css("display", "none");
+   return true;
+   }else{
+    $('#Amount_Payable_Submit_error').css("display", "block");
+    $('#Amount_Payable_Submit_error').text("Please enter valid Amount Payable");
+   return false;
+   }
+}
+
+function checkAmountPaid_Submit(AmountPaid){
+    AmountPaid = $(AmountPaid).val()
+    var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+   if(AmountPaid!='' & namePattern.test(AmountPaid)){
+    $('#Amount_Paid_Submit_error').css("display", "none");
+   return true;
+   }else{
+    $('#Amount_Paid_Submit_error').css("display", "block");
+    $('#Amount_Paid_Submit_error').text("Please enter valid Amount Paid");
+   return false;
+   }
+}
+
+
+function checkNextDueAmount_Submit(NextDueAmount){
+
+   NextDueAmount = $(NextDueAmount).val()
+    var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+   if(NextDueAmount!='' & namePattern.test(NextDueAmount)){
+    $('#Next_Due_Amount_Submit_error').css("display", "none");
+   return true;
+   }else{
+    $('#Next_Due_Amount_Submit_error').css("display", "block");
+    $('#Next_Due_Amount_Submit_error').text("Please enter valid Next Due Amount");
+   return false;
+   }
+}
+function checkNextAdvAmount_Submit(NextAdvAmount){
+
+   NextAdvAmount = $(NextAdvAmount).val()
+    var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+   if(NextAdvAmount!='' & namePattern.test(NextAdvAmount)){
+    $('#Next_Adv_Amount_Submit_error').css("display", "none");
+   return true;
+   }else{
+    $('#Next_Adv_Amount_Submit_error').css("display", "block");
+    $('#Next_Adv_Amount_Submit_error').text("Please enter valid Next Adv Amount");
+   return false;
+   }
+}
+
+
+function checkReceiptNo_Submit(ReceiptNo){
+  ReceiptNo = $(ReceiptNo).val()
+    var namePattern = /[a-zA-Z0-9]$/;
+
+   if(ReceiptNo!='' & namePattern.test(ReceiptNo)){
+    $('#Receipt_No_Submit_error').css("display", "none");
+   return true;
+   }else{
+    $('#Receipt_No_Submit_error').css("display", "block");
+    $('#Receipt_No_Submit_error').text("Please enter valid Receipt No");
+   return false;
+   }
+}
+
+
+function checkReceiptDate_Submit(ReceiptDate){
+
+    if($(ReceiptDate).val()!='' && $(ReceiptDate).val()!=null)
+       {
+         $("#Receipt_Date_Submit_error").css("display", "none");
+       return true;
+       }else{
+            $("#Receipt_Date_Submit_error").css("display", "block");
+            $('#Receipt_Date_Submit_error').text("Please enter Receipt Date");
+       return false;
+       }
+
+}
+
+
+function checkChequeNo_Submit(ChequeNo){
+    ChequeNo = $(ChequeNo).val()
+    namePattern= /[0-9]{6,}$/
+    if($(ChequeNo).val()!='' && namePattern.test(ChequeNo))
+    {
+    $("#Cheque_No_Submit_error").css("display", "none");
+    return true;
+    }else{
+    $("#Cheque_No_Submit_error").css("display", "block");
+    $('#Cheque_No_Submit_error').text("Please enter Cheque No");
+   return false;
+   }
+}
+
+function checkChequeDate_Submit(Cheque_Date){
+    if($(Cheque_Date).val()!='' && $(Cheque_Date).val()!=null)
+       {
+         $("#Cheque_Date_Submit_error").css("display", "none");
+       return true;
+       }else{
+            $("#Cheque_Date_Submit_error").css("display", "block");
+            $("#Cheque_Date_Submit_error").text("Please enter Cheque Date");
+       return false;
+       }
+
+}
+
+
+
+function checkBankName_Submit(BankName){
+    BankName = $(BankName).val()
+    var namePattern = /[a-zA-Z0-9_@&.,#&+-\/]$/;
+
+   if(BankName!='' & namePattern.test(BankName)){
+    $('#Bank_Name_Submit_error').css("display", "none");
+   return true;
+   }else{
+    $('#Bank_Name_Submit_error').css("display", "block");
+    $('#Bank_Name_Submit_error').text("Please enter valid Bank Name");
+   return false;
+   }
+}
+
+function checkCashAmount_Submit(CashAmount){
+        CashAmount = $(CashAmount).val()
+        var namePattern = /[0-9]$/;
+
+       if(CashAmount!='' & namePattern.test(CashAmount)){
+        $('#cash_amount_Submit_error').css("display", "none");
+       return true;
+       }else{
+        $('#cash_amount_Submit_error').css("display", "block");
+        $('#cash_amount_Submit_error').text("Please enter cash amount");
+       return false;
+       }
+}
+
+function checkNEFTID_Submit(NEFTID){
+        NEFTID = $(NEFTID).val()
+        var namePattern = /[A-Za-z0-9_@./#&+-\s]{7,64}$/;
+
+       if((NEFTID!='' & namePattern.test(NEFTID)) || NEFTID == ''){
+        $('#NEFT_Transfer_Submit_error').css("display", "none");
+       return true;
+       }else{
+        $('#NEFT_Transfer_Submit_error').css("display", "block");
+        $('#NEFT_Transfer_Submit_error').text("Please enter valid Transfer ID");
+       return false;
+       }
+}
+// receipt submit End
+
+
+
+
+// Check any due payment start
+function validateDataCheckDue(){
+
+    paymentModeDue=$('input[name=paymentModeDue]:checked').val()
+    if (paymentModeDue == "OnlinePendingDue"){
+        if(checkAmountPayable_CheckDue("#Amount_Payable_CheckDue")&checkAmountPaid_CheckDue("#Amount_Paid_CheckDue")&checkNextDueAmount_CheckDue("#Next_Due_Amount_CheckDue")&checkNextAdvAmount_CheckDue("#Next_Adv_Amount_CheckDue")&checkReceiptNo_CheckDue("#Receipt_No_CheckDue")&checkReceiptDate_CheckDue("#Receipt_Date_CheckDue"))
+                {
+                    return true;
+                }
+                return false;
+    }
+    else{
+        if(checkAmountPayable_CheckDue("#Amount_Payable_CheckDue")&checkAmountPaid_CheckDue("#Amount_Paid_CheckDue")&checkNextDueAmount_CheckDue("#Next_Due_Amount_CheckDue")&checkNextAdvAmount_CheckDue("#Next_Adv_Amount_CheckDue")&checkReceiptNo_CheckDue("#Receipt_No_CheckDue")&checkReceiptDate_CheckDue("#Receipt_Date_CheckDue")
+        &checkChequeNo_CheckDue("#Cheque_No_CheckDue")&checkChequeDate_CheckDue("#Cheque_Date_CheckDue")&checkBankName_CheckDue("#Bank_Name_CheckDue"))
+            {
+                return true;
+            }
+            return false;
+    }
+}
+
+
+$("#check_user_payment_due").click(function(event)  {
+
+    event.preventDefault();
+
+    if(validateDataCheckDue()){
+
+
+       var formData= new FormData();
+
+        formData.append("AmountPayable",$('#Amount_Payable_CheckDue').val());
+        formData.append("AmountPaid",$('#Amount_Paid_CheckDue').val());
+        formData.append("NextDueAmount",$('#Next_Due_Amount_CheckDue').val());
+        formData.append("NextAdvAmount",$('#Next_Adv_Amount_CheckDue').val());
+        formData.append("ReceiptNo",$('#Receipt_No_CheckDue').val());
+        formData.append("ReceiptDate",$('#Receipt_Date_CheckDue').val());
+        formData.append("PaymentMode",$('#PaymentModeDue').val());
+        formData.append("ChequeNo",$('#Cheque_No_CheckDue').val());
+        formData.append("ChequeDate",$('#Cheque_Date_CheckDue').val());
+        formData.append("BankName",$('#Bank_Name_CheckDue').val());
+
+            $.ajax({
+                  type  : "POST",
+                   url : '/backofficeapp/check-user-payment-due/',
+                    data : formData,
+                    cache: false,
+                 processData: false,
+                    contentType: false,
+              success: function (response) {
+
+                  if(response.success=='true'){
+                        $("#success_modal").modal('show');
+                        location.href="/backofficeapp/open-member-payment/?member_id="+($("#userDetail_id").val())
+                    }
+                    if (response.success == "false") {
+                            $("#error-modal").modal('show');
+                    }
+               },
+                beforeSend: function () {
+            $("#processing").css('display','block');
+            },
+            complete: function () {
+                $("#processing").css('display','none');
+            },
+               error : function(response){
+                    alert("_Error");
+                }
+           });
+  }
+});
+
+
+$('input[name=paymentModeDue]').change(function(){
+    paymentMode=$('input[name=paymentModeDue]:checked').val();
+    if (paymentMode == "OnlinePendingDue"){
+        $("#PaymentModeDiv_CheckDue").css('display','none');
+        $("#Cheque_No_CheckDue_error").css("display", "none");
+        $("#Cheque_Date_CheckDue_error").css("display", "none");
+        $('#Bank_Name_CheckDue_error').css("display", "none");
+    }
+    else{
+        $("#PaymentModeDiv_CheckDue").css('display','block');
+    }
+});
+
+
+function checkAmountPayable_CheckDue(AmountPayable){
+  AmountPayable = $(AmountPayable).val()
+    var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+   if(AmountPayable!='' & namePattern.test(AmountPayable)){
+    $('#Amount_Payable_CheckDue_error').css("display", "none");
+   return true;
+   }else{
+    $('#Amount_Payable_CheckDue_error').css("display", "block");
+    $('#Amount_Payable_CheckDue_error').text("Please enter valid Amount Payable");
+   return false;
+   }
+}
+
+function checkAmountPaid_CheckDue(AmountPaid){
+    AmountPaid = $(AmountPaid).val()
+    var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+   if(AmountPaid!='' & namePattern.test(AmountPaid)){
+    $('#Amount_Paid_CheckDue_error').css("display", "none");
+   return true;
+   }else{
+    $('#Amount_Paid_CheckDue_error').css("display", "block");
+    $('#Amount_Paid_CheckDue_error').text("Please enter valid Amount Paid");
+   return false;
+   }
+}
+
+
+function checkNextDueAmount_CheckDue(NextDueAmount){
+
+   NextDueAmount = $(NextDueAmount).val()
+    var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+   if(NextDueAmount!='' & namePattern.test(NextDueAmount)){
+    $('#Next_Due_Amount_CheckDue_error').css("display", "none");
+   return true;
+   }else{
+    $('#Next_Due_Amount_CheckDue_error').css("display", "block");
+    $('#Next_Due_Amount_CheckDue_error').text("Please enter valid Next Due Amount");
+   return false;
+   }
+}
+function checkNextAdvAmount_CheckDue(NextAdvAmount){
+
+   NextAdvAmount = $(NextAdvAmount).val()
+    var namePattern = /^[0-9]+(\.[0-9]{1,2})?$/;
+
+   if(NextAdvAmount!='' & namePattern.test(NextAdvAmount)){
+    $('#Next_Adv_Amount_CheckDue_error').css("display", "none");
+   return true;
+   }else{
+    $('#Next_Adv_Amount_CheckDue_error').css("display", "block");
+    $('#Next_Adv_Amount_CheckDue_error').text("Please enter valid Next Adv Amount");
+   return false;
+   }
+}
+
+function checkReceiptNo_CheckDue(ReceiptNo){
+  ReceiptNo = $(ReceiptNo).val()
+    var namePattern = /[a-zA-Z0-9]$/;
+
+   if(ReceiptNo!='' & namePattern.test(ReceiptNo)){
+    $('#Receipt_No_CheckDue_error').css("display", "none");
+   return true;
+   }else{
+    $('#Receipt_No_CheckDue_error').css("display", "block");
+    $('#Receipt_No_CheckDue_error').text("Please enter valid Receipt No");
+   return false;
+   }
+}
+
+
+function checkReceiptDate_CheckDue(ReceiptDate){
+
+    if($(ReceiptDate).val()!='' && $(ReceiptDate).val()!=null)
+       {
+         $("#Receipt_Date_CheckDue_error").css("display", "none");
+       return true;
+       }else{
+            $("#Receipt_Date_CheckDue_error").css("display", "block");
+            $('#Receipt_Date_CheckDue_error').text("Please enter Receipt Date");
+       return false;
+       }
+
+}
+
+
+
+function checkChequeNo_CheckDue(ChequeNo){
+    ChequeNo = $(ChequeNo).val()
+    namePattern= /[0-9]{6,}$/
+    if($(ChequeNo).val()!='' && namePattern.test(ChequeNo))
+    {
+    $("#Cheque_No_CheckDue_error").css("display", "none");
+    return true;
+    }else{
+    $("#Cheque_No_CheckDue_error").css("display", "block");
+    $('#Cheque_No_CheckDue_error').text("Please enter Cheque No");
+   return false;
+   }
+}
+
+function checkChequeDate_CheckDue(Cheque_Date){
+    if($(Cheque_Date).val()!='' && $(Cheque_Date).val()!=null)
+       {
+         $("#Cheque_Date_CheckDue_error").css("display", "none");
+       return true;
+       }else{
+            $("#Cheque_Date_CheckDue_error").css("display", "block");
+            $("#Cheque_Date_CheckDue_error").text("Please enter Cheque Date");
+       return false;
+       }
+
+}
+
+function checkBankName_CheckDue(BankName){
+    BankName = $(BankName).val()
+    var namePattern = /[a-zA-Z0-9_@&.,#&+-\/]$/;
+
+   if(BankName!='' & namePattern.test(BankName)){
+    $('#Bank_Name_CheckDue_error').css("display", "none");
+   return true;
+   }else{
+    $('#Bank_Name_CheckDue_error').css("display", "block");
+    $('#Bank_Name_CheckDue_error').text("Please enter valid Bank Name");
+   return false;
+   }
+}
+
+
+// Get Due & Advance amount on paid amount
+
+$("#Amount_Paid_Submit").keyup(function(e){
+    var amount_payable = 0;
+    var amount_paid = 0;
+    amount_payable = parseInt($("#Amount_Payable_Submit").val());
+    if($("#cheque_bounce_check").prop("checked") == true){
+        var temp_amount_paid = parseInt($("#Amount_Paid_Submit").val());
+        var cheque_bounce_amount = parseInt($("#chq_bounce_amount").val());
+        amount_paid = temp_amount_paid - cheque_bounce_amount;
+    }
+    var amount_paid = parseInt($("#Amount_Paid_Submit").val());
+
+    if (amount_paid > amount_payable){
+        $("#Next_Adv_Amount_Submit").val(amount_paid - amount_payable);
+        $("#Next_Due_Amount_Submit").val(0);
+    }
+    else if (amount_paid < amount_payable){
+        $("#Next_Due_Amount_Submit").val(amount_payable - amount_paid);
+        $("#Next_Adv_Amount_Submit").val(0);
+    }
+    else{
+        $("#Next_Adv_Amount_Submit").val(0);
+        $("#Next_Due_Amount_Submit").val(0);
+    }
+
+});
+
+
+// Get Due & Advance amount on Cheque Bounce Amount
+
+$("#chq_bounce_amount").keyup(function(e){
+    console.log('Inside');
+    var amount_payable = 0;
+    amount_paid = parseInt($("#Amount_Paid_Submit").val());
+    amount_payable = parseInt($("#Amount_Payable_Submit").val());
+    if($("#cheque_bounce_check").prop("checked") == true){
+        var temp_amount_paid = parseInt($("#Amount_Paid_Submit").val());
+        var cheque_bounce_amount = parseInt($("#chq_bounce_amount").val());
+        amount_paid = temp_amount_paid - cheque_bounce_amount;
+        console.log(temp_amount_paid);
+        console.log(cheque_bounce_amount);
+        console.log(amount_paid);
+    }
+
+    if (amount_paid > amount_payable){
+        $("#Next_Adv_Amount_Submit").val(amount_paid - amount_payable);
+        $("#Next_Due_Amount_Submit").val(0);
+    }
+    else if (amount_paid < amount_payable){
+        $("#Next_Due_Amount_Submit").val(amount_payable - amount_paid);
+        $("#Next_Adv_Amount_Submit").val(0);
+    }
+    else{
+        $("#Next_Adv_Amount_Submit").val(0);
+        $("#Next_Due_Amount_Submit").val(0);
+    }
+
+});
+
+
+
+// Send Member to Confirmed List
+function sendToConfirmed(payment_id){
+    bootbox.confirm({
+        closeButton: false,
+        message: "Add to Confirmed list ?",
+        buttons: {
+            confirm: {
+                label: 'Yes',                        
+            },
+            cancel: {
+                label: 'No',                        
+            }
+        },
+        callback: function (result) {
+            if (result){   
+                $.ajax({
+                    type: "GET",
+                    url: '/backofficeapp/add-user-to-confirmed-list/',
+                    data: {'payment_id': payment_id},
+                    success: function(response){
+                        if (response.success == 'true'){
+                            bootbox.alert('User is added to Confirmed list');
+                        }
+                        else{
+                            bootbox.alert('Sorry for inconvenience. An error occurred');
+                        }
+                    },
+                    error: function(response){
+                        bootbox.alert('Sorry for inconvenience. An error occurred');
+                        console.log('STCLE = ',response);
+                    },
+                    beforeSend: function(){
+                        $("#processing").css("display", "block");
+                    },
+                    complete: function(){
+                        $("#processing").css("display", "none");
+                    }
+
+                });
+            }
+            else{
+                return;
+            }
+        }
+    });
+}
+
+
+// Show / Hide Cheque Bounce Textbox
+function show_textbox(){
+    if($("#cheque_bounce_check").prop("checked") == true){
+        $("#chq_bounce_amount").css("display", "block");
+    }
+    else if($("#cheque_bounce_check").prop("checked") == false){
+        $("#chq_bounce_amount").css("display", "none");
+    }
+}
+
+
+</script> 
+      
+ </body>
+</html>

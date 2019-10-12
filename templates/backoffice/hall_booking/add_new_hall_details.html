@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+   <!-- BEGIN HEAD -->
+   {% load staticfiles %}
+   <head>
+      <meta charset="utf-8"/>
+      <title>MCCIA | Add New Event </title>
+      {% include 'backoffice/base_css.html' %}
+
+      <!-- END THEME LAYOUT STYLES -->
+   </head>
+   <!-- END HEAD -->
+   <body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+      <!-- BEGIN HEADER -->
+      <div id="processing" style="display:none;">
+         <div id="loading">
+            <img src="{% static 'assets/loading-bars.gif' %}" style="height : 100px;">
+         </div>
+      </div>
+      <!-- BEGIN HEADER & CONTENT DIVIDER -->
+      <div class="clearfix"></div>
+      <!-- END HEADER & CONTENT DIVIDER -->
+      <!-- BEGIN CONTAINER -->
+      <div class="page-container">
+         <!-- BEGIN SIDEBAR -->
+         <div class="page-sidebar-wrapper">
+            <div class="page-sidebar navbar-collapse collapse">
+               {% include 'backoffice/membership/side-panel.html' %}
+            </div>
+         </div>
+         <!-- END SIDEBAR -->
+         <!-- BEGIN CONTENT -->
+         <div class="page-content-wrapper">
+            <!-- BEGIN CONTENT BODY -->
+            <div class="page-content">
+               <div class="portlet light">
+                  <div class="page-bar">
+                     <ul class="page-breadcrumb">
+                        <li>
+                           <a href="/backofficeapp/manage-halls/" style="color: #3eb199;font-size: 16px;">Hall
+                           Booking</a>
+                        </li>
+                        <i class="fa fa-angle-right"></i>
+                        <li>
+                           <span style="color: #00448b;font-size: 16px;">Add New Hall Locations </span>
+                        </li>
+                     </ul>
+                  </div>
+                  <!-- BEGIN FORM-->
+                  <div class="row" id="main_div">
+                     <div class="col-sm-12">
+                        <div class="portlet light profile-sidebar-portlet bordered">
+                           <div class="row">
+                              <div class="col-xs-12">
+                                 {% csrf_token %}
+                                 <form id="add_new_hall_form" role="form" enctype="multipart/form-data"
+                                    name="add_new_hall_form" method="POST">
+                                    <div class="row">
+                                       <div class="col-md-3">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="hallLocation">
+                                             <label class="control-label">Hall Location<span
+                                                class="required">*</span></label>
+                                             <select id="select_hallLocation" name="select_hallLocation"
+                                                class="form-control input-sm select2" onchange="get_hall_list(this)">
+                                                <option value="Select">Select Hall Location</option>
+                                                {% for i in hallLocationObj %}
+                                                <option value="{{i.id}}">{{i.location}}</option>
+                                                {% endfor %}
+                                             </select>
+                                             <label id="hallLocation_error"
+                                                style="color:red; display:none;"></label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-9">
+                                          <div class="form-group form-md-line-input has-success"
+                                             >
+                                             <label class="control-label"> Hall Name <span
+                                                class="required">*</span></label>
+                                             <input id="select_hallName" name="select_hallName"
+                                                class="form-control" maxlength="260" onkeypress="return isKeypress(event, this)" />
+                                             <label id="hallName_error"
+                                                style="color:red; display:none;"></label>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                       <div class="col-md-12">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="select_hallFacility">
+                                             <label class="control-label ">Hall Facility<span
+                                                class="required"></span> </label>
+                                              <label id="hallFacility_error"
+                                                      style="color:red; display:none;"></label>
+                                             <!--<div class="form-group customcheckbox">-->
+                                                <div class="col-md-12">
+                                                    {% for i in hallFunctioningEquipment %}
+                                                                    <div class="col-xs-4">
+                                                                        <div class="md-checkbox">
+                                                                            <input type="hidden" id="f_name_{{i.id}}" value="{{i.equipment_name}}">
+                                                                            <input type="checkbox" name="select_hallFacilityEquipement" value="{{i.id}}"
+                                                                                   id="select_hallFacilityEquipement{{i.id}}"
+                                                                                   class="md-check privillages privillages_hall" onclick="ConfigureFacilityRate(this);">
+                                                                            <label for="select_hallFacilityEquipement{{i.id}}">
+                                                                                <span></span>
+                                                                                <span class="check"></span>
+                                                                                <span class="box"></span> {{i.equipment_name}} </label>
+                                                                        </div>
+                                                                    </div>
+                                                                {% endfor %}
+                                                </div>
+                                             <!--</div>-->
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="row" id="FacilityMainDiv">
+
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                       <div class="col-md-3">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="seatingStyle">
+                                             <label class="control-label"> Seating Style<span
+                                                class="required">*</span></label>
+                                             <select id="select_seatingStyle" name="select_seatingStyle"
+                                                class="form-control input-sm select2" onchange="selectSeatingStyle()">
+                                                <option value="Select">Select</option>
+                                                <option value="Theatre"> Theatre</option>
+                                                <option value="Board Room"> Board Room</option>
+                                                <option value="Class Room"> Class Room</option>
+                                             </select>
+                                             <label id="seatingStyle_error"
+                                                style="color:red; display:none;"></label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-4">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="select_hall_Capacity">
+                                             <label for="select_hallCapacity">Capacity<span
+                                                class="required">*</span>(max 5 char) </label>
+                                             <input type="text" class="form-control" id="select_hallCapacity"
+                                                name="select_hallCapacity" minlength="1" maxlength="5" onkeypress="return validateNumKeyPresss(this, event)">
+                                             <label id="hallCapacity_error"
+                                                style="color:red; display:none;"></label>
+                                          </div>
+                                       </div>
+                                        <div class="col-md-3">
+                                          <div class="form-group form-md-line-input has-success">
+                                                <div class="md-checkbox">
+                                                    <input type="checkbox" name="select_OpenForOnline"
+                                                       id="select_OpenForOnline"
+                                                       class="md-check">
+
+                                                <label for="select_OpenForOnline">
+                                                    <span></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>Open for Online booking</label>
+
+                                            </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                       <div class="col-md-3">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="chargesfor8hr">
+                                             <label> Charges for 8 hours <span class="required">*</span><br>(max 5 char)</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-1">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="chargesfor8hrNM">
+                                             <label>Non Member<span
+                                                class="required">*</span>&nbsp&nbsp&nbsp:</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <div class="form-group form-md-line-input has-success">
+                                             <input type="text" class="form-control" id="select_chargesfor8hrNM"
+                                                name="select_chargesfor8hrNM" minlength="1" maxlength="5" onkeypress="return validateFloatKeyPresss(this, event,'chargesfor8hrNM')">
+                                             <label id="chargesfor8hrNM_error"
+                                                style="margin-top:54px;color:red; display:none;"></label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-1">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="chargesfor8hrM">
+                                             <label>Member<span class="required">*</span>&nbsp&nbsp:</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="error_chargesfor8hrM" >
+                                             <input type="text" class="form-control" id="select_chargesfor8hrM"
+                                                name="select_chargesfor8hrM" minlength="1" maxlength="5" onkeypress="return validateFloatKeyPresss(this, event,'chargesfor8hrM')">
+                                             <label id="chargesfor8hrM_error"
+                                                style="margin-top:54px;color:red; display:none;"></label>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-3">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="chargesfor4hr">
+                                             <label> Charges for 4 hours <span class="required">*</span> <br> (max 5 char)</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-1">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="chargesfor4hrNM">
+                                             <label>Non Member<span
+                                                class="required">*</span>&nbsp&nbsp&nbsp:</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="error_chargesfor4hrNM">
+                                             <input type="text" class="form-control" id="select_chargesfor4hrNM"
+                                                name="select_chargesfor4hrNM" minlength="1" maxlength="5" onkeypress="return validateFloatKeyPresss(this, event,'chargesfor4hrNM')">
+                                             <label id="chargesfor4hrNM_error"
+                                                style="margin-top:54px;color:red; display:none;"></label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-1">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="chargesfor4hrM">
+                                             <label>Member<span class="required">*</span>&nbsp&nbsp:</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="error_chargesfor4hrM">
+                                             <input type="text" class="form-control" id="select_chargesfor4hrM"
+                                                name="select_chargesfor4hrM" minlength="1" maxlength="5" onkeypress="return validateFloatKeyPresss(this, event,'chargesfor4hrM')">
+                                             <label id="chargesfor4hrM_error"
+                                                style="margin-top:54px;color:red; display:none;"></label>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-3">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="chargesfor2hr">
+                                             <label> Charges for 2 hours <span class="required">*</span> <br>(max 5 char)</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-1">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="chargesfor2hrNM">
+                                             <label>Non Member<span
+                                                class="required">*</span>&nbsp&nbsp&nbsp:</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="error_chargesfor2hrNM">
+                                             <input type="text" class="form-control" id="select_chargesfor2hrNM"
+                                                name="select_chargesfor2hrNM" minlength="1" maxlength="5" onkeypress="return validateFloatKeyPresss(this, event,'chargesfor2hrNM')">
+                                             <label id="chargesfor2hrNM_error"
+                                                style="margin-top:54px;color:red; display:none;"></label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-1">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="chargesfor2hrM">
+                                             <label>Member<span class="required">*</span>&nbsp&nbsp:</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="error_chargesfor2hrM">
+                                             <input type="text" class="form-control" id="select_chargesfor2hrM"
+                                                name="select_chargesfor2hrM" minlength="1" maxlength="5" onkeypress="return validateFloatKeyPresss(this, event,'chargesfor2hrM')">
+                                             <label id="chargesfor2hrM_error"
+                                                style="margin-top:54px;color:red; display:none;"></label>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-3">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="chargesforExtrahr">
+                                             <label> Charges for Extra Hour <span
+                                                class="required">*</span> <br>(max 5 char)</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-1">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="chargesforExtrahrNM">
+                                             <label>Non Member<span
+                                                class="required">*</span>&nbsp&nbsp&nbsp:</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="error_chargesforExtrahrNM">
+                                             <input type="text" class="form-control"
+                                                id="select_chargesforExtrahrNM"
+                                                name="select_chargesforExtrahrNM" minlength="1" maxlength="5" onkeypress="return validateFloatKeyPresss(this, event,'chargesforExtrahrNM')">
+                                             <label id="chargesforExtrahrNM_error"
+                                                style="margin-top:54px;color:red; display:none;"></label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-1">
+                                          <div class="form-group form-md-line-input has-success"
+                                             id="chargesforExtrahrM">
+                                             <label>Member<span class="required">*</span>&nbsp&nbsp:</label>
+                                          </div>
+                                       </div>
+                                       <div class="col-md-3">
+                                          <div class=" form-group form-md-line-input has-success">
+                                             <input type="text" class="form-control"
+                                                id="select_chargesforExtrahrM"
+                                                name="select_chargesforExtrahrM" minlength="1" maxlength="5" onkeypress="return validateFloatKeyPresss(this, event,'chargesforExtrahrM')">
+                                             <label id="chargesforExtrahrM_error"
+                                                style="margin-top:54px;color:red; display:none;"></label>
+                                          </div>
+                                       </div>
+                                    </div>
+                                     <br>
+                                     <div class="row">
+                                         <div class="col-md-3">
+                                             <div class="form-group form-md-line-input has-success">
+                                             <label>Hall Image<span class="required"></span>&nbsp&nbsp:</label>
+                                                 <label id="hallImage_error"
+                                                style="color:red; display:none;"></label>
+                                          </div>
+
+
+                                             </div>
+                                        <div class="col-md-9">
+                                                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                            <div class="fileinput-new thumbnail" style="width: 300px; height: 150px;">
+                                                                <img src="/static/assets/images/no_image.png" alt="" style="width: 300px;"> </div>
+                                                            <div class="fileinput-preview fileinput-exists thumbnail" style="width: 300px; max-height: 150px;"> </div>
+                                                            <div>
+                                                                <span class="btn default btn-file">
+                                                                    <span class="fileinput-new"> Select image </span>
+                                                                    <span class="fileinput-exists"> Change </span>
+                                                                    <input type="file" id="select_HallImage" name="select_HallImage"> </span>
+                                                                <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                     </div>
+                                     <br>
+                                     <div class="row">
+                                         <div class="col-md-2">
+                                             <div class="form-group form-md-line-input has-success">
+                                             <label>Hall Position<span class="required">*</span>&nbsp&nbsp:</label>
+                                                 <label id="halllposition_error"
+                                                style="color:red; display:none;"></label>
+                                          </div>
+                                             </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group form-md-line-input has-success"
+                                                            id="lattitude">
+                                                            <label>Lattitude:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class=" form-group form-md-line-input has-success">
+                                                                 <input type="text" class="form-control"
+                                                                    id="lattitude_value"
+                                                                    name="lattitude_value" minlength="1" maxlength="10" onkeypress="return validateFloatKeyPresss(this, event,'lattitude')">
+                                                                 <label id="lattitude_error"
+                                                                    style="margin-top:54px;color:red; display:none;"></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <div class="form-group form-md-line-input has-success"
+                                                            id="longitude">
+                                                            <label>Logitude:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <div class=" form-group form-md-line-input has-success">
+                                                                 <input type="text" class="form-control" id="longitude_value" name="longitude_value" minlength="1" maxlength="10" onkeypress="return validateFloatKeyPresss(this, event,'longitude')">
+                                                                 <label id="longitude_error"
+                                                                    style="margin-top:54px;color:red; display:none;"></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                    </div>
+                                         <div class="col-md-2">
+                                             <div class="form-group form-md-line-input has-success">
+                                             <label>Booking Timing<span class="required">*</span>&nbsp&nbsp:</label>
+                                                 <label id="halllposition_error"
+                                                style="color:red; display:none;"></label>
+                                          </div>
+                                             </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group form-md-line-input has-success"
+                                                            id="lattitude">
+                                                            <label>Start Time:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
+				                                                    <div class="input-group" style="padding-top: 11px;">
+				                                                        <input type="text" class="form-control timepicker timepicker-no-seconds" id="booking_start_time">
+				                                                        <span class="input-group-btn">
+				                                                            <button class="btn default" type="button">
+				                                                                <i class="fa fa-clock-o"></i>
+				                                                            </button>
+				                                                        </span>
+				                                                    </div>
+					                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group form-md-line-input has-success"
+                                                            id="longitude">
+                                                            <label>End Time:</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
+				                                                    <div class="input-group" style="padding-top: 11px;">
+				                                                        <input type="text" class="form-control timepicker timepicker-no-seconds" id="booking_end_time">
+				                                                        <span class="input-group-btn">
+				                                                            <button class="btn default" type="button">
+				                                                                <i class="fa fa-clock-o"></i>
+				                                                            </button>
+				                                                        </span>
+				                                                    </div>
+					                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                    </div>
+                                     </div>
+                                     <div class="row">
+
+
+                                     </div>
+
+                                     <br>
+                                        <div class="row">
+                                            <div id="address_div" class="col-md-3 form-group form-md-line-input has-success">
+                                                 <label>Address
+                                                     <span style="color:blue;">(Max 250 char)</span>
+                                                     <span class="required">*</span>
+                                                 </label>
+                                            </div>
+
+                                            <div class="col-md-4 form-group form-md-line-input has-success">
+                                                    <textarea class="form-control validateRequired" rows="1" id="address" name="address" maxlength="250" onkeypress="return isKeypress(event, this)"></textarea>
+                                            </div>
+                                        </div>
+
+                                     <br>
+                                    <div class="row">
+                                       <div class="col-md-12">
+                                          <div class="form-group form-md-line-input has-success">
+                                             <label class="control-label"> Corresponding Halls: </label>
+                                              <div class="col-md-12" style="padding-top:5px;">
+                                                 <div class="row">
+                                                     <div class="col-md-12">
+                                                   <div id="related_hall"></div>
+                                                </div>
+                                                 </div>
+                                              </div>
+
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="row" style="  margin-top: 30px;">
+                                       <div class="col-xs-12 text-right">
+                                          <button type="button" class="btn btn-outline grey_color "
+                                             onclick="location.href = '/backofficeapp/manage-halls/'">
+                                          Cancel
+                                          </button>
+                                          <button type="button" id="save-continue"
+                                             class="btn btn-outline done_btn">Submit
+                                          </button>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade draggable-modal" id="success_modal" tabindex="-1" role="basic" aria-hidden="true">
+         <div class="modal-dialog" style="width:35%;">
+            <div class="modal-content">
+               <div class="modal-body">
+                  <form action="index.html" class="form-horizontal form-row-seperated">
+                  <div class="form-body">
+                     <h4 class="text-center">New Hall added successfully</h4>
+                  </div>
+                  <div style="text-align:center !important;" class="modal-footer">
+                     <a type="button" href="/backofficeapp/manage-halls/" class="btn green">OK</a>
+                  </div>
+               </div>
+               <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+         </div>
+      </div>
+      <div class="modal fade draggable-modal" id="success_modal_alreadyExist" tabindex="-1" role="basic" aria-hidden="true">
+         <div class="modal-dialog" style="width:35%;">
+            <div class="modal-content">
+               <div class="modal-body">
+                  <form action="index.html" class="form-horizontal form-row-seperated">
+                  <div class="form-body">
+                     <h4 class="text-center">Hall is already exists</h4>
+                  </div>
+                  <div style="text-align:center !important;" class="modal-footer">
+                     <a type="button" href="/backofficeapp/manage-halls/" class="btn green">OK</a>
+                  </div>
+               </div>
+               <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+         </div>
+      </div>
+      <div style="overflow-y:hidden;" id="error-modal" class="modal fade" role="dialog">
+         <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <img style="width: 100px; height: 29px; margin-top: -11px; margin-left: 236px;"
+                     src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+               </div>
+               <div class="modal-body">
+                  <div class="form-body">
+                     <h4 class="text-center">Hall Already Exists</h4>
+                  </div>
+                  <div style="text-align:center !important;" class="modal-footer">
+                     <input data-dismiss="modal" type="submit" value="OK"
+                        class="btn btn-primary" id="btn-loading-demo">
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- BEGIN FOOTER -->
+      <div class="page-footer">
+         <div class="page-footer-inner"> 2018 © Bynry Technologies
+         </div>
+         <div class="scroll-to-top">
+            <i class="icon-arrow-up"></i>
+         </div>
+      </div>
+      <!-- END FOOTER -->
+      <!-- BEGIN CORE PLUGINS -->
+      {% include 'backoffice/base_js.html' %}
+      <script src="{% static 'custom-js/backofficeapp/manage_halls/add_hall_detail.js' %}" type="text/javascript"></script>
+   </body>
+</html>

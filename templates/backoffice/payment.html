@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+{% load staticfiles %}
+<head>
+    <title>Checkout Demo</title>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://www.paynimo.com/paynimocheckout/client/lib/jquery.min.js" type="text/javascript"></script>
+    <!--<script src="https://www.tecprocesssolution.com/proto/p2m/client/lib/jquery.min.js" type="text/javascript"></script>-->
+</head>
+
+<body>
+    <button id="btnSubmit">Make a Payment</button>
+    <!--<script type="text/javascript" src="https://www.tecprocesssolution.com/proto/P2M/server/lib/checkout.js"></script>-->
+    <script type="text/javascript" src="https://www.paynimo.com/Paynimocheckout/server/lib/checkout.js"></script>
+    <script src="{% static 'custom-js/backofficeapp/payment.js' %}" type="text/javascript"></script>
+    <script src="{% static 'custom-js/backofficeapp/sha512.min.js' %}" type="text/javascript"></script>
+</body>
+</html>

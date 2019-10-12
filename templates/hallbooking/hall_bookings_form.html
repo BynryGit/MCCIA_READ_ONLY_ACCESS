@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+</head>
+<body>
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<!-- internal banner section starts here -->
+<section class="InternalBannerSection" style="background-image: url({% static 'assets/images/internal-banner.jpg'%});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h2>Hall Bookings</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/hallbookingapp/open-hallbooking-page/">Hall Bookings</a></li>
+                        <li class="active"><a href="#">MCCIA Trade Tower (5th Floor)</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- internal banner section Ends here -->
+<!-- Member form section starts here -->
+<section class="FormArea internalSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="FormTitleArea">
+                    <h2><span>Booking For:</span> {{hall_detail_obj.hall_name}} </h2>
+
+                    <p>Please check hall availability before booking</p>
+
+                    <div class="radio">
+                        <div class="radiobox">
+                            <input type="radio" id="radiobtn1" value="nm" name="radiobtn-1"
+                                   onchange="check_member(this.value)" checked="checked">
+                            <label for="radiobtn1">NonMember</label>
+                        </div>
+                        <input type="text" value="{{request.user.is_anonymous}}" id="check_user" hidden>
+                        <div class="radiobox">
+                            <input type="radio" id="radiobtn2" value="m"
+                                   onchange="check_member(this.value)" name="radiobtn-1">
+                            <label for="radiobtn2">Member</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row validateContainer">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="FormInnerArea">
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                        <form>
+                            <div class="">
+                                <div class="form-group" id="member_note">
+                                    <div class="col-md-9">
+                                        <span class="yellowNote">The cheque towards the refund, on account of cancellation / excess payment / any other will be issued in the same name as mentioned in this form in ‘Name of the Company/Individual Name’.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" value="{{hall_detail_obj.id}}" id="hall_id" name="hall_id" hidden>
+                                    <input type="text" value="{{hall_detail_obj.hall_name}}" id="hall_name" name="hall_name" hidden>
+                                    <input type="text" value="{{user_detail_id}}" id="user_detail_id" name="user_detail_id" hidden>
+                                    <label class="col-md-3 control-label" for="Company / Individual Name">Company /
+                                        Individual Name</label>
+
+                                    <div class="col-md-8" id="nonmember_list">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control validateRequired validateAlphaonly"
+                                                   name="CompanyIndividualName" id="CompanyIndividualName"
+                                                   maxlength="50">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4" id="member_list">
+                                            <select id="company_list" class="form-control" disabled>
+                                                <option value="">Select Company / Individual Name</option>
+                                                {% for member in member_list %}
+                                                <option value="{{member.id}}" {% if user_detail_id == member.id %} selected {% endif %}>{{member.company.company_name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="member_note2">
+                                    <div class="col-md-offset-3 col-md-6">
+                                        <p style="color: blue;">If your name does not appear in the list please ensure that you have renewed your membership for the current financial year.</p>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="membership_row">
+                                    <label class="col-md-3 control-label" for="membership_no">Membership No.</label>
+                                    <div class="col-md-6">
+                                        <div class="validateField">
+                                            <label class="col-md-3 control-label" for="membership_no"><span id="membership_no" style="font-weight: bold;"></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="form-group" id="nonmember_note">
+                                        <label class="col-md-9"><span class="yellowNote">The cheque towards the refund, on account of cancellation / excess payment / any other will be issued in the same name as mentioned in this form in ‘Name of the Company/Individual Name’.</span></label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="Address">Address</label>
+
+                                    <div class="col-md-6">
+                                        <div class="validateField">
+                                            <textarea class="form-control validateRequired" rows="1" id="address"
+                                                      name="address"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="ContactPerson">Contact Person</label>
+
+                                    <div class="col-md-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control validateRequired validateAlphaonly"
+                                                   name="ContactPerson" id="ContactPerson" maxlength="50">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="Designation">Designation</label>
+
+                                    <div class="col-md-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control validateRequired validateAlphaonly"
+                                                   name="Designation" id="Designation" maxlength="50">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="Contact Details">Contact Details</label>
+
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <label class="col-lg-3 col-md-4 control-label"
+                                                           style="color: #00000094;" for="Tel.(O)">Tel.(O)</label>
+
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <div class="validateField">
+                                                            <input type="text"
+                                                                   class="form-control validateRequired validateNumber "
+                                                                   name="Tel" id="Tel" maxlength="12" minlength="8">
+
+                                                            <!--<input type="text"-->
+                                                                   <!--class="form-control validateRequired validateNumber validateTelephoneNoLimit"-->
+                                                                   <!--name="Tel" id="Tel" maxlength="12" minlength="8">-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <label class="col-lg-3 col-md-4 control-label"
+                                                           style="color: #00000094;" for="Mobile">Mobile</label>
+
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <div class="validateField">
+                                                            <input type="text"
+                                                                   class="form-control validateRequired validateNumber validateMobileNoLimit"
+                                                                   name="Mobile" id="Mobile" maxlength="10"
+                                                                   minlength="10">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <label class="col-lg-3 col-md-4 control-label"
+                                                           style="color: #00000094;" for="TelR">Tel.(R)</label>
+
+                                                    <div class="col-lg-9 col-md-8">
+                                                        <div class="validateField">
+                                                            <!--class="form-control validateRequired validateNumber validatelandlineContactNumber"-->
+                                                            <input type="text"
+                                                                   class="form-control validateRequired validateNumber"
+                                                                   name="TelR" id="TelR" maxlength="12"
+                                                                   minlength="8">
+
+                                                            <!--<input type="text"-->
+                                                                   <!--class="form-control validateRequired validateNumber validateTelephoneNoLimit"-->
+                                                                   <!--name="TelR" id="TelR" maxlength="12"-->
+                                                                   <!--minlength="8">-->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="Email">Email</label>
+
+                                    <div class="col-md-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control validateRequired validateEmail"
+                                                   name="email" id="email" maxlength="50">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="Nature of the Event">Nature of the
+                                        Event</label>
+
+                                    <div class="col-md-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control validateRequired validateAlphaonly"
+                                                   name="NatureoftheEvent" id="NatureoftheEvent" maxlength="50">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="Contact No">Contact No</label>
+
+                                    <div class="col-md-6">
+                                        <div class="validateField">
+                                            <input type="text"
+                                                   class="form-control validateRequired validateNumber validateMobileNoLimit"
+                                                   name="ContactNumber" id="ContactNumber" maxlength="10"
+                                                   minlength="10">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="FromDate">From Date</label>
+
+                                    <div class="col-md-6">
+
+                                        <div class="input-group">
+                                            <div class="validateField">
+                                                <input class="form-control validateRequired validateDate dateField"
+                                                       id="FromDate" name="FromDate" type="text"/>
+                                            </div>
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar">
+                                                </i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="ToDate">To Date</label>
+
+                                    <div class="col-md-6">
+
+                                        <div class="input-group">
+                                            <div class="validateField">
+                                                <input class="form-control validateRequired validateDate dateField"
+                                                       id="ToDate" name="ToDate" type="text"/>
+                                            </div>
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar">
+                                                </i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                    <!--<div class="g-recaptcha" data-sitekey="6LcPTV0UAAAAAHlTBrvPhN4oCSqDPDoWpLk70l3d"></div>-->
+
+                    <!--<p class="captchdescription">Fields marked as <span>*</span> are mandatory.</p>-->
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group rightalignbtn">
+                    <div class="Formbuttons">
+                        <button type="submit" id="submit_btn" class="btn btn-default subbtn checkValidationBtn"
+                                value="Submit"
+                                onclick="add_table()">Submit
+                        </button>
+                        <button type="submit" id="re_enter_btn" class="btn btn-default subbtn checkValidationBtn"
+                                value="Re-Enter"
+                                onclick="add_table()" style="display: none;">Re-Enter
+                        </button>
+                        <button type="reset" id="reset_btn" class="btn btn-default reset" value="Reset">Reset</button>
+                    </div>
+                    <br>
+                    <a href="{% url 'hallbookingapp:terms_condition' %}" class="termsCondisionBtn">Terms and condition</a>
+                </div>
+            </div>
+            <br>
+            <div class="row" id="time_slot_row" style="display: none;">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <table class="table table-bordered" id="time_table">
+                            <thead class="form-group">
+                            <tr>
+                                <td style="text-align: center">Day</td>
+                                <td style="text-align: center">From Time</td>
+                                <td style="text-align: center">To Time</td>
+                                <td style="text-align: center">Holiday</td>
+                            </tr>
+                            </thead>
+                            <tbody class="form-group" id="time_table_body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <br>
+
+            <div class="row" id="confirm_booking">
+                <div class="col-md-1" style="float: right;">
+                    <button id="confirm_booking_btn" class="btn btn-default subbtn" onclick="save_booking()"
+                    style="display: none;">Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Member form section ends here -->
+
+{% endblock %}
+{% block js_block %}
+<script src="{% static 'custom-js/hallbooking/hall_booking_form.js' %}" type="text/javascript"></script>
+{% endblock %}
+
+</body>
+</html>

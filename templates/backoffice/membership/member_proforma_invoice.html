@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>Member Proforma Invoice</title>
+    <style type="text/css">
+    @page {
+            size: letter portrait;
+            margin: 1.2cm;
+            border: 0pt solid white;
+            @frame header_frame{           /* Static Frame */
+                 -pdf-frame-content: header_content;
+                left: 30pt; width: 550pt; top: 20pt; height: 50pt;
+                border: 0pt solid white;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                 -pdf-frame-content: footer_content;
+                left: 30pt; width: 550pt; top: 750pt; height: 20pt;
+                border: 0pt solid white;
+            }
+        }
+
+        .boxed-top {
+            border-top: 1px solid black;
+        }
+
+        .boxed-bottom {
+            border-bottom: 1px solid black;
+        }
+
+        .boxed-left {
+            border-left: 1px solid black;
+        }
+
+        .boxed-right {
+            border-right: 1px solid black;
+        }
+
+        .inside_box{
+            padding-left:12px;
+            padding-right:12px;
+            padding-top:3px;
+        }
+
+        .inside_box_two{
+            padding-left:5px;
+            padding-right:12px;
+            padding-top:3px;
+        }
+
+        .right_padding{
+            padding-right: 3px;
+        }
+
+        .bold_label{
+            font-weight : 700;
+            font-size: 16px;
+        }
+
+        .semi_bold_label{
+            font-weight : 700;
+            font-size: 16px;
+        }
+
+        label{
+            font-size: 13px;
+        }
+
+        .text-center{
+            text-align:center;
+        }
+
+        .text-right{
+            text-align:right;
+        }
+        .text-left{
+            text-align:left;
+            padding-left:5px;
+        }
+        .fill-image{
+            display: block;
+            vertical-align: bottom;
+        }
+        .table-head-size{
+            font-size:12px;
+        }
+        .table-data-size{
+            font-size:11px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table>
+                <tr>
+                    <td>
+                        <center>
+                            <img src="https://www.mcciapune.com/static/assets/images/mccia-logo-footer.png" width="100%"
+                                 height="100%"><br>
+                            <p>
+                                <label><b>MAHRATTA CHAMBER OF COMMERCE INDUSTRIES AND AGRICULTURE</b></label><br>
+                                <label>A Wing, 5th Floor, MCCIA Trade Tower, ICC Complex, 403-A, S.B. Road, Pune 411016,
+                                    India</label><br>
+                                <label>Tel: 2570 9000, 2570 9161 Fax: 2570 9021 Email:
+                                    membership@mcciapune.com</label><br>
+                                <label>www.mcciapune.com</label>
+                            </p>
+                            <p>
+                                <label style="font-size: 15px;"><b>Proforma Invoice</b></label><br>
+
+                            </p>
+                            <label>This Invoice is not eligible to avail GST input credit.</label>
+                        </center>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <center>
+                <table border="1">
+                    <tr>
+                        <td class="inside_box" width="25%"><label>Name</label></td>
+                        <td class="inside_box text-left" width="100%"><label><b>{{member_obj.company.company_name}}</b></label></td>
+                        <td class="inside_box" width="25%"><label>Membership</label></td>
+                        <td class="inside_box" width="20%"><label><b>{% if member_obj.member_associate_no %}{{member_obj.member_associate_no}}{% endif %}</b></label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label>Address</label></td>
+                        <td class="inside_box text-left"><label><b>{{member_obj.correspond_address}}</b></label></td>
+                        <td class="inside_box"><label>Date</label></td>
+                        <td class="inside_box"><label><b>{% now "d/m/Y" %}</b></label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label>GSTIN</label></td>
+                        <td class="inside_box text-left" colspan="3"><label>{% if member_obj.gst %}{{member_obj.gst}}{% endif %}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label>Contact No</label></td>
+                        <td class="inside_box text-left" colspan="3"><label>{% if member_obj.enroll_type == 'CO' %}{% if member_obj.poc_contact and member_obj.poc_contact != 'None' %}{{member_obj.poc_contact}},{% endif %}{% if member_obj.correspond_landline1 %}{% if member_obj.correspond_std1 %}{{member_obj.correspond_std1}} {% endif %}{{member_obj.correspond_landline1}} {% endif %} {% if member_obj.correspond_landline2 %}{% if member_obj.correspond_std2 %}{{member_obj.correspond_std2}} {% endif %}{{member_obj.correspond_landline2}}{% endif %}{% elif member_obj.person_cellno %}{{member_obj.person_cellno}} {% elif member_obj.ceo_cellno %}{{member_obj.ceo_cellno}}{% endif %}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label>Email</label></td>
+                        <td class="inside_box text-left" colspan="3"><label>{{member_obj.ceo_email}}</label></td>
+                    </tr>
+                </table>
+            </center>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <center>
+                <table border="1">
+                    <tr>
+                        <td class="inside_box" width="30%" style="background-color: rgb(193, 193, 193); word-wrap:break-word;">Sr No.</td>
+                        <td class="inside_box" style="background-color: rgb(193, 193, 193); word-wrap:break-word;"><label>Particulars</label></td>
+                        <td class="inside_box" width="15%" style="background-color: rgb(193, 193, 193); word-wrap:break-word;"><label>Qty</label></td>
+                        <td class="inside_box" width="15%" style="background-color: rgb(193, 193, 193); word-wrap:break-word;"><label>Rate</label></td>
+                        <td class="inside_box" width="30%" style="background-color: rgb(193, 193, 193); word-wrap:break-word;"><label>Per</label></td>
+                        <td class="inside_box" width="25%" style="background-color: rgb(193, 193, 193); word-wrap:break-word;"><label>Amount</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label>1</label></td>
+                        <td class="inside_box text-left"><label>Members Slab (Renewal for {{year}})</label></td>
+                        <td class="inside_box">&nbsp;</td>
+                        <td class="inside_box">&nbsp;</td>
+                        <td class="inside_box">&nbsp;</td>
+                        <td class="inside_box"><label><b>{{member_obj.membership_slab.annual_fee}}</b></label></td>
+                    </tr>
+                     <tr>
+                        <td class="inside_box">&nbsp;</td>
+                        <td class="inside_box">&nbsp;</td>
+                        <td class="inside_box">&nbsp;</td>
+                        <td class="inside_box">&nbsp;</td>
+                        <td class="inside_box">&nbsp;</td>
+                        <td class="inside_box">&nbsp;</td>
+                        <!-- <td class="inside_box" colspan="6"></td> -->
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label><b>SAC</b></label></td>
+                        <td class="inside_box text-left"><label><b>Service Description</b></label></td>
+                        <td class="inside_box">&nbsp;</td>
+                        <td class="inside_box">&nbsp;</td>
+                        <td class="inside_box">&nbsp;</td>
+                        <td class="inside_box">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label>999599</label></td>
+                        <td class="inside_box text-left"><label>Services provided by other membership organizations n.e.c.</label></td>
+                        <td class="inside_box">&nbsp;</td>
+                        <td class="inside_box">&nbsp;</td>
+                        <td class="inside_box">&nbsp;</td>
+                        <td class="inside_box">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td class="inside_box"><label><b>Tax Rate</b></label></td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="inside_box text-right" colspan="3"><label>Add : Central Goods & Service Tax</label></td>
+                        <td class="inside_box"><label>9%</label></td>
+                        <td class="inside_box"><label><b>{{tax_amount}}</b></label></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="inside_box text-right" colspan="3"><label>Add : State Goods & Service Tax</label></td>
+                        <td class="inside_box"><label>9%</label></td>
+                        <td class="inside_box"><label><b>{{tax_amount}}</b></label></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="inside_box text-right" colspan="3"><label>Add: Integrated Goods & Service Tax (Other than Maharashtra)</label></td>
+                        <td class="inside_box"><label>18%</label></td>
+                        <td class="inside_box"><label><b>-</b></label></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td class="inside_box"><label><b>Total Rs.</b></label></td>
+                        <td class="inside_box"><label><b>{{total_amount}}/-</b></label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box text-left" colspan="4"><label><b><u>Note:</u></b><br>This Proforma Invoice is being issued for purposes of better accountability and reconciliation of GST. Final Tax Invoice would be dispatched soon after receipt of the payment.</label></td>
+                        <td class="inside_box"><label><b>For MCCIA</b></label></td>
+                        <td class="inside_box"><label><b>Membership Department</b></label></td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="inside_box text-left"><label>Cheque / DD should be drawn in favour of <b>"MCCIA"</b></label><br>
+                            <label><b>MCCIA Bank Details</b></label><br>
+                            <label>HDFC BANK LTD</label><br>
+                            <label>SAVINGS ACCOUNT</label><br>
+                            <label>BRANCH NAME : BHANDARKAR ROAD,PUNE.</label><br>
+                            <label>ACCOUNT NO : 50100015743490</label><br>
+                            <label>IFSC CODE : HDFC0000007</label><br>
+                            <label>SWIFT CODE : HDFCINBBPNE</label><br>
+                            <label>MICR : 411240002</label>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+            <p><h1  style="text-align:center;">*************** If you have Already Renewed Membership please ignore this Email. ***************</h1></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

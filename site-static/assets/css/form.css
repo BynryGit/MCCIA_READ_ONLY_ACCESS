@@ -1,0 +1,491 @@
+/* Event Details page css start here */
+/* Test section css start here */
+.FormTitleArea h2 {
+    color: #0167b2;
+    margin-bottom: 20px;
+}
+.FormTitleArea h2 span {
+    color: #161d28;
+}
+.FormTitleArea h3 span{
+    font-weight: 700;
+}
+.FormTitleArea h3 {
+    color: #000000;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.FormTitleArea p {
+    color: #ef5252;
+    margin-bottom: 30px;
+}
+.FormTitleArea p i.fa.fa-info-circle {
+    font-size: 22px;
+    margin-right: 7px;
+    vertical-align: middle;
+}
+.FormTitleArea .radio {
+    margin-top: 0;
+    margin-bottom: 35px;
+}
+/* Test section css end here */
+
+/* Evente detail form css start here */
+.FormInnerArea {
+    padding: 50px 65px 25px 65px;
+    -webkit-box-shadow: 0px 2px 25px 7px #eeeeee;/* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 0px 2px 25px 7px #eeeeee;/* Firefox 3.5 - 3.6 */
+    box-shadow: 0px 2px 25px 7px #eeeeee;/* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */  
+    margin-bottom: 30px;
+}
+.FormInnerArea .form-group label {
+    color: #000000;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
+    padding-top: 7px;
+}
+.FormInnerArea .form-group{
+    float: left;
+    width: 100%;
+    margin-bottom: 15px;
+}
+/*.FormInnerArea .form-group input[type=text]{
+    height: 18px !important;
+}*/
+.FormInnerArea .form-group textarea {
+    margin-bottom: 15px;
+}
+.FormInnerArea .form-group .form-control {
+    border-radius: 0 !important;
+    border-top: none;
+    border-left: none;
+    border-right: 0;
+    box-shadow: none;
+}
+.FormInnerArea .form-group select#industry {
+    margin-top: -12px;
+    font-style: italic;
+}
+.FormInnerArea .form-group label.colorgreen {
+    color: #146539 !important;
+    font-weight: 700;
+}
+.FormInnerArea .form-group p.captchdescription {
+    margin-top: 0 !important;
+}
+.FormInnerArea .form-group .input-group .input-group-addon {
+    background: none;
+    border: none;
+    padding: 0;
+    position: relative;
+    top: -12px;
+    right: 20px;
+    z-index: 9999;
+}
+.FormInnerArea .form-group.Participantslist label {
+    color: #666666;
+    font-size: 13px;
+}
+.FormInnerArea .form-group select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.selectdiv:after {
+    content: "\f0d7";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 18px;
+    color: #333;
+    right: 12px;
+    top: 8px;
+    padding: 0 0 2px;
+    position: absolute;
+    pointer-events: none;
+}
+/* cutom radio button style */
+/* top radio button */
+.FormTitleArea input[type="radio"]:checked + label:before,
+.FormTitleArea input[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #1a693e;
+    border-radius: 100%;
+    background: #fff;
+}
+.FormTitleArea input[type="radio"]:checked + label:after,
+.FormTitleArea input[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: #1cc182;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.FormTitleArea input[type="radio"]:checked + label, 
+.FormTitleArea input[type="radio"]:not(:checked) + label {
+    position: relative;
+    padding-left: 40px;
+    cursor: pointer;
+    line-height: 33px;
+    display: inline-block;
+    color: #000000;
+    font-size: 20px;
+}
+/* top radio button */
+
+/* form in radio button */
+
+input[type="radio"]:checked,
+input[type="radio"]:not(:checked){
+    position: absolute;
+    left: -9999px;
+    overflow: hidden;
+}
+input[type="radio"]:checked + label,
+input[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #000000;
+    padding-top: 0;
+}
+
+
+input[type="radio"]:checked + label:before,
+input[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #1a693e;
+    border-radius: 100%;
+    background: #fff;
+}
+input[type="radio"]:checked + label:after,
+input[type="radio"]:not(:checked) + label:after {
+	content: '';
+    width: 10px;
+    height: 10px;
+    background: #1a693e;
+    position: absolute;
+    top: 6px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+input[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+input[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.radiobox {
+    display: inline-block;
+    margin-right: 40px;
+	margin-bottom: 10px;
+}
+/* cutom radio button style */
+
+/* custom checkbox style css */
+
+.FormInnerArea .form-group .checkbox [type="checkbox"]:checked,
+[type="checkbox"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="checkbox"]:checked + label,
+[type="checkbox"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 16px;
+    display: inline-block;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 0px;
+    margin-right: 20px;
+        padding-top: 0;
+}
+[type="checkbox"]:checked + label:before,
+[type="checkbox"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #1a693e;
+    background: #fff;
+    border-radius: 4px;
+}
+[type="checkbox"]:checked + label:after,
+[type="checkbox"]:not(:checked) + label:after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #1a693e;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+}
+[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="checkbox"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+.customcheckbox {
+    margin-top: 30px;
+}
+.customcheckbox span.help-block {
+    margin-bottom: -8px !important;
+}
+.checkbox label.iaccept {
+    color: #42474c !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+        margin-bottom: 0;
+}
+.checkbox label.iaccept span{
+    font-weight: 700;
+}
+/* custom checkbox styel */
+/* Evente detail form css end here */
+
+/* Right panel css start here */
+.WhentToAttendSidebar {
+    background: #146539;
+    border-radius: 10px;
+    padding: 35px 30px 25px 40px;
+}
+.WhentToAttendSidebar ul{
+    margin-bottom: 0;
+}
+.WhentToAttendSidebar ul li {
+    /*padding-left: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    font-family: 'Merriweather', serif;*/
+    padding-left: 0;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 18px;
+    font-family: 'Merriweather', serif;
+    margin-bottom: 20px;
+}
+.WhentToAttendSidebar ul li span {
+    /*display: block;
+    font-weight: 300;*/
+    display: block;
+    font-weight: 300;
+    font-size: 14px;
+    padding-top: 2px;
+    color: #ffffffe6;
+}
+.WhentToAttendSidebar ul li:last-child {
+    margin-bottom: 0;
+}
+.WhentToAttendSidebar ul li:before {
+    display: none;
+}
+
+.ContactPerson {
+    background: #eeeeee;
+    border-radius: 10px;
+    padding: 20px 30px 15px 40px;
+    margin-top: 20px;
+}
+.ContactPerson h3 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d9d9d9;
+    margin-bottom: 10px;
+}
+.ContactPerson ul{
+    margin-bottom: 0;
+}
+.ContactPerson ul li {
+    padding-left: 0;
+    color: #5a5e62;
+    margin-bottom: 0px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'Lato', sans-serif;
+    line-height: 20px;
+}
+.ContactPerson ul li:before {
+    display: none;
+}
+.ContactPerson ul li i {
+    margin-right: 10px;
+}
+/* Right panel css start here */
+/* Event Details page css end here */
+
+/* hall bookings form page css start here*/
+.rightalignbtn {
+    text-align: right;
+}
+
+.yellowNote {
+	    color: #bb721b;
+        font-size: 13px;
+        font-weight: 400;
+        font-family: 'Lato', sans-serif;
+}
+
+.termsCondisionBtn {
+	color: #0167b2;
+    font-size: 13px;
+    display: block;
+    padding: 5px 5px;
+    font-weight: 400;
+}
+
+.termsCondisionBtn:after {
+    content: "\f105";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 600;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+/* hall bookings form page css start here*/
+.checkboxContainer table,
+.radioboxContainer table {
+    width: 100%;
+}
+
+.checkboxContainer table tr td input[type="checkbox"] {
+	display: none;
+}
+
+.checkboxContainer .checkbox,
+.radioboxContainer .radiobox,
+.checkboxContainer tr td,
+.radioboxContainer tr td {
+    width: 25%;
+    display: inline-block;
+    float: left;
+    margin-bottom: 20px;
+    vertical-align: top;
+    margin-top: 0;
+	margin-right: 0;
+}
+
+.FormInnerArea h3 {
+	color: #146539;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Merriweather', serif;
+    margin-bottom: 15px;
+    margin-top: 0;
+}
+
+/* Responsive css start here */
+
+@media (max-width: 1199px){
+ .FormInnerArea {
+    padding: 50px 35px 25px 35px;
+}   
+}
+
+@media (max-width: 991px){
+ .FormInnerArea .form-group select#industry {
+    margin-top: 0px;
+} 
+
+.FormInnerArea .form-group input[type=text]{
+    margin-bottom: 0;
+}
+.checkboxContainer .checkbox, .radioboxContainer .radiobox,
+.checkboxContainer tr td,
+.radioboxContainer tr td {
+    width: 33.33%;
+}
+}
+
+@media (max-width: 767px){
+.FormInnerArea .form-group img{
+    width: 100%;
+}   
+
+.rightalignbtn {
+    text-align: left;
+}
+.checkboxContainer .checkbox, .radioboxContainer .radiobox,
+.checkboxContainer tr td,
+.radioboxContainer tr td {
+    width: 50%;
+}
+}
+
+@media (max-width: 580px){
+    
+}
+
+@media (max-width: 480px){
+.FormInnerArea {
+    padding: 20px 0px 20px 0px;
+}
+
+.checkboxContainer .checkbox, .radioboxContainer .radiobox,
+.checkboxContainer tr td,
+.radioboxContainer tr td {
+    width: 100%;
+	margin-bottom: 10px;
+}
+
+.checkboxContainer .validateField .help-block, 
+.checkboxContainer .validateField label.error,
+.radioboxContainer .validateField .help-block, 
+.radioboxContainer .validateField label.error {
+    bottom: -18px;
+}
+  
+}
+/* Responsive css end here */

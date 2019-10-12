@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+        .demo {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: left;
+        padding-left: 16px;
+        font-family: arial, sans-serif;
+        }
+        .demo tr:nth-child(even) {
+        background-color: #000000;
+        }
+        .main{
+        border: 1px solid black;
+        background-color: #ffffff;
+        }
+
+        .solid {
+            border: 1px solid black;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 50px;
+            padding-bottom: 40px;
+            position: absolute;
+            top: 5%;
+            left: 20%;
+            right: 20%;
+          }
+        .fon {size: small; }
+
+        .left-bottom {
+          position: absolute;
+          top: 120%;
+          left: 5%;
+          right: 20%;
+        }
+        
+        table {
+			    font-family: arial, sans-serif;
+			    border-collapse: collapse;
+			    width: 100%;
+			}
+
+			td, th {
+				    text-align: left;
+				    padding: 7px;
+				}
+
+</style>
+</head>
+<body>
+<br><br>
+<div class="container">
+	<div class="row">
+        <div class="col-md-offset-2 col-md-8 col-md-offset-2 solid">        	
+                         
+                    <center><img alt="" src="http://www.mcciapune.com/static/assets/images/mccia-logo-footer.png" ></center>
+                        <center><b> MAHRATTA CHAMBER OF COMMERCE INDUSTRIES AND AGRICULTURE </b></center>
+                        <center>A & B Wing, 5th Floor, MCCIA Trade Tower, SLKICC Complex, 403-A, S.B.Road, Pune
+                            411016.
+                        </center>                                            
+                        <br>
+                        <center><b> Event Registration Acknowledgment </span></b>
+                        </center>
+                        <br>
+								<br>
+								
+								
+								<table>
+									<tr>
+										<td><label><b>Event Name: </b></label></td>
+										<td><label>{{event_reg_obj.event.event_title}} </label></td>
+									</tr>
+									<tr>
+										<td><label><b>Event Time: </b></label></td>
+										<td><label>{{when_to_attend}} - {{time_to_attend}} </label></td>
+									</tr>
+									<tr>
+										<td><label><b>Location: </b></label></td>
+										<td><label>{{event_reg_obj.event.hall_details.hall_location.location}} </label></td>
+									</tr>								
+								</table>
+								<table>
+									<tr>
+										<td><label><b>Contact Person: </b></label></td>
+										<td><label> {{event_reg_obj.contact_person_name}} </label></td>
+										<td><label><b>Contact: </b></label></td>
+										<td><label> {{event_reg_obj.contact_person_number}} </label></td>
+									</tr>
+									<tr>								
+									  {% if event_reg_obj.is_member == True %}	
+										<td><label><b>Organization Name: </b></label></td>
+										<td><label>{{event_reg_obj.user_details.company.company_name}} </label></td>
+									  {% else %}
+									  	<td><label><b>Organization Name: </b></label></td>
+										<td><label>{{event_reg_obj.name_of_organisation}} </label></td>
+									  {% endif %}
+									</tr>
+									<tr>								
+									  {% if event_reg_obj.is_member == True %}	
+										<td><label><b>Membership No: </b></label></td>
+										<td><label>{{event_reg_obj.user_details.member_associate_no}} </label></td>
+									  {% else %}
+									  	<td><label><b>Membership No: </b></label></td>
+										<td><label> NA </label></td>
+									  {% endif %}
+									</tr>																									
+								</table>
+								<br>
+							   	<p>Thank you for your registration! You are registered for the following:</p>
+							   <br>
+							   <table>
+									<tr>
+										<td><label><b>Registration Number: </b></label></td>
+										<td><label> {{event_reg_obj.reg_no}} </label></td>
+										<td><label><b>Registration Date: </b></label></td>
+										<td><label> {{reg_date}} </label></td>
+									</tr>
+									<tr>
+										<td><label><b>No of Participants: </b></label></td>
+										<td><label> {{event_reg_obj.no_of_participant}} </label></td>
+										<td><label><b>Discount: </b></label></td>
+										<td><label> 0 </label></td>
+									</tr>
+									<tr>
+										<td><label><b>Amount Payable: </b></label></td>
+										<td><label> {{event_reg_obj.total_amount}} </label></td>
+										<td><label><b>Payment Mode: </b></label></td>
+										<td><label> {{payment_mode}} </label></td>
+									</tr>
+							   </table>
+							   <br>														
+								<table border="1">
+									<tr>
+										<th style="background-color: rgb(193, 193, 193); width: 20%; word-wrap:break-word;">Name</th>
+										<th style="background-color: rgb(193, 193, 193); width: 20%; word-wrap:break-word;">Contact No.</th>
+										<th style="background-color: rgb(193, 193, 193); width: 20%; word-wrap:break-word;">Email ID</th>
+										<th style="background-color: rgb(193, 193, 193); width: 20%; word-wrap:break-word;">Designation</th>
+									</tr>
+									{% for obj in event_reg_participant_list %}
+										<tr>
+											<td>{{obj.event_user_name}}</td>
+											<td>{{obj.contact_no}}</td>
+											<td>{{obj.email_id}}</td>
+											<td>{{obj.designation}}</td>
+										</tr>
+								    {% endfor %}
+								</table>
+								<br>
+									<label><b>Please Note: </b></label>
+								<br>
+								<ul>
+									<li>Registration confirmation is valid subject to realization of payment.</li>
+									<li>In case of events at S B Road office, entrance to events is from ‘A’ wing only.</li>
+									<li>For security reasons, participants are requested to carry their photo identity such as Identity. card, Driving License etc.</li>
+									<li>Participants need to carry soft/hard copy of event registration confirmation in case of paid events.</li>
+									<li>These documents may be required for security checks at MCCIA entrance gate.</li>
+								</ul>
+								<br>
+																																											                        
+                        <br><center><b>(This is a computer generated acknowledgement and therefore needs no signature)</b>
+                        </center>                  
+        </div>    
+</div>
+</div>
+<!--  Models End -->
+</body>
+</html>

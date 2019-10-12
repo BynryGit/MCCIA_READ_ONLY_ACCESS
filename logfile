@@ -1,0 +1,432 @@
+[09/Oct/2019 17:49:58] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[09/Oct/2019 17:49:58] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[09/Oct/2019 17:49:58] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[09/Oct/2019 17:49:58] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[09/Oct/2019 17:49:58] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[09/Oct/2019 17:49:58] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[09/Oct/2019 17:49:58] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_bajaj_gallery_new.jpg
+[09/Oct/2019 17:49:58] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[09/Oct/2019 17:49:58] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[09/Oct/2019 17:49:58] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[09/Oct/2019 17:49:59] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[09/Oct/2019 17:49:59] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[09/Oct/2019 17:49:59] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[09/Oct/2019 17:49:59] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[09/Oct/2019 17:49:59] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[09/Oct/2019 17:49:59] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[09/Oct/2019 17:49:59] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[09/Oct/2019 17:49:59] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[09/Oct/2019 17:49:59] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[09/Oct/2019 17:49:59] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[09/Oct/2019 17:49:59] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_bajaj_gallery_new.jpg
+[09/Oct/2019 17:49:59] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[09/Oct/2019 17:49:59] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[09/Oct/2019 17:49:59] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[09/Oct/2019 17:50:04] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Amphitheater.jpg
+[09/Oct/2019 17:50:04] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_I.jpg
+[09/Oct/2019 17:50:04] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_II.jpg
+[09/Oct/2019 17:50:04] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_hall.jpg
+[09/Oct/2019 17:50:04] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_I__II.jpg
+[09/Oct/2019 17:51:30] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[09/Oct/2019 17:51:30] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[09/Oct/2019 17:51:30] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[09/Oct/2019 17:51:30] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[09/Oct/2019 17:51:30] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[09/Oct/2019 17:51:30] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[09/Oct/2019 17:51:30] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[09/Oct/2019 17:51:30] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[09/Oct/2019 17:51:30] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_bajaj_gallery_new.jpg
+[09/Oct/2019 17:51:30] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[09/Oct/2019 17:51:30] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[09/Oct/2019 17:51:30] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[09/Oct/2019 17:51:35] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_I.jpg
+[09/Oct/2019 17:51:35] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_II.jpg
+[09/Oct/2019 17:51:35] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_hall.jpg
+[09/Oct/2019 17:51:35] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Amphitheater.jpg
+[09/Oct/2019 17:51:35] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_I__II.jpg
+[09/Oct/2019 18:22:13] ERROR [django.request:256] Internal Server Error: /hallbookingapp/cancel-booking/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/decorators.py", line 145, in inner
+    return func(*args, **kwargs)
+  File "/home/admin12/Priyanka/NEW_MCCIA_BACKOFFICE/MCCIA_BACKOFFICE/hallbookingapp/view/hall_booking_confirm.py", line 1533, in cancel_booking
+    transaction.rollback(sid)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/transaction.py", line 49, in rollback
+    get_connection(using).rollback()
+  File "/usr/local/lib/python2.7/dist-packages/django/db/transaction.py", line 21, in get_connection
+    return connections[using]
+  File "/usr/local/lib/python2.7/dist-packages/django/db/utils.py", line 237, in __getitem__
+    self.ensure_defaults(alias)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/utils.py", line 170, in ensure_defaults
+    raise ConnectionDoesNotExist("The connection %s doesn't exist" % alias)
+ConnectionDoesNotExist: The connection s140712010872576_x1 doesn't exist
+[09/Oct/2019 18:22:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_I.jpg
+[09/Oct/2019 18:22:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_II.jpg
+[09/Oct/2019 18:22:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_hall.jpg
+[09/Oct/2019 18:22:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Amphitheater.jpg
+[09/Oct/2019 18:22:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_I__II.jpg
+[09/Oct/2019 18:47:49] WARNING [django.request:170] Not Found: /sitemedia/Publication/CoverImages/Sampada_Cover.jpg
+[09/Oct/2019 18:47:49] WARNING [django.request:170] Not Found: /sitemedia/Publication/CoverImages/Photo_Photo_AnnualReport84.jpg
+[09/Oct/2019 18:48:31] WARNING [django.request:170] Not Found: /sitemedia/Publication/CoverImages/Sampada_Cover.jpg
+[09/Oct/2019 18:48:31] WARNING [django.request:170] Not Found: /sitemedia/Publication/CoverImages/Photo_Photo_AnnualReport84.jpg
+[09/Oct/2019 18:48:33] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[09/Oct/2019 18:48:34] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[09/Oct/2019 18:48:34] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[09/Oct/2019 18:48:34] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[09/Oct/2019 18:48:35] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[09/Oct/2019 18:48:35] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[09/Oct/2019 18:48:35] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[09/Oct/2019 18:48:35] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[09/Oct/2019 18:48:35] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[09/Oct/2019 18:48:35] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[09/Oct/2019 18:48:35] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[09/Oct/2019 18:49:16] WARNING [django.request:170] Not Found: /favicon.ico
+[09/Oct/2019 18:49:42] WARNING [django.request:170] Not Found: /favicon.ico
+[09/Oct/2019 18:59:00] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[09/Oct/2019 18:59:00] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[09/Oct/2019 18:59:00] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[09/Oct/2019 18:59:00] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[09/Oct/2019 18:59:00] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[09/Oct/2019 18:59:00] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[09/Oct/2019 18:59:00] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[09/Oct/2019 18:59:00] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[09/Oct/2019 18:59:00] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[09/Oct/2019 18:59:00] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_bajaj_gallery_new.jpg
+[09/Oct/2019 18:59:00] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[09/Oct/2019 18:59:00] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[09/Oct/2019 18:59:57] ERROR [django.request:256] Internal Server Error: /hallbookingapp/hall-booking-confirm/90816/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+TypeError: hall_booking_confirm() takes exactly 3 arguments (2 given)
+[09/Oct/2019 19:02:39] ERROR [django.request:256] Internal Server Error: /hallbookingapp/hall-booking-confirm/90816/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+TypeError: hall_booking_confirm() takes exactly 3 arguments (2 given)
+[09/Oct/2019 19:02:40] ERROR [django.request:256] Internal Server Error: /hallbookingapp/hall-booking-confirm/90816/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+TypeError: hall_booking_confirm() takes exactly 3 arguments (2 given)
+[09/Oct/2019 19:02:58] ERROR [django.request:256] Internal Server Error: /hallbookingapp/hall-booking-confirm/90816/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+TypeError: hall_booking_confirm() takes exactly 3 arguments (2 given)
+[09/Oct/2019 19:03:28] ERROR [django.request:256] Internal Server Error: /hallbookingapp/hall-booking-confirm/90816/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+TypeError: hall_booking_confirm() takes exactly 3 arguments (2 given)
+[09/Oct/2019 19:04:13] ERROR [django.request:256] Internal Server Error: /hallbookingapp/hall-booking-confirm/90816/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+TypeError: hall_booking_confirm() got multiple values for keyword argument 'booking_id'
+[09/Oct/2019 19:07:23] WARNING [django.request:170] Not Found: /sitemedia/Publication/CoverImages/Photo_Photo_AnnualReport84.jpg
+[09/Oct/2019 19:07:23] WARNING [django.request:170] Not Found: /sitemedia/Publication/CoverImages/Sampada_Cover.jpg
+[09/Oct/2019 19:07:36] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[09/Oct/2019 19:07:36] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[09/Oct/2019 19:07:36] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[09/Oct/2019 19:07:36] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[09/Oct/2019 19:07:36] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[09/Oct/2019 19:07:36] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[09/Oct/2019 19:07:36] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[09/Oct/2019 19:07:36] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[09/Oct/2019 19:07:36] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[09/Oct/2019 19:07:36] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_bajaj_gallery_new.jpg
+[09/Oct/2019 19:07:36] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[09/Oct/2019 19:07:36] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[09/Oct/2019 19:07:38] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_I.jpg
+[09/Oct/2019 19:07:38] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_II.jpg
+[09/Oct/2019 19:07:38] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_hall.jpg
+[09/Oct/2019 19:07:38] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Amphitheater.jpg
+[09/Oct/2019 19:07:38] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_I__II.jpg
+[09/Oct/2019 19:08:55] WARNING [django.request:170] Not Found: /favicon.ico
+[09/Oct/2019 19:11:09] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[09/Oct/2019 19:11:09] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[09/Oct/2019 19:11:09] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[09/Oct/2019 19:11:09] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[09/Oct/2019 19:11:09] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[09/Oct/2019 19:11:09] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[09/Oct/2019 19:11:09] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[09/Oct/2019 19:11:09] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[09/Oct/2019 19:11:09] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_bajaj_gallery_new.jpg
+[09/Oct/2019 19:11:09] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[09/Oct/2019 19:11:09] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[09/Oct/2019 19:11:09] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[09/Oct/2019 19:27:25] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 12:36:36] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 12:37:41] WARNING [django.request:170] Not Found: /sitemedia/Publication/CoverImages/Sampada_Cover.jpg
+[10/Oct/2019 12:37:41] WARNING [django.request:170] Not Found: /sitemedia/Publication/CoverImages/Photo_Photo_AnnualReport84.jpg
+[10/Oct/2019 12:37:44] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 12:39:04] WARNING [django.request:170] Not Found: /sitemedia/Publication/CoverImages/Photo_Photo_AnnualReport84.jpg
+[10/Oct/2019 12:39:04] WARNING [django.request:170] Not Found: /sitemedia/Publication/CoverImages/Sampada_Cover.jpg
+[10/Oct/2019 12:39:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[10/Oct/2019 12:39:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[10/Oct/2019 12:39:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[10/Oct/2019 12:39:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[10/Oct/2019 12:39:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[10/Oct/2019 12:39:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[10/Oct/2019 12:39:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[10/Oct/2019 12:39:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[10/Oct/2019 12:39:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[10/Oct/2019 12:39:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[10/Oct/2019 12:39:22] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[10/Oct/2019 12:43:03] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 12:44:35] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 12:45:14] ERROR [django.request:256] Internal Server Error: /hallbookingapp/cancel-booking/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/decorators.py", line 145, in inner
+    return func(*args, **kwargs)
+  File "/home/admin12/Priyanka/NEW_MCCIA_BACKOFFICE/MCCIA_BACKOFFICE/hallbookingapp/view/hall_booking_confirm.py", line 1533, in cancel_booking
+    transaction.rollback(sid)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/transaction.py", line 49, in rollback
+    get_connection(using).rollback()
+  File "/usr/local/lib/python2.7/dist-packages/django/db/transaction.py", line 21, in get_connection
+    return connections[using]
+  File "/usr/local/lib/python2.7/dist-packages/django/db/utils.py", line 237, in __getitem__
+    self.ensure_defaults(alias)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/utils.py", line 170, in ensure_defaults
+    raise ConnectionDoesNotExist("The connection %s doesn't exist" % alias)
+ConnectionDoesNotExist: The connection s140383632451328_x1 doesn't exist
+[10/Oct/2019 12:45:27] ERROR [django.request:256] Internal Server Error: /hallbookingapp/cancel-booking/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/decorators.py", line 145, in inner
+    return func(*args, **kwargs)
+  File "/home/admin12/Priyanka/NEW_MCCIA_BACKOFFICE/MCCIA_BACKOFFICE/hallbookingapp/view/hall_booking_confirm.py", line 1533, in cancel_booking
+    transaction.rollback(sid)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/transaction.py", line 49, in rollback
+    get_connection(using).rollback()
+  File "/usr/local/lib/python2.7/dist-packages/django/db/transaction.py", line 21, in get_connection
+    return connections[using]
+  File "/usr/local/lib/python2.7/dist-packages/django/db/utils.py", line 237, in __getitem__
+    self.ensure_defaults(alias)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/utils.py", line 170, in ensure_defaults
+    raise ConnectionDoesNotExist("The connection %s doesn't exist" % alias)
+ConnectionDoesNotExist: The connection s140383632451328_x1 doesn't exist
+[10/Oct/2019 12:45:56] ERROR [django.request:256] Internal Server Error: /hallbookingapp/cancel-booking/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 132, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/views/decorators/csrf.py", line 58, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/django/utils/decorators.py", line 145, in inner
+    return func(*args, **kwargs)
+  File "/home/admin12/Priyanka/NEW_MCCIA_BACKOFFICE/MCCIA_BACKOFFICE/hallbookingapp/view/hall_booking_confirm.py", line 1533, in cancel_booking
+    transaction.rollback(sid)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/transaction.py", line 49, in rollback
+    get_connection(using).rollback()
+  File "/usr/local/lib/python2.7/dist-packages/django/db/transaction.py", line 21, in get_connection
+    return connections[using]
+  File "/usr/local/lib/python2.7/dist-packages/django/db/utils.py", line 237, in __getitem__
+    self.ensure_defaults(alias)
+  File "/usr/local/lib/python2.7/dist-packages/django/db/utils.py", line 170, in ensure_defaults
+    raise ConnectionDoesNotExist("The connection %s doesn't exist" % alias)
+ConnectionDoesNotExist: The connection s140383632451328_x1 doesn't exist
+[10/Oct/2019 12:50:45] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 12:51:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[10/Oct/2019 12:51:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[10/Oct/2019 12:51:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[10/Oct/2019 12:51:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[10/Oct/2019 12:51:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[10/Oct/2019 12:51:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[10/Oct/2019 12:51:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[10/Oct/2019 12:51:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[10/Oct/2019 12:51:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[10/Oct/2019 12:51:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[10/Oct/2019 12:51:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[10/Oct/2019 12:51:28] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[10/Oct/2019 12:51:28] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[10/Oct/2019 12:51:28] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[10/Oct/2019 12:51:28] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[10/Oct/2019 12:51:28] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[10/Oct/2019 12:51:28] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[10/Oct/2019 12:51:28] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[10/Oct/2019 12:51:28] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[10/Oct/2019 12:51:28] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[10/Oct/2019 12:51:28] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[10/Oct/2019 12:51:28] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[10/Oct/2019 12:51:36] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 12:53:39] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_I.jpg
+[10/Oct/2019 12:53:39] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_II.jpg
+[10/Oct/2019 12:53:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_hall.jpg
+[10/Oct/2019 12:53:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_I__II.jpg
+[10/Oct/2019 12:55:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_I.jpg
+[10/Oct/2019 12:55:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_II.jpg
+[10/Oct/2019 12:55:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_hall.jpg
+[10/Oct/2019 12:55:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Amphitheater.jpg
+[10/Oct/2019 12:55:27] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Seminar_hall_I__II.jpg
+[10/Oct/2019 12:56:33] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 12:57:43] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 12:58:36] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 12:59:22] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 13:00:57] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[10/Oct/2019 13:02:10] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[10/Oct/2019 13:02:41] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_Pudumjee.JPG
+[10/Oct/2019 13:02:41] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_Lakakiclassroom.jpg
+[10/Oct/2019 13:02:41] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_OgleHallNew.jpg
+[10/Oct/2019 13:02:41] WARNING [django.request:170] Not Found: /sitemedia/HallImage/A.R._Bhat_Hall.jpg
+[10/Oct/2019 13:05:49] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 13:06:47] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 13:07:39] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[10/Oct/2019 13:07:39] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[10/Oct/2019 13:07:39] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[10/Oct/2019 13:07:39] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[10/Oct/2019 13:07:40] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[10/Oct/2019 13:07:43] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 13:09:13] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[10/Oct/2019 13:09:13] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[10/Oct/2019 13:09:13] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[10/Oct/2019 13:09:13] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[10/Oct/2019 13:09:13] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[10/Oct/2019 13:09:13] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[10/Oct/2019 13:09:13] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[10/Oct/2019 13:09:13] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[10/Oct/2019 13:09:13] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[10/Oct/2019 13:09:13] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_bajaj_gallery_new.jpg
+[10/Oct/2019 13:09:13] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[10/Oct/2019 13:09:13] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[10/Oct/2019 13:09:19] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_Pudumjee.JPG
+[10/Oct/2019 13:09:19] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_Lakakiclassroom.jpg
+[10/Oct/2019 13:09:19] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_OgleHallNew.jpg
+[10/Oct/2019 13:09:19] WARNING [django.request:170] Not Found: /sitemedia/HallImage/A.R._Bhat_Hall.jpg
+[10/Oct/2019 13:10:22] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 13:11:05] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[10/Oct/2019 13:11:05] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[10/Oct/2019 13:11:05] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[10/Oct/2019 13:11:05] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[10/Oct/2019 13:11:05] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[10/Oct/2019 13:11:05] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[10/Oct/2019 13:11:05] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[10/Oct/2019 13:11:05] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[10/Oct/2019 13:11:05] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_bajaj_gallery_new.jpg
+[10/Oct/2019 13:11:05] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[10/Oct/2019 13:11:05] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[10/Oct/2019 13:11:05] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[10/Oct/2019 14:37:32] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[10/Oct/2019 14:37:32] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[10/Oct/2019 14:37:32] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[10/Oct/2019 14:37:32] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[10/Oct/2019 14:37:33] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[10/Oct/2019 14:37:33] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[10/Oct/2019 14:37:33] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[10/Oct/2019 14:37:33] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_bajaj_gallery_new.jpg
+[10/Oct/2019 14:37:34] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[10/Oct/2019 14:37:34] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[10/Oct/2019 14:37:34] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[10/Oct/2019 14:37:34] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[10/Oct/2019 14:38:58] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 14:38:58] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 14:48:52] WARNING [django.request:170] Not Found: /sitemedia/Publication/CoverImages/Photo_Photo_AnnualReport84.jpg
+[10/Oct/2019 14:48:52] WARNING [django.request:170] Not Found: /sitemedia/Publication/CoverImages/Sampada_Cover.jpg
+[10/Oct/2019 14:48:54] WARNING [django.request:170] Not Found: /favicon.ico
+[10/Oct/2019 14:49:11] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[10/Oct/2019 14:49:11] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_hallno_2.jpg
+[10/Oct/2019 14:49:11] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_shekhar_natu.jpg
+[10/Oct/2019 14:49:11] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_4_6_new.jpg
+[10/Oct/2019 14:49:11] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Navalmal_Firodia_Seminar_Hall_No._5_-_East.jpg
+[10/Oct/2019 14:49:11] WARNING [django.request:170] Not Found: /sitemedia/HallImage/N45avalmal_Firodia_Seminar_Hall_No._45_-_East__West.jpg
+[10/Oct/2019 14:49:11] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._7.jpg
+[10/Oct/2019 14:49:11] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6.jpg
+[10/Oct/2019 14:49:11] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Room_No._11.jpg
+[10/Oct/2019 14:49:11] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Malhotra_Weikfield_Board_Room_No._12.jpg
+[10/Oct/2019 14:49:11] WARNING [django.request:170] Not Found: /sitemedia/HallImage/Conference_Hall_No._6_and_7.jpg
+[10/Oct/2019 14:49:11] WARNING [django.request:170] Not Found: /sitemedia/HallImage/icc_1Auditoriumbrd.jpg
+[10/Oct/2019 15:30:16] WARNING [django.request:170] Not Found: /favicon.ico
+[11/Oct/2019 21:53:47] WARNING [django.request:170] Not Found: /sitemedia/Publication/CoverImages/Photo_Photo_AnnualReport84.jpg
+[11/Oct/2019 21:53:47] WARNING [django.request:170] Not Found: /sitemedia/Publication/CoverImages/Sampada_Cover.jpg
+[11/Oct/2019 21:54:33] WARNING [django.request:170] Not Found: /favicon.ico
+[11/Oct/2019 22:31:37] WARNING [django.request:170] Not Found: /favicon.ico
+[11/Oct/2019 22:39:42] WARNING [django.request:170] Not Found: /favicon.ico
+[11/Oct/2019 22:53:34] WARNING [django.request:170] Not Found: /favicon.ico
+[11/Oct/2019 23:09:44] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 09:48:52] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 09:51:02] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 09:51:55] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 09:53:04] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 09:54:44] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 09:57:33] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 09:59:10] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 10:03:45] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 10:09:04] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 10:12:33] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 10:12:34] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 10:13:53] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 10:19:44] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 10:20:26] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 10:23:17] DEBUG [backofficeapp.view.event_home:878] Error = EventDetails matching query does not exist.
+
+[12/Oct/2019 10:33:53] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 10:37:00] WARNING [django.request:170] Not Found: /favicon.ico
+[12/Oct/2019 11:23:53] WARNING [django.request:170] Not Found: /payment/send-payment-info/3010593/
+[12/Oct/2019 11:25:39] WARNING [django.request:170] Not Found: /payment/send-payment-info/3010593/
+[12/Oct/2019 11:25:47] WARNING [django.request:170] Not Found: /paymentapp/send-payment-info/3010593/
+[12/Oct/2019 11:39:17] WARNING [django.request:170] Not Found: /payment/send-acknowledgement
+[12/Oct/2019 11:39:37] WARNING [django.request:170] Not Found: /payment/send-acknowledgement
+[12/Oct/2019 14:31:36] DEBUG [membershipapp.view.membership_landing:241] Error 2 = (1054, "Unknown column 'eventsapp_eventdetails.is_event_sponsored' in 'field list'")
+
+[12/Oct/2019 14:31:42] WARNING [django.request:170] Not Found: /sitemedia/
+[12/Oct/2019 14:31:43] WARNING [django.request:170] Not Found: /favicon.ico

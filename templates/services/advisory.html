@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+
+</head>
+<body>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+  <section class="InternalBannerSection" style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+  <div class="InternalInnerArea">
+     <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h2>Advisory</h2>                    
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <ol class="breadcrumb">
+                      <li><a href="/">Home</a></li>                      
+                      <li class="active"><a href="#">Advisory</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div> 
+  </div>        
+  </section>
+  
+  <section class="internalSection">
+        <div class="container">
+            <div class="row">   
+				  <div class="col-md-12 col-sm-12 col-xs-12">  					                	
+					<h2>Advisory Services </h2>
+					<h4>Chamber gives advisory services through Domain Experts heading the committees. These committees are representatives of the Industrial Profile of the Pune Region.</h4>
+					<br />
+					<ul>
+					  <li>GST /MCCIA Help Desk</li>
+					  <li>Necessary help in assistance of laws and compliance required for setting up business</li>
+					  <li>MSME Schemes and Cluster</li>
+					  <li>Energy Audits </li>
+					  <li>Skilling and Employment Opportunities  </li>
+					  <li>Technology Transfer </li>
+					  <li>Udyog Aadhar Registration </li>
+					  <li>Food Processing Technologies & Regulatory Compliance </li>
+					  <li>Agri-Food Exports business </li>
+					  <li>Foreign Trade Regulations </li>
+					</ul>  					                    
+				 </div> 
+	     </div>
+</div>  
+</section>
+  
+
+
+{% endblock %}
+
+
+</body>
+</html>
+  
+

@@ -1,0 +1,178 @@
+<section class="FormArea internalSection" id="bg_deshmukh_div">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="">
+                    <form id="bg_deshmukh_div_form" name="bg_deshmukh_div_form" method="POST"
+                          onSubmit="save_bg_deshmukh_form(); return false;">
+                        {% csrf_token %}
+                        <div class="validateContainer">
+                            <div class="FormInnerArea clearfix">
+                                <div class="">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="bg_award_company_name">Company Name (in capitals)</label>
+                                            <div class="col-md-4">
+                                                <div class="validateField">
+                                                    <input type="text" class="form-control validateRequired "
+                                                           name="bg_award_company_name"
+                                                           id="bg_award_company_name" placeholder="Company Name"
+                                                           maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="bg_award_concerned_person_name">Concerned
+                                                Person Name (in capitals)</label>
+                                            <div class="col-md-4">
+                                                <div class="validateField">
+                                                    <input type="text" class="form-control"
+                                                           name="bg_award_concerned_person_name"
+                                                           id="bg_award_concerned_person_name" placeholder="Person Name"
+                                                           maxlength="70">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="bg_award_address">Address</label>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="validateField">
+                                                            <textarea class="form-control validateRequired"
+                                                                      name="bg_award_address" placeholder="Address"
+                                                                      id="bg_award_address"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="bg_award_city">City</label>
+                                            <div class="col-md-4">
+                                                <div class="validateField">
+                                                    <select id="bg_award_city" name="bg_award_city"
+                                                            class="form-control validateRequired">
+                                                        <option value="">Select City</option>
+                                                        {% for city_obj in city_list %}
+                                                        <option value="{{city_obj.id}}">{{city_obj.city_name}}
+                                                        </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <label class="col-md-1 control-label" for="bg_award_pin">Pin</label>
+                                            <div class="col-md-3">
+                                                <div class="validateField">
+                                                    <input type="text" class="form-control validateRequired validateNumber validatePincodeLimit"
+                                                           name="bg_award_pin" id="bg_award_pin" maxlength="6" placeholder="Pin-Code">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="bg_award_telephone_no">Telephone
+                                                No.</label>
+                                            <div class="col-md-4">
+                                                <div class="validateField">
+                                                    <input type="text" class="form-control"
+                                                           name="bg_award_telephone_no" id="bg_award_telephone_no"
+                                                           maxlength="50" placeholder="Telephone No">
+                                                </div>
+                                            </div>
+                                            <label class="col-md-1 control-label" for="bg_award_fax_no">Fax No.</label>
+                                            <div class="col-md-3">
+                                                <div class="validateField">
+                                                    <input type="text" class="form-control"
+                                                           name="bg_award_fax_no" id="bg_award_fax_no"
+                                                           maxlength="50" placeholder="Fax No">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="bg_award_estabalish_year">Year of
+                                                Establishment</label>
+                                            <div class="col-md-4">
+                                                <div class="validateField">
+                                                    <input type="text" class="form-control validateRequired validateNumber"
+                                                           name="bg_award_establish_year"
+                                                           id="bg_award_establish_year" placeholder="Establishment Year"
+                                                           maxlength="4">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="bg_award_chief_org_name">Name of Chief
+                                                of
+                                                the Organization</label>
+                                            <div class="col-md-4">
+                                                <div class="validateField">
+                                                    <input type="text" class="form-control"
+                                                           name="bg_award_chief_org_name"
+                                                           id="bg_award_chief_org_name" placeholder="Person Name"
+                                                           maxlength="50">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label" for="bg_award_chief_org_designation">Designation
+                                                of Chief of the Organization</label>
+                                            <div class="col-md-4">
+                                                <div class="validateField">
+                                                    <input type="text" class="form-control"
+                                                           name="bg_award_chief_org_designation"
+                                                           id="bg_award_chief_org_designation" placeholder="Designation"
+                                                           maxlength="50">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label"
+                                                   for="bg_award_brief_description_award">Briefly describe the
+                                                projects undertaken under Corporate Social Responsibility</label>
+                                            <div class="col-md-7">
+                                                <div class="validateField">
+                                                <textarea class="form-control"
+                                                          name="bg_award_brief_description_award" placeholder="Project Description"
+                                                          id="bg_award_brief_description_award"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-12 control-label" for="bg_award_benefit">Give
+                                                information on the type of social services extended, the
+                                                beneficiaries and to extent to which benefits derived by the
+                                                beneficiaries (please provide maximum possible information on
+                                                projects, objectives, results in order to justify your
+                                                claim)</label>
+                                            <div class="col-md-12">
+                                                <div class="validateField">
+                                                <textarea class="form-control" placeholder="Project, Objectives, Results"
+                                                          name="bg_award_benefit" id="bg_award_benefit"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <div class="Formbuttons pull-right">
+                                                    <button type="submit"
+                                                            class="btn btn-default subbtn checkValidationBtn"
+                                                            id="bg_deshmukh_div_form_btn" value="Submit">Submit
+                                                    </button>
+                                                    <input type="button" class="btn btn-default reset"
+                                                           onclick="location.href='/awardsapp/awards-home/';"
+                                                           value="Cancel"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

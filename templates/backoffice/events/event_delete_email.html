@@ -1,0 +1,22 @@
+<div>Dear Sir / Madam,</div>
+
+<div>&nbsp;</div>
+
+<div>This is to inform you that due to some unforeseen circumstances we need to {% if event_delete_reason == 'cancel'%}cancel{% else %}postpone{% endif %} the <strong>{{event_detail_obj.event_title}} </strong>scheduled on <strong>{{event_detail_obj.from_date|date:"d F Y"}}</strong> at {% if event_detail_obj.hall_details %}{{event_detail_obj.hall_details.hall_name}}, {{event_detail_obj.hall_details.hall_location.location}}, Pune.{% else %}{{event_detail_obj.other_location_address}}{% endif %}</div>
+
+<div><br />
+We apologize for the inconvenience caused to you.<br />
+<br />
+Thanks in advance for your cooperation.</div>
+
+<div>&nbsp;</div>
+
+<div>Regards,</div>
+
+<div>{{event_detail_obj.contact_person1.name}}</div>
+
+<div>Mahratta Chamber of Commerce, Industries and Agriculture</div>
+
+<div>Pune</div>
+<div class="m_5978287439510255430col-md-6"><img class="CToWUd" data-image-whitelisted="" src="https://www.mcciapune.com/static/assets/images/mccia-logo-footer.png" style="width: 102.882px; margin-top: 0px; margin-left: 0px;" /></div>
+

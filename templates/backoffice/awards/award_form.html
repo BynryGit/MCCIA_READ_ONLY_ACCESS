@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>User Form</title>
+    <style type="text/css">
+    @page {
+            size: letter portrait;
+            margin: 1.2cm;
+            border: 0pt solid white;
+            @frame header_frame{           /* Static Frame */
+                 -pdf-frame-content: header_content;
+                left: 30pt; width: 550pt; top: 20pt; height: 50pt;
+                border: 0pt solid white;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                 -pdf-frame-content: footer_content;
+                left: 30pt; width: 550pt; top: 750pt; height: 20pt;
+                border: 0pt solid white;
+            }
+        }
+
+        .boxed-top {
+            border-top: 1px solid black;
+        }
+
+        .boxed-bottom {
+            border-bottom: 1px solid black;
+        }
+
+        .boxed-left {
+            border-left: 1px solid black;
+        }
+
+        .boxed-right {
+            border-right: 1px solid black;
+        }
+
+        .inside_box{
+            padding-left:12px;
+            padding-right:12px;
+            padding-top:3px;
+        }
+
+        .inside_box_two{
+            padding-left:5px;
+            padding-right:12px;
+            padding-top:3px;
+        }
+
+        .right_padding{
+            padding-right: 3px;
+        }
+
+        .bold_label{
+            font-weight : 700;
+            font-size: 16px;
+        }
+
+        .semi_bold_label{
+            font-weight : 700;
+            font-size: 13px;
+        }
+
+        label{
+            font-size: 13px;
+        }
+
+        .text-center{
+            text-align:center;
+        }
+
+        .text-right{
+            text-align:right;
+        }
+        .text-left{
+            text-align:left;
+        }
+        .fill-image{
+            display: block;
+            vertical-align: bottom;
+        }
+        .table-head-size{
+            font-size:12px;
+        }
+        .table-data-size{
+            font-size:11px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <center>
+                <label><b>Application for {{award_reg_obj.awarddetail.award_name}}</b></label>
+            </center><br><br><br>
+            {% if award_reg_obj.awarddetail.id == 2 or award_reg_obj.awarddetail.id == 3 or award_reg_obj.awarddetail.id == 6 %}
+                <table cellpadding="10">
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Company Name</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.company_name}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Concerned Person Name</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.concerned_person_name}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Address</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.address}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">City</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.city.city_name}}</label></td>
+                        <!--<td class="inside_box"><label class="semi_bold_label">Pin</label></td>-->
+                        <!--<td class="inside_box"><label>{{award_reg_obj.pin_code}}</label></td>-->
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Telephone No</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.telephone_no}}</label></td>
+                        <!--<td class="inside_box"><label class="semi_bold_label">Fax No</label></td>-->
+                        <!--<td class="inside_box"><label>{{award_reg_obj.fax_no}}</label></td>-->
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Year of Establishment</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.establish_year}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Name of Chief of the Organization</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.org_chief_name}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Designation of Chief of the Organization</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.org_chief_designation}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Name of the PRODUCT / PROCESS / SERVICES tendered for Award</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.product}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Brief Description of product / process which is to be considered for the Award<?</td>
+                        <td class="inside_box"><label>{{award_reg_obj.product_description}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Special Features/ Advantages of the product services</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.product_feature_advantage}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">The first date of product manufactured / rendering of the services</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.product_manufacture_date}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Is the product commercially launched and marketed ? If Yes, since when</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.commercial_launch_date}}</label></td>
+                    </tr>
+
+                </table><br>
+
+                <table cellpadding="2">
+                    <tr>
+                        <td colspan="2" class="inside_box"><label class="semi_bold_label">Turnover (Sales) for the last three years</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Year&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;Turnover</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">{{award_reg_obj.to_year_one}}&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;{{award_reg_obj.to_one}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">{{award_reg_obj.to_year_two}}&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;{{award_reg_obj.to_two}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">{{award_reg_obj.to_year_three}}&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;{{award_reg_obj.to_three}}</label></td>
+                    </tr>
+                </table><br>
+                <table cellpadding="2">
+                    <tr>
+                        <td colspan="2" class="inside_box"><label class="semi_bold_label">Profit for the last three years</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Year&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;Profit</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">{{award_reg_obj.profit_year_one}}&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;{{award_reg_obj.profit_one}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">{{award_reg_obj.profit_year_two}}&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;{{award_reg_obj.profit_two}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">{{award_reg_obj.profit_year_three}}&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;{{award_reg_obj.profit_three}}</label></td>
+                    </tr>
+                </table>
+            {% elif award_reg_obj.awarddetail.id == 1 %}
+                <table cellpadding="10">
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Company Name</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.company_name}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Concerned Person Name</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.concerned_person_name}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Address</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.address}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">City</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.city.city_name}}</label></td>
+                        <!--<td class="inside_box"><label class="semi_bold_label">Pin</label></td>-->
+                        <!--<td class="inside_box"><label>{{award_reg_obj.pin_code}}</label></td>-->
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Telephone No</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.telephone_no}}</label></td>
+                        <!--<td class="inside_box"><label class="semi_bold_label">Fax No</label></td>-->
+                        <!--<td class="inside_box"><label>{{award_reg_obj.fax_no}}</label></td>-->
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Year of Establishment</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.establish_year}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Name of Chief of the Organization</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.org_chief_name}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Designation of Chief of the Organization</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.org_chief_designation}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Briefly describe the projects undertaken under Corporate Social Responsibility</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.product_description}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Give information on the type of social services extended, the beneficiaries and to extent to which benefits derived by the beneficiaries</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.product_feature_advantage}}</label></td>
+                    </tr>
+                </table>
+            {% elif award_reg_obj.awarddetail.id == 4 %}
+                <table cellpadding="10">
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Name</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.person_name}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Are you First Generation Entrepreneur</label></td>
+                        <td class="inside_box"><label>{% if award_reg_obj.first_gen_entp %}Yes{% else %}No{% endif %}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Company Name</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.company_name}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Date of Commencement</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.commencement_date}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Starting Capital Rs</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.starting_capital}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Address</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.address}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">City</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.city.city_name}}</label></td>
+                        <!--<td class="inside_box"><label class="semi_bold_label">Pin</label></td>-->
+                        <!--<td class="inside_box"><label>{{award_reg_obj.pin_code}}</label></td>-->
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Telephone No</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.telephone_no}}</label></td>
+                        <!--<td class="inside_box"><label class="semi_bold_label">Fax No</label></td>-->
+                        <!--<td class="inside_box"><label>{{award_reg_obj.fax_no}}</label></td>-->
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Email</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.email}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">MSME Registration Number</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.msme_reg_no}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">MSME Registration Date</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.msme_reg_date}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Legal Status</label></td>
+                        <td class="inside_box"><label>{% if award_reg_obj.legal_status == 0 %}Proprietor{% elif award_reg_obj.legal_status == 1 %}Partnership{% elif award_reg_obj.legal_status == 2 %}Private Limited{% elif award_reg_obj.legal_status == 3 %}Public Limited{% elif award_reg_obj.legal_status == 4 %}LLP{% elif award_reg_obj.legal_status == 5 %}Other{% endif %}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Number of Employees</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.no_of_employees}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Name of the PRODUCT / PROCESS / SERVICE</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.product}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Brief Description of product / process / Service</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.product_description}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">List of Locations (Business / Manufacturing Units)</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.locations}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Gross Block Investment</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.gross_block_investment}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Plant & Machinery Investment</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.plant_and_mc_investment}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Net Block Investment</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.net_block_investment}}</label></td>
+                    </tr>
+                </table><br>
+                <table cellpadding="2">
+                    <tr>
+                        <td colspan="2" class="inside_box"><label class="semi_bold_label">Turnover (Sales) for the last three years</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Year&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;Turnover</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">{{award_reg_obj.to_year_one}}&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;{{award_reg_obj.to_one}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">{{award_reg_obj.to_year_two}}&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;{{award_reg_obj.to_two}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">{{award_reg_obj.to_year_three}}&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;{{award_reg_obj.to_three}}</label></td>
+                    </tr>
+                </table><br>
+                <table cellpadding="2">
+                    <tr>
+                        <td colspan="2" class="inside_box"><label class="semi_bold_label">Profit for the last three years</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Year&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;Profit</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">{{award_reg_obj.profit_year_one}}&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;{{award_reg_obj.profit_one}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">{{award_reg_obj.profit_year_two}}&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;{{award_reg_obj.profit_two}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">{{award_reg_obj.profit_year_three}}&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;{{award_reg_obj.profit_three}}</label></td>
+                    </tr>
+                </table><br>
+                <table cellpadding="10">
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Patent Registered</label></td>
+                        <td class="inside_box"><label>{% if award_reg_obj.patent_registered %}Yes{% else %}No{% endif %}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Awards Recognition (Name of the award Received</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.award_recognition}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">List of Certification (ISO / Standards / Any Other)</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.certification_list}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Write up about yourself / your Company & why you consider yourself for the award</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.about_yourself}}</label></td>
+                    </tr>
+                </table>
+            {% elif award_reg_obj.awarddetail.id == 5 %}
+                <table cellpadding="10">
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Company Name</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.company_name}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Concerned Person Name</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.concerned_person_name}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Address</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.address}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">City</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.city.city_name}}</label></td>
+                        <!--<td class="inside_box"><label class="semi_bold_label">Pin</label></td>-->
+                        <!--<td class="inside_box"><label>{{award_reg_obj.pin_code}}</label></td>-->
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Telephone No</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.telephone_no}}</label></td>
+                        <!--<td class="inside_box"><label class="semi_bold_label">Fax No</label></td>-->
+                        <!--<td class="inside_box"><label>{{award_reg_obj.fax_no}}</label></td>-->
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Year of Establishment</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.establish_year}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Name of Chief of the Organization</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.org_chief_name}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label class="semi_bold_label">Designation of Chief of the Organization</label></td>
+                        <td class="inside_box"><label>{{award_reg_obj.org_chief_designation}}</label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box" colspan="2"><label class="semi_bold_label">Brief description of the green initiatives undertaken by the Company which includes any activity which has helped to reduce pollution, contribution towards green environment, or any other activity which would help to protect to promote a green environment including initiatives to reduce global warming </label></td>
+                    </tr>
+                    <tr>
+                        <td class="inside_box"><label>{{award_reg_obj.product_description}}</label></td>
+                    </tr>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+    <br>
+</div>
+</body>
+</html>

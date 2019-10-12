@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+        .demo {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: left;
+        padding-left: 16px;
+        font-family: arial, sans-serif;
+        }
+        .demo tr:nth-child(even) {
+        background-color: #000000;
+        }
+        .main{
+        border: 1px solid black;
+        background-color: #ffffff;
+        }
+
+        .solid {
+            border: 1px solid black;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 50px;
+            padding-bottom: 40px;
+            position: absolute;
+            top: 5%;
+            left: 20%;
+            right: 20%;
+          }
+        .fon {size: small; }
+
+        .left-bottom {
+          position: absolute;
+          top: 120%;
+          left: 5%;
+          right: 20%;
+        }
+
+        table {
+			    font-family: arial, sans-serif;
+			    border-collapse: collapse;
+			    width: 100%;
+			}
+
+			td, th {
+				    text-align: left;
+				    padding: 7px;
+				}
+
+</style>
+</head>
+<body>
+<br><br>
+<div class="container">
+	<div class="row">
+        <div class="col-md-offset-1 col-md-10 col-md-offset-1 solid">
+
+                    <center><img alt="MAHRATTA CHAMBER OF COMMERCE, INDUSTRIES AND AGRICULTURE" src="http://demo.mcciapune.com/images/logo.jpg" ></center>
+                        <center><b> MAHRATTA CHAMBER OF COMMERCE INDUSTRIES AND AGRICULTURE </b></center>
+                        <center> <span style="font-size: 12px"> 505 A & B Wing, 5th floor, MCCIA Trade Tower, Senapati Bapat Road, Pune 411 016 Maharashtra , State Code - 27 Tel. 25709114 / 25709000 Fax 25709021, Email maheshk@mcciapune.com</span>
+                        </center>
+                        <center><span style="font-size: 12px">GSTIN - 27AAATM5559Q1ZS &emsp;&emsp;&emsp; PAN - AAATM5559Q</span></center>
+                        <br>
+                        <br>
+                        <center><b> PROFORMA INVOICE </span></b>
+                        </center>
+                        <br>
+                        <table border="1">
+									<tr>
+										<td>Name</td>
+										<td>
+											<label><b>{{hall_booking_obj.name}}</b></label>
+										</td>
+										<td>Pro. Invoice No.</td>
+										<td>
+											<label><b>{{hall_booking_obj.id}}</b></label>
+										</td>
+									</tr>
+									<tr>
+										<td rowspan="3">Address</td>
+										<td rowspan="3">
+											<label><b>{{booking_detail_obj.address}}</b></label>
+										</td>
+										<td>Date</td>
+										<td>
+											<label><b>{{date}}</b></label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>Membership No.</label>
+										</td>
+										<td>
+											<label><b>{% if hall_booking_obj.member %}{{ hall_booking_obj.member.member_associate_no }}{% endif %}</b></label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<label>Hall Booking No.</label>
+										</td>
+										<td>
+											<label><b>{{hall_booking_obj.booking_no}}</b></label>
+										</td>
+									</tr>
+
+									<tr>
+										<td>GSTIN</td>
+										<td>
+											<label><b>{% if hall_booking_obj.member.gst_in == 'AP' %}{{hall_booking_obj.member.gst}}{% elif hall_booking_obj.gst_no %}{{hall_booking_obj.gst_no}}{% endif %}</b></label>
+										</td>
+										<td colspan="2" rowspan="3"></td>
+									</tr>
+									<tr>
+										<td>Phone No.</td>
+										<td>
+											<label><b>{{booking_detail_obj.contact_person}} {% if booking_detail_obj.mobile_no %}{{booking_detail_obj.mobile_no}}{% elif booking_detail_obj.tel_o %}{{booking_detail_obj.tel_o}}{% else %}{{booking_detail_obj.tel_r}}{% endif %}</b></label>
+										</td>
+									</tr>
+									<tr>
+										<td>Email</td>
+										<td>
+											<label><b>{{booking_detail_obj.email}}</b></label>
+										</td>
+									</tr>
+
+								</table>
+								<br>
+							   <br>
+								<table border="1">
+									<tr>
+										<th style="text-align: center;background-color: rgb(193, 193, 193); width: 20%; word-wrap:break-word;">Hall No.</th>
+										<th style="text-align: center;background-color: rgb(193, 193, 193); width: 20%; word-wrap:break-word;">Name of Hall</th>
+										<th style="text-align: center;background-color: rgb(193, 193, 193); width: 20%; word-wrap:break-word;">Meeting Date</th>
+										<th style="text-align: center;background-color: rgb(193, 193, 193); width: 20%; word-wrap:break-word;">Time</th>
+										<th style="text-align: center;background-color: rgb(193, 193, 193); width: 20%; word-wrap:break-word;">Extra Hrs.</th>
+										<th style="text-align: center;background-color: rgb(193, 193, 193); width: 20%; word-wrap:break-word;">Amount</th>
+									</tr>
+									{% for item in booking_info_list %}
+                                        <tr>
+                                            <td style="text-align: center;">{{item.sr_no}}</td>
+                                            <td>{{item.hall_name}}</td>
+                                            <td style="text-align: center;">{{item.booking_date}}</td>
+                                            <td>{{item.booking_time}}</td>
+                                            <td>{{item.extra_hours}}</td>
+                                            <td>{{item.amount}}</td>
+                                        </tr>
+                                    {% endfor %}
+									<tr>
+										<td colspan="4"></td>
+										<td><b> Sub Total </b></td>
+										<td><b>{{hall_booking_obj.total_rent}}</b></td>
+									</tr>
+									<tr>
+										<td colspan="4" ></td>
+										<td><b>Tax Rate</b></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td colspan="4" style="text-align: right;">Add : Central Goods & Service Tax</td>
+										<td>9%</td>
+										<td>{{half_gst_amount}}</td>
+									</tr>
+									<tr>
+										<td colspan="4" style="text-align: right;">Add : State Goods & Service Tax</td>
+										<td>9%</td>
+										<td>{{half_gst_amount}}</td>
+									</tr>
+									<tr>
+										<td colspan="4" style="text-align: right;">Add: Integrated Goods & Service Tax (Other than Maharashtra)</td>
+										<td>18%</td>
+										<td>-</td>
+									</tr>
+									<tr>
+										<td colspan="4" ></td>
+										<td><b>Total Tax</b></td>
+										<td><b>{{hall_booking_obj.gst_amount}}</b></td>
+									</tr>
+									<tr>
+										<td colspan="4" style="text-align: right;">Refundable Security Deposit</td>
+										<td></td>
+										<td>{{hall_booking_obj.deposit}}</td>
+									</tr>
+									<tr>
+										<td colspan="4" ></td>
+										<td><b>Total Rs.</b></td>
+										<td><b>{{hall_booking_obj.total_payable}}</b></td>
+									</tr>
+									<tr>
+									   <td><b>SAC</b></td>
+										<td colspan="3"><b>Service Description</b></td>
+										<td colspan="2" rowspan="2"></td>
+									</tr>
+									<tr>
+									   <td>997212</td>
+										<td colspan="3">Rental or leasing services involving own or leased non-residential property</td>
+									</tr>
+									<tr>
+										<td colspan="4">Payment Details :<br>
+                                            {% if booking_payment_obj.payment_mode == 0 %}
+                                                Offline Booking
+                                            {% else %}
+                                                Paid Online.<br>
+                                                Amount Paid: {{booking_payment_obj.paid_amount}}<br>
+                                                Payment Date: {{booking_payment_obj.payment_date|date:"D, d M, Y h:i A"}}
+                                            {% endif %}
+                                        </td>
+
+                                        <!--<br><br> Inv PI/18-19/314 Rs. 10155 and Inv 18-19/559 Rs. 73420/- <br>-->
+										                                            <!--chq no 000199 / 22.8.18 hdfc bank pune 7 Rs. 83575/-<br><br>-->
+										                                            <!--<span style="font-size: 10px;"><b>THE TAX INVOICE WOULD BE ISSUED SHORTLY.</b></span><br>-->
+										                                            <!--<span style="font-size: 10px;">Cheque / DD should be drawn in favour of <b>"MCCIA"</b></span><br><br>-->
+										<td colspan="2" style="text-align: center;"> <span style="font-size: 12px">For MCCIA</span> <br><br><br><br><br><br><br>Mahesh Kabadi</td>
+									</tr>
+								</table>
+								<br>
+								<table border="1">
+									<tr>
+										<td>Account Name</td>
+										<td><span style="font-size: 12px">MAHRATTA CHAMBER OF COMMERCE INDUSTRIES & AGRICULTURE</span></td>
+
+									</tr>
+									<tr>
+										<td>Account Details</td>
+										<td><span style="font-size: 12px">HDFC BANK LTD<br>
+											SAVINGS ACCOUNT<br>
+											BRANCH NAME : BHANDARKAR ROAD,PUNE.<br>
+											ACCOUNT NO : 50100015743490<br>
+											IFSC CODE : HDFC0000007<br>
+											SWIFT CODE : HDFCINBBPNE<br>
+											MICR : 411240002</span></td>
+									</tr>
+
+								</table>
+								<br>
+								<center>*** Please note that Refund cheque will be drawn on the same name given as in the invoice ***</center>
+								<br>
+								<br>
+									<label><b>Terms & Conditions: </b></label>
+								<br>
+								<ul>
+									<li>The booking will be considered as <span style="color: red;">confirmed</span> from our side, on receipt of your full advance payment only, within 2 working days, otherwise the booking will be treated as  <span style="color: red;">cancelled</span>.</li>
+									<li><b>Refundable Deposit Rs. 5000/-</b></li>
+									<li>NOTE : All Charges will be 25% more on all Saturdays and Sundays & Holidays of the Chamber.</li>
+									<li><b>Beaverages, eatables, Banners, Huge Frames, Extra chairs NOT allowed in the Halls.</b></li>
+								</ul>
+								<br>
+								<table border="1">
+									<tr>
+										<td><b>Sr.No.</b></td>
+										<td><b>Cancellation request made by the customer from the date for which</b></td>
+										<td><b>% Cancellation charges to be levied</b></td>
+									</tr>
+									<tr>
+										<td style="text-align: center">1</td>
+										<td>30 days before date for which hall is booked</td>
+										<td style="text-align: center">NIL</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">2</td>
+										<td>16 days to 29 days before the date for which hall is booked</td>
+										<td style="text-align: center">10%</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">3</td>
+										<td>11 days to 15 days before the date for which hall is booked</td>
+										<td style="text-align: center">35%</td>
+									</tr>
+									<tr>
+										<td style="text-align: center">4</td>
+										<td>1 day to 10 days before the date for which hall is booked</td>
+										<td style="text-align: center">100%</td>
+									</tr>
+								</table>
+
+                        <br><center><b>(This is a Computer Generated Invoice and therefore needs no signature)</b>
+                        </center>
+
+        </div>
+</div>
+</div>
+<!--  Models End -->
+</body>
+</html>

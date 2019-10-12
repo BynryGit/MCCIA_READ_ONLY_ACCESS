@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .demo {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: left;
+        padding-left: 16px;
+        font-family: arial, sans-serif;
+        }
+        .demo tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+        .main{
+        border: 1px solid black;
+        background-color: #fffff;
+        }
+        .solid {
+            border: 1px solid black;
+            position: absolute;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-top: 50px;
+            padding-bottom: 40px;
+            top: 5%;
+            left: 20%;
+            right: 20%;
+          }
+        .fon {size: small; }
+
+
+        .left-bottom {
+          position: absolute;
+          top: 120%;
+          left: 5%;
+          right: 20%;
+        }
+    </style>
+</head>
+<body>
+
+{% load staticfiles %}
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="solid col-md-offset-2 ">
+            <center><b> MAHRATTA CHAMBER OF COMMERCE INDUSTRIES AND AGRICULTURE </b></center>
+            <center>A & B Wing, 5th Floor, MCCIA Trade Tower, ICC Complex, 403-A, S.B.Road, Pune
+                411016.
+            </center><br>
+            <center><b><span>{{user_obj.company.company_name}}</span></b></center><br>
+            <center><b> ACKNOWLEDGEMENT </b></center><br>
+
+            <b>Dear Member,</b>
+            <p>
+                Thank you for your renewal. This is to acknowledge receipt of your payment of Rs. {{payment_obj.amount_paid}}/- ({{amount_paid_text}}) towards fee for renewal for {{payment_obj.financial_year}}.
+            </p>
+
+            <p>
+                For any clarifications / further assistance regarding the above, kindly contact Membership Team on 020-25709161/ 67/68.
+            </p>
+
+            With Warm Regards, <br>
+            <b>Membership Team</b> <br>
+            <br>
+
+            <center><b>(This is a computer generated acknowledgement and therefore needs no signature)</b>
+            </center>
+        </div>
+    </div>
+
+    <div class="left-bottom">
+        <br>
+        <br>
+        <div class="row">
+            <div align="left">
+                <div class="col-md-6">
+                    <img style="width:10%;margin-top:0%; margin-left:0%" src="cid:img1"/>
+                </div>
+            </div>
+        </div>
+        <p align="left">MAHRATTA CHAMBER OF COMMERCE INDUSTRIES & AGRICULTURE
+            505,<br> A-Wing, MCCIA Trade Tower, ICC Complex, 403, Senapati Bapat Road, Pune
+            411016.
+
+        </p>
+        <br>
+        <p align="left">Tel (B): 91(20) 25709000<br>
+            Fax: 91(20) 25709021<br>
+            Visit us at: www.mcciapune.com<br>
+
+        </p>
+    </div>
+
+</div>
+{% endblock %}
+<!--  Models End -->
+
+
+</body>
+</html>

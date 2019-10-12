@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>User Form</title>
+    <style type="text/css">
+    @page {
+            size: letter portrait;
+            margin: 1.2cm;
+            border: 0pt solid white;
+            @frame header_frame{           /* Static Frame */
+                 -pdf-frame-content: header_content;
+                left: 30pt; width: 550pt; top: 20pt; height: 50pt;
+                border: 0pt solid white;
+            }
+            @frame footer_frame {           /* Another static Frame */
+                 -pdf-frame-content: footer_content;
+                left: 30pt; width: 550pt; top: 750pt; height: 20pt;
+                border: 0pt solid white;
+            }
+        }
+
+        .boxed-top {
+            border-top: 1px solid black;
+        }
+
+        .boxed-bottom {
+            border-bottom: 1px solid black;
+        }
+
+        .boxed-left {
+            border-left: 1px solid black;
+        }
+
+        .boxed-right {
+            border-right: 1px solid black;
+        }
+
+        .inside_box{
+            padding-left:12px;
+            padding-right:12px;
+            padding-top:3px;
+        }
+
+        .inside_box_two{
+            padding-left:5px;
+            padding-right:12px;
+            padding-top:3px;
+        }
+
+        .right_padding{
+            padding-right: 3px;
+        }
+
+        .bold_label{
+            font-weight : 700;
+            font-size: 16px;
+        }
+
+        .semi_bold_label{
+            font-weight : 700;
+            font-size: 16px;
+        }
+
+        label{
+            font-size: 13px;
+        }
+
+        .text-center{
+            text-align:center;
+        }
+
+        .text-right{
+            text-align:right;
+        }
+        .fill-image{
+            display: block;
+            vertical-align: bottom;
+        }
+        .table-head-size{
+            font-size:12px;
+        }
+        .table-data-size{
+            font-size:11px;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table>
+                <tr>
+                    <td width="30%"><img src="http://www.mcciapune.com/static/assets/images/mccia-logo-footer.png" width="100%" height="100%"></td>
+                    <td><p>
+                        <label><b>MAHRATTA CHAMBER OF COMMERCE INDUSTRIES AND AGRICULTURE</b></label><br>
+                        <label>A Wing, 5th Floor, MCCIA Trade Tower, ICC Complex, 403-A, S.B. Road, Pune 411016, India</label><br>
+                        <label>Tel: 2570 9000, 2570 9161 Fax: 2570 9021 Email: membership@mcciapune.com</label><br>
+                        <label>www.mcciapune.com</label>
+                    </p></td>
+                </tr>
+                <tr>
+                    <td width="30%"></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-md-12">
+            <center><label><b><u>APPLICATION FOR ASSOCIATESHIP</u></b></label></center>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-10 col-md-2">
+            <p style="padding-right: 40px;" align="right"><label>Date: {{user_obj.created_date|date:"d/m/Y"}}</label></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <label><b>MAHRATTA CHAMBER OF COMMERCE AND AGRICULTURE</b></label><br>
+            <label>MCCIA Trade Tower, ICC Complex, 403-A, S.B.Road</label><br>
+            <label>Pune-411016</label>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-md-2">
+            <p><label>Dear Sir,</label></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p align="justify"><label>I / We desire to become an associate of the Mahratta Chamber of Commerce Industried and Agriculture, Pune,
+            and hereby apply for associateship. I / We undertake to be bound, if accepted as an associate, by the Memorandum and
+            Articles of Association of the Chamber</label></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p align="justify"><label>Mr./Ms. {% if user_obj.enroll_type == 'CO' %}<b>{{user_obj.ceo_name}}</b>{% else %}<b>{{user_obj.company.company_name}}</b>{% endif %} will act as our representative as per the omnibus resolution attached. (applicable only in case of Body Corporate)</label></p>
+        </div>
+    </div>
+    <!--<div class="row">-->
+        <!--<div class="col-md-12">-->
+            <!--<p align="justify">Please find enclosed herewith a cheque / DD for Rs. 4720 (In words Four Thousand Seven Hundred and Twenty) being payment towards:</p>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="row">
+        <div class="col-md-12">
+            <table border="1">
+                <tr>
+                    <th class="inside_box" width="40%" style="text-align: center;"><label>Annual Subscription <i>(A)</i></label></th>
+                    <th class="inside_box" style="text-align: center;"><label>Entrance Fees <i>(B)</i></label></th>
+                    <th class="inside_box" style="text-align: center;"><label>GST (18%) <i>(C)</i></label></th>
+                    <th class="inside_box" style="text-align: center;"><label>Total <i>(A+B+C)</i></label></th>
+                </tr>
+                <tr>
+                    <td class="inside_box" style="text-align: center;"><label>{% if check_flag %}{{invoice_obj.subscription_charges|stringformat:'d'}}{% else %}NA{% endif %}</label></td>
+                    <td class="inside_box" style="text-align: center;"><label>{% if check_flag %}{{invoice_obj.entrance_fees|stringformat:'d'}}{% else %}NA{% endif %}</label></td>
+                    <td class="inside_box" style="text-align: center;"><label>{% if check_flag %}{{invoice_obj.tax|floatformat:"0"}}{% else %}NA{% endif %}</label></td>
+                    <td class="inside_box" style="text-align: center;"><label>{% if check_flag %}{{invoice_obj.amount_payable|stringformat:'d'}}{% else %}NA{% endif %}</label></td>
+                </tr>
+            </table>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-md-12">
+            <span><b><label>GST No: {% if user_obj.gst %}{{user_obj.gst}}{% endif %}</label></b></span><br>
+            <span><b><label>Payment Detail: </label></b></span><br>
+            {% if check_flag %}
+                {% if invoice_obj.is_paid == True %}
+                    <span><b><label>Payment Method: {{payment_obj.user_Payment_Type}}</label></b></span><br>
+                    {% if payment_obj.user_Payment_Type == 'Cheque' %}
+                    <span><b><label>Cheque No: {{payment_obj.cheque_no}}  Cheque Date: {{payment_obj.cheque_date}}  Amount: {{payment_obj.amount_paid|stringformat:'d'}}  For Year: {{invoice_obj.financial_year}}</label></b></span><br>
+                    {% else %}
+                    <span><b><label>Amount Paid: {{total_paid|stringformat:'d'}}  For Year: {{invoice_obj.financial_year}}</label></b></span>
+                    {% endif %}
+                {% else %}
+                    <span><b><label>Payment is Pending  For Year: {{invoice_obj.financial_year}}</label></b></span>
+                {% endif %}
+            {% else %}
+            <span><b><label>Sorry. No Payment Detail is available in the system.</label></b></span><br>
+            {% endif %}
+        </div>
+    </div>
+    <!--<div class="row">-->
+        <!--<div class="col-md-12">-->
+            <!--<p align="justify">vide Cheque / DD # ________ dated _______ drawn on ___________________ for the year _______</p>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="row">
+        <div class="col-md-3">
+            <p><label>Thanking You,</label></p>
+        </div>
+    </div>
+    <div class="row">
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ol>
+                <li><label>Cheque / DD in full payment of subscription must accompany this form before the application can be submitted for approval. Your cheque / DD should be in favour of <span><b> "Mahratta Chamber of Commerce Industries And Agriculture"</b></span></label></li>
+                <li><label>Entrance fee will be 50% of the annual subscription applicable with a maximum of Rs. 5,000/-.</label></li>
+            </ol>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-md-12">
+            <center>
+                <label><b><u>Recommendation by members of the Chamber</u></b></label>
+            </center>
+        </div>
+    </div><br><br>
+    <table>
+        <tr>
+            <td><center><label><b>Proposed By</b></label></center></td>
+            <td><center><label><b>Seconded By</b></label></center></td>
+        </tr>            
+    </table>
+    <br><br><br><br><br><br><br>
+    <div class="row">
+        <div class="col-md-12">
+            <center>
+                <label><b>(Note: Proposer and Seconder should be members of the Chamber and atleast one signatory should be an Executive Committee Member of the Chamber.)</b></label>
+            </center>
+        </div>
+    </div><br>
+    <center><span><b><u>For Office Use Only</u></b></span></center>
+
+<table>
+    <tr class="inside_box">
+        <td>Date of Acceptance: </td>
+        <td colspan="2">Associateship Register # _____________________</td>
+    </tr>
+    <tr class="inside_box">
+        <td>Receipt# _______________</td>
+        <td>dated _________________</td>
+        <td>For the Year _______________</td>
+    </tr>
+</table>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <table>
+            <tr>
+                <td width="20%"><b><u>Referred By: </u></b></td>
+                <td>Personal Visit</td>
+                <td width="20%">Walk-in</td>
+                <td width="20%">Media</td>
+                <td>From MCCIA - ________  Dept</td>
+                <td>Other</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<br><br><br><br><br><br><br><br>
+
+<center><label><b>INFORMATION OF THE APPLICANT</b></label></center>
+<table border="1">
+    <tr class="inside_box_two">
+        <td width="60%"><label><b>NAME OF THE COMPANY/APPLICANT</b></label></td>
+        <td><label><b>{{user_obj.company.company_name}}</b></label></td>
+    </tr>
+    <tr class="inside_box_two">        
+        <td><label><b>CEO Name</b></label></td>
+        <td><span class="table-data-size"><b>{% if user_obj.enroll_type == 'CO' %}{{user_obj.ceo_name}}{% else %}{{user_obj.company.company_name}}{% endif %}</b></span></td>
+    </tr>
+    <tr class="inside_box_two">        
+        <td><label><b>CEO Email</b></label></td>
+        <td><span class="table-data-size"><b>{{user_obj.ceo_email}}</b></span></td>
+    </tr>
+    <tr class="inside_box_two">        
+        <td><label><b>CEO Contact No.</b></label></td>
+        <td><span class="table-data-size"><b>{% if user_obj.enroll_type == 'CO' %}{{user_obj.ceo_cellno}}{% else %}{{user_obj.person_cellno}}{% endif %}</b></span></td>
+    </tr>
+</table><br>
+
+<table border="1">
+    <tr class="inside_box_two">
+        <td colspan="3"><center><label><b>Address for Correspondence</b></label></center></td>
+        <td colspan="2"><center><label><b>Factory Address</b></label></center></td>
+    </tr>
+    <tr class="inside_box_two">
+        <td><span class="table-head-size"><b>Address</b></span></td>
+        <td colspan="2"><span class="table-data-size">{{user_obj.correspond_address}}</span></td>
+        <td colspan="2"><span class="table-data-size">{{user_obj.factory_address}}</span></td>
+    </tr><tr class="inside_box_two">
+        <td><span class="table-head-size"><b>City/Pin</b></span></td>
+        <td colspan="2"><span class="table-data-size">{{user_obj.correspondcity.city_name}} - {{user_obj.correspond_pincode}}</span></td>
+        <td colspan="2"><span class="table-data-size">{{user_obj.factorycity.city_name}} - {{user_obj.factory_pincode}}</span></td>
+    </tr><tr class="inside_box_two">
+        <td><span class="table-head-size"><b>Tel #</b></span></td>
+        <td colspan="2"><span class="table-data-size">{% if user_obj.correspond_std1 %}{{user_obj.correspond_std1}}{% endif %}{% if user_obj.correspond_landline1 %}{{user_obj.correspond_landline1}}{% endif %} {% if user_obj.correspond_std2 %}{{user_obj.correspond_std2}}{% endif %}{% if user_obj.correspond_landline2 %}{{user_obj.correspond_landline2}}{% endif %}</span></td>
+        <td colspan="2"><span class="table-data-size">{% if user_obj.factory_std1 %}{{user_obj.factory_std1}}{% endif %}{% if user_obj.factory_landline1 %}{{user_obj.factory_landline1}}{% endif %} {% if user_obj.factory_std2 %}{{user_obj.factory_std2}}{% endif %}{% if user_obj.factory_landline2 %}{{user_obj.factory_landline2}}{% endif %}</span></td>
+    </tr><tr class="inside_box_two">
+        <td><span class="table-head-size"><b>Fax #</b></span></td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+    </tr>
+    <tr class="inside_box_two">
+        <td><span class="table-head-size"><b>Email</b></span></td>
+        <td colspan="2"><span class="table-data-size">{{user_obj.ceo_email}}</span></td>
+        <td colspan="2"><span class="table-data-size">{{user_obj.correspond_email}}</span></td>
+    </tr>
+    <tr class="inside_box_two">
+        <td colspan="5"><span class="table-head-size"><b>Website: {% if user_obj.website %}{{user_obj.website}}{% endif %}</b></span></td>
+    </tr>
+    <tr class="inside_box_two">
+        <td colspan="1"><span class="table-head-size"><b>Year of Estb: {% if user_obj.company.establish_year and user_obj.company.establish_year != 0 %}{{user_obj.company.establish_year}}{% endif %}</b></span></td>
+        <td colspan="4"><span class="table-head-size"><b>(DIC/SSI Registration - {% if user_obj.company.company_scale == 'MR' %}<img src="http://www.mcciapune.com/static/assets/checked_checkbox_24.png" height="20px" width="20px">{% endif %} Micro / {% if user_obj.company.company_scale == 'SM' %}<img src="http://www.mcciapune.com/static/assets/checked_checkbox_24.png" height="20px" width="20px">{% endif %} Small / {% if user_obj.company.company_scale == 'MD' %}<img src="http://www.mcciapune.com/static/assets/checked_checkbox_24.png" height="20px" width="20px">{% endif %} Medium Scale) / {% if user_obj.company.company_scale == 'LR' %}<img src="http://www.mcciapune.com/static/assets/checked_checkbox_24.png" height="20px" width="20px">{% endif %} Large Scale</b></span></td>
+    </tr>
+    <tr class="inside_box_two">
+        <td colspan="2"><span class="table-head-size"><b>Annual Sales Turnover</b></span></td>
+        <td><span class="table-data-size"><b>Rs. {{user_obj.annual_turnover_rupees}}</b></span></td>
+        <td colspan="2"><span class="table-head-size"><b>For Year: {% if user_obj.annual_turnover_year %}{{user_obj.annual_turnover_year}}{% endif %}</b></span></td>
+    </tr>
+    <tr class="inside_box_two">
+        <td colspan="2"><span class="table-head-size"><b>Gross Block Investment</b></span></td>
+        <td><span class="table-head-size"><b>Plant & M/c. Rs. {{user_obj.company.block_inv_plant}}</b></span></td>
+        <td><span class="table-head-size"><b>Land & Bldg. Rs. {{user_obj.company.block_inv_land}}</b></span></td>
+        <td><span class="table-head-size"><b>Total Rs. {{user_obj.company.block_inv_total }}</b></span></td>
+    </tr>
+    <tr class="inside_box_two">
+        <td colspan="5"><span class="table-head-size"><b>Exports To (Countries): {{user_obj.company.textexport}}</b></span></td>
+    </tr>
+    <tr class="inside_box_two">
+        <td colspan="5"><span class="table-head-size"><b>Imports From (Countries): {{user_obj.company.textimport}}</b></span></td>
+    </tr>
+    <tr class="inside_box_two">
+        <td colspan="2"><span class="table-head-size"><b>R & D Facility available: {% if user_obj.company.rnd_facility == True %}Yes{% else %}No{% endif %}</b></span></td>
+        <td colspan="3"><span class="table-head-size"><b>If available, recognised by GOVT: {% if user_obj.company.govt_recognised == True %}Yes{% else %}No{% endif %}</b></span></td>
+    </tr>
+    <tr class="inside_box_two">
+        <td colspan="5"><span class="table-head-size"><b>ISO / Other Stds/Awards: {% if user_obj.company.iso_detail %}{{user_obj.company.iso_detail}}{% endif %}{% if user_obj.awards %} {{user_obj.awards}}{% endif %}</b></span></td>
+    </tr>
+    <tr class="inside_box_two">
+        <td><span class="table-head-size"><b>Foreign Collaborations: {% if user_obj.company.foreign_collaboration == True %}Yes{% else %}No{% endif %}</b></span></td>
+        <td><span class="table-head-size"><b>100% EOU: {% if user_obj.company.eou == True %}Yes{% else %}No{% endif %}</b></span></td>
+        <td colspan="3"><span class="table-head-size"><b>If 'Y' Names & Countries: {% if user_obj.company.eou_detail %}{{user_obj.company.eou_detail}}{% endif %}</b></span></td>
+    </tr>
+    <tr class="inside_box_two">
+        <td><span class="table-head-size"><b>Employees (Nos.)</b></span></td>
+        <td><span class="table-data-size">Managerial: {{user_obj.company.total_manager}}<span class="table-data-size"></td>
+        <td><span class="table-data-size">Staff: {{user_obj.company.total_staff}}<span class="table-data-size"></td>
+        <td><span class="table-data-size">Workers: {{user_obj.company.total_workers}}<span class="table-data-size"></td>
+        <td><span class="table-data-size">Total: {{user_obj.company.total_employees}}<span class="table-data-size"></td>
+    </tr>
+</table><br>
+
+<label><b>Membership Description</b></label><br>
+<table border="1">
+    {% for item in category_data_list %}
+    <tr>
+        {% for i in item %}
+        <td class="inside_box_two" nowrap><span class="table-data-size">
+            {% if i.status == True %}
+            <img src="http://www.mcciapune.com/static/assets/checked_checkbox_24.png" height="20px" width="20px">
+            {% endif %}
+            {{i.category}}</span>
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table><br>
+
+<label><b>Legal Status</b></label><br>
+<table border="1">
+    <tr>
+        {% for item in legal_data_list %}
+        <td class="inside_box_two" nowrap>
+            {% if item.status == True %}
+            <img src="http://www.mcciapune.com/static/assets/checked_checkbox_24.png" height="20px" width="20px">
+            {% endif %}
+            {{item.legal_status}}
+        </td>
+        {% endfor %}
+    </tr>
+</table><br>
+
+
+<label><b>Industry</b></label><br>
+<table border="1">
+    {% for item in industry_data_list %}
+    <tr>
+        {% for i in item %}
+        <td class="inside_box_two" nowrap><span class="table-data-size">
+            {% if i.status == True %}
+            <img src="http://www.mcciapune.com/static/assets/checked_checkbox_24.png" height="20px" width="20px">
+            {% endif %}
+            {{i.industry}}</span>
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table><br>
+<span class="table-head-size"><b>Brief Description of Business: </b></span><span class="table-data-size">{% if user_obj.company.description_of_business %}{{user_obj.company.description_of_business}}{% endif %}</span><br>
+<hr>
+</body>
+</html>

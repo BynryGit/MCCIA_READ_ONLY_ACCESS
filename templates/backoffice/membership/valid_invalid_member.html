@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!-- BEGIN HEAD -->
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8"/>
+    <title>MCCIA | Valid / Invalid Member </title>
+    {% include 'backoffice/base_css.html' %}
+
+
+</head>
+<!-- END HEAD -->
+
+
+<style type="text/css">
+th.dt-center, td.dt-center {
+    text-align: center;
+}
+
+</style>
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+<!-- BEGIN HEADER -->
+<div id="processing" style="display:none;">
+    <div id="loading">
+        <img src="{% static 'assets/loading-bars.gif' %}" style="height : 100px;">
+
+    </div>
+</div>
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="index.html">
+                <img src="{% static 'assets/MCCIA-logo.png' %}" alt="logo"
+                     class="logo-default"/> </a>
+            <div class="menu-toggler sidebar-toggler">
+                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+            </div>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+           data-target=".navbar-collapse"> </a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN PAGE TOP -->
+        <div class="page-top">
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
+                            <!-- <img alt="" class="img-circle" src="{% static 'assets/layouts/layout2/img/avatar3_small.jpg" /> -->
+                            <span class="username username-hide-on-mobile"> {{ request.session.login_user }} </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a href="/edit-profile/?user_id={{request.session.login_user}}">
+                                    <i class="fa fa-user" aria-hidden="true"></i> My Profile </a>
+                            </li>
+                            <li>
+                                <a href="/log-out/">
+                                    <i class="icon-key"></i> Log Out </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END PAGE TOP -->
+    </div>
+    <!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+
+<!-- BEGIN HEADER & CONTENT DIVIDER -->
+<div class="clearfix"></div>
+<!-- END HEADER & CONTENT DIVIDER -->
+
+
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            {% include 'backoffice/membership/side-panel.html' %}
+        </div>
+    </div>
+    <!-- END SIDEBAR -->
+
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet light  ">
+
+                        <div class="page-bar">
+                            <ul class="page-breadcrumb">
+                                <li>
+                                    <a href="/backofficeapp/backoffice/" style="color: #3eb199;font-size: 16px;">Membership</a>
+                                        <i class="fa fa-angle-right"></i>
+                                </li>
+                                <li>
+                                    <span style="color: #00448b;font-size: 16px;">Valid / Invalid Member</span>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <div class="row ">
+                            <div class="col-lg-12">
+                                <div class="col-lg-3"
+                                     style="border: none !important;  margin-top: 6px;font-size: 16px;">
+                                    <span>In Industry:  </span>
+                                </div>
+                                <div class="col-lg-3"
+                                     style="border: none !important;  font-size: 16px;">
+                                    <select id="select_valid_invalid_industry" class="form-control select2">
+                                        <option style="font-size: 14px" value="show_all">Show All</option>
+                                        {% for industry in industry_list %}
+                                        <option style="font-size: 14px" value="{{industry.id}}">
+                                            {{industry.description}}
+                                        </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 ">
+                                    <div class="input-group form-group">
+                                <span class="input-group-btn">
+                                    <span style=" height: 34px;"
+                                          class="btn btn btn-default">
+                                        <span class="fa fa-search"></span>
+                                    </span>
+                                </span>
+                                        <input style=" font-size: 14px; " type="text"
+                                               class="form-control " id="search_valid_invalid_text"
+                                               placeholder="Search Applicant Name" name="search_valid_invalid_text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-lg-12">
+                                <div class="col-lg-3"
+                                     style="border: none !important;  margin-top: 6px;font-size: 16px;">
+                                    <span>For Member/Association:  </span>
+                                </div>
+                                <div class="col-lg-3"
+                                     style="border: none !important;  font-size: 16px;">
+                                    <select id="select_valid_invalid_mem_associate" class="form-control select2">
+                                        <option style="font-size: 14px" value="show_all">Show All</option>
+                                        <option style="font-size: 14px" value="Member">Member</option>
+                                        <option style="font-size: 14px" value="Associate">Associate</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row ">
+                            <div class="col-lg-12">
+                                <div class="col-lg-3"
+                                     style="border: none !important;  margin-top: 6px;font-size: 16px;  ">
+                                    <span>Valid Invalid Member:  </span>
+                                </div>
+                                <div class="col-lg-3"
+                                     style="border: none !important;  font-size: 16px;">
+                                    <select id="select_valid_invalid_status" class="form-control select2">
+                                        <option style="font-size: 14px" value="show_all">Show All</option>
+                                        <option style="font-size: 14px" value="True">Yes</option>
+                                        <option style="font-size: 14px" value="False">No</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 ">
+                                    <div class="pull-right " style="color: #797979;">
+                                        <a style="font-size: 16px; " type="button"
+                                           class="btn done_btn " data-toggle="modal"
+                                           href="/membershipapp/membership-form-admin/">Membership Registration
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 ">
+                                    <div class="input-group form-group">
+                                        <a style="font-size: 16px;width:  150%;" type="button"
+                                           class="btn done_btn" onclick="filter_valid_invalid_member_table()">Filter
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="hre">
+                        <div class="portlet-body form">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="portlet-body">
+                                        <div class="actions">
+                                            <div class="btn-group pull-right">
+                                                <a class="btn red btn-outline btn-circle"
+                                                   href="javascript:;"
+                                                   data-toggle="dropdown">
+                                                    <i class="fa fa-share"></i>
+                                                    <span class="hidden-xs"> Tools </span>
+                                                    <i class="fa fa-angle-down"></i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right"
+                                                    id="valid_invalid_member_table_tools">
+                                                    <li>
+                                                        <a href="javascript:;" data-action="0"
+                                                           class="tool-action">
+                                                            <i class="icon-printer"></i> Print</a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a href="javascript:;" data-action="2"
+                                                           class="tool-action">
+                                                            <i class="icon-doc"></i> PDF</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;" data-action="3"
+                                                           class="tool-action">
+                                                            <i class="icon-paper-clip"></i> Excel</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:;" data-action="4"
+                                                           class="tool-action">
+                                                            <i class="icon-cloud-upload"></i> CSV</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <table class="table table-striped table-bordered table-hover table-checkable order-column"
+                                               id="valid_invalid_member_table">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center"> Sr. No</th>
+                                                <th class="text-center"> F.Y.</th>
+                                                <th> Memb./Assn</th>
+                                                <th style="text-align: center;"> Applicant/Company Name</th>
+                                                <th style="text-align: center;"> Email ID</th>
+                                                <th> Contact No.</th>
+                                                <th> Status</th>
+                                                <th> Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- END FORM-->
+                            </div>
+                        </div>
+                        <!-- END PORTLET-->
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+    </div>  <!-- END PORTLET-->
+</div>
+<!-- END CONTAINER -->
+
+<div class="modal fade draggable-modal" id="active_deactive_valid_invalid_mem" tabindex="-1" role="basic"
+     aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <input type="text" id="valid_invalid_mem_type" name="valid_invalid_mem_type" hidden>
+                    <input type="text" id="valid_invalid_mem_id" name="valid_invalid_mem_id" hidden>
+                    <div class="form-body">
+                        <h4 class="text-center" id="active_deactive_valid_invalid_mem_text">Do you want to deactivate
+                            User ?</h4>
+                    </div>
+                </form>
+            </div>
+            <div style="text-align:center !important;" class="modal-footer">
+                <button type="button" onclick="confirmed_update_valid_invalid()" data-dismiss="modal" class="btn green">
+                    Yes
+                </button>
+                <button type="button" class="btn green" data-dismiss="modal">No</button>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+<div class="modal fade draggable-modal" id="reactivate_user" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+
+                <img style="width: 18%;"
+                     src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+            </div>
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center">Do you want to re-activate User ?</h4>
+                    </div>
+            </div>
+            <div style="text-align:center !important;" class="modal-footer">
+                <button type="button" onclick="activate_user()" class="btn green">Yes</button>
+                <button type="button" class="btn green" data-dismiss="modal">No</button>
+
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+<div class="modal fade draggable-modal" id="remove_user" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+
+                <img style="width: 18%;"
+                     src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+            </div>
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center" id="pro_deact">User deactivated successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <button type="button" onclick="location.reload()" class="btn green" data-dismiss="modal">OK
+                        </button>
+
+
+                    </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<div class="modal fade draggable-modal" id="error-modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+
+                <img style="width: 18%;"
+                     src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+            </div>
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center">Username already exists</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <button type="button" class="btn green" data-dismiss="modal">OK</button>
+
+                    </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+
+<div class="modal fade draggable-modal" id="update_user" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+
+                <img style="width: 18%;"
+                     src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+            </div>
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center">User updated successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <button type="button" onclick="location.reload()" class="btn green" data-dismiss="modal">OK
+                        </button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade draggable-modal" id="user_active_modal" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+
+                <img style="width: 18%;"
+                     src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+            </div>
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center">User re-activated successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <button type="button" onclick="location.reload()" class="btn green" data-dismiss="modal">OK
+                        </button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade draggable-modal" id="error-modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+
+                <img style="width: 10%;"
+                     src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+            </div>
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center">Username already exists</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <button type="button" class="btn green" data-dismiss="modal">OK</button>
+
+                    </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="page-footer-inner"> 2018 © Bynry Technologies
+
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+</div>
+<!-- END FOOTER -->
+
+<!-- BEGIN CORE PLUGINS -->
+{% include 'backoffice/base_js.html' %}
+<!-- END THEME LAYOUT SCRIPTS -->
+
+<script type="text/javascript">
+
+$("#member_anchor").addClass("tab-active");
+$("#member_nav").addClass("active");
+$("#member_icon").addClass("icon-active");
+$("#member_active").css("display","block");
+$("#member_nav").addClass("active");
+
+$(".sel2").select2({
+            width: '100%'
+        })
+
+ $(document).ready(function(){
+	 var oTable = $('#user_table').dataTable({
+	   "bFilter": true,
+         "bLengthChange": false,
+         //"scrollX": true,
+         "iDisplayLength": 20,
+      	//"sScrollY":"380px",
+      	'bScrollCollapse':true,
+           "ajax": "/view-user-list/",
+            "columns": [
+          {"data": "user_name","sClass": "text-left"},
+          {"data": "usre_email_id"},
+          {"data": "user_contact_no"},
+          //{"data": "role_id"},
+          //{"data": "city"},
+          {"data": "status"},
+          {"data": "actions","sClass": "text-center"},
+            ],
+             "order": [[0, "asc"]],
+            "cache": false
+          })
+          $("#txtSearch").keyup(function() {
+				oTable.fnFilter($("#txtSearch").val());
+			});
+
+ 		});
+
+
+function change_data(){
+
+ sort_var = $('#sortby :selected').val();
+
+      data = '/get-data/?sort_var='+sort_var
+
+        $('#user_table').dataTable({
+            "bDestroy" : true,
+
+
+            "order": [
+                [0, 'asc']
+            ],
+
+            "ajax": data,
+             "columns": [
+                {"data": "user_name","sClass": "text-left"},
+                {"data": "usre_email_id"},
+                {"data": "user_contact_no"},
+                {"data": "role_id"},
+                {"data": "role_id"},
+                {"data": "role_id"},
+                {"data": "role_id"},
+                {"data": "role_id"},
+                {"data": "status"},
+                {"data": "actions","sClass": "text-center"},
+		            ],
+
+
+        });
+}
+
+	var xyz;
+   function delete_user_detail(id,name) {
+        xyz = id;
+       nm = name
+			//$('#deact_pro').text("Do you want to Deactivate "+nm+ " user profile ? ");
+			//$('#pro_deact').text("User profile  "+nm+ " Deactivated successfully");
+        $("#delete_user").modal('show');
+   }
+
+   function reactivate_user(id){
+
+        xyz = id;
+        $("#reactivate_user").modal('show');
+   }
+
+
+function checkUserName(username){
+	user_name = $(username).val()
+    var regex = /^[a-zA-Z0-9]+$/;
+    if($(username).val()!=''){
+ 	$(username).parent().children('.error').css("display", "none");
+    if(regex.test(user_name)){
+    //alert('regex if');
+    $(username).parent().children('.error').css("display", "none");
+   return true;
+   }
+   else{
+    //alert('regex else');
+    //alert($(username).parent().children('.error').html());
+    $(username).parent().children('.error').css("display", "block");
+    $(username).parent().children('.error').text("No spaces and special characters allowed");
+    return false;
+   }
+   //return true;
+   }else{
+    $(username).parent().children('.error').css("display", "block");
+    $(username).parent().children('.error').text("Please enter username");
+   return false;
+   }
+}
+
+
+function checkContactNo(contact_no){
+
+   var phoneNumberPattern = /^[789]\d{9}$/;
+	contactno = $(contact_no).val()
+   if(phoneNumberPattern.test(contactno)){
+
+ 	$(contact_no).parent().children('.error').css("display", "none");
+   return true;
+   }else{
+
+    $(contact_no).parent().children('.error').css("display", "block");
+    $(contact_no).parent().children('.error').text("Please enter valid contact number");
+   return false;
+   }
+}
+
+function checkEmail(email){
+	Email = $(email).val()
+   var namePattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/;
+ if(namePattern.test(Email)){
+      $(email).parent().children('.error').css("display", "none");
+   return true;
+   }else{
+ 	$(email).parent().children('.error').css("display", "block");
+   $(email).parent().children('.error').text("Please enter valid email");
+   return false;
+   }
+}
+
+function checkRole(user_role){
+	if($(user_role).val()!='')
+   {
+    $(user_role).parent().children('.error').css("display", "none");
+   return true;
+   }else{
+    $(user_role).parent().children('.error').css("display", "block");
+    $(user_role).parent().children('.error').text("Please select an item from list");
+   return false;
+   }
+}
+
+
+function validateData(){
+	if(checkUserName("#username")&&checkContactNo("#contact_no")&&checkEmail("#email")&&checkRole("#user_role")&&checkPassword("#password")&&checkRePassword("#re-password")){
+		return true;
+	}
+	return false;
+}
+
+
+function checkPassword(password){
+   if($(password).val()!='')
+   {
+
+    $(password).parent().children('.error').css("display", "none");
+   return true;
+   }else{
+
+    $(password).parent().children('.error').css("display", "block");
+    $(password).parent().children('.error').text("Please enter password");
+   return false;
+   }
+}
+
+function checkRePassword(re_password){
+   if($(re_password).val()!="")
+   {
+    $(re_password).parent().children('.error').css("display", "none");
+   return true;
+   }else{
+
+    $(re_password).parent().children('.error').css("display", "block");
+    $(re_password).parent().children('.error').text("Please re enter password");
+   return false;
+   }
+}
+
+
+function inactive_user() {
+        var user_id = xyz;
+        $.ajax({
+            type: 'POST',
+            url: '/delete-user/',
+            data: {'user_id': user_id},
+            success: function (response) {
+
+	 		  	if (response.success == 'Expired') {
+ 		  			location.href = '/subscriber-portal/?status=Expired'
+ 		  		}
+            console.log(response);
+                if (response.success == 'true') {
+                	$("#delete_user").modal('hide');
+                  $("#remove_user").modal('show');
+                }
+                if (response.success == 'false') {
+                    alert(response.message);
+                }
+            },
+            beforeSend: function () {
+   $("#processing").css('display','block');
+   },
+   complete: function () {
+       $("#processing").css('display','none');
+   },
+            error: function (response) {
+            console.log(response);
+                alert('error');
+            },
+        });
+    }
+
+    function activate_user() {
+        var  user_id = xyz;
+        $.ajax({
+            type: 'POST',
+            url: '/activate-user/',
+            data: {'user_id': user_id},
+            success: function (response) {
+				  	if (response.success == 'Expired') {
+			  			location.href = '/backoffice/?status=Expired'
+			  		}
+
+            console.log(response);
+                if (response.success == 'true') {
+                    $("#reactivate_user").modal('hide');
+                  $("#user_active_modal").modal('show');
+                }
+                if (response.success == 'false') {
+                    alert(response.message);
+                }
+            },
+            beforeSend: function () {
+   $("#processing").css('display','block');
+   },
+   complete: function () {
+       $("#processing").css('display','none');
+   },
+            error: function (response) {
+            console.log(response);
+                alert('error');
+            },
+        });
+    }
+
+
+
+ function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57 || charCode == 43 || charCode == 45 ))
+            return false;
+        return true;
+    }
+
+    function validateFloatKeyPresss(el, evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        var number = el.value.split('+');
+        var number1 = el.value.split('-');
+        if (charCode != 45 && charCode != 43 && charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        //just one dot
+        if (number.length > 1 && charCode == 43) {
+            return false;
+        }
+        if (number1.length > 1 && charCode == 45) {
+            return false;
+        }
+        return true;
+    }
+
+
+
+$(document).ready(function(){
+    industry_val = 'show_all';
+    member_association_val = 'show_all';
+    valid_invalid_member = 'show_all';
+    request_valid_invalid_member_table(industry_val, member_association_val, valid_invalid_member);
+});
+
+// Get Valid / Invalid Member
+function request_valid_invalid_member_table(industry_val, member_association_val, valid_invalid_member){
+    var valid_invalid_table = $('#valid_invalid_member_table').dataTable({
+        "processing": true,
+        "serverSide": true,
+        "destroy": true,
+        "ajax": "/backofficeapp/get-valid-invalid-member-table/?industry_val=" + industry_val + "&member_association_val=" + member_association_val + "&valid_invalid_member=" + valid_invalid_member,
+        "searching": true,
+        "paging": true,
+        "columnDefs": [
+            {"className": "dt-center","targets": [1,2,5,6,7], "orderable": false},
+            {"className": "dt-left","targets": [3,4], "orderable": false},
+        ],
+
+        buttons: [
+            { extend: 'print', className: 'btn dark btn-outline',
+                exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6] },
+            },
+            { extend: 'copy', className: 'btn red btn-outline',
+                exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6] },
+            },
+            { extend: 'pdf', className: 'btn green btn-outline',
+                exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6] },
+            },
+            { extend: 'excel', className: 'btn yellow btn-outline',
+                exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6] },
+            },
+            { extend: 'csv', className: 'btn purple btn-outline',
+                exportOptions: { columns: [0, 1, 2, 3, 4, 5, 6] },
+            },
+            { extend: 'colvis', className: 'btn dark btn-outline', text: 'Columns'}
+        ],
+
+        responsive: false,
+
+        "order": [[1, 'asc']],
+
+        "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "All"] ],
+
+        "pageLength": 10,
+    });
+
+    $(".dataTables_filter").hide();
+
+    $('#valid_invalid_member_table_tools > li > a.tool-action').on('click', function() {
+        var action = $(this).attr('data-action');
+        $('#valid_invalid_member_table').DataTable().button(action).trigger();
+    });
+
+    $("#search_valid_invalid_text").keyup(function() {
+        valid_invalid_table.fnFilter($("#search_valid_invalid_text").val());
+    });
+}
+
+
+// Apply Filter
+function filter_valid_invalid_member_table(){
+    industry_val = $("#select_valid_invalid_industry").val();
+    member_association_val = $("#select_valid_invalid_mem_associate").val();
+    valid_invalid_member = $("#select_valid_invalid_status").val();
+    request_valid_invalid_member_table(industry_val, member_association_val, valid_invalid_member);
+}
+
+
+// Update Valid / Invalid Member
+function update_member(type, userdetail_id, status){
+    if (status == "False"){
+        $("#active_deactive_valid_invalid_mem_text").html('').text('Do you want to add user to Valid Member List ?');
+        $("#valid_invalid_mem_type").val(type);
+        $("#valid_invalid_mem_id").val(userdetail_id);
+    }
+    else{
+        $("#active_deactive_valid_invalid_mem_text").html('').text('Do you want to remove user from Valid Member List ?');
+        $("#valid_invalid_mem_type").val(type);
+        $("#valid_invalid_mem_id").val(userdetail_id);
+    }
+}
+
+function confirmed_update_valid_invalid(){
+    var member_type = $("#valid_invalid_mem_type").val();
+    var user_detail_id = $("#valid_invalid_mem_id").val();
+
+    $.ajax({
+        type: "GET",
+        url: '/backofficeapp/update-member/',
+        data: {'member_type': member_type, 'userdetail_id': user_detail_id},
+
+        success: function(response){
+            filter_valid_invalid_member_table();
+        }
+    });
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

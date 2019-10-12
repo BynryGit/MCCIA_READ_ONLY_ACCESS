@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+</head>
+<style type="text/css">
+body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    font-size: 14px;
+  }
+#event_calendar_two {
+    max-width: 1050px;
+    margin: 0 auto;
+  }
+
+</style>
+<body>
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<!-- Breadcrumb section starts here -->
+<section class="InternalBannerSection hallBookingBannerSection" style="background: #1a394f;">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-sm-2 col-xs-12">
+                    <h2>Events</h2>
+                </div>
+                <div class="col-md-7 col-sm-7 col-xs-12">
+                    <marquee style="color: white;">
+                      {% for obj in event_announcement_list %}
+                       	<span>{{obj.announcement}}</span>
+                       	&nbsp;|&nbsp;	
+                      {% endfor %} 
+                    </marquee>
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li class="active"><a href="#">Events</a></li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="hallLocation">
+                        <p><i class="fa fa-filter"></i>Filters:</p>							            
+                        <div class="dropdown">
+                            <select  style="width:180px" class="form-control" name="select_committee" id="select_committee" onchange="load_event_calender();">
+											<option value="">Select Committee</option>                                          
+                              		{% for obj in committee_list %}
+                                	      <option value="{{obj.id}}">{{obj.committee}}</option>
+												{% endfor %}
+                            </select>
+                        </div> 
+                        <div class="dropdown">
+                            <select  class="form-control" name="select_eventtype" id="select_eventtype" onchange="load_event_calender();">
+											<option value="">Select Event Type</option>                                          
+                              		{% for obj in event_type_list %}
+                                	      <option value="{{obj.id}}">{{obj.event_type}}</option>
+												{% endfor %}
+                            </select>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="col-md-1">
+                		<div class="CalendarNList resetCalendarBtn"style="display: none;" id="reset_btn_div">
+			                  <ul style="float: none;">
+			                    <li><a onclick="reset_function();" class="resetEventFilter">Reset</a></li>
+			                  </ul>
+			              </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="CalendarNList">
+                        <ul>
+                            <li class="active"><a href="/eventsapp/events-home/"><i class="fa fa-calendar"></i>Monthly</a></li>
+                            <li><a href="/eventsapp/upcoming-event-list/"><i class="fa fa-list-ul"></i>List</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb section end here -->
+
+<!-- Award Details section start here -->
+<section class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+				
+					 <br>
+                <ul class="eventNotation">
+                    <li><i class="fa fa-circle OpenToAll"></i> Open to all</li>
+                    <li><i class="fa fa-circle OnPayment"></i> On payment</li>
+                    <li><i class="fa fa-circle ByInvitation"></i> By invitation</li>
+                </ul>
+
+               
+                <div id="event_calendar_two" style="padding-top: 22px;"></div>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Award Details section end here -->
+{% endblock %}
+{% block js_block %}
+
+<script>
+
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+    
+    
+    $('.CalendarNList ul li').click(function(){
+    $('.CalendarNList li').removeClass("active");
+    $(this).addClass("active");
+    });
+    load_event_calender();
+});
+
+function load_event_calender() {
+   committee = $("#select_committee").val()
+   eventtype = $("#select_eventtype").val()
+   
+   if (committee !='' || eventtype !='' ) {
+   	$("#reset_btn_div").css('display','block');
+   }
+   else {
+   	$("#reset_btn_div").css('display','none');
+   }
+	get_event_data(committee,eventtype);
+}
+
+function reset_function() {
+   $("#select_committee").val('').change();
+	$("#select_eventtype").val('').change();
+}
+function get_event_data(committee,eventtype) {
+    $.ajax({
+          type  : "GET",
+          url   : '/eventsapp/get-event-data/',
+          data : {'committee':committee,'eventtype':eventtype},
+	       success: function (response) {
+		 		  	 if (response.success == 'true') {	
+		 		  	 		if (response.final_list.length > 0){
+								$('#event_calendar_two').fullCalendar('destroy');
+								$('#event_calendar_two').fullCalendar({
+  
+								        header: { center: 'month,agendaWeek' },
+  
+								        defaultView: 'month',
+								        navLinks: true, // can click day/week names to navigate views
+      								  editable: true,
+								        eventLimit: true, // allow "more" link when too many events 
+										  eventSources: [							
+												    // your event source
+												    {
+												        events : response.final_list,												        	      
+												    }												
+												    // any other event sources...												
+										 ],
+										 
+										 
+										 eventMouseover: function (data, event, view) {
+										 console.log('statrt',data.new_date)
+            						 	tooltip = '<div class="tooltiptopicevent" style="width:auto;height:auto;background:#c1dec2;position:absolute;z-index:10001;padding:10px 10px 10px 10px ;  line-height: 200%;">' + data.title + '</br>' +  data.new_date + '</br>' + '</div>';
+
+
+            							$("body").append(tooltip);
+            							$(this).mouseover(function (e) {
+                							$(this).css('z-index', 10000);
+                							$('.tooltiptopicevent').fadeIn('500');
+                							$('.tooltiptopicevent').fadeTo('10', 1.9);
+            							}).mousemove(function (e) {
+                							$('.tooltiptopicevent').css('top', e.pageY + 10);
+                							$('.tooltiptopicevent').css('left', e.pageX + 20);
+            							});
+
+
+        								},
+        								eventMouseout: function (data, event, view) {
+            							$(this).css('z-index', 8);
+            							$('.tooltiptopicevent').remove();
+        								},    											
+								    });	
+								     		  	 		
+		 		  	 		}			 		  	 			
+		 		  	 		else {
+		 		  	 			$('#event_calendar_two').fullCalendar('destroy');
+		 		  	 			$('#event_calendar_two').fullCalendar({
+		 		  	 			        header: { center: 'month,agendaWeek' },
+								        defaultView: 'month'
+								});
+		 		  	 		}	 		  	 		
+	 		  		 }	 		  		 	 		  		
+	        },
+          error : function(response){
+                alert("_Error");                
+        },
+
+      });
+}
+</script>
+
+{% endblock %}
+</body>
+</html>

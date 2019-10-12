@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Payment - Hallbooking</title>
+
+
+</head>
+<body>
+{% load staticfiles %}
+{% block content %}
+<div class="modal-body">
+        <input type="text" id="booking_id" name="booking_id" value={{booking_id}} hidden>
+        <input type="text" id="tds_amount_hall" name="tds_amount_hall" value={{tds_amount_hall_booking}} hidden>
+
+        <div class="row">
+
+            <div align="center">
+                <p>Customer Name : {{customer_name}}</p>
+                <p>Total Amount to Pay : {{paid_amount_count}}</p>
+                <button type="button" class="btn btn-outline grey_color" data-dismiss="modal"
+                        onclick="#">Close
+                </button>
+                <button id="payment_online_done" class="btn btn-default done_btn" onclick="payment_online();">
+                    Pay
+                </button>
+            </div>
+        </div>
+</div>
+
+{% endblock %}
+{% block js_block %}
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+
+    <script src="https://www.paynimo.com/paynimocheckout/client/lib/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://www.paynimo.com/Paynimocheckout/server/lib/checkout.js"></script>
+    <script src="{% static 'custom-js/hallbooking/pay_later_online.js' %}" type="text/javascript"></script>
+    <!--<script src="{% static 'custom-js/backofficeapp/sha512.min.js' %}" type="text/javascript"></script>-->
+
+
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA | Edit Member</title>
+</head>
+<body>
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<!-- internal banner section starts here -->
+<section class="InternalBannerSection" id="MembershipForm"
+         style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <h2>Feel Free to update details in below form</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li class="active"><a href="#"> Membership</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- internal banner section Ends here -->
+
+
+<!-- Member form section starts here -->
+<section class="FormArea internalSection" id="MembershipFormBody">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="FormTitleArea">
+                    <h2>Edit Profile</h2><br/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="">
+                    <form id="front_end_edit_form" name="front_end_edit_form" method="POST"
+                          onSubmit="edit_front_end_member(); return false;">
+                        {% csrf_token %}
+                        <div class="validateContainer">
+                            <div class="FormInnerArea clearfix">
+                                <input type="hidden" class="form-control" id="membership_selection"
+                                       name="membership_selection">
+                                <input type="text" id="check_user_type" name="check_user_type"
+                                       value="{{member_obj.enroll_type}}" hidden>
+                                <input type="text" id="slab_id" name="slab_id" value="{{member_obj.membership_slab.id}}"
+                                       hidden>
+                                <input type="text" id="edit_member_id" name="edit_member_id" value="{{member_obj.id}}"
+                                       hidden>
+                                <div class="">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row">
+                                            <h3 style="padding-left:16px;"><strong>Fields marked as <span>*</span> are mandatory.</strong></h3>
+                                            <div class="form-group">
+                                               <div id="company_name_input">
+                                                    <label class="col-md-4 control-label"
+                                                           for="Company / Applicant Name">Company Name*</label></div>
+                                                <div id="individual_name_input">
+                                                    <label class="col-md-4 control-label"
+                                                           for="Company / Applicant Name">Applicant Name*</label></div>
+
+                                                <div class="col-md-8">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired validateAlphanumaric"
+                                                               name="CompanyApplicantName" id="CompanypAplicantName"
+                                                               maxlength="150"
+                                                               value="{{member_obj.company.company_name}}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="CEOdiv">
+                                                <label class="col-md-4 control-label" for="CEO">CEO Name*</label>
+
+                                                <div class="col-md-8">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired "
+                                                               name="CEO" id="CEO" maxlength="50"
+                                                               value="{{member_obj.ceo_name}}" pattern ="(.|\s)*\S(.|\s)*">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group" id="CEOContactdiv">
+                                                <label class="col-md-4 control-label" for="CEO">CEO Contact*</label>
+
+                                                <div class="col-md-8">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired validateNumber validateMobileNoLimit"
+                                                               name="CEOContact" id="CEOContact" maxlength="10"
+                                                               minlength="10" value="{% if member_obj.ceo_cellno %}{{member_obj.ceo_cellno}}{% endif %}">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <!--<div class="form-group">-->
+                                                <!--<label class="col-md-4 control-label" for="CEOEmail">CEO Email*</label>-->
+
+                                                <!--<div class="col-md-8">-->
+                                                    <!--<div class="validateField">-->
+                                                        <!--<input type="text"-->
+                                                               <!--class="form-control validateRequired validateEmail"-->
+                                                               <!--name="CEOEmail" id="CEOEmail" maxlength="50"-->
+                                                               <!--value="{{member_obj.ceo_email}}">-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+                                                <div class="form-group" id="comapnyemail">
+                                                <label class="col-md-4 control-label" for="CEO Email">CEO Email*</label>
+
+                                                <div class="col-md-8">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired validateEmail"
+                                                               name="CEOEmail" id="CEOEmail" maxlength="50"
+                                                         value="{{member_obj.ceo_email}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                             <div class="form-group" id="individualemail">
+                                                <label class="col-md-4 control-label" for="CEO Email">Email*</label>
+
+                                                <div class="col-md-8">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired validateEmail"
+                                                               name="CEOEmailin" id="CEOEmailin" maxlength="50"
+                                                         value="{{member_obj.ceo_email}}">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" id="mailreceiveconfirmboxdiv">
+                                                <div class="checkbox col-md-8">
+                                                    <input type="checkbox"
+                                                           name="mailreceiveconfirmbox"
+                                                           id="mailreceiveconfirmbox" value="mailreceiveconfirmbox" {% if member_obj.company.ceo_email_confirmation == True %}checked {%endif%}>
+                                                    <label for="mailreceiveconfirmbox" id="mailreceiveconfirm"> Please
+                                                        tick if CEO wants to receive emails from MCCIA.
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                       <div class="form-group col-md-12" id="poc_div">
+                                           <label class="control-label"><strong>Point of Contact*</strong></label>
+                                                <label><font>Point of Contact for MCCIA for effective co-ordination on aspects like Membership, Events, Visa recommendation letter etc.</label>
+
+                                        <div class="form-group">
+                                            <label class="col-md-4 col-sm-12 control-label" for="poc">Name</label>
+                                            <div class="col-md-8 col-sm-6">
+                                                <div class="validateField">
+                                                    <input type="text"
+                                                           class="form-control  validateAlphanumaric validateRequired"
+                                                           name="pocName" id="pocName" placeholder="Name"
+                                                           maxlength="50" value="{{member_obj.poc_name}}" pattern="[a-zA-Z][a-zA-Z\s]*">
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="form-group">
+                                            <label class="col-md-4 col-sm-12 control-label" for="poc">Contact</label>
+                                            <div class="col-md-8 col-sm-6">
+                                                <div class="validateField">
+                                                    <input type="text"
+                                                           class="form-control  validateNumber validateRequired"
+                                                           name="POCContact" id="pocContact" maxlength="10"
+                                                           placeholder="Contact"
+                                                           value="{% if member_obj.poc_contact %}{{member_obj.poc_contact}}{% endif %}" >
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="form-group">
+                                            <label class="col-md-4 col-sm-12 control-label" for="poc">Email ID</label>
+                                            <div class="col-md-8 col-sm-6">
+                                                <div class="validateField">
+                                                    <input type="text"
+                                                           class="form-control  validateEmail "
+                                                           name="POCEmail" id="POCEmail" placeholder="Email ID"
+                                                           value="{{member_obj.poc_email}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                                 </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label"><strong>Address for
+                                                Correspondence</strong></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Address*</label>
+
+                                                <div class="col-md-10">
+                                                    <div class="validateField">
+                                                        <textarea type="text" class="form-control validateRequired"
+                                                                  name="CorrespondenceAddress"
+                                                                  id="CorrespondenceAddress" pattern ="(.|\s)*\S(.|\s)*">{% if member_obj.correspond_address %}{{member_obj.correspond_address}}{% endif %}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="clear: left;">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">State*</label>
+
+                                                <div class="col-md-10">
+                                                    <div class="validateField">
+                                                        <select class="form-control validateRequired"
+                                                                name="CorrespondenceState"
+                                                                id="CorrespondenceState">
+                                                            {% for i in stateObj %}
+                                                            <option value="{{i.id}}" {% if i.id == member_obj.correspondstate.id %} selected {% endif %}>{{i.state_name}} </option>
+                                                            {% endfor%}
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">City*</label>
+
+                                                <div class="col-md-10">
+                                                    <div class="validateField">
+                                                        <select class="form-control validateRequired"
+                                                                name="CorrespondenceCity"
+                                                                id="CorrespondenceCity">
+                                                            {% for city in cityObj%}
+                                                            <option value="{{city.id}}" {% if city.id == member_obj.correspondcity.id %} selected {% endif %}>{{city.city_name}}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Pin*</label>
+
+                                                <div class="col-md-10">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired validateNumber validatePincodeLimit"
+                                                               name="CorrespondencePin" id="CorrespondencePin"
+                                                               maxlength="6" minlength="6"
+                                                               value="{% if member_obj.correspond_pincode %}{{member_obj.correspond_pincode}}{% endif %}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Contact</label>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateSTDNumber"
+                                                               name="CorrespondenceStd1" id="CorrespondenceStd1" placeholder="STD"
+                                                               maxlength="6" minlength="2"
+                                                               value="{% if member_obj.correspond_std1 != None and member_obj.correspond_std1 != '' and member_obj.correspond_std1 %}{{member_obj.correspond_std1}}{% endif %}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-7">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validatelandlineContactNumber"
+                                                               name="CorrespondenceLandline1"
+                                                               id="CorrespondenceLandline1"
+                                                               maxlength="10" minlength="6"
+                                                               value="{% if member_obj.correspond_landline1 %}{{member_obj.correspond_landline1}}{% endif %}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
+                                        <!--<div class="row">-->
+                                            <!--<div class="form-group">-->
+                                                <!--<label class="col-md-2 control-label">Contact 2#</label>-->
+                                                <!--<div class="col-md-3">-->
+                                                    <!--<div class="validateField">-->
+                                                        <!--<input type="text" class="form-control validateSTDNumber"-->
+                                                               <!--name="CorrespondenceStd2" id="CorrespondenceStd2" placeholder="STD"-->
+                                                               <!--maxlength="6" minlength="2"-->
+                                                               <!--value="{% if member_obj.correspond_std2 != None or member_obj.correspond_std2 != '' and member_obj.correspond_std2 %}{{member_obj.correspond_std2}}{% endif %}">-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="col-md-7">-->
+                                                    <!--<div class="validateField">-->
+                                                        <!--<input type="text"-->
+                                                               <!--class="form-control validateNumber validatelandlineContactNumber"-->
+                                                               <!--name="CorrespondenceLandline2"-->
+                                                               <!--id="CorrespondenceLandline2"-->
+                                                               <!--maxlength="10" minlength="6"-->
+                                                               <!--value="{% if member_obj.correspond_landline2 %}{{member_obj.correspond_landline2}}{% endif %}">-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
+                                        <!--<div class="row">-->
+                                            <!--<div class="form-group">-->
+                                                <!--<label class="col-md-2 control-label">Email</label>-->
+
+                                                <!--<div class="col-md-10">-->
+                                                    <!--<div class="validateField">-->
+                                                        <!--<input type="text"-->
+                                                               <!--class="form-control  validateEmail"-->
+                                                               <!--name="CorrespondenceEmail" id="CorrespondenceEmail"-->
+                                                               <!--maxlength="50" value="{{member_obj.correspond_email}}">-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Website</label>
+
+                                                <div class="col-md-10">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="CorrespondenceWebsite" id="CorrespondenceWebsite"
+                                                               maxlength="150" value="{% if member_obj.website %}{{member_obj.website}}{% endif %}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">PAN*</label>
+                                                <div class="col-md-8">
+                                                    <div class="validateField">
+                                                        <input type="text" maxlength=10
+                                                               class="form-control validateRequired validatePanNumber"
+                                                               style="text-transform: uppercase" id="CorrespondencePan"
+                                                               name="CorrespondencePan" value="{% if member_obj.pan %}{{member_obj.pan}}{% endif %}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" name="CorrespondencePanCheck"
+                                                               id="CorrespondencePanCheck"
+                                                                {% if member_obj.pan == None or member_obj.pan == '' or member_obj.pan == 'NA' %} checked{% endif %}>
+                                                        <label for="CorrespondencePanCheck"> NA
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group ">
+                                                <label class="col-md-2 control-label">Udyog Aadhar*</label>
+                                                <div class="col-md-8">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired validateNumber"
+                                                               minlength="12" maxlength="16"
+                                                               id="CorrespondenceAadhar" name="CorrespondenceAadhar"
+                                                               value="{% if member_obj.aadhar and  member_obj.aadhar != 0 %}{{member_obj.aadhar}}{% endif %}">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" name="CorrespondenceAadharCheck" id="CorrespondenceAadharCheck"
+                                                                {% if member_obj.aadhar == None or member_obj.aadhar == '' or member_obj.aadhar == 0 or member_obj.aadhar == 'NA' or member_obj.aadhar == 'False' or member_obj.aadhar == '0' %} checked {% endif %}>
+                                                        <label for="CorrespondenceAadharCheck"> NA
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group validateField" id="error_correspondence_GST">
+                                                <label class="col-md-2 control-label">GST*</label>
+                                                <div class="col-md-4">
+                                                    <div class="form-group form-md-radios validateRequired">
+                                                        <div class="md-radio-inline">
+                                                            <!-- <div class="md-radio">
+                                                                <input type="radio" id="UnderProcess"
+                                                                       name="correspondence_GST" value="UnderProcess"
+                                                                       class="md-radiobtn" {% if member_obj.gst_in == 'UP' %} checked {% endif %}>
+                                                                <label for="UnderProcess" style="color:black;">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span><b> Under Process </b>
+                                                                </label>
+                                                            </div> -->
+                                                            <div class="md-radio">
+                                                                <input type="radio" id="Applicable"
+                                                                       name="correspondence_GST" value="Applicable"
+                                                                       class="md-radiobtn" {% if member_obj.gst_in == 'AP' %} checked {% endif %}>
+                                                                <label for="Applicable" style="color:black;">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span> <b> Applicable </b>
+                                                                </label>
+                                                            </div>
+                                                            <div class="md-radio">
+                                                                <input type="radio" id="NotApplicable"
+                                                                       name="correspondence_GST" value="NotApplicable"
+                                                                       class="md-radiobtn" {% if member_obj.gst_in == 'NA' %} checked {% endif %}>
+                                                                <label for="NotApplicable" style="color:black;">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span> <b>Not
+                                                                    Applicable </b></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6" id="GSTField" style="display:none">
+                                                    <div class="form-group validateField">
+                                                        <input type="text" maxlength=50
+                                                               class="form-control validateAlphaonly"
+                                                               id="CorrespondenceGSTText" placeholder="GST text"
+                                                               name="CorrespondenceGSTText"
+                                                               value="{% if member_obj.gst %}{{member_obj.gst}}{% endif %}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div id="pocdiv">-->
+                                        <!--<div class="form-group col-md-12">-->
+                                            <!--<h3>Point of Contact*</h3>-->
+                                        <!--</div>-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label class="col-md-2 col-sm-12 control-label" for="poc"></label>-->
+                                            <!--<div class="col-md-5 col-sm-6">-->
+                                                <!--<div class="validateField">-->
+                                                    <!--<input type="text"-->
+                                                           <!--class="form-control  validateAlphanumaric validateRequired"-->
+                                                           <!--name="pocName" id="pocName" placeholder="Name"-->
+                                                           <!--maxlength="50" value="{{member_obj.poc_name}}" pattern="[a-zA-Z][a-zA-Z\s]*">-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-2 col-sm-6">-->
+                                                <!--<div class="validateField">-->
+                                                    <!--<input type="text"-->
+                                                           <!--class="form-control  validateNumber validateRequired"-->
+                                                           <!--name="POCContact" id="pocContact" maxlength="10"-->
+                                                           <!--placeholder="Contact"-->
+                                                           <!--value="{% if member_obj.poc_contact %}{{member_obj.poc_contact}}{% endif %}" >-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-3 col-sm-6">-->
+                                                <!--<div class="validateField">-->
+                                                    <!--<input type="text"-->
+                                                           <!--class="form-control  validateEmail "-->
+                                                           <!--name="POCEmail" id="POCEmail" placeholder="Email ID"-->
+                                                           <!--value="{{member_obj.poc_email}}">-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                    <div id="FactoryAddressdiv">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="row">
+                                                <div class="form-group customcheckbox">
+                                                    <label class="col-md-2 control-label"><strong>Factory
+                                                        Address</strong></label>
+                                                    <div class="col-md-10">
+                                                        <div class="checkbox">
+                                                            <input type="checkbox" onclick="make_same_address();"
+                                                                   name="factoryAddressField" id="factoryAddressField" value="factoryAddressField" {% if member_obj.company.same_as_above == True %}checked {%endif%}>
+                                                            <label for="factoryAddressField" id="sameasabove"> Same As Above
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="hidefactory">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-md-2 control-label">Address*</label>
+
+                                                    <div class="col-md-10">
+                                                        <div class="validateField">
+                                                        <textarea type="text" class="form-control validateRequired"
+                                                                  name="FactoryAddress" id="FactoryAddress" pattern ="(.|\s)*\S(.|\s)*">{% if member_obj.factory_address %}{{member_obj.factory_address}}{% endif %}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="clear: left;">
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-md-2 control-label">State</label>
+
+                                                    <div class="col-md-10">
+                                                        <div class="validateField">
+                                                            <select class="form-control validateRequired"
+                                                                    name="FactoryState"
+                                                                    id="FactoryState">
+                                                                {% for i in stateObj %}
+                                                                <option value="{{i.id}}" {% if i.id == member_obj.factorystate.id %} selected {% endif %}>{{i.state_name}} </option>
+                                                                {% endfor%}
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-md-2 control-label">City</label>
+
+                                                    <div class="col-md-10">
+                                                        <div class="validateField">
+                                                            <select class="form-control validateRequired"
+                                                                    name="FactoryCity" id="FactoryCity">
+                                                                {% for i in fact_cityObj %}
+                                                                <option value="{{i.id}}" {% if i.id == member_obj.factorycity.id %} selected {% endif %}>{{i.city_name}} </option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label class="col-md-2 control-label">Pin*</label>
+
+                                                    <div class="col-md-10">
+                                                        <div class="validateField">
+                                                            <input type="text"
+                                                                   class="form-control validateRequired validateNumber validatePincodeLimit"
+                                                                   name="FactoryPin" id="FactoryPin" maxlength="6"
+                                                                   minlength="6" value="{% if member_obj.factory_pincode %}{{member_obj.factory_pincode}}{% endif %}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="form-group">-->
+                                                    <!--<label class="col-md-2 control-label">Contact 1#</label>-->
+                                                    <!--<div class="col-md-3">-->
+                                                        <!--<div class="validateField">-->
+                                                            <!--<input type="text" placeholder="STD" class="form-control validateSTDNumber"-->
+                                                                   <!--name="FactorySTD1" id="FactorySTD1" maxlength="6" minlength="2"-->
+                                                                   <!--value="{% if member_obj.factory_std1 != None or member_obj.factory_std1 != '' and member_obj.factory_std1 %}{{member_obj.factory_std1}}{% endif %}">-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col-md-7">-->
+                                                        <!--<div class="validateField">-->
+                                                            <!--<input type="text"-->
+                                                                   <!--class="form-control validatelandlineContactNumber"-->
+                                                                   <!--name="FactoryLandline1" id="FactoryLandline1"-->
+                                                                   <!--maxlength="10" minlength="6"-->
+                                                                   <!--value="{% if member_obj.factory_landline1 %}{{member_obj.factory_landline1}}{% endif %}">-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="form-group">-->
+                                                    <!--<label class="col-md-2 control-label">Contact 2#</label>-->
+                                                    <!--<div class="col-md-3">-->
+                                                        <!--<div class="validateField">-->
+                                                            <!--<input type="text" placeholder="STD" class="form-control validateSTDNumber"-->
+                                                                   <!--name="FactorySTD2" id="FactorySTD2" maxlength="6" minlength="2"-->
+                                                                   <!--value="{% if member_obj.factory_std2 != None or member_obj.factory_std2 != '' and member_obj.factory_std2 %}{{member_obj.factory_std2}}{% endif %}">-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                    <!--<div class="col-md-7">-->
+                                                        <!--<div class="validateField">-->
+                                                            <!--<input type="text"-->
+                                                                   <!--class="form-control validateNumber validatelandlineContactNumber"-->
+                                                                   <!--name="FactoryLandline2" id="FactoryLandline2"-->
+                                                                   <!--maxlength="10" minlength="6"-->
+                                                                   <!--value="{% if member_obj.factory_landline2 %}{{member_obj.factory_landline2}}{% endif %}">-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="form-group">-->
+                                                    <!--<label class="col-md-2 control-label">Email</label>-->
+
+                                                    <!--<div class="col-md-10">-->
+                                                        <!--<div class="validateField">-->
+                                                            <!--<input type="text" class="form-control validateEmail"-->
+                                                                   <!--name="FactoryEmail" id="FactoryEmail" maxlength="50"-->
+                                                                   <!--value="{% if member_obj.person_email %}{{member_obj.person_email}}{% endif %}">-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+
+                                        <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
+                                            <!--<div class="row">-->
+                                                <!--<div class="form-group">-->
+                                                    <!--<label class="col-md-2 control-label">Website</label>-->
+
+                                                    <!--<div class="col-md-10">-->
+                                                        <!--<div class="validateField">-->
+                                                            <!--<input type="text" class="form-control"-->
+                                                                   <!--name="FactoryWebsite" id="FactoryWebsite"-->
+                                                                   <!--maxlength="150" value="{% if member_obj.website %}{{member_obj.website}}{% endif %}">-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        </div>
+
+                                   <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12" id="legalstatusdiv">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-lg-5 control-label" for="legalStatus">Legal Status *
+                                            </label>
+                                                <div class="col-lg-4">
+                                                <div class="validateField">
+                                                    <select class="form-control validateRequired"
+                                                            name="legalStatus" id="legalStatus">
+                                                        <option value="">Select Legal Status</option>
+                                                        {% for i in legalstatusObj %}
+                                                        <option value="{{i.id}}"  {% if i.id == member_obj.company.legalstatus.id %} selected {% endif %}>{{i.description}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="FormInnerArea clearfix">
+                                <div id="YearofEstablishmentdiv">
+                                <div class="form-group col-md-12">
+                                    <h3>Company Details</h3>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="YearofEstablishment">Year of
+                                        Establishment</label>
+
+                                    <div class="col-md-5">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control validateNumber validateRequired"
+                                                   name="YearofEstablishment" id="YearofEstablishment" maxlength="4"
+                                                   placeholder="YYYY" value="{{member_obj.company.establish_year}}">
+                                        </div>
+                                    </div>
+                                 </div>
+                                    </div>
+                                <div id="CompanyDetaildiv">
+                                    {% if request.session.user_type == 'backoffice' %}
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label">DIC/SSI</label>
+
+                                        <div class="col-md-10">
+                                            <div class="radio">
+                                                <div class="radiobox">
+                                                    <input type="radio" id="radiobtn1" name="radiobtn-1" value="Micro"
+                                                           {% if member_obj.company.company_scale == 'MR' %} checked {% endif %}>
+                                                    <label for="radiobtn1">Micro</label>
+                                                </div>
+                                                <div class="radiobox">
+                                                    <input type="radio" id="radiobtn2" name="radiobtn-1" value="Small"
+                                                           {% if member_obj.company.company_scale == 'SM' %} checked {% endif %}>
+                                                    <label for="radiobtn2">Small</label>
+                                                </div>
+                                                <div class="radiobox">
+                                                    <input type="radio" id="radiobtn3" name="radiobtn-1"
+                                                           value="MediumScale"
+                                                           {% if member_obj.company.company_scale == 'MD' %} checked {% endif %}>
+                                                    <label for="radiobtn3">Medium Scale</label>
+                                                </div>
+                                                <div class="radiobox">
+                                                    <input type="radio" id="radiobtn4" name="radiobtn-1"
+                                                           value="LargeScale"
+                                                           {% if member_obj.company.company_scale == 'LR' %} checked {% endif %}>
+                                                    <label for="radiobtn4">Large Scale</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-12 col-xs-12 control-label"
+                                               for="multi-select-export-country">Exports
+                                            To</label>
+
+                                        <div class="col-md-3 col-sm-6 col-xs-7">
+                                            <div class="validateField">
+                                                <div class="container">
+                                                    <select id="multi-select-export-country" multiple="multiple"
+                                                            name="multi-select-export-country">
+                                                        {% for i in countryObj %}
+                                                        <option value="{{i.id}}" {% if i.country_name in export_country_list %} selected {% endif %}> {{i.country_name}} </option>
+                                                        {%endfor%}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-7 col-sm-6 col-xs-5">
+                                            <div class="validateField">
+                                                <textarea class="form-control" name="TextExport"
+                                                       id="TextExport" readonly>{% if member_obj.company.textexport %}{{member_obj.company.textexport}}{% endif %}</textarea>
+                                                <!--<input type="text" class="form-control" name="TextExport"-->
+                                                       <!--id="TextExport" value="{% if member_obj.company.textexport %}{{member_obj.company.textexport}}{% endif %}"-->
+                                                       <!--readonly>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-12 col-xs-12 control-label"
+                                               for="multi-select-import-country">Imports
+                                            From</label>
+
+                                        <div class="col-md-3 col-sm-6 col-xs-7">
+                                            <div class="validateField">
+                                                <div class="container">
+                                                    <select id="multi-select-import-country" multiple="multiple"
+                                                            name="multi-select-import-country">
+                                                        {% for i in countryObj %}
+                                                        <option value="{{i.id}}" {% if i.country_name in import_country_list %} selected {% endif %}> {{i.country_name}} </option>
+                                                        {%endfor%}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-7 col-sm-6 col-xs-5">
+                                            <div class="validateField">
+                                                <textarea class="form-control" name="TextImport"
+                                                       id="TextImport" readonly>{% if member_obj.company.textimport %}{{member_obj.company.textimport}}{% endif %}</textarea>
+                                                <!--<input type="text" class="form-control" name="TextImport"-->
+                                                       <!--id="TextImport" value="{% if member_obj.company.textimport %}{{member_obj.company.textimport}}{% endif %}"-->
+                                                       <!--readonly>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="areaofexpertisedivbig">
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12" id="Industry_for_invidual"
+                                     style=" float:left;">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Area of Expertise *</label>
+                                            <div class="col-lg-4" align="left">
+                                                <div class="validateField">
+                                                    <select class="form-control validateRequired"
+                                                            name="areaofexperties"
+                                                            id="areaofexperties">
+                                                        <option value="">Select Area Of Experties</option>
+                                                        <option value="Engineer" {% if member_obj.area_of_experties == 1 %} selected {% endif %}>Engineer</option>
+                                                        <option value="CA" {% if member_obj.area_of_experties == 2 %} selected {% endif %}>CA</option>
+                                                        <option value="Doctors" {% if member_obj.area_of_experties == 3 %} selected {% endif %}>Doctor</option>
+                                                        <option value="Consultant" {% if member_obj.area_of_experties == 4 %} selected {% endif %}>Consultant</option>
+                                                        <option value="Marketing_Professional" {% if member_obj.area_of_experties == 5 %} selected {% endif %}>Marketing Professional</option>
+                                                        <option value="Valuers" {% if member_obj.area_of_experties == 6 %} selected {% endif %}>Valuer</option>
+                                                        <option value="individual_finance_brokers" {% if member_obj.area_of_experties == 7 %} selected {% endif %}>Individual Finance Broker</option>
+                                                        <option value="real_estate_broker" {% if member_obj.area_of_experties == 8 %} selected {% endif %}>Real Estate Broker</option>
+                                                        <option value="lawyers_solicitors" {% if member_obj.area_of_experties == 9 %} selected {% endif %}>Lawyer/Solicitor</option>
+                                                        <option value="management_consultant" {% if member_obj.area_of_experties == 10 %} selected {% endif %}>Management Consultant</option>
+                                                        <option value="trainers" {% if member_obj.area_of_experties == 11 %} selected {% endif %}>Trainer</option>
+                                                        <option value="project_consultants" {% if member_obj.area_of_experties == 12 %} selected {% endif %}>Project Consultant</option>
+                                                        <option value="others" {% if member_obj.area_of_experties == 13 %} selected {% endif %}>Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="otherareaofexpertiesdiv" class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
+                                     style=" float:left;">
+                                    <input type="text" class="form-control validateRequired validateEmail" value="{{member_obj.experties_other}}"
+                                           name="otherareaofexperties" id="otherareaofexperties" maxlength="50"
+                                           placeholder="Input Other Area of Experties">
+                                </div>
+                                </div>
+
+                                 <div class="form-group">
+                                    <label class="col-md-2 col-sm-12 col-xs-12 control-label" for="IndustryDescription">Industry
+                                        Category you serve / Industry Description</label>
+                                    <div class="col-md-3 col-sm-6 col-xs-7">
+                                        <div class=" validateField">
+                                            <div class="container">
+                                                <select id="IndustryDescription" multiple="multiple"
+                                                        name="IndustryDescription">
+                                                    {% for i in industrydescObj %}
+                                                    <option value="{{i.id}}" {% if i in member_obj.company.industrydescription.all %} selected {% endif %}>{{i.description}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--<div class="col-md-7 col-sm-6 col-xs-5">-->
+                                        <!--<div class="validateField">-->
+                                                <!--<textarea class="form-control" name="TextIndustryDescription"-->
+                                                          <!--id="TextIndustryDescription" readonly></textarea>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <div id="otherindustry_discriptiondiv" class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
+                                         style=" float:left;">
+                                        <input type="text" class="form-control validateRequired validateEmail"
+                                               name="otherindustry_discription" id="otherindustry_discription"
+                                               maxlength="50" placeholder="Input Other Industry Description"
+                                               value="{{member_obj.company.industrydescription_other}}">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                     <div class="form-group">
+                                    <label class="col-md-3 control-label" for="DescriptionofBusiness">Description of
+                                        Business* </label>
+                                    <div class="col-lg-4">
+                                        <div class="validateField">
+                                            <textarea id="DescriptionofBusiness" name="DescriptionofBusiness"
+                                                      maxlength="300" class=" validateRequired"
+                                                      style="opacity: 1; height: 60px; " cols="60"
+                                                      pattern="(.|\s)*\S(.|\s)*">{% if member_obj.company.description_of_business %}{{member_obj.company.description_of_business}}{% endif %}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="FormInnerArea clearfix" id="HODContactDetails">
+                                  <!--<div class="form-group col-md-12">-->
+                                    <!--<h3>Point of Contact</h3>-->
+                                <!--</div>-->
+                                <!--<div class="form-group"> -->
+                                <!--<label class="col-md-2 col-sm-12 control-label" for="poc"></label>-->
+                                    <!--<div class="col-md-5 col-sm-6">-->
+                                        <!--<div class="validateField">-->
+                                            <!--<input type="text" class="form-control  validateAlphanumaric validateRequired"-->
+                                                   <!--name="pointOfContact" id="pointOfContact" placeholder="Name" maxlength="50" value="{{member_obj.poc_name}}">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-2 col-sm-6">-->
+                                        <!--<div class="validateField">-->
+                                            <!--<input type="text" class="form-control  validateNumber validateRequired"-->
+                                                   <!--name="POCContact" id="POCContact" maxlength="10" placeholder="Contact" value="{% if member_obj.poc_contact %}{{member_obj.poc_contact}}{% endif %}">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-3 col-sm-6">-->
+                                        <!--<div class="validateField">-->
+                                            <!--<input type="text" class="form-control  validateEmail validateRequired"-->
+                                                   <!--name="POCEmail" id="POCEmail" placeholder="Email ID"-->
+                                                   <!--value="{{member_obj.poc_email}}">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <div class="form-group col-md-12">
+                                    <h3>Contact details of department heads</h3>
+                                     <p>Your HODs will be able to receive subject specific emails for their knowledge enrichment.</p>
+
+                                </div>
+
+                                <!--<div class="form-group hidden-xs hidden-sm">-->
+                                    <!--<label class="col-md-2 col-sm-12 control-label"></label>-->
+
+                                    <!--<div class="col-md-5 col-sm-6">-->
+                                        <!--<label class="control-label" style="color: #00000094;"><em-->
+                                                <!--style="text-align:center;">Name</em></label>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-2 col-sm-6">-->
+                                        <!--<label class="control-label" style="color: #00000094;text-align:center;"><em>Contact </em></label>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-3 col-sm-6">-->
+                                        <!--<label class="control-label" style="color: #00000094; text-align:center;"><em>Email-->
+                                            <!--Id</em></label>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                 <div class="form-group" >
+                                    <label class="col-md-2 col-sm-12 control-label" for="FinanceName">Account/Finance*</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="FinanceName" id="FinanceName" placeholder="Name"
+                                                   maxlength="50" value="{{member_obj.company.hoddetail.finance_name}}"  pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="FinanceContact" id="FinanceContact"
+                                                   placeholder="Contact"
+                                                   value="{{member_obj.company.hoddetail.finance_contact}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="FinanceEmail" id="FinanceEmail" placeholder="Email ID"
+                                                   value="{{member_obj.company.hoddetail.finance_email}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-md-2 col-sm-12 control-label" for="HRName">HR</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="HRName" id="HRName" placeholder="Name" maxlength="50"
+                                                   value="{{member_obj.company.hoddetail.hr_name}}"  pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="HRContact" id="HRContact" maxlength="10" placeholder="Contact"
+                                                   value="{{member_obj.company.hoddetail.hr_contact}}" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="HREmail" id="HREmail" placeholder="Email ID"
+                                                   value="{{member_obj.company.hoddetail.hr_email}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <label class="col-md-2 col-sm-12 control-label"
+                                           for="MarketingName">Sales & Marketing</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="MarketingName" id="MarketingName" placeholder="Name"
+                                                   maxlength="50"
+                                                   value="{{member_obj.company.hoddetail.marketing_name}}"  pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="MarketingContact" id="MarketingContact" maxlength="10"
+                                                   placeholder="Contact"
+                                                   value="{{member_obj.company.hoddetail.marketing_contact}}" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="MarketingEmail" id="MarketingEmail" placeholder="Email ID"
+                                                   value="{{member_obj.company.hoddetail.marketing_email}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 col-sm-12 control-label" for="ITName">IT</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="ITName" id="ITName" placeholder="Name" maxlength="50"
+                                                   value="{{member_obj.company.hoddetail.IT_name}}"  pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="ITContact" id="ITContact" maxlength="10" placeholder="Contact"
+                                                   value="{{member_obj.company.hoddetail.IT_contact}}" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="ITEmail" id="ITEmail" placeholder="Email ID"
+                                                   value="{{member_obj.company.hoddetail.IT_email}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 col-sm-12 control-label" for="CorpRelName">Corporate Relations</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="CorpRelName" id="CorpRelName" placeholder="Name"
+                                                   maxlength="50"
+                                                   value="{{member_obj.company.hoddetail.corp_rel_name}}"  pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="CorpRelContact" id="CorpRelContact" maxlength="10"
+                                                   placeholder="Contact"
+                                                   value="{{member_obj.company.hoddetail.corp_rel_contact}}" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="CorpRelEmail" id="CorpRelEmail" placeholder="Email ID"
+                                                   value="{{member_obj.company.hoddetail.corp_rel_email}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--<div class="form-group">-->
+                                    <!--<label class="col-md-2 col-sm-12 control-label" for="TechName">Tech</label>-->
+
+                                    <!--<div class="col-md-5 col-sm-6">-->
+                                        <!--<div class="validateField">-->
+                                            <!--<input type="text" class="form-control  validateAlphanumaric"-->
+                                                   <!--name="TechName" id="TechName" placeholder="Name" maxlength="50"-->
+                                                   <!--value="{{member_obj.company.hoddetail.tech_name}}"  pattern="[a-zA-Z][a-zA-Z\s]*">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-2 col-sm-6">-->
+                                        <!--<div class="validateField">-->
+                                            <!--<input type="text" class="form-control  validateNumber"-->
+                                                   <!--name="TechContact" id="TechContact" maxlength="10"-->
+                                                   <!--placeholder="Contact"-->
+                                                   <!--value="{{member_obj.company.hoddetail.tech_contact}}" pattern="[0-9]{10}">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-3 col-sm-6">-->
+                                        <!--<div class="validateField">-->
+                                            <!--<input type="text" class="form-control  validateEmail"-->
+                                                   <!--name="TechEmail" id="TechEmail" placeholder="Email ID"-->
+                                                   <!--value="{{member_obj.company.hoddetail.tech_email}}">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <!--<div class="form-group">-->
+                                    <!--<label class="col-md-2 col-sm-12 control-label" for="RandDName">R&D </label>-->
+
+                                    <!--<div class="col-md-5 col-sm-6">-->
+                                        <!--<div class="validateField">-->
+                                            <!--<input type="text" class="form-control  validateAlphanumaric"-->
+                                                   <!--name="RandDName" id="RandDName" placeholder="Name" maxlength="50"-->
+                                                   <!--value="{{member_obj.company.hoddetail.rnd_name}}"  pattern="[a-zA-Z][a-zA-Z\s]*">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-2 col-sm-6">-->
+                                        <!--<div class="validateField">-->
+                                            <!--<input type="text" class="form-control  validateNumber"-->
+                                                   <!--name="RandDContact" id="RandDContact" maxlength="10"-->
+                                                   <!--placeholder="Contact"-->
+                                                   <!--value="{{member_obj.company.hoddetail.rnd_contact}}" pattern="[0-9]{10}">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-md-3 col-sm-6">-->
+                                        <!--<div class="validateField">-->
+                                            <!--<input type="text" class="form-control  validateEmail"-->
+                                                   <!--name="RandDEmail" id="RandDEmail" placeholder="Email ID"-->
+                                                   <!--value="{{member_obj.company.hoddetail.rnd_email}}">-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                <div class="form-group">
+                                    <label class="col-md-2 col-sm-12 control-label" for="EXIMName">Export/Import</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="EXIMName" id="EXIMName" placeholder="Name" maxlength="50"
+                                                   value="{{member_obj.company.hoddetail.exim_name}}"  pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="EXIMContact" id="EXIMContact" maxlength="10"
+                                                   placeholder="Contact"
+                                                   value="{{member_obj.company.hoddetail.exim_contact}}" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="EXIMEmail" id="EXIMEmail" placeholder="Email ID"
+                                                   value="{{member_obj.company.hoddetail.exim_email}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="hoddetailsdivstore">
+                                    <label class="col-md-2 col-sm-12 control-label" for="StoreName">Stores</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="StoreName" id="StoreName" placeholder="Name" maxlength="50" value="{{member_obj.company.hoddetail.stores_name}}"
+                                                   pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="StoreContact" id="StoreContact" maxlength="10"  value="{{member_obj.company.hoddetail.stores_contact}}"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"  value="{{member_obj.company.hoddetail.stores_email}}"
+                                                   name="StoreEmail" id="StoreEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" id="hoddetailsdivpurchase">
+                                    <label class="col-md-2 col-sm-12 control-label" for="PurchaseName">Purchase</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"  value="{{member_obj.company.hoddetail.purchase_name}}"
+                                                   name="PurchaseName" id="PurchaseName" placeholder="Name"
+                                                   maxlength="50" pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"  value="{{member_obj.company.hoddetail.purchase_contact}}"
+                                                   name="PurchaseContact" id="PurchaseContact" maxlength="10"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"  value="{{member_obj.company.hoddetail.purchase_email}}"
+                                                   name="PurchaseEmail" id="PurchaseEmail" placeholder="Email ID"  >
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" id="hoddetailsdivproduction">
+                                    <label class="col-md-2 col-sm-12 control-label"
+                                           for="ProductionName">Production</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"  value="{{member_obj.company.hoddetail.production_name}}"
+                                                   name="ProductionName" id="ProductionName" placeholder="Name"
+                                                   maxlength="50" pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"  value="{{member_obj.company.hoddetail.production_contact}}"
+                                                   name="ProductionContact" id="ProductionContact" maxlength="10"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"  value="{{member_obj.company.hoddetail.production_email}}"
+                                                   name="ProductionEmail" id="ProductionEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="hoddetailsdivquality">
+                                    <label class="col-md-2 col-sm-12 control-label" for="QualityName">Quality</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric" value="{{member_obj.company.hoddetail.quality_name}}"
+                                                   name="QualityName" id="QualityName" placeholder="Name" maxlength="50"
+                                                   pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber" value="{{member_obj.company.hoddetail.quality_contact}}"
+                                                   name="QualityContact" id="QualityContact" maxlength="10"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail" value="{{member_obj.company.hoddetail.quality_email}}"
+                                                   name="QualityEmail" id="QualityEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" id="hoddetailsdivsupplychain">
+                                    <label class="col-md-2 col-sm-12 control-label" for="EXIMName">Supply Chain</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"  value="{{member_obj.company.hoddetail.supply_chain_name}}"
+                                                   name="SupplyName" id="SupplyName" placeholder="Name" maxlength="50"
+                                                   pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"  value="{{member_obj.company.hoddetail.supply_chain_contact}}"
+                                                   name="SupplyContact" id="SupplyContact" maxlength="10"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"  value="{{member_obj.company.hoddetail.supply_chain_email}}"
+                                                   name="SupplyEmail" id="SupplyEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <!--for local 6Lf0Gl4UAAAAAIjC0zhqURboCEzC0pPjdqSZmD7e-->
+                                    <!--<div class="g-recaptcha" data-sitekey="6Lf0Gl4UAAAAAIjC0zhqURboCEzC0pPjdqSZmD7e"></div>-->
+
+
+                                    <!--for AWS server 6LcPTV0UAAAAAHlTBrvPhN4oCSqDPDoWpLk70l3d-->
+                                    <div class="g-recaptcha"
+                                         data-sitekey="6LcPTV0UAAAAAHlTBrvPhN4oCSqDPDoWpLk70l3d"></div>
+
+                                    <p class="captchdescription">Fields marked as <span>*</span> are mandatory.</p>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="Formbuttons pull-right">
+                                        <button type="submit" class="btn btn-default subbtn checkValidationBtn"
+                                                id="edit_member_profile" value="Submit">Update
+                                        </button>
+                                        <button type="reset" class="btn btn-default reset"
+                                                onclick="location.href='/'"
+                                                value="Reset">Cancel
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- validatecontainer -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Member form section ends here -->
+
+
+<!-- Member form section starts here -->
+<section class="FormArea internalSection" id="MembershipInvoicesBody" style="display:none">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="FormTitleArea">
+                    <h2>Invoice</h2><br/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>Membership Category</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <input type="text" class="form-control" readonly name="membership_category"
+                               id="membership_category">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>Slab Category</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <input type="text" class="form-control" readonly name="slab_category" id="slab_category">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>Membership Year</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <input type="text" class="form-control" readonly name="membership_year" id="membership_year">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>Subscription Charges</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <input type="text" class="form-control" readonly name="subscription_charges"
+                               id="subscription_charges">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>Entrance Fee</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <input type="text" class="form-control" readonly name="entrance_fee" id="entrance_fee">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>GST</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <input type="text" class="form-control" readonly name="tax_amount" id="tax_amount">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>Amount Payble</label>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <input type="text" class="form-control" name="amount_payable" id="amount_payable">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>Payment Mode</label>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="radio">
+                            <div class="radiobox">
+                                <input type="radio" name="payment" id="Online" value="Online" checked="">
+                                <label for="Online">Online </label>
+                            </div>
+                            <div class="radiobox">
+                                <input type="radio" name="payment" id="Offline" value="Offline">
+                                <label for="Offline">Offline</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" id="ChequeDetail" style="display:none">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <label>Cheque No</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <div class="validateField show-error has-success" id="Cheque_no_error">
+                                <input type="text" class="form-control validateRequired" name="Cheque_no"
+                                       id="Cheque_no">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row form-group">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <label>Cheque Date</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+                            <div class="input-group">
+                                <div class="validateField show-error has-success" id="cheque_date_error">
+                                    <input class="form-control dateField"
+                                           id="cheque_date" name="cheque_date" type="text"/>
+                                </div>
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar">
+                                    </i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <label>Bank Name</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <div class="validateField show-error has-success" id="Bank_name_error">
+                                <input type="text" class="form-control validateRequired" name="Bank_name"
+                                       id="Bank_name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <input type="hidden" class="form-control" name="membership_form_Data" id="membership_form_Data">
+                        <button type="submit" class="btn btn-default subbtn checkValidationBtn"
+                                onclick="save_member_invoice_detail()"
+                                value="Submit">Submit
+                        </button>
+                        <button type="submit" class="btn btn-default subbtn"
+                                onclick="back_to_membership_form()" id="back_to_membershipform"
+                                value="Submit">Back
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block js_block %}
+<!--<script src="{%static 'custom-js/membershipapp/membership_form.js' %}" type="text/javascript"></script>-->
+<script type="text/javascript" src="{% static 'custom-js/Multi-select-js/bootstrap-multiselect.js' %}"></script>
+<link rel="stylesheet" href="{% static 'custom-js/Multi-select-js/bootstrap-multiselect.css' %}" type="text/css"/>
+<script src="{%static 'assets/js/validation/checkvalidation.js' %}" type="text/javascript"></script>
+<!--<script src="{%static 'custom-js/membershipapp/membership_invoice.js' %}" type="text/javascript"></script>-->
+<script src="{%static 'custom-js/membershipapp/edit_member_profile.js' %}" type="text/javascript"></script>
+
+{% endblock %}
+
+
+</body>
+</html>

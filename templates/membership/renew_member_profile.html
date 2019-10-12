@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA | Renew Membership</title>
+</head>
+<body>
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<!-- internal banner section starts here -->
+<section class="InternalBannerSection" id="MembershipInvoices"
+         style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <h2>Feel Free to Use the Renewal form below</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#"> Membership Renew</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- internal banner section Ends here -->
+<section class="FormArea internalSection" id="MembershipFormBody">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="FormTitleArea">
+                    <h2>MEMBERSHIP RENEWAL {{formatted_renewal_year}}</h2><br/>
+                </div>
+            </div>
+        </div>
+        <div id="renew_form_div">
+            <div class="row">
+                <div class="col-lg-offset-1 col-lg-10 col-lg-offset-1">
+                    <form id="renew_membership_form" name="renew_membership_form" method="POST">
+                        {% csrf_token %}
+                        <div class="validateContainer">
+                            <div class="FormInnerArea clearfix">
+                                <input type="text" id="slab_id" name="slab_id" value="{{member_obj.membership_slab.id}}"
+                                       hidden>
+                                <input type="text" id="member_id" name="member_id" value="{{member_obj.id}}" hidden>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Membership Name</label>
+                                        <label class="col-md-4 control-label">{{member_obj.company.company_name}}</label>
+                                        <label class="col-md-2 control-label">Membership No</label>
+                                        <label class="col-md-3 control-label">{{member_obj.member_associate_no}}</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label"
+                                               for="renew_membership_category">Membership
+                                            Category</label>
+                                        <div class="col-md-4">
+                                            <div class="validateField">
+                                                <select class="form-control"
+                                                        name="renew_membership_category"
+                                                        id="renew_membership_category">
+                                                    <option value="">Select Category</option>
+                                                    {% for i in membershipCategory %}
+                                                    <option value="{{i.id}}" {% if i.id == member_obj.membership_category.id %} selected {% endif %}>{{i.membership_category}} - {{i.enroll_type}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                                <span id="renew_membership_category_error"
+                                                      style="display:none; color: #f33737; font-size: 13px;font-family: 'Swis721 BT';font-weight: bold;">This field is required</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Renew For Year</label>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <input type="text"
+                                                   class="form-control" name="renewal_year" id="renewal_year"
+                                                   maxlength="100"
+                                                   value="{{renewal_year}}" placeholder="YYYY-YYYY"
+                                                   onkeypress="return check_year(event)" readonly>
+                                            <span id="renewal_year_error"
+                                                  style="display: none; color: #f33737; font-size: 13px;font-family: 'Swis721 BT';font-weight: bold;">Year should be in YYYY-YYYY format</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label"
+                                               for="renew_turnover_year"> Annual Turnover Year </label>
+                                        <div class="col-md-4">
+                                            <select class="form-control" name="renew_turnover_year"
+                                                    id="renew_turnover_year">
+                                                <option value="">YYYY-YYYY</option>
+                                                {% for year in year_list %}
+                                                <option value="{{year}}">{{year}}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <span id="renew_turnover_year_error"
+                                                  style="display: none; color: #f33737; font-size: 13px;font-family: 'Swis721 BT';font-weight: bold;">This field is required</span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>Rs. (Crs)</label>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   name="turnover_amount" id="turnover_amount" maxlength="15"
+                                                   value="{{member_obj.annual_turnover_rupees}}"
+                                                   onkeypress="return check_amount(event)">
+                                            <span id="turnover_amount_error"
+                                                  style="display: none; color: #f33737; font-size: 13px;font-family: 'Swis721 BT';font-weight: bold;">Enter valid number</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" for="renew_membership_slab">Slab</label>
+                                        <div class="col-md-4">
+                                            <div class="validateField">
+                                                <select class="form-control validateRequired"
+                                                        name="renew_membership_slab" id="renew_membership_slab">
+                                                </select>
+                                                <span id="renew_membership_slab_error"
+                                                      style="display: none; color: #f33737; font-size: 13px;font-family: 'Swis721 BT';font-weight: bold;">This field is required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label class="col-md-7 control-label">Turnover Range</label>
+                                        <label class="col-md-5 control-label">Employee Range</label>
+                                    </div>
+                                    <div class="form-group radioboxContainer">
+                                        <div class="col-md-7">
+                                            <div class="validateField">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="radiobox">
+                                                        <input type="radio" id="to_0_1" name="turnover_range" class="form-control validateRequired" value="0" checked>
+                                                        <label for="to_0_1"> 0-1 cr</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="radiobox">
+                                                        <input type="radio" id="to_1_5" name="turnover_range" class="form-control validateRequired" value="1">
+                                                        <label for="to_1_5"> 1-5 cr</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="radiobox">
+                                                        <input type="radio" id="to_5_25" name="turnover_range" class="form-control validateRequired" value="2">
+                                                        <label for="to_5_25"> 5-25 cr</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="radiobox">
+                                                        <input type="radio" id="to_25_100" name="turnover_range" class="form-control validateRequired" value="3">
+                                                        <label for="to_25_100"> 25-100 cr</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="radiobox">
+                                                        <input type="radio" id="to_100_500" name="turnover_range" class="form-control validateRequired" value="4">
+                                                        <label for="to_100_500"> 100-500 cr</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="radiobox">
+                                                        <input type="radio" id="to_500+" name="turnover_range" class="form-control validateRequired" value="5">
+                                                        <label for="to_500+"> 500+ cr</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="validateField">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="radiobox" style="width:100%;">
+                                                        <input type="radio" id="emp_0_10" name="employee_range" class="form-control validateRequired" value="0" checked>
+                                                        <label for="emp_0_10"> 0-10 </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="radiobox" style="width:100%;">
+                                                        <input type="radio" id="emp_10_100" name="employee_range" class="form-control validateRequired" value="1">
+                                                        <label for="emp_10_100"> 10-100 </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="radiobox" style="width:100%;">
+                                                        <input type="radio" id="emp_100_500" name="employee_range" class="form-control validateRequired" value="2">
+                                                        <label for="emp_100_500"> 100-500 </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="radiobox" style="width:100%;">
+                                                        <input type="radio" id="emp_500_1000" name="employee_range" class="form-control validateRequired" value="3">
+                                                        <label for="emp_500_1000"> 500-1000 </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="radiobox" style="width:100%;">
+                                                        <input type="radio" id="emp_1000+" name="employee_range" class="form-control validateRequired" value="4">
+                                                        <label for="emp_1000+"> 1000+ </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top: 30px;">
+                                    <div class="col-md-12 text-center Formbuttons">
+                                        <button type="button" class="btn btn-default reset"
+                                                onclick="location.href = '/'">
+                                            Cancel
+                                        </button>
+                                        <button type="button" id="renew_submit_btn"
+                                                class="btn btn-default">Submit
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="renew_member_invoice_div" style="display: none;">
+            <div class="row">
+                <div class="col-lg-offset-1 col-lg-10 col-lg-offset-1">
+                    <div class="FormInnerArea clearfix">
+                        <div class="row">
+                            <label class="col-md-offset-3 col-md-3 control-label">Membership Category</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" readonly name="membership_category"
+                                       id="membership_category">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <label class="col-md-offset-3 col-md-3 control-label">Slab Category</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" readonly name="slab_category"
+                                       id="slab_category">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <label class="col-md-offset-3 col-md-3 control-label">Renewal Year</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" readonly name="membership_renew_year"
+                                       id="membership_renew_year">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <label class="col-md-offset-3 col-md-3 control-label">Subscription Charges</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" readonly name="subscription_charges"
+                                       id="subscription_charges">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <label class="col-md-offset-3 col-md-3 control-label">GST</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" readonly name="tax_amount" id="tax_amount">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <label class="col-md-offset-3 col-md-3 control-label">Due Amount</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" readonly name="due_amount" id="due_amount">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <label class="col-md-offset-3 col-md-3 control-label">Advance Amount</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" readonly name="advance_amount"
+                                       id="advance_amount">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <label class="col-md-offset-3 col-md-3 control-label">Amount Payable</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" readonly name="amount_payable"
+                                       id="amount_payable">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row" style="display:none;">
+                            <label class="col-md-offset-3 col-md-3 control-label">TO</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" readonly name="amount_payable"
+                                       id="turnover_value">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row" style="display:none;">
+                            <label class="col-md-offset-3 col-md-3 control-label">EMP</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" readonly name="amount_payable"
+                                       id="employee_value">
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12 text-center Formbuttons">
+                                <button type="button" class="btn btn-default reset" id="back_btn">
+                                    Back
+                                </button>
+                                <button type="button" id="renew_invoice_submit_btn" class="btn btn-default">Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+<!-- BEGIN FOOTER -->
+<!-- END FOOTER -->
+
+{% block js_block %}
+<script src="{% static 'custom-js/membershipapp/renew_member_profile.js' %}" type="text/javascript"></script>
+<script type="text/javascript" src="https://www.paynimo.com/Paynimocheckout/server/lib/checkout.js"></script>
+{% endblock %}
+
+</body>
+</html>

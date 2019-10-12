@@ -1,0 +1,440 @@
+<section class="FormArea internalSection" id="natu_div">
+    <div class="container">
+        <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="">
+                        <form id="natu_div_form" name="natu_div_form" method="POST"
+                        onSubmit="save_natu_award(); return false;">
+                            {% csrf_token %}
+                            <div class="validateContainer">
+                                <div class="FormInnerArea clearfix">
+                                    <div class="">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Name (in capitals)</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateRequired" name="natu_name"
+                                                               id="natu_name" placeholder="Name"
+                                                               maxlength="200">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Are you First Generation
+                                                    Entrepreneur?</label>
+                                                <div class="col-md-6">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="radio">
+                                                            <div class="radiobox">
+                                                                <input type="radio" id="yes_radio" name="first_entp"
+                                                                       class="form-control" value="Yes"
+                                                                       checked>
+                                                                <label for="yes_radio">Yes</label>
+                                                            </div>
+                                                            <div class="radiobox">
+                                                                <input type="radio" id="no_radio" name="first_entp"
+                                                                       class="form-control" value="No">
+                                                                <label for="no_radio">No</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Company Name (in capitals)</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateRequired" name="natu_company_name"
+                                                               id="natu_company_name"
+                                                               maxlength="200" placeholder="Company Name">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Date of Commencement</label>
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <div class="validateField">
+                                                            <input class="form-control dateField" id="commence_date"
+                                                                   name="commence_date" type="text" placeholder="Commencement Date"
+                                                                   data-date-format="dd/mm/yyyy" readonly="">
+                                                        </div>
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar">
+                                                            </i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <label class="col-md-2 control-label">Starting Capital Rs.</label>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateDecimalNumber" placeholder="Starting Capital"
+                                                               name="starting_capital" id="starting_capital"
+                                                               maxlength="50">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Address</label>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <div class="validateField">
+                                                                <textarea class="form-control validateRequired"
+                                                                          name="natu_address" placeholder="Address"
+                                                                          id="natu_address"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="natu_city">City</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <select id="natu_city" name="natu_city"
+                                                                class="form-control validateRequired">
+                                                            <option value="">Select City</option>
+                                                            {% for city_obj in city_list %}
+                                                            <option value="{{city_obj.id}}">{{city_obj.city_name}}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <label class="col-md-2 control-label" for="natu_pin">Pin</label>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateRequired validateNumber"
+                                                               name="natu_pin" id="natu_pin" maxlength="6" placeholder="Pin-Code">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="natu_telephone_no">Telephone
+                                                    No.</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control"
+                                                               name="natu_telephone_no" id="natu_telephone_no"
+                                                               maxlength="20" placeholder="Telephone No">
+                                                    </div>
+                                                </div>
+                                                <label class="col-md-2 control-label" for="natu_fax_no">Fax No.</label>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control" placeholder="Fax No"
+                                                               name="natu_fax_no" id="natu_fax_no" maxlength="20">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="email">Email</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateRequired validateEmail"
+                                                               name="email" id="email"
+                                                               maxlength="50" placeholder="Email">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">MSME Registration Number</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control"
+                                                               name="msme_reg_no" id="msme_reg_no"
+                                                               maxlength="50" placeholder="MSME Registration Number">
+                                                    </div>
+                                                </div>
+                                                <label class="col-md-2 control-label" for="msme_reg_date">MSME Registration
+                                                    Date</label>
+                                                <div class="col-md-3">
+                                                    <div class="input-group">
+                                                        <div class="validateField">
+                                                            <input class="form-control dateField" id="msme_reg_date"
+                                                                   name="msme_reg_date" type="text"
+                                                                   data-date-format="dd/mm/yyyy" readonly="" placeholder="MSME Registration Date">
+                                                        </div>
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar">
+                                                            </i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-2">Legal Status *</label>
+                                                <div class="col-md-10">
+                                                    <div class="radio">
+                                                        <div class="radiobox">
+                                                            <input type="radio" id="proprietary" name="legalStatus"
+                                                                   value="0" checked>
+                                                            <label for="proprietary">Proprietary</label>
+                                                        </div>
+                                                        <div class="radiobox">
+                                                            <input type="radio" id="partnership" name="legalStatus"
+                                                                   value="1">
+                                                            <label for="partnership">Partnership</label>
+                                                        </div>
+                                                        <div class="radiobox">
+                                                            <input type="radio" id="pvt_ltd" name="legalStatus"
+                                                                   value="2">
+                                                            <label for="pvt_ltd">Private Limited</label>
+                                                        </div>
+                                                        <div class="radiobox">
+                                                            <input type="radio" id="public_ltd" name="legalStatus"
+                                                                   value="3">
+                                                            <label for="public_ltd">Public Limited</label>
+                                                        </div>
+                                                        <div class="radiobox">
+                                                            <input type="radio" id="llp" name="legalStatus"
+                                                                   value="4">
+                                                            <label for="llp">LLP</label>
+                                                        </div>
+                                                        <div class="radiobox">
+                                                            <input type="radio" id="other" name="legalStatus"
+                                                                   value="5">
+                                                            <label for="other">Other</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Number of Employees</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateNumber"
+                                                               name="no_of_employees" id="no_of_employees"
+                                                               maxlength="10" placeholder="Number of Employees">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Name of the PRODUCT / PROCESS /
+                                                    SERVICE</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control" placeholder="Product Name"
+                                                               name="natu_product_name" id="natu_product_name"
+                                                               maxlength="80">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Brief Description of product /
+                                                    process /
+                                                    Service (Give details of Product manufacturing in 100 words)</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control"
+                                                               name="natu_product_description"
+                                                               id="natu_product_description" placeholder="Brief Description"
+                                                               maxlength="80">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">List of Locations (Business /
+                                                    Manufacturing Units)</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                <textarea class="form-control" placeholder="Locations"
+                                                          name="natu_location" id="natu_location"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Gross Block Investment</label>
+                                                <div class="col-md-2">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateDecimalNumber"
+                                                               name="gross_investment"
+                                                               id="gross_investment"
+                                                               maxlength="15" placeholder="Gross Block Investment">
+                                                    </div>
+                                                </div>
+                                                <label class="col-md-2 control-label">Plant & Machinery
+                                                    Investment</label>
+                                                <div class="col-md-2">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateDecimalNumber"
+                                                               name="plant_investment"
+                                                               id="plant_investment" placeholder="Plant & Machinery Investment"
+                                                               maxlength="15">
+                                                    </div>
+                                                </div>
+                                                <label class="col-md-2 control-label">Net Block Investment</label>
+                                                <div class="col-md-2">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateDecimalNumber"
+                                                               name="net_investment"
+                                                               id="net_investment"
+                                                               maxlength="15" placeholder="Net Block Investment">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12 control-label">Turnover (Sales) for
+                                                    the last three years (Please mention Year)</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label">1. </label>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control validateNumber"
+                                                           name="natu_to_year_one" id="natu_to_year_one"
+                                                           maxlength="4" placeholder="Year">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control validateDecimalNumber"
+                                                           name="natu_to_one" id="natu_to_one"
+                                                           maxlength="10" placeholder="Turnover">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label">2. </label>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control validateNumber"
+                                                           name="natu_to_year_two" id="natu_to_year_two"
+                                                           maxlength="4" placeholder="Year">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control validateDecimalNumber"
+                                                           name="natu_to_two" id="natu_to_two"
+                                                           maxlength="10" placeholder="Turnover">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label">3. </label>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control validateNumber"
+                                                           name="natu_to_year_three" id="natu_to_year_three"
+                                                           maxlength="4" placeholder="Year">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control validateDecimalNumber"
+                                                           name="natu_to_three" id="natu_to_three"
+                                                           maxlength="10" placeholder="Turnover">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-12 control-label">Profit for the last three years
+                                                    (Please mention Year)</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label">1. </label>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control validateNumber"
+                                                           name="natu_profit_year_one" id="natu_profit_year_one"
+                                                           maxlength="4" placeholder="Year">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control validateDecimalNumber"
+                                                           name="natu_profit_one" id="natu_profit_one"
+                                                           maxlength="10" placeholder="Profit">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label">2. </label>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control validateNumber"
+                                                           name="natu_profit_year_two" id="natu_profit_year_two"
+                                                           maxlength="4" placeholder="Year">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control validateDecimalNumber"
+                                                           name="natu_profit_two" id="natu_profit_two"
+                                                           maxlength="10" placeholder="Profit">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label">3. </label>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control validateNumber"
+                                                           name="natu_profit_year_three" id="natu_profit_year_three"
+                                                           maxlength="4" placeholder="Year">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control validateDecimalNumber"
+                                                           name="natu_profit_three" id="natu_profit_three"
+                                                           maxlength="10" placeholder="Profit">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Patent Registered</label>
+                                                <div class="col-md-4">
+                                                    <div class="radio">
+                                                        <div class="radiobox">
+                                                            <input type="radio" id="patent_yes_radio"
+                                                                   name="Patent_Radio"
+                                                                   value="Patent Yes" checked>
+                                                            <label for="patent_yes_radio">Yes</label>
+                                                        </div>
+                                                        <div class="radiobox">
+                                                            <input type="radio" id="patent_no_radio" name="Patent_Radio"
+                                                                   value="Patent No">
+                                                            <label for="patent_no_radio">No</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12 control-label">Awards Recognition (Name of the
+                                                    award
+                                                    Received</label>
+                                                <div class="col-md-12">
+                                                    <div class="validateField">
+                                                <textarea class="form-control" name="award_recog" placeholder="Award Recognition"
+                                                          id="award_recog"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12 control-label">List of Certification (ISO /
+                                                    Standards /
+                                                    Any Other)</label>
+                                                <div class="col-md-12">
+                                                    <div class="validateField">
+                                                <textarea class="form-control" name="cert_list"
+                                                          id="cert_list" placeholder="Certificate List"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12 control-label">Write up about yourself / your
+                                                    Company &
+                                                    why you consider yourself for the award</label>
+                                                <div class="col-md-12">
+                                                    <div class="validateField">
+                                                <textarea class="form-control" name="about_you"
+                                                          id="about_you" placeholder="About Yourself"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <div class="Formbuttons pull-right">
+                                                        <button type="submit" class="btn btn-default subbtn checkValidationBtn"
+                                                                id="natu_div_btn" value="Submit">Submit
+                                                        </button>
+                                                        <input type="button" class="btn btn-default reset"
+                                                               onclick="location.href='/awardsapp/awards-home/';"
+                                                               value="Cancel"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>

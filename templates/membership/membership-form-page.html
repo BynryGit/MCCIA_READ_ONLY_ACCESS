@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% extends "base.html" %}
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+</head>
+<body>
+
+{% block content %}
+
+<!-- internal banner section starts here -->
+<section class="InternalBannerSection" id="MembershipForm"
+         style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <h2>Feel Free to Use the Registration form below to reach Us</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li class="active"><a href="#"> Membership</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- internal banner section Ends here -->
+
+
+<!-- internal banner section starts here -->
+<section class="InternalBannerSection" id="MembershipInvoices"
+         style="background-image: url({% static 'assets/images/internal-banner.jpg' %}); display:none">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <h2>Feel Free to Use the Registration form below to reach Us</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/membershipapp/membership-form/"> Membership Registration</a></li>
+                        <li class="active"><a href=""> Invoice</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- internal banner section Ends here -->
+
+
+<!-- Member form section starts here -->
+<section class="FormArea internalSection" id="MembershipFormBody">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="FormTitleArea">
+                    <h2>Registration Form</h2><br/>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="FormTitleArea">
+                    <label for="select_member_type">Select Membership Type *</label>
+                    <div class="radio">
+                        <div class="radiobox">
+                            <input type="radio" name="radiobtn_membership_selection" id="Company" value="Company"
+                                   checked="">
+                            <label for="Company">Company </label>
+                        </div>
+                        <div class="radiobox">
+                            <input type="radio" name="radiobtn_membership_selection" id="Individual" value="Individual">
+                            <label for="Individual">Individual</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="">
+                    <form id="membership_form" name="membership_form" method="POST"
+                          onSubmit="save_new_consumer(); return false;">
+                        {% csrf_token %}
+                        <div class="validateContainer">
+
+                            <div class="FormInnerArea clearfix">
+                                <input type="hidden" class="form-control" id="membership_selection"
+                                       name="membership_selection">
+                                <div class="">
+                                    <div id="individual_text">
+                                        <label ><font>Individual and
+                                            professionals working/serving in individual capicity without having his/her
+                                            own proprietary/Public partnership firm or company.
+                                        </font></label>
+                                    </div>
+                                    <br>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row">
+
+                                            <h3 style="padding-left:16px;"><strong>Fields marked as <span>*</span> are
+                                                mandatory.</strong></h3>
+                                            <div class="form-group">
+                                                <div id="company_name_input">
+                                                    <label class="col-md-4 control-label"
+                                                           for="Company / Applicant Name">Company Name*</label></div>
+                                                <div id="individual_name_input">
+                                                    <label class="col-md-4 control-label"
+                                                           for="Company / Applicant Name">Applicant Name*</label></div>
+
+                                                <div class="col-md-8">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired "
+                                                               name="CompanyApplicantName" id="CompanypAplicantName"
+                                                               maxlength="200" pattern="(.|\s)*\S(.|\s)*">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="CEOdiv">
+                                                <label class="col-md-4 control-label" for="CEO">CEO Name*</label>
+
+                                                <div class="col-md-8">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired "
+                                                               name="CEO" id="CEO" maxlength="50"
+                                                               pattern="(.|\s)*\S(.|\s)*">
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group" id="CEOContactdiv">
+                                                <label class="col-md-4 control-label" for="CEO">CEO Contact*</label>
+
+                                                <div class="col-md-8">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired validateNumber validateMobileNoLimit"
+                                                               name="CEOContact" id="CEOContact" maxlength="10"
+                                                               minlength="10">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group" id="comapnyemail">
+                                                <label class="col-md-4 control-label" for="CEO Email">CEO Email*</label>
+
+                                                <div class="col-md-8">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired validateEmail"
+                                                               name="CEOEmail" id="CEOEmail" maxlength="50">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" id="individualemail">
+                                                <label class="col-md-4 control-label" for="CEO Email">Email*</label>
+
+                                                <div class="col-md-8">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired validateEmail"
+                                                               name="CEOEmailin" id="CEOEmailin" maxlength="50">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" id="mailreceiveconfirmboxdiv">
+                                                <div class="checkbox col-md-8">
+                                                    <input type="checkbox"
+                                                           name="mailreceiveconfirmbox"
+                                                           id="mailreceiveconfirmbox" value="mailreceiveconfirmbox" >
+                                                    <label for="mailreceiveconfirmbox" id="mailreceiveconfirm"> Please
+                                                        tick if CEO wants to receive emails from MCCIA.
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div id="pocdiv">
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label"><strong>Point of Contact*</strong></label>
+                                                <label><font>Point of Contact for MCCIA for effective co-ordination on aspects like Membership, Events, Visa recommendation letter etc.</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 col-sm-12 control-label" for="">Name </label>
+                                                <div class="col-md-8 col-sm-6">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired validateAlphanumaric"
+                                                               name="pocName" id="pocName" placeholder="Name"
+                                                               maxlength="50" pattern="[a-zA-Z][a-zA-Z\s]*">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 col-sm-12 control-label" for="">Contact
+                                                    No. </label>
+                                                <div class="col-md-8 col-sm-6">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired validateNumber"
+                                                               name="POCContact" id="POCContact" maxlength="10"
+                                                               placeholder="Contact" pattern="[0-9]{10}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 col-sm-12 control-label" for="">Email ID</label>
+                                                <div class="col-md-8 col-sm-6">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired validateEmail"
+                                                               name="POCEmail" id="POCEmail" placeholder="Email ID">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--</div>-->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label"><strong>Address for
+                                                Correspondence</strong></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Address*</label>
+
+                                                <div class="col-md-10">
+                                                    <div class="validateField">
+                                                        <textarea type="text" class="form-control validateRequired"
+                                                                  name="CorrespondenceAddress"
+                                                                  id="CorrespondenceAddress"
+                                                                  pattern="(.|\s)*\S(.|\s)*"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="clear: left;">
+                                        <div class="row">
+                                            <div class="form-group" >
+                                                <label class="col-md-2 control-label">State*</label>
+
+                                                <div class="col-md-10">
+                                                    <div class="validateField">
+                                                        <select class="form-control validateRequired"
+                                                                name="CorrespondenceState"
+                                                                id="CorrespondenceState">
+                                                            {% for i in stateObj %}
+                                                            <option value="{{i.id}}">{{i.state_name}}</option>
+                                                            {% endfor%}
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">City*</label>
+
+                                                <div class="col-md-10">
+                                                    <div class="validateField">
+                                                        <select class="form-control validateRequired select2"
+                                                                name="CorrespondenceCity"
+                                                                id="CorrespondenceCity">
+                                                            <option value=""></option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br><br><br><br><br><br><br><br><br>
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Pin *</label>
+
+                                                <div class="col-md-10">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired validateNumber validatePincodeLimit"
+                                                               name="CorrespondencePin" id="CorrespondencePin"
+                                                               maxlength="6" minlength="6">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Phone/Mobile No.*</label>
+
+                                                <div class="col-md-2">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateSTDNumber "
+                                                               name="CorrespondenceStd1" id="CorrespondenceStd1"
+                                                               placeholder="STD"
+                                                               maxlength="6" minlength="2">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-7">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validatelandlineContactNumber validateRequired"
+                                                               name="CorrespondenceLandline1"
+                                                               id="CorrespondenceLandline1" placeholder="Contact"
+                                                               maxlength="10" minlength="6">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <!--<div class="row">-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label class="col-md-2 control-label">Contact 2#</label>-->
+                                    <!--<div class="col-md-3">-->
+                                    <!--<div class="validateField">-->
+                                    <!--<input type="text"-->
+                                    <!--class="form-control validateSTDNumber"-->
+                                    <!--name="CorrespondenceStd2" id="CorrespondenceStd2"-->
+                                    <!--placeholder="STD"-->
+                                    <!--maxlength="6" minlength="2">-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="col-md-7">-->
+                                    <!--<div class="validateField">-->
+                                    <!--<input type="text"-->
+                                    <!--class="form-control  validatelandlineContactNumber"-->
+                                    <!--name="CorrespondenceLandline2"-->
+                                    <!--id="CorrespondenceLandline2" placeholder="Contact"-->
+                                    <!--maxlength="10" minlength="6">-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
+                                    <!--<div class="row">-->
+                                    <!--<div class="form-group">-->
+                                    <!--<label class="col-md-2 control-label">Email</label>-->
+
+                                    <!--<div class="col-md-10">-->
+                                    <!--<div class="validateField">-->
+                                    <!--<input type="text"-->
+                                    <!--class="form-control  "-->
+                                    <!--name="CorrespondenceEmail" id="CorrespondenceEmail"-->
+                                    <!--maxlength="50">-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+                                    <!--</div>-->
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">Website</label>
+
+                                                <div class="col-md-10">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control"
+                                                               name="CorrespondenceWebsite" id="CorrespondenceWebsite"
+                                                               maxlength="150">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label">PAN *</label>
+                                                <div class="col-md-8">
+                                                    <div class="validateField">
+                                                        <input type="text" maxlength=10
+                                                               class="form-control validateRequired validatePanNumber"
+                                                               style="text-transform: uppercase" id="CorrespondencePan"
+                                                               name="CorrespondencePan">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2">
+                                                    <div class="checkbox">
+                                                        <input type="checkbox"
+                                                               name="CorrespondencePanCheck"
+                                                               id="CorrespondencePanCheck">
+                                                        <label for="CorrespondencePanCheck"> NA
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group ">
+                                                <label class="col-md-2 control-label">Udyog Aadhar*</label>
+                                                <div class="col-md-8">
+                                                    <div class="validateField">
+                                                        <input type="text"
+                                                               class="form-control validateRequired validateUdyogAadhar"
+                                                               minlength="12" maxlength="16"
+                                                               id="CorrespondenceAadhar" name="CorrespondenceAadhar">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="checkbox">
+                                                        <input type="checkbox"
+                                                               name="CorrespondenceAadharCheck"
+                                                               id="CorrespondenceAadharCheck">
+                                                        <label for="CorrespondenceAadharCheck"> NA
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row">
+                                            <div class="form-group validateField" id="error_correspondence_GST">
+                                                <label class="col-md-2 control-label">GST*</label>
+                                                <div class="col-md-4">
+                                                    <div class="form-group form-md-radios validateRequired">
+                                                        <div class="md-radio-inline">
+                                                            <!-- <div class="md-radio">
+                                                                <input type="radio" id="UnderProcess"
+                                                                       name="correspondence_GST" value="UnderProcess"
+                                                                       class="md-radiobtn">
+                                                                <label for="UnderProcess" style="color:black;">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span><b> Under Process </b>
+                                                                </label>
+                                                            </div> -->
+                                                            <div class="md-radio">
+                                                                <input type="radio" id="Applicable"
+                                                                       name="correspondence_GST" value="Applicable"
+                                                                       class="md-radiobtn">
+                                                                <label for="Applicable" style="color:black;">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span> <b> Applicable </b>
+                                                                </label>
+                                                            </div>
+                                                            <div class="md-radio">
+                                                                <input type="radio" id="NotApplicable"
+                                                                       name="correspondence_GST" value="NotApplicable"
+                                                                       class="md-radiobtn" checked="">
+                                                                <label for="NotApplicable" style="color:black;">
+                                                                    <span></span>
+                                                                    <span class="check"></span>
+                                                                    <span class="box"></span> <b>Not
+                                                                    Applicable </b></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6" id="GSTField" style="display:none">
+                                                    <div class="form-group validateField">
+                                                        <input type="text" maxlength=50
+                                                               class="form-control validateAlphaonly"
+                                                               id="CorrespondenceGSTText" placeholder="GST text"
+                                                               name="CorrespondenceGSTText">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div id="pocdiv">
+                                        <div class="form-group col-md-12">
+                                        <label class="control-label"><strong>Point of Contact*</strong></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 col-sm-12 control-label" for=""></label>
+                                            <div class="col-md-5 col-sm-6">
+                                                <div class="validateField">
+                                                    <input type="text"
+                                                           class="form-control validateRequired validateAlphanumaric"
+                                                           name="pocName" id="pocName" placeholder="Name"
+                                                           maxlength="50" pattern="[a-zA-Z][a-zA-Z\s]*">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-sm-6">
+                                                <div class="validateField">
+                                                    <input type="text"
+                                                           class="form-control validateRequired validateNumber"
+                                                           name="POCContact" id="POCContact" maxlength="10"
+                                                           placeholder="Contact" pattern="[0-9]{10}">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6">
+                                                <div class="validateField">
+                                                    <input type="text"
+                                                           class="form-control validateRequired validateEmail"
+                                                           name="POCEmail" id="POCEmail" placeholder="Email ID">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+
+                                    <div id="FactoryAddressdiv">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="row">
+                                                <div class="form-group customcheckbox">
+                                                    <label class="col-md-2 control-label"><strong>Factory
+                                                        Address</strong></label>
+
+                                                    <div class="col-md-10">
+                                                        <div class="checkbox">
+                                                            <input type="checkbox"
+                                                                   onclick="make_same_address();"
+                                                                   name="factoryAddressField"
+                                                                   id="factoryAddressField" value="factoryAddressField">
+                                                            <label for="factoryAddressField" id="sameasabove"> Same As
+                                                                Above
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="hidefactory" style="display: none;">
+                                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label class="col-md-2 control-label">Address*</label>
+
+                                                        <div class="col-md-10">
+                                                            <div class="validateField">
+                                                        <textarea type="text" class="form-control "
+                                                                  name="FactoryAddress" id="FactoryAddress"
+                                                                  pattern="(.|\s)*\S(.|\s)*"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="clear: left;">
+                                                <div class="row">
+                                                    <div class="form-group" >
+                                                        <label class="col-md-2 control-label">State*</label>
+
+                                                        <div class="col-md-10">
+                                                            <div class="validateField">
+                                                                <select class="form-control validateRequired"
+                                                                        name="FactoryState"
+                                                                        id="FactoryState">
+                                                                    {% for i in stateObj %}
+                                                                    <option value="{{i.id}}">{{i.state_name}}</option>
+                                                                    {% endfor%}
+                                                                </select>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="row">
+                                                    <div class="form-group" >
+                                                        <label class="col-md-2 control-label">City*</label>
+
+                                                        <div class="col-md-10">
+                                                            <div class="validateField">
+                                                                <select class="form-control validateRequired"
+                                                                        name="FactoryCity"
+                                                                        id="FactoryCity">
+                                                                    <!--<option value=""></option>-->
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label class="col-md-2 control-label">Pin *</label>
+
+                                                        <div class="col-md-10">
+                                                            <div class="validateField">
+                                                                <input type="text"
+                                                                       class="form-control  validateNumber validatePincodeLimit"
+                                                                       name="FactoryPin" id="FactoryPin" maxlength="6"
+                                                                       minlength="6">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12" id="legalstatusdiv">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-lg-5 control-label" for="legalStatus">Legal Status *
+                                            </label>
+                                                <div class="col-lg-4">
+                                                <div class="validateField">
+                                                    <select class="form-control validateRequired"
+                                                            name="legalStatus" id="legalStatus">
+                                                        <option value="">Select Legal Status</option>
+                                                        {% for i in legalstatusObj %}
+                                                        <option value="{{i.id}}">{{i.description}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="FormInnerArea clearfix">
+                                <div class="form-group col-md-12">
+                                    <h3>Membership Category(Nature Of Business)</h3>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="MembershipCategory">Membership
+                                                Category *</label>
+                                            <div class="col-md-8">
+                                                <div class="validateField">
+                                                    <select class="form-control validateRequired"
+                                                            name="MembershipCategory" id="MembershipCategory">
+                                                        <option value="">--- Select Category ---</option>
+                                                        {% for i in membershipCategory %}
+                                                        <option value="{{i.id}}">{{i.membership_category}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="Annual Turnover">Annual
+                                                Turnover<br/>(for year) *</label>
+
+                                            <div class="col-md-8">
+                                                <div class="validateField">
+                                                    <select class="form-control validateRequired" name="foryear"
+                                                            id="foryear">
+                                                        <option value="">YYYY-YYYY</option>
+                                                        <option value="2018-2019">2018-2019</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div id="turnover_for_company">
+                                                <label class="col-md-2 control-label" for="Rs.(Crs)">Rs. (Crs)*</label>
+                                            </div>
+                                            <div id="turnover_for_individual">
+                                                <label class="col-md-2 control-label" for="Rs.(lakhs)">Rs.
+                                                    (lakhs)*</label>
+                                            </div>
+
+                                            <div class="col-md-5">
+                                                <div class="validateField">
+                                                    <input type="text"
+                                                           class="form-control validateRequired validateDecimalNumber"
+                                                           name="Rscrore" id="Rscrore" maxlength="100">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <span style="color: #00000094;"><em>( As per latest bal. sheet
+                                                        )</em></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="Slab">Slab *</label>
+
+                                            <div class="col-md-8">
+                                                <div class="validateField">
+                                                    <select class="form-control validateRequired"
+                                                            name="MembershipSlab" id="MembershipSlab">
+
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label" for="Membership For Year">Membership
+                                                For Year</label>
+
+                                            <div class="col-md-8">
+                                                <div class="validateField">
+                                                    <select class="form-control"
+                                                            name="MembershipForYear" id="MembershipForYear">
+                                                        <option value="2019-2020/ half year">2019 - 2020/ half year
+                                                        </option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="FormInnerArea clearfix">
+                                <div class="form-group col-md-12" id="company_details">
+                                    <h3>Company Details</h3>
+                                </div>
+
+                                <div id="CompanyDetaildiv">
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="YearofEstablishment">Year of
+                                            Establishment*</label>
+                                        <div class="col-md-5">
+                                            <div class="validateField">
+                                                <input type="text" class="form-control validateNumber validateRequired"
+                                                       name="YearofEstablishment" id="YearofEstablishment" maxlength="4"
+                                                       placeholder="YYYY">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% if request.session.user_type == 'backoffice' %}
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label" for="DIC/SSI">DIC/SSI</label>
+
+                                        <div class="col-md-10">
+                                            <div class="radio">
+                                                <div class="radiobox">
+                                                    <input type="radio" id="radiobtn1" name="radiobtn-1" value="Micro"
+                                                           checked="">
+                                                    <label for="radiobtn1">Micro</label>
+                                                </div>
+                                                <div class="radiobox">
+                                                    <input type="radio" id="radiobtn2" name="radiobtn-1" value="Small">
+                                                    <label for="radiobtn2">Small</label>
+                                                </div>
+                                                <div class="radiobox">
+                                                    <input type="radio" id="radiobtn3" name="radiobtn-1"
+                                                           value="MediumScale">
+                                                    <label for="radiobtn3">Medium Scale</label>
+                                                </div>
+                                                <div class="radiobox">
+                                                    <input type="radio" id="radiobtn4" name="radiobtn-1"
+                                                           value="LargeScale">
+                                                    <label for="radiobtn4">Large Scale</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                     <div class="row">
+                                    </div >
+                                    <div class="col-lg-6 col-md-8 col-sm-8 col-xs-12" id="turnover_range_div"
+                                         style=" float:left;">
+                                        <div class="row">
+                                            <div class="form-group" >
+                                                <label class="col-md-4 control-label">Turnover Range*</label>
+                                                <div class="col-lg-5" align="left">
+                                                    <div class="validateField">
+                                                        <select class="form-control validateRequired "
+                                                                name="turnover_range"
+                                                                id="turnover_range">
+                                                            <option value="">Select Turnover Range</option>
+                                                            <option value="to_0_1">0-1 cr</option>
+                                                            <option value="to_1_5">1-5 cr</option>
+                                                            <option value="to_5_25">5-25 cr</option>
+                                                            <option value="to_25_100">25-100 cr</option>
+                                                            <option value="to_100_500">100-500 cr</option>
+                                                            <option value="to_500+">500+ cr</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-lg-6 col-md-4 col-sm-4 col-xs-6" style=" float:left;">
+                                        <div class="form-group">
+                                            <label class="col-md-4 control-label">Employee Range*</label>
+                                            <div class="col-lg-5" align="left">
+                                                <div class="validateField">
+                                                    <select class="form-control validateRequired"
+                                                            name="employee_range"
+                                                            id="employee_range">
+                                                        <option value="">Select Employee Range</option>
+                                                        <option value="emp_0_10">0-10</option>
+                                                        <option value="emp_10_100">10-100</option>
+                                                        <option value="emp_100_500">100-500</option>
+                                                        <option value="emp_500_1000">500-1000</option>
+                                                        <option value="emp_1000+">1000+</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br><br> <br>
+
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-12 col-xs-12 control-label" for="Exports To">Exports
+                                            To</label>
+
+                                        <div class="col-md-3 col-sm-6 col-xs-7">
+                                            <div class=" validateField">
+                                                <div class="container">
+                                                    <select id="multi-select-export-country" multiple="multiple"
+                                                            name="multi-select-export-country">
+                                                        {% for i in countryObj %}
+                                                        <option value="{{i.id}}">{{i.country_name}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-7 col-sm-6 col-xs-5">
+                                            <div class="validateField">
+                                                <textarea class="form-control" name="TextExport"
+                                                          id="TextExport" readonly></textarea>
+                                                <!--<input type="text" class="form-control" name="TextExport"-->
+                                                <!--id="TextExport" readonly>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-12 col-xs-12 control-label" for="Imports From">Imports
+                                            From</label>
+
+                                        <div class="col-md-3 col-sm-6 col-xs-7">
+                                            <div class="validateField">
+                                                <div class="container">
+                                                    <select id="multi-select-import-country" multiple="multiple"
+                                                            name="multi-select-import-country">
+                                                        {% for i in countryObj %}
+                                                        <option value="{{i.id}}">{{i.country_name}}</option>
+                                                        {%endfor%}
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-7 col-sm-6 col-xs-5">
+                                            <div class="validateField">
+                                                <textarea class="form-control" name="TextImport"
+                                                          id="TextImport" readonly></textarea>
+                                                <!--<input type="text" class="form-control" name="TextImport"-->
+                                                <!--id="TextImport" readonly>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12" id="Industry_for_invidual"
+                                     style=" float:left;">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label class="col-md-5 control-label">Area of Expertise *</label>
+                                            <div class="col-lg-4" align="left">
+                                                <div class="validateField">
+                                                    <select class="form-control validateRequired"
+                                                            name="areaofexperties"
+                                                            id="areaofexperties">
+                                                        <option value="">Select Area Of Experties</option>
+                                                        <option value="Engineer">Engineer</option>
+                                                        <option value="CA">CA</option>
+                                                        <option value="Doctors">Doctor</option>
+                                                        <option value="Consultant">Consultant</option>
+                                                        <option value="Marketing_Professional">Marketing Professional
+                                                        </option>
+                                                        <option value="Valuers">Valuer</option>
+                                                        <option value="individual_finance_brokers">Individual Finance Broker
+                                                        </option>
+                                                        <option value="real_estate_broker">Real Estate Broker</option>
+                                                        <option value="lawyers_solicitors">Lawyer/Solicitor</option>
+                                                        <option value="management_consultant">Management Consultant
+                                                        </option>
+                                                        <option value="trainers">Trainer</option>
+                                                        <option value="project_consultants">Project Consultant</option>
+                                                        <option value="others">Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="otherareaofexpertiesdiv" class="col-lg-4 col-md-4 col-sm-4 col-xs-6"
+                                     style=" float:left;">
+                                    <input type="text" class="form-control validateRequired validateEmail"
+                                           name="otherareaofexperties" id="otherareaofexperties" maxlength="50"
+                                           placeholder="Input Other Area of Experties">
+                                </div>
+
+                                <br>
+
+                                <!--<div class="form-group col-md-12">-->
+                                    <!--<label class="control-label">Industry Category you serve / Industry Description-->
+                                        <!--*</label>-->
+                                <!--</div>-->
+                                <!--<div class="form-group customcheckbox">-->
+                                    <!--<div class="col-md-12">-->
+                                        <!--<div class="validateField">-->
+                                            <!--{% for i in industrydescObj %}-->
+                                            <!--<div class="col-md-3 col-sm-12 col-xs-12">-->
+                                                <!--<div class="checkbox">-->
+                                                    <!--<input type="checkbox" class="form-control validateRequired"-->
+                                                           <!--value="{{i.id}}" name="IndustryDescription"-->
+                                                           <!--id="IndustryDescription{{i.id}}">-->
+                                                    <!--<label for="IndustryDescription{{i.id}}">{{i.description}}-->
+                                                    <!--</label>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--{% endfor %}-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <br> <br>
+                                <!--<div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">-->
+                                    <!--<div class="row">-->
+                                        <!--<div class="form-group">-->
+                                            <!--<label class="col-lg-5 control-label" for="MembershipCategory">Industry Category you serve / Industry Description-->
+                                                 <!--*</label>-->
+                                                <!--<div class="col-lg-4">-->
+                                                <!--<div class="validateField">-->
+                                                    <!--<select class="form-control validateRequired"-->
+                                                            <!--name="IndustryDescription" id="IndustryDescription">-->
+                                                        <!--<option value="">Select Industry Description</option>-->
+                                                        <!--{% for i in industrydescObj %}-->
+                                                        <!--<option value="{{i.id}}">{{i.description}}</option>-->
+                                                        <!--{% endfor %}-->
+                                                    <!--</select>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+
+                                  <div class="form-group">
+                                        <label class="col-md-2 col-sm-12 col-xs-12 control-label" for="IndustryDescription">Industry Category you serve / Industry Description</label>
+                                        <div class="col-md-3 col-sm-6 col-xs-7">
+                                            <div class=" validateField">
+                                                <div class="container ">
+                                                    <select id="IndustryDescription" multiple="multiple"
+                                                            name="IndustryDescription" class="form-control validateRequired">
+                                                        {% for i in industrydescObj %}
+                                                        <option value="{{i.id}}">{{i.description}}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-7 col-sm-6 col-xs-5">
+                                            <div class="validateField">
+                                                <textarea class="form-control" name="TextIndustryDescription"
+                                                          id="TextIndustryDescription" readonly></textarea>
+                                            </div>
+                                        </div>
+                                       <div id="otherindustry_discriptiondiv" class="col-lg-7 col-md-4 col-sm-4 col-xs-6"
+                                                 style=" float:right;" >
+                                                <input type="text" class="form-control validateRequired validateEmail"
+                                                       name="otherindustry_discription" id="otherindustry_discription"
+                                                       maxlength="50" placeholder="Input Other Industry Description">
+                                         </div>
+                                    </div>
+                                <br>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="DescriptionofBusiness">Description of
+                                        Business* </label>
+                                    <div class="col-lg-4">
+                                        <div class="validateField">
+                                            <textarea id="DescriptionofBusiness" name="DescriptionofBusiness"
+                                                      maxlength="300" class="form-control validateRequired"
+                                                      style="opacity: 1; height: 60px; " cols="60"
+                                                      pattern="(.|\s)*\S(.|\s)*"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="FormInnerArea clearfix" id="HODContactDetails">
+                                <!--<div class="form-group col-md-12">-->
+                                <!--<h3>Point of Contact</h3>-->
+                                <!--</div>-->
+                                <!--<div class="form-group">-->
+                                <!--<label class="col-md-2 col-sm-12 control-label" for=""></label>-->
+                                <!--<div class="col-md-5 col-sm-6">-->
+                                <!--<div class="validateField">-->
+                                <!--<input type="text" class="form-control validateRequired validateAlphanumaric"-->
+                                <!--name="pocName" id="pocName" placeholder="Name"-->
+                                <!--maxlength="50">-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-2 col-sm-6">-->
+                                <!--<div class="validateField">-->
+                                <!--<input type="text" class="form-control validateRequired validateNumber"-->
+                                <!--name="pocContact" id="pocContact" maxlength="10"-->
+                                <!--placeholder="Contact">-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-3 col-sm-6">-->
+                                <!--<div class="validateField">-->
+                                <!--<input type="text" class="form-control validateRequired validateEmail"-->
+                                <!--name="pocEmail" id="pocEmail" placeholder="Email ID">-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="form-group col-md-12">-->
+                                    <!--<h3>HOD Details:Please mention as Contact details of Department heads.</h3>-->
+                                <!--</div>-->
+
+                                <!--<div class="form-group hidden-xs hidden-sm">-->
+                                <!--<label class="col-md-2 col-sm-12 control-label"></label>-->
+
+                                <!--<div class="col-md-5 col-sm-6">-->
+                                <!--<label class="control-label" style="color: #00000094;"><em-->
+                                <!--style="text-align:center;">Name</em></label>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-2 col-sm-6">-->
+                                <!--<label class="control-label" style="color: #00000094;text-align:center;"><em>Contact </em></label>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-3 col-sm-6">-->
+                                <!--<label class="control-label" style="color: #00000094; text-align:center;"><em>Email-->
+                                <!--Id</em></label>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                 <div class="form-group col-md-12">
+                                    <h3>Contact details of department heads</h3>
+                                     <label>Your HODs will be able to receive subject specific emails for their knowledge enrichment.</label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 col-sm-12 control-label"
+                                           for="FinanceName">Account/Finance*</label>
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text"
+                                                   class="form-control validateRequired validateAlphanumaric"
+                                                   name="FinanceName" id="FinanceName" placeholder="Name"
+                                                   maxlength="50" pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control validateRequired validateNumber"
+                                                   name="FinanceContact" id="FinanceContact" 
+                                                   placeholder="Contact" >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control validateRequired validateEmail"
+                                                   name="FinanceEmail" id="FinanceEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div >
+                                    <label class="col-md-5 control-label">Other Department </label>
+                                    <div class="col-lg-4" align="left">
+                                        <div class="form-group">
+                                            <select class="form-control " name="other_department" id="other_department">
+                                                <option value="">Select Other Department</option>
+                                                <option value="Corporate_Relations">Corporate Relations</option>
+                                                <option value="EXIM">Export/Import</option>
+                                                <option value="HR">HR</option>
+                                                <option value="IT">IT</option>
+                                                <option value="Production">Production</option>
+                                                <option value="Purchase">Purchase</option>
+                                                <option value="Quality">Quality</option>
+                                                <option value="Marketing">Sales & Marketing</option>
+                                               <!--  <option value="Tech">Tech</option>
+                                                <option value="R&D">R&D</option> -->
+                                                <option value="Stores">Stores</option>
+                                                <option value="Supply">Supply chain</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" id="hoddetailsdivhr">
+                                    <label class="col-md-2 col-sm-12 control-label" for="HRName">HR</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="HRName" id="HRName" placeholder="Name" maxlength="50"
+                                                   pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="HRContact" id="HRContact" maxlength="10" placeholder="Contact"
+                                                   pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="HREmail" id="HREmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" id="hoddetailsdivmarketing">
+                                    <label class="col-md-2 col-sm-12 control-label"
+                                           for="MarketingName">Sales & Marketing</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="MarketingName" id="MarketingName" placeholder="Name"
+                                                   maxlength="50" pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="MarketingContact" id="MarketingContact" maxlength="10"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="MarketingEmail" id="MarketingEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="hoddetailsdivit">
+                                    <label class="col-md-2 col-sm-12 control-label" for="ITName">IT</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="ITName" id="ITName" placeholder="Name" maxlength="50"
+                                                   pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="ITContact" id="ITContact" maxlength="10" placeholder="Contact"
+                                                   pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="ITEmail" id="ITEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="hoddetailsdivcorporate">
+                                    <label class="col-md-2 col-sm-12 control-label" for="CorpRelName">Corporate Relations</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="CorpRelName" id="CorpRelName" placeholder="Name"
+                                                   maxlength="50" pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="CorpRelContact" id="CorpRelContact" maxlength="10"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="CorpRelEmail" id="CorpRelEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="form-group" id="hoddetailsdivtech">
+                                    <label class="col-md-2 col-sm-12 control-label" for="TechName">Tech</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="TechName" id="TechName" placeholder="Name" maxlength="50"
+                                                   pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="TechContact" id="TechContact" maxlength="10"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="TechEmail" id="TechEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="hoddetailsdivrd">
+                                    <label class="col-md-2 col-sm-12 control-label" for="RandDName">R&D </label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="RandDName" id="RandDName" placeholder="Name" maxlength="50"
+                                                   pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="RandDContact" id="RandDContact" maxlength="10"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="RandDEmail" id="RandDEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                <div class="form-group" id="hoddetailsdivexim">
+                                    <label class="col-md-2 col-sm-12 control-label" for="EXIMName">Export/Import</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="EXIMName" id="EXIMName" placeholder="Name" maxlength="50"
+                                                   pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="EXIMContact" id="EXIMContact" maxlength="10"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="EXIMEmail" id="EXIMEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="hoddetailsdivstore">
+                                    <label class="col-md-2 col-sm-12 control-label" for="StoreName">Stores</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="StoreName" id="StoreName" placeholder="Name" maxlength="50"
+                                                   pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="StoreContact" id="StoreContact" maxlength="10"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="StoreEmail" id="StoreEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" id="hoddetailsdivpurchase">
+                                    <label class="col-md-2 col-sm-12 control-label" for="PurchaseName">Purchase</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="PurchaseName" id="PurchaseName" placeholder="Name"
+                                                   maxlength="50" pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="PurchaseContact" id="PurchaseContact" maxlength="10"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="PurchaseEmail" id="PurchaseEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" id="hoddetailsdivproduction">
+                                    <label class="col-md-2 col-sm-12 control-label"
+                                           for="ProductionName">Production</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="ProductionName" id="ProductionName" placeholder="Name"
+                                                   maxlength="50" pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="ProductionContact" id="ProductionContact" maxlength="10"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="ProductionEmail" id="ProductionEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="hoddetailsdivquality">
+                                    <label class="col-md-2 col-sm-12 control-label" for="QualityName">Quality</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="QualityName" id="QualityName" placeholder="Name" maxlength="50"
+                                                   pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="QualityContact" id="QualityContact" maxlength="10"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="QualityEmail" id="QualityEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group" id="hoddetailsdivsupplychain">
+                                    <label class="col-md-2 col-sm-12 control-label" for="EXIMName">Supply Chain</label>
+
+                                    <div class="col-md-5 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateAlphanumaric"
+                                                   name="SupplyName" id="SupplyName" placeholder="Name" maxlength="50"
+                                                   pattern="[a-zA-Z][a-zA-Z\s]*">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateNumber"
+                                                   name="SupplyContact" id="SupplyContact" maxlength="10"
+                                                   placeholder="Contact" pattern="[0-9]{10}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control  validateEmail"
+                                                   name="SupplyEmail" id="SupplyEmail" placeholder="Email ID">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <!--for local 6Lf0Gl4UAAAAAIjC0zhqURboCEzC0pPjdqSZmD7e-->
+                                    <!--<div class="g-recaptcha" data-sitekey="6Lf0Gl4UAAAAAIjC0zhqURboCEzC0pPjdqSZmD7e"></div>-->
+
+
+                                    <!--for AWS server 6LcPTV0UAAAAAHlTBrvPhN4oCSqDPDoWpLk70l3d-->
+                                    <div class="g-recaptcha"
+                                         data-sitekey="6LcPTV0UAAAAAHlTBrvPhN4oCSqDPDoWpLk70l3d"></div>
+
+                                    <p class="captchdescription">Fields marked as <span>*</span> are mandatory.</p>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="Formbuttons pull-right">
+                                        <button type="submit" class="btn btn-default subbtn checkValidationBtn"
+                                                id="submitForm"
+                                                value="Submit">Submit
+                                        </button>
+                                        <button type="reset" class="btn btn-default reset" onclick="reset_form()"
+                                                value="Reset">Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- validatecontainer -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Member form section ends here -->
+
+
+<!-- Member form section starts here -->
+<section class="FormArea internalSection" id="MembershipInvoicesBody" style="display:none">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="FormTitleArea">
+                    <h2>Invoice</h2><br/>
+                </div>
+            </div>
+        </div>
+        <div class="validateContainer">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <label>Membership Category</label>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="text" class="form-control" readonly name="membership_category"
+                                   id="membership_category">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <label>Slab Category</label>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="text" class="form-control" readonly name="slab_category" id="slab_category">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <label>Membership Year</label>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="text" class="form-control" readonly name="membership_year"
+                                   id="membership_year">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <label>Subscription Charges</label>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="text" class="form-control" readonly name="subscription_charges"
+                                   id="subscription_charges">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <label>Entrance Fee</label>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="text" class="form-control" readonly name="entrance_fee" id="entrance_fee">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <label>GST</label>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="text" class="form-control" readonly name="tax_amount" id="tax_amount">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <label>Amount Payble</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="text" class="form-control" name="amount_payable" id="amount_payable" readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <label>Payment Mode</label>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="radio">
+                                <div class="radiobox">
+                                    <input type="radio" name="paymentMode" id="OnlinePending" value="OnlinePending"
+                                           checked="">
+                                    <label for="OnlinePending">Online</label>
+                                </div>
+                                <div class="radiobox">
+                                    <input type="radio" name="paymentMode" id="OfflinePending" value="OfflinePending">
+                                    <label for="OfflinePending">Offline</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="PaymentTypeDiv" style="display:none;">
+
+                        <div class="col-md-12">
+                            <div class="col-md-4 input-radio">
+                                <input type="radio" name="paymentType" id="Cash" value="ByCash">
+                                <label class="control-label" for="Cash">Cash</label>
+                            </div>
+
+                            <div class="col-md-4 input-radio">
+                                <input type="radio" name="paymentType" id="Cheque" value="ByCheque" checked="">
+                                <label class="control-label" for="Cheque">Cheque</label>
+                            </div>
+                            <div class="col-md-4 input-radio">
+                                <input type="radio" name="paymentType" id="NEFT" value="ByNEFT">
+                                <label class="control-label" for="NEFT">NEFT</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br><br>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <input type="text" id="payment_id" name="payment_id" hidden>
+                            <input type="hidden" class="form-control" name="membership_form_Data"
+                                   id="membership_form_Data">
+                            <button type="submit" class="btn btn-default subbtn checkValidationBtn"
+                                    onclick="save_member_invoice_detail()"
+                                    value="Submit">Submit
+                            </button>
+                            <button type="submit" class="btn btn-default subbtn"
+                                    onclick="back_to_membership_form()" id="back_to_membershipform"
+                                    value="Submit">Back
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+{% endblock %}
+{% block js_block %}
+<script type="text/javascript" src="{% static 'custom-js/Multi-select-js/bootstrap-multiselect.js' %}"></script>
+<link rel="stylesheet" href="{% static 'custom-js/Multi-select-js/bootstrap-multiselect.css' %}" type="text/css"/>
+<script src="{% static 'custom-js/membershipapp/membership_form.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/validation/checkvalidation.js' %}" type="text/javascript"></script>
+
+
+<!--<script src="{%static 'custom-js/membershipapp/membership_invoice.js' %}" type="text/javascript"></script>-->
+<!--<script type="text/javascript" src="https://www.tecprocesssolution.com/proto/P2M/server/lib/checkout.js"></script>-->
+<script type="text/javascript" src="https://www.paynimo.com/Paynimocheckout/server/lib/checkout.js"></script>
+
+{% endblock %}
+</body>
+</html>

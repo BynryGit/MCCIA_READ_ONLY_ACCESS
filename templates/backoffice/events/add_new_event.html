@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!-- BEGIN HEAD -->
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8"/>
+    <title>MCCIA | Add New Event </title>
+    {% include 'backoffice/base_css.html' %}
+
+    <link href="{% static 'backoffice/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css' %}"
+          rel="stylesheet" type="text/css"/>
+    <link href="{% static 'backoffice/assets/global/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css' %}"
+          rel="stylesheet" type="text/css"/>
+    <link href="{% static 'backoffice/assets/global/plugins/bootstrap-summernote/summernote.css' %}" rel="stylesheet"
+          type="text/css"/>
+
+    <link rel="shortcut icon" href="favicon.ico"/>
+
+    <!-- END THEME LAYOUT STYLES --> </head>
+<!-- END HEAD -->
+<style type="text/css">
+.datepicker.dropdown-menu{
+margin-left: -122px;
+}
+
+.dropzone .dz-default.dz-message {
+            width: 283px;
+            height: 159px;
+            margin-left: -141px;
+}
+
+.dropzone .dz-preview,
+.dropzone-previews .dz-preview {
+      background: rgba(255, 255, 255, 0.8);
+      position: relative;
+      display: inline-block;
+      margin: 4px;
+      vertical-align: top;
+      border: 1px solid #acacac;
+      padding: 6px 6px 6px 6px;
+  }
+
+#my-active-dropzone {
+      border: 3px dashed black !important;
+      min-height: 224px !important;
+      background: #ffffff;
+}
+
+.dropzone .dz-preview .dz-details img,
+.dropzone-previews .dz-preview .dz-details img {
+      position: absolute;
+      top: 0px;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+}
+
+#my-awesome-dropzone-3 {
+      border: 3px dashed black !important;
+      min-height: 224px !important;
+      background: #ffffff;
+}
+
+ .dropzone .dz-preview,
+ .dropzone-previews .dz-preview {
+      margin: 3px !important;
+  }
+
+  #processing{
+            height: 100vh;
+            position: fixed;
+            width: 100%;
+            margin: 0px auto;
+            z-index: 9999;
+            background-color: #FFF;
+            background-image: none;
+            background-attachment: scroll;
+            background-position: 0% 0%;
+            background-clip: border-box;
+            background-origi html, body {
+   overflow-x: hidden;
+ }n: padding-box;
+            background-repeat: repeat;
+            background-size: inherit;
+            opacity: 0.5;
+        }
+        #loading{
+            width: 36%;
+            height: 22px;
+            position: absolute;
+            top: 26%;
+            left: 32%;
+            margin: -28px 0px 0px -25px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            color: #000;
+        }
+
+
+</style>
+
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+<!-- BEGIN HEADER -->
+<div id="processing" style="display:none;">
+    <div id="loading">
+        <img src="{% static 'assets/loading-bars.gif' %}" style="height : 100px;">
+
+    </div>
+</div>
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="index.html">
+                <img src="{% static 'assets/layouts/layout2/img/City_Hoopla_Logo.png' %}" alt="logo"
+                     class="logo-default"/> </a>
+            <div class="menu-toggler sidebar-toggler">
+                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+            </div>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+           data-target=".navbar-collapse"> </a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN PAGE TOP -->
+        <div class="page-top">
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
+                            <!-- <img alt="" class="img-circle" src="{% static 'assets/layouts/layout2/img/avatar3_small.jpg" /> -->
+                            <span class="username username-hide-on-mobile"> {{ request.session.login_user }} </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a href="/edit-profile/?user_id={{request.session.login_user}}">
+                                    <i class="fa fa-user" aria-hidden="true"></i> My Profile </a>
+                            </li>
+                            <li>
+                                <a href="/log-out/">
+                                    <i class="icon-key"></i> Log Out </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END PAGE TOP -->
+    </div>
+    <!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+
+<!-- BEGIN HEADER & CONTENT DIVIDER -->
+<div class="clearfix"></div>
+<!-- END HEADER & CONTENT DIVIDER -->
+
+
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            {% include 'backoffice/membership/side-panel.html' %}
+        </div>
+    </div>
+    <!-- END SIDEBAR -->
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+            <div class="portlet light">
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+                        <li>
+                            <a href="/backofficeapp/event-details/" style="color: #3eb199;font-size: 16px;"> Event</a>
+                        </li>
+                        <i class="fa fa-angle-right"></i>
+                        <li>
+                            <span style="color: #00448b;font-size: 16px;">Add New Event </span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- BEGIN FORM-->
+                <div class="row" id="main_div">
+                    <div class="col-sm-12">
+                        <div class="portlet light profile-sidebar-portlet bordered">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    {% csrf_token %}
+                                    <form id="add_event_form" role="form" enctype="multipart/form-data"
+                                          name="add_event_form" method="POST">
+                                        <div class="row">
+                                            <div class="form-group form-md-line-input has-success col-md-3"
+                                                 id="event_titleDiv">
+                                                <label>Event Title<span class="required">*</span> (Max 100 char)</label>
+                                                <input type="text" class="form-control" id="event_title"
+                                                       name="event_title" maxlength="100">
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="select_committeeDiv">
+                                                    <label class="control-label">Committee<span
+                                                            class="required">*</span></label>
+                                                    <select id="select_committee" name="select_committee"
+                                                            class="form-control input-sm select2">
+                                                        <option value="">Select Committee</option>
+                                                        {% for obj in committee_list %}
+                                                        <option value="{{obj.id}}"> {{obj.committee}}
+                                                        </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="select_contact1Div">
+                                                    <label class="control-label"> Contact Person 1 <span
+                                                            class="required">*</span></label>
+                                                    <select id="select_contact1" name="select_contact1"
+                                                            class="form-control input-sm select2">
+                                                        <option value="">Select Contact Person</option>
+                                                        {% for obj in system_user_list %}
+                                                        <option value="{{obj.id}}"> {{obj.first_name}}
+                                                            {{obj.last_name}}
+                                                        </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="select_contact2Div">
+                                                    <label class="control-label">Contact Person 2</label>
+                                                    <select id="select_contact2" name="select_contact2"
+                                                            class="form-control input-sm select2">
+                                                        <option value="">Select Contact Person</option>
+                                                        {% for obj in system_user_list %}
+                                                        <option value="{{obj.id}}"> {{obj.first_name}}
+                                                            {{obj.last_name}}
+                                                        </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="select_priorityDiv" style="display: none">
+                                                    <label class="control-label">MCCIA App Priority<span
+                                                            class="required">*</span></label>
+                                                    <select id="select_priority" name="select_priority"
+                                                            class="form-control input-sm select2">
+                                                        <option value="dummy">Select Priority</option>
+                                                        <option value="0"> No Priority</option>
+                                                        <option value="1"> Priority 1</option>
+                                                        <option value="2"> Priority 2</option>
+                                                        <option value="3"> Priority 3</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="select_criteriaDiv">
+                                                    <label class="control-label"> Payment Criteria<span
+                                                            class="required">*</span></label>
+                                                    <select id="select_criteria" name="select_criteria"
+                                                            class="form-control input-sm select2"
+                                                            onchange="entry_criteria();">
+                                                        <option value="">Select Payment Criteria</option>
+                                                        <option value="0"> Free To All</option>
+                                                        <option value="1"> On Payment</option>
+                                                        <option value="2"> By Invitation</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="select_paymentDiv">
+                                                    <label class="control-label">Online Payment<span
+                                                            class="required">*</span></label>
+                                                    <select id="select_payment" name="select_payment"
+                                                            class="form-control input-sm select2">
+                                                        <option value="">Select Online Payment</option>
+                                                        <option value="1"> ON</option>
+                                                        <option value="0"> OFF</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="select_event_typeDiv">
+                                                    <label class="control-label">Event Type<span
+                                                            class="required">*</span></label>
+                                                    <select id="select_event_type" name="select_event_type"
+                                                            class="form-control input-sm select2"
+                                                            onchange="event_type_change()">
+                                                        <option value="">Select Event Type</option>
+                                                        {% for obj in event_type_list %}
+                                                        <option value="{{obj.id}}"> {{obj.event_type}}
+                                                        </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="other_event_div" style="display: none;">
+                                                    <label>Other event</label>
+                                                    <input type="text" class="form-control" id="other_event"
+                                                           name="other_event" maxlength="100">
+                                                </div>
+                                            </div>
+                                            <!--  <div class="col-md-3">
+                                              <div class="form-group form-md-line-input has-success" >
+                                                  <label for="applicant_other_details">Capacity</label>
+                                                  <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"  maxlength="10"  type="text"  class="form-control" id="expected_capacity" name="expected_capacity" >
+                                              </div>
+                                             </div> -->
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="select_entry_leveldiv">
+                                                    <label class="control-label">Level<span
+                                                            class="required">*</span></label>
+                                                    <select id="select_entry_level" name="select_entry_level"
+                                                            class="form-control input-sm select2">
+                                                        <option value="">Select Level</option>
+                                                        <option value="0">Local</option>
+                                                        <option value="1">State</option>
+                                                        <option value="2">National</option>
+                                                        <option value="3">International</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <label class="control-label">Event Sponsored</label>
+                                                    <select id="select_event_sponsored"
+                                                            class="form-control input-sm select2">
+                                                        <option value="0">No</option>
+                                                        <option value="1">Yes</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!--<div class="col-md-3">-->
+                                                <!--<div class="form-group form-md-line-input has-success">-->
+                                                    <!--<label class="control-label">Event Sub Type</label>-->
+                                                    <!--<select id="select_event_sponsored"-->
+                                                            <!--class="form-control input-sm select2">-->
+                                                        <!--<option value="0">Select Event Sub Type</option>-->
+                                                        <!--<option value="1">Yes</option>-->
+                                                    <!--</select>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="col-md-12">
+                                                    <div class="form-group form-md-line-input has-success"
+                                                         id="event_locationDiv">
+                                                        <label class="control-label">Location<span
+                                                                class="required">*</span></label>
+                                                        <select onchange="get_hall_name();" id="event_location"
+                                                                name="event_location"
+                                                                class="form-control input-sm select2">
+                                                            <option value="">Select Location</option>
+                                                            {% for obj in hall_location_list %}
+                                                            <option value="{{obj.id}}"> {{obj.location}}
+                                                            </option>
+                                                            {% endfor %}
+                                                            <option value="other">Other</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group form-md-line-input has-success"
+                                                         id="select_hall_locationDiv">
+                                                        <label class="control-label">Hall Name<span
+                                                                class="required">*</span></label>
+                                                        <select onchange="get_hall_location();" id="select_hall_id"
+                                                                name="select_hall_id"
+                                                                class="form-control input-sm select2">
+                                                            <option value=" ">Select Hall</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8" id="gmapDiv">
+                                                <div class="col-md-12">
+                                                    <div class="caption caption-md">
+                                                        <i class="icon-globe theme-font hide"></i>
+                                                        <span class="caption-subject font-blue-madison bold uppercase">Gmap for Hall Address</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="page-content-inner">
+                                                        <div class="c-content-contact-1 c-opt-1">
+                                                            <div id="gmap"
+                                                                 class="c-content-contact-1-gmap"
+                                                                 style="height: 200px;"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8" id="otherLocationDiv" style="display: none;">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="other_location_addressDiv">
+                                                    <label>Address <span class="required">*</span>(Max 300 char)</label>
+                                                    <textarea class="form-control validateRequired" rows="5"
+                                                              id="other_location_address"
+                                                              name="for_whom" maxlength="300"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Event From Date <span
+                                                            style="color: #eb454a;">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group date form_datetime">
+                                                            <input readonly="" type="text" size="16"
+                                                                   class="form-control" id="from_date" name="from_date"
+                                                                   onchange="disable_end_date()">
+                                                            <span class="input-group-btn">
+                                                         <button class="btn default date-reset" type="button">
+                                                             <i class="fa fa-times"></i>
+                                                         </button>
+                                                         <button class="btn default date-set" type="button">
+                                                             <i class="fa fa-calendar"></i>
+                                                         </button>
+                                                     </span>
+                                                        </div>
+                                                        <label id="from_date_error" class="error"
+                                                               style="color:red; display:none; font-size: 12px;"></label>
+                                                    </div>
+                                                </div>
+                                                <br><br>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Event To Date <span
+                                                            style="color: #eb454a;">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group date form_datetime">
+                                                            <input readonly="" type="text" size="16"
+                                                                   class="form-control" id="to_date" name="to_date">
+                                                            <span class="input-group-btn">
+                                                         <button class="btn default date-reset" type="button">
+                                                             <i class="fa fa-times"></i>
+                                                         </button>
+                                                         <button class="btn default date-set" type="button">
+                                                             <i class="fa fa-calendar"></i>
+                                                         </button>
+                                                     </span>
+                                                        </div>
+                                                        <label id="to_date_error" class="error"
+                                                               style="color:red; display:none; font-size: 12px;"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Registration Start Date<span
+                                                            style="color: #eb454a;">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group date form_datetime">
+                                                            <input readonly="" type="text" size="16"
+                                                                   class="form-control" id="registr_start_date"
+                                                                   name="registr_start_date">
+                                                            <span class="input-group-btn">
+                                                             <button class="btn default date-reset" type="button">
+                                                                 <i class="fa fa-times"></i>
+                                                             </button>
+                                                             <button class="btn default date-set" type="button">
+                                                                 <i class="fa fa-calendar"></i>
+                                                             </button>
+                                                         </span>
+                                                        </div>
+                                                        <label id="registr_start_date_error" class="error"
+                                                               style="color:red; display:none; font-size: 12px;"></label>
+                                                    </div>
+                                                </div>
+                                                <br><br>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Registration End Date<span
+                                                            style="color: #eb454a;">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group date form_datetime">
+                                                            <input readonly="" type="text" size="16"
+                                                                   class="form-control" id="registr_end_date"
+                                                                   name="registr_end_date">
+                                                            <span class="input-group-btn">
+		                                                         <button class="btn default date-reset" type="button">
+		                                                             <i class="fa fa-times"></i>
+		                                                         </button>
+		                                                         <button class="btn default date-set" type="button">
+		                                                             <i class="fa fa-calendar"></i>
+		                                                         </button>
+		                                                     </span>
+                                                        </div>
+                                                        <label id="registr_end_date_error" class="error"
+                                                               style="color:red; display:none; font-size: 12px;"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Release Date <span
+                                                            style="color: #eb454a;">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group date form_datetime">
+                                                            <input readonly="" type="text" size="16"
+                                                                   class="form-control" id="release_date"
+                                                                   name="release_date">
+                                                            <span class="input-group-btn">
+		                                                         <button class="btn default date-reset" type="button">
+		                                                             <i class="fa fa-times"></i>
+		                                                         </button>
+		                                                         <button class="btn default date-set" type="button">
+		                                                             <i class="fa fa-calendar"></i>
+		                                                         </button>
+		                                                     </span>
+                                                        </div>
+                                                        <label id="release_date_error" class="error"
+                                                               style="color:red; display:none; font-size: 12px;"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="portlet-body form">
+                                            <form class="form-horizontal form-bordered">
+                                                <div class="form-body">
+                                                    <div class="form-group last">
+                                                        <label class="control-label col-md-2 bold">Program
+                                                            Details</label>
+                                                        <div class="col-md-10">
+                                                            <div name="summernote" id="summernote_1"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group form-md-line-input has-success" id="for_whomdiv">
+                                                    <label>For Whom <span class="required">*</span>(Max 300
+                                                        char)</label>
+                                                    <textarea class="form-control validateRequired" rows="5"
+                                                              id="for_whom"
+                                                              name="for_whom" maxlength="300"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="organised_bydiv">
+                                                    <label>Organized By <span class="required">*</span>(Max 500
+                                                        char)</label>
+                                                    <textarea class="form-control validateRequired" rows="5"
+                                                              id="organised_by"
+                                                              name="organised_by" maxlength="500">Mahratta Chamber of Commerce, Industries and Agriculture</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="event_objectivediv">
+                                                    <label>Event Objective<span class="required">*</span>(Max 500 char)</label>
+                                                    <textarea class="form-control validateRequired" rows="5"
+                                                              id="event_objective"
+                                                              name="event_objective" maxlength="500"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="member_chargesDiv">
+                                                    <label for="applicant_other_details">Member Charges<span
+                                                            class="required">*</span></label>
+                                                    <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                           placeholder="Rs." type="text" class="form-control"
+                                                           id="member_charges" name="applicant_other_details"
+                                                           maxlength="10">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="nonmember_chargesDiv">
+                                                    <label for="applicant_other_details">Non Member Charges<span
+                                                            class="required">*</span></label>
+                                                    <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                           maxlength="10" placeholder="Rs." type="text"
+                                                           class="form-control" id="non_member_charges"
+                                                           name="non_member_charges">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2" style="padding-left: 34px;">
+                                                <div class="form-group form-md-line-input has-success">
+                                                    <label class="control-label">Other Category</label>
+                                                    <select id="select_other" class="form-control input-sm select2"
+                                                            onchange="change_other_charge();">
+                                                        <option value="No"> No</option>
+                                                        <option value="Yes"> Yes</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-2" style="display: none;" id="other_charges_div1">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     style="padding-top: 26px;" id="otherDiv1">
+                                                    <label for="applicant_other_details"></label>
+                                                    <input type="text" class="form-control" id="othercharge_name"
+                                                           name="othercharge_name" maxlength="100">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2" style="display: None;" id="other_charges_div2">
+                                                <div class="form-group form-md-line-input has-success" id="otherDiv2">
+                                                    <label for="applicant_other_details">Charges<span
+                                                            class="required">*</span></label>
+                                                    <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                           maxlength="10" placeholder="Rs." type="text"
+                                                           class="form-control" id="othercharge_amt"
+                                                           name="othercharge_amt">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="md-checkbox ">
+                                                    <input type="checkbox" value="Dashboard1" id="checkbox2_2"
+                                                           class="md-check" name="checkbox2_2">
+                                                    <label for="checkbox2_2">
+                                                        <span class="inc"></span>
+                                                        <span class="check"></span>
+                                                        <span class="box"></span> Configure Promotion Code </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8" style="display: none;" id="promo_btn_div">
+                                                <div class="col-sm-12" style="text-align: end;">
+                                                    <button onclick="add_new_row()" type="button"
+                                                            class="btn btn-outline done_btn">+ Add
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="display: none;" id="promo_table_div">
+                                            <div class="col-sm-12">
+                                                <div id="edit_tariff_table">
+
+                                                    <div class="table-responsive">
+                                                        <table class="table table-striped" width="100%">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>For Whom</th>
+                                                                <th>Promocode</th>
+                                                                <th>% Discount</th>
+                                                                <th>Charges</th>
+                                                                <th>Action</th>
+                                                            </tr>
+
+                                                            </thead>
+                                                            <tbody id="promocode_body">
+                                                            <tr>
+                                                                <td class="has-success"><input type="text"
+                                                                                               class="form-control">
+                                                                </td>
+                                                                <td class="has-success"><input
+                                                                        style="text-transform: uppercase" type="text"
+                                                                        class="form-control"></td>
+                                                                <td class="has-success"><input
+                                                                        onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                                        type="text" class="form-control" maxlength="3">
+                                                                </td>
+                                                                <td class="has-success"><input
+                                                                        onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                                        type="text" class="form-control"></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="md-checkbox ">
+                                                    <input type="checkbox" value="Dashboard" id="checkbox1_1"
+                                                           class="md-check" name="checkbox1_1">
+                                                    <label for="checkbox1_1">
+                                                        <span class="inc"></span>
+                                                        <span class="check"></span>
+                                                        <span class="box"></span> Configure Early Bird </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="display: none;" id="early_bird_div">
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="early_member_chargesDiv">
+                                                    <label for="applicant_other_details">Member Charges<span
+                                                            class="required">*</span></label>
+                                                    <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                           placeholder="Rs." type="text" class="form-control"
+                                                           id="early_member_charges" name="early_member_charges"
+                                                           maxlength="10">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="early_nonmember_chargesDiv">
+                                                    <label for="applicant_other_details">Non Member Charges<span
+                                                            class="required">*</span></label>
+                                                    <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                           maxlength="10" placeholder="Rs." type="text"
+                                                           class="form-control" id="early_non_member_charges"
+                                                           name="early_non_member_charges">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <br>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Date <span
+                                                            style="color: #eb454a;">*</span></label>
+                                                    <div class="col-md-9">
+                                                        <div class="input-group date form_datetime">
+                                                            <input readonly="" type="text" size="16"
+                                                                   class="form-control" id="early_date"
+                                                                   name="early_date">
+                                                            <span class="input-group-btn">
+		                                                         <button class="btn default date-reset" type="button">
+		                                                             <i class="fa fa-times"></i>
+		                                                         </button>
+		                                                         <button class="btn default date-set" type="button">
+		                                                             <i class="fa fa-calendar"></i>
+		                                                         </button>
+		                                                     </span>
+                                                        </div>
+                                                        <label id="early_date_error" class="error"
+                                                               style="color:red; display:none; font-size: 12px;"></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="col-md-6">
+                                                    <label class="bold"> Discount Details :</label>
+                                                    <br><br>
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                                   type="text" class="form-control"
+                                                                   id="disc_part_count1" name="disc_part_count1"
+                                                                   maxlength="3">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <span>& above <br><b> Discount (%) is</b></span>
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                                   type="text" class="form-control" id="disc_perct1"
+                                                                   name="disc_perct1" maxlength="3">
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                                   type="text" class="form-control"
+                                                                   id="disc_part_count2" name="disc_part_count2"
+                                                                   maxlength="3">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <span>& above <br><b> Discount (%) is</b></span>
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                                   type="text" class="form-control" id="disc_perct2"
+                                                                   name="disc_perct2" maxlength="3">
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                                   type="text" class="form-control"
+                                                                   id="disc_part_count3" name="disc_part_count3"
+                                                                   maxlength="3">
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <span>& above <br><b> Discount (%) is</b></span>
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                                   type="text" class="form-control" id="disc_perct3"
+                                                                   name="disc_perct3" maxlength="3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-md-8">
+                                                            <div class="form-group form-md-line-input has-success">
+                                                                <label for="applicant_other_details">Expected Number of
+                                                                    Participant</label>
+                                                                <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                                                                       type="text" class="form-control"
+                                                                       id="expected_member" name="expected_member"
+                                                                       maxlength="5">
+                                                            </div>
+                                                        </div>
+                                                        <!-- <div class="col-md-6">
+                                                         <div class="form-group form-md-line-input has-success" >
+                                                             <label for="applicant_other_details">Expected Non Member</label>
+                                                             <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"  maxlength="3" type="text"  class="form-control" id="expected_nonmember" name="expected_nonmember" >
+                                                         </div>
+                                                        </div> -->
+                                                    </div>
+                                                    <!--    <div class="row">
+                                                          <div class="col-md-6">
+                                                           <div class="form-group form-md-line-input has-success">
+                                                               <label for="applicant_other_details">Expected Free Member</label>
+                                                               <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"  type="text" class="form-control" id="expected_freemember" name="expected_freemember" maxlength="3">
+                                                           </div>
+                                                          </div>
+                                                          <div class="col-md-6">
+                                                           <div class="form-group form-md-line-input has-success" >
+                                                               <label for="applicant_other_details">Expected Sponsored Member</label>
+                                                               <input onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"  maxlength="3"  type="text"  class="form-control" id="expected_sponsmember" name="expected_sponsmember" >
+                                                           </div>
+                                                          </div>
+                                                                </div> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="event_banner">Event banner<span
+                                                        style="color: #eb454a;"> *</span></label>
+                                                <input onchange="upload_event_banner();" type="file" accept="image/*"
+                                                       class="form-control" id="event_banner" name="event_banner"
+                                                       maxlength="100">
+                                                <label id="event_banner_error" class="error"
+                                                       style="color:red; display:none; font-size: 12px;"></label>
+                                            </div>
+                                            <div class="col-md-6" style="display: none;">
+                                                <label for="sponsor_banner">Sponsor banner<span style="color: #eb454a;"> *</span></label>
+                                                <input onchange="upload_sponsor_banner();" type="file" accept="image/*"
+                                                       class="form-control" id="sponsor_banner" name="sponsor_banner"
+                                                       maxlength="100">
+                                                <label id="sponsor_banner_error" class="error"
+                                                       style="color:red; display:none; font-size: 12px;"></label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="sponsor_banner">Sponsor banner (Max 300KB)</label>
+                                                <div class="form-group col-lg-12 col-md-12" id="sponsor_banner_div1">
+                                                    <div class="dropzone"
+                                                         style=" min-height: 70px; border-color: #e4e5e7 !important; "
+                                                         id="my-awesome-dropzone-3"><span class="txt_dropzone3"
+                                                                                          style="text-align: center; float: left;">Click or drag and drop to upload documents</span>
+                                                    </div>
+                                                    <input type="hidden" class="form-control" id="attachment"
+                                                           name="attachments">
+                                                    <input type="hidden" class="form-control" id="attachments"
+                                                           name="attachment">
+                                                </div>
+                                                <label id="error_dropzone"
+                                                       style="color:red; display:none; font-size: 12px;"></label>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row" style="display: none;">
+                                            <div class="col-md-6">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="meta_titleDiv">
+                                                    <label>Meta Title <span class="required">*</span>(Max 250
+                                                        char)</label>
+                                                    <textarea class="form-control validateRequired" rows="4"
+                                                              id="meta_title"
+                                                              name="meta_title" maxlength="250">dummy</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="meta_keywordDiv">
+                                                    <label>Meta Keywords <span class="required">*</span>(Max 250
+                                                        char)</label>
+                                                    <textarea class="form-control validateRequired" rows="4"
+                                                              id="meta_keyword"
+                                                              name="meta_keyword" maxlength="250">dummy</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row" style="display: none;">
+                                            <div class="col-md-6">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="meta_descriptionDiv">
+                                                    <label>Meta Description <span class="required">*</span>(Max 250
+                                                        char)</label>
+                                                    <textarea class="form-control validateRequired" rows="4"
+                                                              id="meta_description"
+                                                              name="meta_description" maxlength="250">dummy</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group form-md-line-input has-success"
+                                                     id="meta_key_phraseDiv">
+                                                    <label>Meta KeyPhrases <span class="required">*</span>(Max 250 char)</label>
+                                                    <textarea class="form-control validateRequired" rows="4"
+                                                              id="meta_key_phrase"
+                                                              name="meta_key_phrase" maxlength="250">dummy</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="  margin-top: 30px;">
+                                            <div class="col-xs-12 text-right">
+                                                <button type="button" class="btn btn-outline grey_color "
+                                                        onclick="location.href = '/backofficeapp/event-details/'">Cancel
+                                                </button>
+                                                <button type="button" id="preview-continue"
+                                                        class="btn btn-outline done_btn">Preview
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portlet light bg-inverse form-fit" style="display: none;" id="preview_div">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="icon-user font-blue-hoki"></i>
+                            <span class="caption-subject font-blue-hoki bold uppercase">Form Preview</span>
+                            <!-- <span class="caption-helper">demo form...</span> -->
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <form action="#" class="form-horizontal form-bordered form-row-stripped">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Committee</label>
+                                    <div class="col-md-9">
+                                        <input readonly="" type="text" class="form-control" id="preview_committee"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Event Title</label>
+                                    <div class="col-md-9">
+                                        <input readonly="" type="text" class="form-control" id="preview_event_title"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Contact Person 1</label>
+                                    <div class="col-md-9">
+                                        <input readonly="" type="text" class="form-control"
+                                               id="preview_contact_person1"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Contact Person 2</label>
+                                    <div class="col-md-9">
+                                        <input readonly="" type="text" class="form-control"
+                                               id="preview_contact_person2"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">For Whom</label>
+                                    <div class="col-md-9">
+                                        <textarea readonly="" rows="3" type="text" class="form-control"
+                                                  id="preview_for_whom"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Organised By</label>
+                                    <div class="col-md-9">
+                                        <textarea readonly="" rows="3" type="text" class="form-control"
+                                                  id="preview_organised_by"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Event Objective</label>
+                                    <div class="col-md-9">
+                                        <textarea readonly="" rows="3" type="text" class="form-control"
+                                                  id="preview_event_objective"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Location</label>
+                                    <div class="col-md-9">
+                                        <input readonly="" type="text" class="form-control" id="preview_location"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Event Type</label>
+                                    <div class="col-md-9">
+                                        <input readonly="" type="text" class="form-control" id="preview_event_type"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Entry Criteria</label>
+                                    <div class="col-md-9">
+                                        <input readonly="" type="text" class="form-control"
+                                               id="preview_entry_criteria"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">From Date / Time</label>
+                                    <div class="col-md-9">
+                                        <input readonly="" type="text" class="form-control" id="preview_from_date"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">To Date / Time</label>
+                                    <div class="col-md-9">
+                                        <input readonly="" type="text" class="form-control" id="preview_to_date"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Member Charges</label>
+                                    <div class="col-md-9">
+                                        <input readonly="" type="text" class="form-control" id="preview_member_charge"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Non Member Charges</label>
+                                    <div class="col-md-9">
+                                        <input readonly="" type="text" class="form-control"
+                                               id="preview_nonmember_charge"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">Event Banner</label>
+                                    <div class="col-md-9">
+                                        <img style="width: 100%; height: 248px;" src="/static/assets/MCCIA-logo.png"
+                                             alt="Smiley face" id="preview_event_banner">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="display: none;">
+                                    <label class="control-label col-md-3">Sponsor Banner</label>
+                                    <div class="col-md-9">
+                                        <img style="width: 100%; height: 248px;" src="/static/assets/MCCIA-logo.png"
+                                             alt="Smiley face" id="preview_sponsor_banner">
+                                    </div>
+                                </div>
+                                <div class="form-group" id="sponsor_banner_preview_div">
+                                    <label class="control-label col-md-3">Sponsor Banner</label>
+                                    <div class="col-md-6">
+                                        <div class="form-group col-lg-12 col-md-12" id="sponsor_banner_div2">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button type="submit" class="btn green" id="submit_event">
+                                            <i class="fa fa-check"></i> Submit
+                                        </button>
+                                        <button type="button" class="btn default" id="cancel_preview">Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="page-footer-inner"> 2018 © Bynry Technologies
+
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+</div>
+<!-- END FOOTER -->
+
+<div class="modal fade draggable-modal" id="success_modal" tabindex="-1" role="basic" aria-hidden="true">
+    <div class="modal-dialog" style="width:35%;">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+
+                <img style="width: 18%;"
+                     src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+            </div>
+            <div class="modal-body">
+                <form action="index.html" class="form-horizontal form-row-seperated">
+                    <div class="form-body">
+                        <h4 class="text-center">User added successfully</h4>
+                    </div>
+                    <div style="text-align:center !important;" class="modal-footer">
+                        <a type="button" href="/user-list/" class="btn green">OK</a>
+
+                    </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+
+<div style="overflow-y:hidden;" id="error-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <img style="width: 100px; height: 29px; margin-top: -11px; margin-left: 236px;"
+                     src="/static/assets/layouts/layout2/img/City_Hoopla_Logo.png" alt="logo" class="logo-default">
+
+            </div>
+            <div class="modal-body">
+                <div class="form-body">
+                    <h4 class="text-center">User name is already exist</h4>
+                </div>
+                <div style="text-align:center !important;" class="modal-footer">
+                    <input data-dismiss="modal" type="submit" value="OK"
+                           class="btn btn-primary" id="btn-loading-demo">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- BEGIN CORE PLUGINS -->
+
+<script src="{% static 'backoffice/assets/global/plugins/jquery.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/bootstrap/js/bootstrap.min.js' %}"
+        type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/js.cookie.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js' %}"
+        type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js' %}"
+        type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/jquery.blockui.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/uniform/jquery.uniform.min.js' %}"
+        type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js' %}"
+        type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="{% static 'backoffice/assets/global/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js' %}"
+        type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.js' %}"
+        type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/bootstrap-markdown/lib/markdown.js' %}"
+        type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/bootstrap-markdown/js/bootstrap-markdown.js' %}"
+        type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/bootstrap-summernote/summernote.min.js' %}"
+        type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN THEME GLOBAL SCRIPTS -->
+<script src="{% static 'backoffice/assets/global/scripts/app.min.js' %}" type="text/javascript"></script>
+<!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="{% static 'backoffice/assets/pages/scripts/components-editors.min.js' %}" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+<!-- BEGIN THEME LAYOUT SCRIPTS -->
+<script src="{% static 'backoffice/assets/layouts/layout/scripts/layout.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/layouts/layout/scripts/demo.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/layouts/global/scripts/quick-sidebar.min.js' %}"
+        type="text/javascript"></script>
+
+<script src="{% static 'backoffice/assets/pages/scripts/dropzone1.js' %}"></script>
+<script src="{% static 'backoffice/assets/global/plugins/select2/js/select2.full.min.js' %}"
+        type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/pages/scripts/components-select2.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/moment.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js' %}"
+        type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"
+        type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js' %}"
+        type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js' %}"
+        type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/global/plugins/clockface/js/clockface.js' %}" type="text/javascript"></script>
+<script src="{% static 'backoffice/assets/pages/scripts/components-date-time-pickers.min.js' %}"
+        type="text/javascript"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<script src="{% static 'custom-js/bootbox.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'custom-js/backofficeapp/events/add_events.js' %}" type="text/javascript"></script>
+<script src="https://maps.google.com/maps/api/js?libraries=geometry&v=3.22&key=AIzaSyDV7B5iJWyOQq-OyNuVR1VcarXPz3yL6Y8"></script>
+<script src="{% static 'custom-js/backofficeapp/events/maplace.min.js' %}" type="text/javascript"></script>
+
+
+</body>
+</html>

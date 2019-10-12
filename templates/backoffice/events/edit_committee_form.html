@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!-- BEGIN HEAD -->
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8"/>
+    <title>MCCIA | Membership Category </title>
+    {% include 'backoffice/base_css.html' %}
+</head>
+<!-- END HEAD -->
+
+
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+<!-- BEGIN HEADER -->
+<div id="processing" style="display:none;">
+    <div id="loading">
+        <img src="{% static 'assets/loading-bars.gif' %}" style="height : 100px;">
+    </div>
+</div>
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="index.html">
+                <img src="{% static 'assets/layouts/layout2/img/City_Hoopla_Logo.png' %}" alt="logo"
+                     class="logo-default"/> </a>
+            <div class="menu-toggler sidebar-toggler">
+                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+            </div>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+           data-target=".navbar-collapse"> </a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN PAGE TOP -->
+        <div class="page-top">
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
+                            <!-- <img alt="" class="img-circle" src="{% static 'assets/layouts/layout2/img/avatar3_small.jpg" /> -->
+                            <span class="username username-hide-on-mobile"> {{ request.session.login_user }} </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a href="/edit-profile/?user_id={{request.session.login_user}}">
+                                    <i class="fa fa-user" aria-hidden="true"></i> My Profile </a>
+                            </li>
+                            <li>
+                                <a href="/log-out/">
+                                    <i class="icon-key"></i> Log Out </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END PAGE TOP -->
+    </div>
+    <!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+
+<!-- BEGIN HEADER & CONTENT DIVIDER -->
+<div class="clearfix"></div>
+<!-- END HEADER & CONTENT DIVIDER -->
+
+
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            {% include 'backoffice/membership/side-panel.html' %}
+        </div>
+    </div>
+    <!-- END SIDEBAR -->
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+            <div class="portlet light">
+                <div class="page-bar">
+                    <ul class="page-breadcrumb">
+
+                        <li>
+                            <a href="/backofficeapp/add-committee/" style="color: #3eb199;font-size: 16px;">
+                                Events</a>
+
+                        </li>
+                        <i class="fa fa-angle-right"></i>
+                        <li>
+                            <span style="color: #00448b;font-size: 16px;">Edit Committee </span>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- BEGIN FORM-->
+                 <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
+
+                            <!-- PORTLET MAIN -->
+                            <div class="portlet light profile-sidebar-portlet bordered" >
+			                     <div class="row" >
+			                         <div class="col-xs-12">                         	       
+				                           {% csrf_token %} 
+				                           <form id="add_event_form" role="form" enctype="multipart/form-data" name="add_event_form" ,method="POST">
+
+
+			 											 <div class="row"> 											 
+			 											 	<div class="col-md-6">
+			                                         <div class="form-group form-md-line-input has-success" id="committee_nameDiv">
+			                                             <label >Committee Name<span class="required">*</span></label>
+			                                             <input value="{{committee_name}}" type="text" class="form-control" id="committee_name"  name="committee_name" maxlength="100">
+			                                         </div>
+						                            </div>							                          				                            
+			    		                         </div>
+			 											 <br> 	
+			 											 <div class="portlet light profile-sidebar-portlet bordered">
+			 											    <span class="bold">Contact Person Details :</span>
+				 											 <div class="row"> 											 
+				 											 	<div class="col-md-4">
+				                                         <div class="form-group form-md-line-input has-success" id="chairman1_nameDiv">
+				                                             <label >Chairman 1</label>
+				                                             <input value="{{chairman1_name}}" placeholder="Enter Chairman Name (Max 100 char)" type="text" class="form-control" id="chairman1_name"  name="chairman1_name" maxlength="100">
+				                                         </div>
+							                            </div>
+							                            <div class="col-md-4">
+				                                         <div class="form-group form-md-line-input has-success" id="chairman1_companyDiv">
+				                                             <label >Company</label>
+				                                             <input value="{{chairman1_company}}" placeholder="Enter Company (Max 100 char)" type="text" class="form-control" id="chairman1_company"  name="chairman1_company" maxlength="100">
+				                                         </div>
+							                            </div>
+							                            <div class="col-md-4">
+				                                         <div class="form-group form-md-line-input has-success" id="chairman1_designationDiv">
+				                                             <label for="applicant_other_details">Designation</label>
+				                                             <input value="{{chairman1_designation}}" placeholder="Enter Designation (Max 100 char)"  type="text" class="form-control" id="chairman1_designation" name="chairman1_designation" maxlength="100">
+				                                         </div>
+							                            </div>
+							                            <div class="col-md-4">
+				                                         <div class="form-group form-md-line-input has-success" id="chairman1_emailDiv">
+				                                             <label for="applicant_other_details">Email Id</label>
+				                                             <input value="{{chairman1_email}}" type="text" class="form-control" id="chairman1_email" name="chairman1_email" maxlength="100" placeholder="Enter Email Id (Max 100 char)">
+				                                         </div>
+							                            </div>
+							                             <div class="col-md-4">
+				                                         <div class="form-group form-md-line-input has-success" id="chairman1_mobileDiv">
+				                                             <label for="applicant_other_details">Mobile No.</label>
+				                                             <input value="{{chairman1_mobile}}"  placeholder="Enter Mobile (10 digit number)" type="text" class="form-control" id="chairman1_mobile" name="chairman1_mobile" maxlength="10" onkeypress="return isNumberKey(event, this)">
+				                                         </div>
+							                            </div>
+							                            <div class="col-md-4">
+				                                         <div class="form-group form-md-line-input has-success" id="chairman1_telephoneDiv">
+				                                             <label for="applicant_other_details">Telephone No.</label>
+				                                             <input value="{{chairman1_telephone}}" type="text" class="form-control" id="chairman1_telephone" name="chairman1_telephone" maxlength="12" placeholder="Enter Telephone (Upto 12 digit number)" onkeypress="return isNumberKey(event, this)" >
+				                                         </div>
+							                            </div>
+				    		                         </div>
+				    		                         <div class="row"> 											 
+					 											 	<div class="col-md-6">
+					 											 	   <div class="form-group form-md-line-input has-success" id="chairman1_addressDiv">
+								                                <label>Address </label>		
+					                                         <textarea placeholder="Enter Address (Max 250 char)" class="form-control validateRequired" rows="3" id="chairman1_address"
+					                                                   name="chairman1_address" maxlength="250">{{chairman1_address}}</textarea>
+					                                       </div>
+								                            </div>								                            
+					    		                     </div>
+					    		                     <div class="row"> 											 
+				 											 	<div class="col-md-4">
+				                                         <div class="form-group form-md-line-input has-success" id="chairman2_nameDiv">
+				                                             <label >Chairman 2</label>
+				                                             <input value="{{chairman2_name}}" placeholder="Enter Chairman Name (Max 100 char)" type="text" class="form-control" id="chairman2_name"  name="chairman2_name" maxlength="100">
+				                                         </div>
+							                            </div>
+							                            <div class="col-md-4">
+				                                         <div class="form-group form-md-line-input has-success" id="chairman2_companyDiv">
+				                                             <label >Company</label>
+				                                             <input value="{{chairman2_company}}" placeholder="Enter Company (Max 100 char)" type="text" class="form-control" id="chairman2_company"  name="chairman2_company" maxlength="100">
+				                                         </div>
+							                            </div>
+							                            <div class="col-md-4">
+				                                         <div class="form-group form-md-line-input has-success" id="chairman2_designationDiv">
+				                                             <label for="applicant_other_details">Designation</label>
+				                                             <input value="{{chairman2_designation}}" placeholder="Enter Designation (Max 100 char)"  type="text" class="form-control" id="chairman2_designation" name="chairman2_designation" maxlength="100">
+				                                         </div>
+							                            </div>
+							                            <div class="col-md-4">
+				                                         <div class="form-group form-md-line-input has-success" id="chairman2_emailDiv">
+				                                             <label for="applicant_other_details">Email Id</label>
+				                                             <input value="{{chairman2_email}}" type="text" class="form-control" id="chairman2_email" name="chairman2_email" maxlength="100" placeholder="Enter Email Id (Max 100 char)">
+				                                         </div>
+							                            </div>
+							                             <div class="col-md-4">
+				                                         <div class="form-group form-md-line-input has-success" id="chairman2_mobileDiv">
+				                                             <label for="applicant_other_details">Mobile No.</label>
+				                                             <input value="{{chairman2_mobile}}" placeholder="Enter Mobile (10 digit number)" type="text" class="form-control" id="chairman2_mobile" name="chairman2_mobile" maxlength="10" onkeypress="return isNumberKey(event, this)">
+				                                         </div>
+							                            </div>
+							                            <div class="col-md-4">
+				                                         <div class="form-group form-md-line-input has-success" id="chairman2_telephoneDiv">
+				                                             <label for="applicant_other_details">Telephone No.</label>
+				                                             <input value="{{chairman2_telephone}}" type="text" class="form-control" id="chairman2_telephone" name="chairman2_telephone" maxlength="12" placeholder="Enter Telephone (Upto 12 digit number)" onkeypress="return isNumberKey(event, this)" >
+				                                         </div>
+							                            </div>
+				    		                         </div>
+				    		                         <div class="row"> 											 
+					 											 	<div class="col-md-6">
+					 											 	   <div class="form-group form-md-line-input has-success" id="chairman2_addressDiv">
+								                                <label>Address </label>		
+					                                         <textarea placeholder="Enter Address (Max 250 char)" class="form-control validateRequired" rows="3" id="chairman2_address"
+					                                                   name="chairman2_address" maxlength="250">{{chairman2_address}}</textarea>
+					                                       </div>
+								                            </div>								                            
+					    		                     </div>
+					    		                     <div class="row"> 											 
+			 											 	<div class="col-md-6">
+						                              <div class="form-group form-md-line-input has-success" id="select_office_incharge1Div">
+						                                <label class="control-label"> Office Incharge 1 <span class="required">*</span></label>
+						                                <select id="select_office_incharge1" name="select_office_incharge1" class="form-control input-sm select2">
+							                                <option value="">Select Office Incharge</option>							                               
+							                                {% for obj in contact_person_list %}
+								                                   {% if contact_person1_id == obj.id %}
+								                               			<option selected="" value="{{obj.id}}"> {{obj.first_name}}  {{obj.last_name}}
+								                               	  {% else %}
+								                               			<option value="{{obj.id}}"> {{obj.first_name}}  {{obj.last_name}}
+								                               	  {% endif %}  
+								                               		</option>
+								                                {% endfor %}	
+							                            </select>
+							                           </div>
+						                            </div>	
+						                            <div class="col-md-6">
+						                              <div class="form-group form-md-line-input has-success" id="select_office_incharge2Div">
+						                                <label class="control-label"> Office Incharge 2 </label>
+						                                <select id="select_office_incharge2" name="select_office_incharge2" class="form-control input-sm select2">
+							                                <option value="">Select Office Incharge</option>
+							                                 {% for obj in contact_person_list %}
+								                                   {% if contact_person2_id == obj.id %}
+								                               			<option selected="" value="{{obj.id}}"> {{obj.first_name}}  {{obj.last_name}}
+								                               	  {% else %}
+								                               			<option value="{{obj.id}}"> {{obj.first_name}}  {{obj.last_name}}
+								                               	  {% endif %}  
+								                               		   </option>
+								                              {% endfor %}	
+							                            </select>
+							                           </div>
+						                            </div>					                            
+			    		                         </div>
+				    		                      </div>	
+			 											 <br> 					 											 							                       
+			 											 <div class="row" style="  margin-top: 30px;">
+			                                  	<div class="col-xs-12 text-right">  
+			                                  	   <input value="{{committee_id}}" id="hidden_committee_id" type="hidden">                                	   
+																<button   type="button" class="btn btn-outline grey_color " onclick="location.href = '/backofficeapp/add-committee/'" >Cancel</button>
+			                                   	   <button    type="button"  id="update-continue"  class="btn btn-outline done_btn" >Update </button>
+			                                  	</div>
+			                                  </div>                                               
+			                          		</form>
+												</div>
+					                  </div>
+			                   	</div>
+                            <!-- END PORTLET MAIN -->
+                        </div>
+                    </div>
+                </div>                
+            </div>
+            <!-- END PORTLET-->
+        </div>
+    </div>
+    <!-- END CONTENT BODY -->
+</div>
+<!-- END CONTENT -->
+</div>
+</div>
+<!-- END CONTAINER -->
+
+
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="page-footer-inner"> 2018 © Bynry Technologies
+
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+</div>
+<!-- END FOOTER -->
+
+{% include 'backoffice/base_js.html' %}
+<script src="{% static 'custom-js/backofficeapp/events/edit_committee.js' %}" type="text/javascript"></script>
+</body>
+</html>

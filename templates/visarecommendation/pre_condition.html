@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+</head>
+<body>
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<section class="InternalBannerSection" style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h2>Online Visa Recommendation</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <!--<li><a href="/services/">Services </a></li>-->
+                        <li class="active"><a href="#">Online Visa Recommendation</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="internalSection">
+    <div id="divPaid" runat="server" class="events">
+        <div class="container">
+            <div class="row">
+                {% if not request.user.is_anonymous %}
+                     {% if request.session.user_type == 'frontend' %}
+                     <input type="text" value="{{request.session.user_type}}" id="user_type" hidden>
+                     {% else %}
+                     <input type="text" value="" id="user_type" hidden>
+                     {% endif %}
+                {% endif %}
+                <input type="text" value="{{request.user.is_anonymous}}" id="check_user" hidden>
+                <input type="text" value="{{user_detail_id}}" id="user_detail_id" name="user_detail_id" hidden>
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <h2>Visa Recommendation Letter</h2>
+                    <p>Visa recommendation letter service is available for MCCIA Member Organizations.  These letters are addressed to the Embassy or High Commission in New Delhi or the Consulate/ Deputy High Commission in Mumbai.</p>
+                    
+                    <h4>Fees:</h4>
+						  <p><strong>Rs 150 per letter </strong></p>
+										 
+                    <h4>Time:</h4>
+						  <p><strong>10:00 a.m. to 5:00 p.m. all offices other than Tilak Road branch
+										 Tilak Road : 12:30 p.m. to 4:00 p.m. </strong></p>
+						  
+						  <br>
+						  <h4>Check list to avail Visa Letter Service:</h4>
+                    <div id="Show" runat="server">
+                        <ul>
+                            <li>Mandatory MCCIA Membership. Please ensure that the current year’s subscription fees has been paid before proceeding.</li>
+
+                            <li>Execution of  a onetime   <a href="{% static 'assets/IndemnityBond.doc' %}" >  Indemnity Bond  </a>  or other notified instrument of Rs 500 in the favour of MCCIA. This bond will be valid till the time it is rescinded by any law or change in the procedure adopted by the Chamber. </li>
+
+                            <li>If you have already shared the bond for Certificate of Origin and allied activities, then you need not execute a separate one for this facility.
+                            </li>
+
+                            <li>Send copy of the passport of the person/s travelling while collecting the Visa Recommendation Letter.</li>
+
+                            <li>If you wish to avail the service regularly, you can keep a deposit with MCCIA which will be debited every time MCCIA issues a Visa Recommendation Letter.
+                            </li>
+                        </ul>
+
+                        <div class="Formbuttons">
+                            <a type="submit" class="btn btn-default subbtn checkValidationBtn" onclick="check_member();">
+                                ACCEPT
+                            </a>
+
+                            <a type="submit" class="btn btn-default reset" value="Reset" href="/">Cancel</a>
+                        </div>
+                    </div>
+
+                    <!--<div id="Hide" runat="server">-->
+                        <!--<ul>-->
+                            <!--<li>Please ensure that you have renewed your membership for the current financial year.</li>-->
+                            <!--<li>For online membership renewal, please click on <b><a href="<%=RENEW %>">Renew</a></b>-->
+                            <!--</li>-->
+                            <!--<li>For assistance please contact Membership Department on 020-25709161/167/168.</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+
+                    <div class="branchOfficeAddress" style="margin-bottom: 15px;min-height: 0;">
+                        <h4>Tilak Road Office - Contact Person</h4>
+
+                        <p><i class="fa fa-user" aria-hidden="true"></i> Mr. Yashodhan Jatar / Mr Shrikant Kawashte</p>
+
+                        <p>
+                            <b><i class="fa fa-phone" aria-hidden="true"></i> Phone:</b> 91-20-24440371/ 91-20-24440472</p>
+
+                        <p>
+                            <b><i class="fa fa-envelope-o" aria-hidden="true"></i> Email:</b> <a
+                                href='mailto:yashodhanj@mcciapune.com'>yashodhanj@mcciapune.com</a> / <a
+                                href='mailto:shrikantk@mcciapune.com'>shrikantk@mcciapune.com </a></p>
+
+                    </div>
+
+
+                    <div class="branchOfficeAddress" style="margin-bottom: 15px;min-height: 0;">
+                        <h4>Senapati Bapat Road Office - Contact Person</h4>
+
+                        <p><i class="fa fa-user" aria-hidden="true"></i> Ms. Sonal Phadnis / Ms. Snigdha Goliwadekar
+                        </p>
+
+                        <p>
+                            <b><i class="fa fa-phone" aria-hidden="true"></i> Phone:</b> 91-20-25709213 /91-20-25709271
+                        </p>
+
+                        <p>
+                            <b><i class="fa fa-envelope-o" aria-hidden="true"></i> Email:</b> <a
+                                href='mailto:sonalp@mcciapune.com'>sonalp@mcciapune.com</a> / <a
+                                href='mailto:snigdhag@mccipaune.com'>snigdhag@mccipaune.com</a></p>
+                    </div>
+
+
+                    <div class="branchOfficeAddress" style="margin-bottom: 15px;min-height: 0;">
+                        <h4>Bhosari Office - Contact Person</h4>
+
+                        <p><i class="fa fa-user" aria-hidden="true"></i> Mr. P V Sasidharan</p>
+
+                        <p>
+                            <b><i class="fa fa-phone" aria-hidden="true"></i> Phone:</b> 91-20-27130700
+                        </p>
+
+                        <p>
+                            <b><i class="fa fa-envelope-o" aria-hidden="true"></i> Email:</b> <a
+                                href='mailto:sasidharan@mcciapune.com'>sasidharan@mcciapune.com</a>
+
+                    </div>
+
+
+                    <div class="branchOfficeAddress" style="margin-bottom: 15px;min-height: 0;">
+                        <h4>Hadapsar office - Contact Person</h4>
+
+                        <p><i class="fa fa-user" aria-hidden="true"></i> Ms. Roshni Meisnam / Mr. Mandar Marathe</p>
+
+                        <p>
+                            <b><i class="fa fa-phone" aria-hidden="true"></i> Phone:</b> 91-20-26877010 / 91-20-26877010</p>
+
+                        <p>
+                            <b><i class="fa fa-envelope-o" aria-hidden="true"></i> Email:</b> <a
+                                href='mailto:roshnim@mcciapune.com'>roshnim@mcciapune.com</a>/ <a
+                                href='mailto:mandarm@mcciapune.com '>mandarm@mcciapune.com </a></p>
+                    </div>
+                    <div class="branchOfficeAddress" style="margin-bottom: 15px;min-height: 0;">
+                        <h4>Ahmednagar office - Contact Person</h4>
+
+                        <p><i class="fa fa-user" aria-hidden="true"></i> Mr. Vilas Kulkarni</p>
+
+                        <p>
+                            <b><i class="fa fa-phone" aria-hidden="true"></i> Phone:</b> 0241-2777837</p>
+
+                        <p>
+                            <b><i class="fa fa-envelope-o" aria-hidden="true"></i> Email:</b> <a
+                                href='mailto:mccianagar@gmail.com'>mccianagar@gmail.com</a></p>
+                    </div>                         
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+{% block js_block %}
+
+<script type="text/javascript">
+function check_member() {
+	  if ($("#check_user").val() == "False"){
+				window.location = "/visarecommendationapp/visa-recommendations/"
+        }
+        else{
+            $("#memberLoginModal").modal('show');
+        }
+}
+</script>
+{% endblock %}
+</body>
+
+</html>

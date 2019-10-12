@@ -1,0 +1,326 @@
+<section class="FormArea internalSection" id="three_form_div">
+    <div class="container">
+        <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="">
+                        <form id="three_div_form" name="three_div_form" method="POST"
+                        onSubmit="save_three_award_form(); return false;">
+                            {% csrf_token %}
+                            <div class="validateContainer">
+                                <div class="FormInnerArea clearfix">
+                                    <div class="">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="company_name">Company Name (in capitals)</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateRequired" name="company_name"
+                                                               id="company_name" placeholder="Company Name"
+                                                               maxlength="200">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="concerned_person_name">Concerned
+                                                    Person Name (in capitals)</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control" placeholder="Person Name"
+                                                               name="concerned_person_name" id="concerned_person_name"
+                                                               maxlength="50">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Address</label>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <div class="validateField">
+                                                                <textarea class="form-control validateRequired"
+                                                                          name="address" placeholder="Address"
+                                                                          id="address"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="city">City</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <select id="city" name="city"
+                                                                class="form-control validateRequired">
+                                                            <option value="">Select City</option>
+                                                            {% for city_obj in city_list %}
+                                                            <option value="{{city_obj.id}}">{{city_obj.city_name}}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <label class="col-md-1 control-label" for="pin">Pin</label>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateRequired validateNumber validatePincodeLimit"
+                                                               name="pin" id="pin" maxlength="6" placeholder="Pin-Code">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="telephone_no">Telephone
+                                                    No.</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control" placeholder="Telephone No"
+                                                               name="telephone_no" id="telephone_no" maxlength="50">
+                                                    </div>
+                                                </div>
+                                                <label class="col-md-1 control-label" for="fax_no">Fax No.</label>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control" placeholder="Fax No"
+                                                               name="fax_no" id="fax_no" maxlength="50">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="establish_year">Year of
+                                                    Establishment</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateRequired validateNumber"
+                                                               name="establish_year" id="establish_year"
+                                                               maxlength="4" placeholder="Establish Year">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="chief_org_name">Name of Chief
+                                                    of
+                                                    the Organization</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control"
+                                                               name="chief_org_name" id="chief_org_name"
+                                                               maxlength="50" placeholder="Person Name">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="chief_org_designation">Designation
+                                                    of Chief of the Organization</label>
+                                                <div class="col-md-4">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control"
+                                                               name="chief_org_designation" id="chief_org_designation"
+                                                               maxlength="50" placeholder="Designation">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="product_tendered_for_award">Name
+                                                    of
+                                                    the PRODUCT / PROCESS / SERVICES tendered for Award</label>
+                                                <div class="col-md-7">
+                                                    <div class="validateField">
+                                                    <textarea class="form-control"
+                                                              name="product_tendered_for_award" placeholder="Product"
+                                                              id="product_tendered_for_award"></textarea>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="brief_description_award">Brief
+                                                    Description of product / process which is to be considered for the
+                                                    Award</label>
+                                                <div class="col-md-7">
+                                                    <div class="validateField">
+                                                    <textarea class="form-control"
+                                                              name="brief_description_award" placeholder="Product Description"
+                                                              id="brief_description_award"></textarea>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="product_feature">Special
+                                                    Features/ Advantages of the product services</label>
+                                                <div class="col-md-7">
+                                                    <div class="validateField">
+                                                    <textarea class="form-control" placeholder="Advantages of Product"
+                                                              name="product_feature" id="product_feature"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="manufacture_date">The first
+                                                    date
+                                                    of product manufactured / rendering of the services</label>
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <div class="validateField">
+                                                            <input class="form-control dateField" id="manufacture_date"
+                                                                   name="manufacture_date" type="text"
+                                                                   data-date-format="dd/mm/yyyy" readonly="" placeholder="Manufactured Date">
+                                                        </div>
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar">
+                                                            </i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label" for="launch_date">Is the product
+                                                    commercially launched and marketed ? If Yes, since when</label>
+                                                <div class="col-md-4">
+                                                    <div class="input-group">
+                                                        <div class="validateField">
+                                                            <input class="form-control dateField" id="launch_date"
+                                                                   name="launch_date" type="text" placeholder="Launch Date"
+                                                                   data-date-format="dd/mm/yyyy" readonly="">
+                                                        </div>
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar">
+                                                            </i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-12 control-label">Turnover (Sales) for
+                                                    the last three years (Please mention Year)</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label">1. </label>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateNumber"
+                                                           name="to_year_one" id="to_year_one"
+                                                           maxlength="4" placeholder="Year">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateDecimalNumber"
+                                                           name="to_one" id="to_one"
+                                                           maxlength="10" placeholder="Turnover">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label">2. </label>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateNumber"
+                                                           name="to_year_two" id="to_year_two"
+                                                           maxlength="4" placeholder="Year">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateDecimalNumber"
+                                                           name="to_two" id="to_two"
+                                                           maxlength="10" placeholder="Turnover">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label">3. </label>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateNumber"
+                                                               name="to_year_three" id="to_year_three"
+                                                               maxlength="4" placeholder="Year">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateDecimalNumber"
+                                                               name="to_three" id="to_three"
+                                                               maxlength="10" placeholder="Turnover">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-md-12 control-label">Profit for the last three years
+                                                    (Please mention Year)</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label">1. </label>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateNumber"
+                                                               name="profit_year_one" id="profit_year_one"
+                                                               maxlength="4" placeholder="Year">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateDecimalNumber"
+                                                               name="profit_one" id="profit_one"
+                                                               maxlength="10" placeholder="Profit">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label">2. </label>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateNumber"
+                                                               name="profit_year_two" id="profit_year_two"
+                                                               maxlength="4" placeholder="Year">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateDecimalNumber"
+                                                               name="profit_two" id="profit_two"
+                                                               maxlength="10" placeholder="Profit">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-1 control-label">3. </label>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateNumber"
+                                                               name="profit_year_three" id="profit_year_three"
+                                                               maxlength="4" placeholder="Year">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="validateField">
+                                                        <input type="text" class="form-control validateDecimalNumber"
+                                                               name="profit_three" id="profit_three"
+                                                               maxlength="10" placeholder="Profit">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <div class="Formbuttons pull-right">
+                                                        <button type="submit" class="btn btn-default subbtn checkValidationBtn"
+                                                                id="submit_three_div_btn" value="Submit">Submit
+                                                        </button>
+                                                        <input type="button" class="btn btn-default reset"
+                                                               onclick="location.href='/awardsapp/awards-home/';"
+                                                               value="Cancel"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+</section>
+

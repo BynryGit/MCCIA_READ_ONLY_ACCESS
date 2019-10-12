@@ -1,0 +1,158 @@
+.equinox {
+    font-family: 'Lato', sans-serif;
+	font-size: 12px;
+	font-weight: 400;
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+.equinox .calendar-header{color:#161d28;padding:8px 3px;border-top-left-radius:4px;border-top-right-radius:4px;    position: relative;}.equinox .calendar-header:after,.equinox .calendar-header:before{content:" ";display:table}.equinox .calendar-header:after{clear:both}.equinox .calendar-actions{/*float:left*/}.equinox .month-label{    font-family: 'Merriweather', serif;
+    color: #161d28;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 800;
+    /*border-bottom: 1px solid #e7ecee;*/
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+	position: relative;
+	}.equinox .month-weeks{border:1px solid #d8d8d8;border-top:none;background-color:#fafafa;border-bottom-left-radius:4px;border-bottom-right-radius:4px}.equinox .week{margin-left:-1px;position:relative}.equinox .week:first-child .day{background: #184055;color: #fff;}.equinox .week-events{position:absolute;left:0;top:0;width:100%;list-style:none;padding:0;margin:0;padding-top:26px}.equinox .week-events .slot{margin:0}.equinox .week-events .slot>ul{list-style:none;margin:0;padding:0;display:table;table-layout:fixed;width:100%}.equinox .week-events .slot>ul>li{box-sizing:border-box;display:table-cell;margin:0;padding-left:9px;padding-right:8px;width:14.28571%}.equinox .week-events .slot>ul>li.span-1{width:14.28571%}.equinox .week-events .slot>ul>li.span-2{width:28.57143%}.equinox .week-events .slot>ul>li.span-3{width:42.85714%}.equinox .week-events .slot>ul>li.span-4{width:57.14286%}.equinox .week-events .slot>ul>li.span-5{width:71.42857%}.equinox .week-events .slot>ul>li.span-6{width:85.71429%}.equinox .week-events .slot>ul>li.span-7{width:100%}.equinox .week-events .event .start-time{display:none}.equinox .week-events .event .title{white-space:nowrap}.equinox .days-container{display:table;table-layout:fixed;width:100%}.equinox .days-container .day{box-sizing:border-box;display:table-cell;width:14.28571%;padding:8px;border-left:1px solid #d8d8d8;border-top:1px solid #d8d8d8}.equinox .week-header{font-size:10px;text-transform:uppercase;color:#aaa}.equinox .week-header .day{text-align:center;background-color:#fff;text-overflow:ellipsis;overflow:hidden}.equinox .date.outside-month .date-label{color:#d7d7d7}.equinox .date.current-date{background-color:#e7f6fc;position:relative}.equinox .date.current-date:before{content:"";position:absolute;display:block;left:-1px;top:-1px;right:-1px;bottom:-1px;border:1px solid #ceeef9;z-index:1}.equinox .date.current-date .date-label{color:#999999}.equinox .date-label{    text-align: right;
+    font-size: 10px;
+    color: #999999;
+    font-weight: 600;}.equinox .date-events{list-style:none;padding:0;margin:0;min-height:68px}.equinox .event-container{box-sizing:border-box;min-height:34px;padding-top:6px;margin:0}.equinox .event-container.continuation .event{margin-left:-8px;border-top-left-radius:0;border-bottom-left-radius:0;border-left:none;padding-left:17px}.equinox .event-container.continued .event{margin-right:-8px;border-top-right-radius:0;border-bottom-right-radius:0;padding-right:14px}.equinox .event{display:block;box-sizing:border-box;min-height:28px;padding:2px 7px 5px 7px;font-size:12px;line-height:14px;border-left:2px solid #ffaa3c;color:#161d28;position:relative;z-index:2}.equinox .event .start-time{/*display:none;float:right;*/color:#bbb;    text-transform: uppercase;
+    font-size: 10px;    font-weight: 700;}.equinox .event .title{display:block;overflow-x:hidden;text-overflow:ellipsis;font-weight: 700;}
+
+.calendar-actions .today {
+	display: none;
+}
+
+
+
+
+
+.equinox .week .days-container .day {
+	background-color: #fff;
+	background-image: -webkit-linear-gradient(bottom, #f9f9f9, #fff);
+	background-image: -moz-linear-gradient(bottom, #f9f9f9, #fff);
+	background-image: -o-linear-gradient(bottom, #f9f9f9, #fff);
+	background-image: -ms-linear-gradient(bottom, #f9f9f9, #fff);
+	background-image: linear-gradient(to top, #f9f9f9, #fff);
+}
+
+.equinox .week.week-header .day {
+    background: #184055;
+    color: #fff;
+	font-size: 12px;
+}
+
+.equinox .week .days-container .date.current-date {
+    background-color: #fbf5e1 !important;
+    background-image: none;
+}
+
+.equinox .days-container .day.outside-month {
+    background: #eaeaea;
+}
+
+.equinox .date.outside-month .date-label {
+    color: #eaeaea;
+}
+
+.equinox .event.OpenToAll {
+    border-left: 2px solid #3cccac;
+}
+
+.equinox .event.OnPayment {
+    border-left: 2px solid #ff6679;
+}
+
+.equinox .event.ByInvitation {
+    border-left: 2px solid #4a90e2;
+}
+
+.equinox .event.OpenToAll .start-time {
+    color: #3cccac;
+}
+
+.equinox .event.OnPayment .start-time {
+    color: #ff6679;
+}
+
+.equinox .event.ByInvitation .start-time {
+    color: #4a90e2;
+}
+
+.equinox .calendar-actions {
+    font-family: 'Merriweather', serif;
+	margin-bottom: 15px;
+}
+
+.equinox .calendar-actions button {
+    border: 0;
+    background: transparent;
+    font-size: 14px;
+    color: #0167b2;
+    font-weight: 600;
+	position: absolute;
+}
+
+.calendar-actions .prev {
+    left: 3px;
+	top: 7px;
+}
+
+.calendar-actions .next {
+    float: right;
+	right: 3px;
+	top: 7px;
+}
+
+.equinox .calendar-actions button.prev .fa {
+	font-size: 12px;
+    margin-right: 8px;
+}
+
+.equinox .calendar-actions button.next .fa {
+	font-size: 12px;
+    margin-left: 8px;
+}
+
+.equinox .month-label:after {
+    content: "";
+    width: 500px;
+    height: 1px;
+    background: #e7ecee;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+@media (max-width: 580px){
+
+.equinox .calendar-actions button {
+    position: relative;
+}
+
+.equinox .month-label:after {
+	display: none;
+}
+
+.equinox .month-label {
+    border-bottom: 1px solid #e7ecee;
+}
+
+
+.equinox .event {
+    padding: 2px 3px 5px 3px;
+    font-size: 10px;
+    line-height: 13px;
+    overflow: hidden;
+}
+
+.equinox .event .start-time {
+    font-size: 7px;
+}
+
+
+
+}

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+</head>
+<body>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<section class="InternalBannerSection" style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h2>Online Visa Recommendation</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">Services </a></li>
+                        <li class="active"><a href="#">Online Visa Recommendation</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="internalSection">
+    <div id="divPaid" runat="server" class="events">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                    <h2>Feel Free to Use Online Visa Recommendation form below to reach Us</h2>
+
+                    <p>Mahratta Chamber of Commerce,Industries and Agriculture has been issuing Visa Recommendation
+                        Letters for the people working for companies based in Pune region.<br/>
+                        These letters facilitate overseas business travel to many countries. This Service is available
+                        only to our Members. Based on an Indemnity Bond (one time) executed by the Company, we can issue
+                        the Visa Recommendation Letters from our offices on Tilak Road / Senapati Bapat
+                        Road/Bhosari.<br/>
+                        These letters are normally addressed to the Embassy or High Commission in New Delhi or Consulate
+                        /Deputy High Commission in Mumbai.<br/><br/>
+                        Charges for issue of Visa Recommendation Letters are Rs. 150 per letter.<br/><br/>
+                        Please add below details</p>
+
+                        <form id="visa_recommendations_form" name="visa_recommendations_form" method="POST">
+                            {% csrf_token %}
+                            <div class="validateContainer">
+                                 <div class="FormInnerArea clearfix">
+
+                                <div class="form-group" style="display: none;">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <label for="Individual" ID="Msg">Individual</label>
+                                    </div>
+                                </div>
+                              <div class="row" style="padding-top: 8px;">
+                                    <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">Membership Id</label>
+
+                                    <div class="col-md-8 col-sm-12 col-xs-12">
+                                        <div class="validateField">
+
+                                            <input readonly="" type="text" class="form-control validateRequired"
+                                                   name="membershipId" id="membershipId" maxlength="50" value="{{member_associate_no}}">
+
+                                        </div>
+                                    </div>
+                              </div>
+                              <div class="row" style="padding-top: 12px;">
+	                              <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">To which Country</label>
+	
+	                              <div class="col-md-8 col-sm-12 col-xs-12">                                      
+	                                  <div class="validateField">
+	                                      <select class="form-control validateRequired" name="drpCountry"
+	                                              id="drpCountry">
+	                                          <option value="">Select Country</option>
+	                                          {% for i in countryObj %}
+	                                         		 <option value="{{i.id}}">{{i.country_name}}</option>
+	                                          {% endfor%}
+	                                      </select>
+	                                  </div>
+	                              </div>
+                              </div>
+                              <div  class="row" style="padding-top: 12px;">
+	                              <label class="col-md-4 control-label" for="">Place of Application for Visa</label>
+	                              <div class="col-md-8">
+	                                    <div class="validateField">
+	                                        <select  class="form-control validateRequired" name="drpEmbasy" id="drpEmbasy">
+	                                            <option value="">Select Embassy</option>
+								                        {% for i in place_embassy_objs_list %}
+	                                                <option value="{{i.id}}">{{i.embassy_name}}</option>
+	                                             {% endfor%}                                           
+	                                        </select>
+	                                    </div>
+	                               </div>    
+                               </div>                    
+                               <div class="row" style="padding-top: 12px;">
+                                    <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">Name as on Passport</label>
+
+                                    <div class="col-md-2 col-sm-4 col-xs-4">
+                                        <div class="validateField">
+                                            <select class="form-control" name="PersonTitle"
+                                                    id="PersonTitle">
+                                                <option selected="" value="Mr.">Mr.</option>
+                                                <option value="Mrs">Mrs.</option>
+                                                <option value="Ms.">Ms.</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-8 col-xs-8">
+                                        <div class="validateField">
+                                            <input type="text" class="form-control validateRequired validateAlphaonly"
+                                                   name="txtName" id="txtName" maxlength="100">
+                                        </div>
+                                    </div>
+                               </div>
+                               <div class="row" style="padding-top: 12px;">
+                                        <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">Designation</label>
+
+                                        <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <div class="validateField">
+                                                <input type="text" class="form-control validateRequired validateAlphaonly" placeholder="Please Enter designation in full form" 
+                                                       name="txtDesg" id="txtDesg">
+                                            </div>
+                                        </div>
+                              </div>
+                              {% if enroll_type == 'CO' %}
+                              	<div class="row" style="padding-top: 12px;">
+                              {% else %}
+                                 <div class="row" style="padding-top: 12px;display: none;">
+                              {% endif %}
+                                        <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">Name of Company</label>
+
+                                        <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <div class="validateField">
+                                                <input type="text"
+                                                       class="form-control validateRequired validateRequired validateAlphaonly"
+                                                       name="txtCompany" id="txtCompany" maxlength="100" value="{{company_name}}">
+
+                                            </div>
+                                        </div>
+                               </div>
+                               <div class="row" style="padding-top: 12px;">
+                                        <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">Address</label>
+                                        <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <div class="validateField">
+                                                <input type="text"
+                                                       class="form-control validateRequired validateRequired"
+                                                       name="txtAdd" id="txtAdd" value="{{correspond_address}}">
+                                            </div>
+                                        </div>
+                               </div>
+										 <div class="row" style="padding-top: 12px;">
+                                        <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">Contact No.</label>
+
+                                        <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <div class="validateField">
+                                                <input type="text" class="form-control validateRequired validateMobileNoLimit"
+                                                       name="txtContact" id="txtContact" maxlength="10">
+                                            </div>
+                                        </div>
+                                    </div>
+									   <div class="row" style="padding-top: 12px;">
+                                        <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">Email to send Acknowledge</label>
+
+                                        <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <div class="validateField">
+                                                <input type="text" class="form-control validateRequired validateEmail"
+                                                       name="txtEmail" id="txtEmail" maxlength="50">
+                                            </div>
+                                        </div>
+                                    </div>
+									  <div class="row" style="padding-top: 12px;">
+                                        <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">Purpose to Visit</label>
+
+                                        <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <div class="validateField">
+                                                <select class="form-control validateRequired" name="PurposeToVisit"
+                                                        id="PurposeToVisit">
+                                                    <option value="">Select Purpose</option>
+                                                    <option value="BU">Business</option>
+                                                    <option value="WV">Work Visit</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <div class="row" style="padding-top: 12px;">
+                                        <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="txtFDate">From Date</label>
+
+                                        <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <div class="input-group">
+                                                <div class="validateField">
+
+                                                    <input type="text" class="form-control validateRequired dateField" readonly="" 
+                                                           name="txtFDate" id="txtFDate" maxlength="10" placeholder="MM/DD/YYYY">
+                                                </div>
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar">
+                                                    </i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                             <div class="row" style="padding-top: 12px;">
+                                        <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">Type</label>
+
+                                        <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <div class="validateField">
+                                                <select class="form-control validateRequired" name="VisaType"
+                                                        id="VisaType">
+                                                    <option value=""> Select Type</option>
+                                                    <option value="Single">Single Entry</option>
+                                                    <option value="Multiple">Multiple Entry</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <div id="singleEntry" class="row" style="padding-top: 12px;display: none">
+                                        <label class="col-md-3 col-sm-12 col-xs-12 control-label" for="">Visit duration:</label>
+
+                                        <div class="col-md-9 col-sm-12 col-xs-12">
+                                            <div class="validateField">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="col-md-4 col-sm-12 col-xs-12">
+                                                        <div class="radio">
+                                                            <div class="radiobox">
+                                                                <input type="radio" style="width: 20px" id="ctl00_user_rdoDay" value="ctl00_user_rdoDay" name="ctl00_user_visit_duration" />
+                                                                <label for="ctl00_user_rdoDay">Day</label>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-4 col-sm-12 col-xs-12">
+                                                        <div class="radio">
+                                                            <div class="radiobox">
+                                                                <input type="radio" style="width: 20px" id="ctl00_user_rdoWeek" value="ctl00_user_rdoWeek"  name="ctl00_user_visit_duration" />
+                                                                <label for="ctl00_user_rdoWeek">Week</label>
+
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="col-md-4 col-sm-12 col-xs-12">
+                                                        <div class="radio">
+                                                            <div class="radiobox">
+                                                                <input type="radio" style="width: 20px" id="ctl00_user_rdoMonth" value="ctl00_user_rdoMonth" name="ctl00_user_visit_duration" />
+                                                                <label for="ctl00_user_rdoMonth">Month</label>
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                                      <select style="display: none" class="form-control validateRequired" name="txtdays"
+                                                        id="txtdays">
+                                                          <option Value="">--- Select ---</option>
+                                                          <option Value="One Day">One</option>
+                                                          <option Value="Two Days">Two </option>
+                                                          <option Value="Three Days">Three</option>
+                                                          <option Value="Four Days">Four</option>
+                                                          <option Value="Five Days">Five</option>
+                                                          <option Value="Six Days">Six</option>
+                                                          <option Value="Seven Days">Seven</option>
+                                                          <option Value="Eight Days">Eight</option>
+                                                          <option Value="Nine Days">Nine</option>
+                                                          <option Value="Ten Days">Ten</option>
+                                                          <option Value="Eleven Days">Eleven</option>
+                                                          <option Value="Twelve Days">Twelve</option>
+                                                          <option Value="Thirteen Days">Thirteen</option>
+                                                          <option Value="Fourteen Days">Fourteen</option>
+                                                          <option Value="Fifteen Days">Fifteen</option>
+                                                          <option Value="Sixteen Days">Sixteen</option>
+                                                          <option Value="Seventeen Days">Seventeen</option>
+                                                          <option Value="Eighteen Days">Eighteen</option>
+                                                          <option Value="Nineteen Days">Nineteen</option>
+                                                          <option Value="Twenty Days">Twenty</option>
+                                                          <option Value="Twenty One Days">Twenty One</option>
+                                                          <option Value="Twenty Two Days">Twenty Two</option>
+                                                          <option Value="Twenty Three Days">Twenty Three</option>
+                                                          <option Value="Twenty Four Days">Twenty Four</option>
+                                                          <option Value="Twenty Five Days">Twenty Five</option>
+                                                          <option Value="Twenty Six Days">Twenty Six</option>
+                                                          <option Value="Twenty Seven Days">Twenty Seven</option>
+                                                          <option Value="Twenty Eight Days">Twenty Eight</option>
+                                                          <option Value="Twenty Nine Days">Twenty Nine</option>
+                                                          <option Value="Thirty Days">Thirty</option>
+                                                          <option Value="Thirty One Days">Thirty One</option>
+                                                          <option Value="Thirty Two Days">Thirty Two</option>
+                                                          <option Value="Thirty Three Days">Thirty Three</option>
+                                                          <option Value="Thirty Four Days">Thirty Four</option>
+                                                          <option Value="Thirty Five Days">Thirty Five</option>
+                                                          <option Value="Thirty Six Days">Thirty Six</option>
+                                                          <option Value="Thirty Seven Days">Thirty Seven</option>
+                                                          <option Value="Thirty Eight Days">Thirty Eight</option>
+                                                          <option Value="Thirty Nine Days">Thirty Nine</option>
+                                                          <option Value="Forty Days">Forty</option>
+                                                          <option Value="Forty One">Forty One</asp:ListItem>
+                                                          <option Value="Forty Two Days">Forty Two</option>
+                                                          <option Value="Forty Three Days">Forty Three</option>
+                                                          <option Value="Forty Four Days">Forty Four</option>
+                                                          <option Value="Forty Five Days">Forty Five</option>
+                                                          <option Value="Forty Six Days">Forty Six</option>
+                                                          <option Value="Forty Seven Days">Forty Seven</option>
+                                                          <option Value="Forty Eight Days">Forty Eight</option>
+                                                          <option Value="Forty Nine Days">Forty Nine</option>
+                                                          <option Value="Fifty Days">Fifty</option>
+                                                          <option Value="Fifty One Days">Fifty One</option>
+                                                          <option Value="Fifty Two Days">Fifty Two</option>
+                                                          <option Value="Fifty Three Days">Fifty Three</option>
+                                                          <option Value="Fifty Four Days">Fifty Four</option>
+                                                          <option Value="Fifty Five Days">Fifty Five</option>
+                                                          <option Value="Fifty Six Days">Fifty Six</option>
+                                                          <option Value="Fifty Seven Days">Fifty Seven</option>
+                                                          <option Value="Fifty Eight Days">Fifty Eight</option>
+                                                          <option Value="Fifty Nine Days">Fifty Nine</option>
+                                                          <option Value="Sixty Days">Sixty</option>
+
+                                                    </select>
+                                                 </div>
+                                                 <div class="col-md-8 col-sm-12 col-xs-12">
+                                                        <select style="display: none" class="form-control validateRequired" name="txtWeek"
+                                                        id="txtWeek">
+                                                    <option value="">--- Select ---</option>
+                                                    <option value="One Week">One</option>
+                                                    <option value="Two Weeks">Two</option>
+                                                    <option value="Three Weeks">Three</option>
+                                                    <option value="Four Weeks">Four</option>
+                                                    <option value="Five Weeks">Five</option>
+                                                    <option value="Six Weeks">Six</option>
+                                                    <option value="Seven Weeks">Seven</option>
+                                                    <option value="Eight Weeks">Eight</option>
+                                                    <option value="Nine Weeks">Nine</option>
+                                                    <option value="Ten Weeks">Ten</option>
+                                                    <option value="Eleven Weeks">Eleven</option>
+                                                    <option value="Twelve Weeks">Twelve</option>
+                                                </select>
+                                                     </div>
+                                                <div class="col-md-8 col-sm-12 col-xs-12">
+                                                           <select style="display: none" class="form-control validateRequired" name="txtMonth"
+                                                                id="txtMonth" >
+                                                                    <option value="">--- Select ---</option>
+                                                                    <option value="One Month">One</option>
+                                                                    <option value="Two Months">Two</option>
+                                                                    <option value="Three Months">Three</option>
+                                                                    <option value="Four Months">Four</option>
+                                                                    <option value="Five Months">Five</option>
+                                                                    <option value="Six Months">Six</option>
+                                                                    <option value="Seven Months">Seven</option>
+                                                                    <option value="Eight Months">Eight</option>
+                                                                    <option value="Nine Months">Nine</option>
+                                                                    <option value="Ten Months">Ten</option>
+
+                                                                    <option Value="Eleven Months">Eleven</option>
+                                                                    <option Value="Twelve Months">Twelve</option>
+                                                                    <option Value="Thirteen Months">Thirteen</option>
+                                                                    <option Value="Fourteen Months">Fourteen</option>
+                                                                    <option Value="Fifteen Months">Fifteen</option>
+                                                                    <option Value="Sixteen Months">Sixteen</option>
+                                                                    <option Value="Seventeen Months">Seventeen</option>
+                                                                    <option Value="Eighteen Months">Eighteen</option>
+                                                                    <option Value="Nineteen Months">Nineteen</option>
+                                                                    <option Value="Twenty Months">Twenty</option>
+                                                                    <option Value="Twenty One Months">Twenty One</option>
+                                                                    <option Value="Twenty Two Months">Twenty Two</option>
+                                                                    <option Value="Twenty Three Months">Twenty Three</option>
+                                                                    <option Value="Twenty Four Months">Twenty Four</option>
+
+                                                            </select>
+                                                     </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top: 12px;display: none;" id="multiEntry">
+                                        <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">Total Duration of Visa Recommendation
+                                            Requested :</label>
+
+                                        <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <div class="validateField">
+                                                <select class="form-control validateRequired" name="drpMonth"
+                                                        id="drpMonth">
+                                                    <option value="">--- Select ---</option>
+                                                          <option Value="One Month">One Month</option>
+                                                          <option Value="Two Months">Two Months</option>
+                                                          <option Value="Three Months">Three Months</option>
+                                                          <option Value="Four Months">Four Months</option>
+                                                          <option Value="Five Months">Five Months</option>
+                                                          <option Value="Six Months">Six Months</option>
+                                                          <option Value="Seven Months">Seven Months</option>
+                                                          <option Value="Eight Months">Eight Months</option>
+                                                          <option Value="Nine Months">Nine Months</option>
+                                                          <option Value="Ten Months">Ten Months</option>
+                                                          <option Value="Eleven Months">Eleven Months</option>
+                                                          <option Value="One Year">One Year</option>
+                                                          <option Value="Two Years">Two Years</option>
+                                                          <option Value="Three Years">Three Years</option>
+                                                          <option Value="Four Years">Four Years</option>
+                                                          <option Value="Five Years">Five Years</option>
+                                                          <option Value="Six Years">Six Years</option>
+                                                          <option Value="Seven Years">Seven Years</option>
+                                                          <option Value="Eight Years">Eight Years</option>
+                                                          <option Value="Nine Years">Nine Years</option>
+                                                          <option Value="Ten Years">Ten Years</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+
+                                    <div  class="row" style="padding-top: 12px;"> 
+                                        <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">Passport No.</label>
+
+                                        <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <div class="validateField">
+                                                <input type="text"
+                                                       class="form-control validateRequired validateRequired"
+                                                       name="txtPassportNo" id="txtPassportNo" maxlength="100">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div  class="row" style="padding-top: 12px;">
+                                        <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="txtVFDate">Passport Valid From</label>
+
+                                        <div class="col-md-3 col-sm-12 col-xs-12">
+                                            <div class="input-group">
+                                                <div class="validateField">
+                                                <input type="text" readonly="" 
+                                                       class="form-control validateRequired validateRequired dateField"  placeholder="MM/DD/YYYY"
+                                                       name="txtVFDate" id="txtVFDate" maxlength="100">
+                                                </div>
+                                                <div class="input-group-addon">
+                                                <i class="fa fa-calendar">
+                                                </i>
+                                            </div>
+                                            </div>
+                                        </div>
+
+
+                                        <label class="col-md-2 col-sm-12 col-xs-12 control-label" for="txtVTDate">To Date</label>
+
+                                        <div class="col-md-3 col-sm-12 col-xs-12">
+                                            <div class="input-group">
+                                                <div class="validateField">
+                                                    <input type="text"  placeholder="MM/DD/YYYY" readonly="" 
+                                                           class="form-control validateRequired validateRequired dateField"
+                                                           name="txtVTDate" id="txtVTDate" maxlength="100">
+                                                </div>
+                                                <div class="input-group-addon">
+                                                <i class="fa fa-calendar">
+                                                </i>
+                                            </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row" style="padding-top: 12px;">
+                                        <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">From where would like to collect Visa Recommendation letter</label>
+
+                                        <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <div class="validateField">
+                                                <select class="form-control validateRequired" name="McciaLocation"
+                                                        id="McciaLocation">
+                                                    <option value=""> Select Location</option>
+                                                    {% for i in locationObj %}
+                                                    <option value="{{i.id}}">{{i.location}}</option>
+                                                    {% endfor%}
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div  class="row" style="padding-top: 12px;">
+                                        <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">Passport Copy</label>
+
+                                        <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <div class="validateField radio">
+                                                <div class="radiobox">
+                                                    <input type="radio" name="PassportCopy" id="yesRdo" value="YES" checked="" onclick="show_passport_copy();">
+                                                    <label for="yesRdo">YES </label>
+                                                </div>
+                                                <div class="radiobox">
+                                                    <input type="radio" name="PassportCopy" id="noRdo" value="NO" onclick="show_passport_copy();">
+                                                    <label for="noRdo">NO</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 12px;" id="passportDiv">
+	                                    <label class="col-md-4 col-sm-12 col-xs-12 control-label" for="">Browse Passport Copy (500 KB only)</label>
+	
+	                                    <div class="col-md-8 col-sm-12 col-xs-12">
+	                                        <div class="validateField">
+	                                            <input type="file" name="txtPassportCopy" id="txtPassportCopy">
+	                                        </div>
+	                                    </div>
+	                                 </div>
+	                                 <div class="row">
+	                                    <div class="col-md-8 col-sm-12 col-xs-12">Alternatively you can submit photocopy of your Passport while
+	                                        collecting Visa Recommendation letter from MCCIA Office.
+	                                    </div>
+	                                </div>
+	                                 <div class="Formbuttons" style="padding-top: 12px;">
+	                                    <div class="col-md-12">
+	                                        <button type="button" class="btn btn-default subbtn checkValidationBtn" onclick="save_member_visa()"
+	                                                value="Submit">Submit
+	                                        </button>
+	                                        <button type="submit" class="btn btn-reset subbtn" onclick="reset_form();"
+	                                                value="reset">Reset
+	                                        </button>
+	                                    </div>
+	                                </div>
+                                </div>
+                            </div>
+                        </form>
+                </div>
+
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="branchOfficeAddress" style="margin-bottom: 15px;min-height: 0;">
+                        <h4>Tilak Road Office - Contact Person</h4>
+
+                        <p><i class="fa fa-user" aria-hidden="true"></i> Mr. Satish Joshi / Mr. Mandar Marathe</p>
+
+                        <p>
+                            <b><i class="fa fa-phone" aria-hidden="true"></i> Phone:</b> 91-20-24440371/ 24440472</p>
+
+                        <p>
+                            <b><i class="fa fa-envelope-o" aria-hidden="true"></i> Email:</b> <a
+                                href='mailto:satishj@mcciapune.com'>satishj@mcciapune.com</a> / <a
+                                href='mailto:mandarm@mcciapune.com'>mandarm@mcciapune.com</a></p>
+                    </div>
+
+                    <div class="branchOfficeAddress" style="margin-bottom: 15px;min-height: 0;">
+                        <h4>Senapati Bapat Road Office - Contact Person</h4>
+
+                        <p><i class="fa fa-user" aria-hidden="true"></i> Ms. Sonal Phadnis / Mrs. Gauri Kale</p>
+
+                        <p>
+                            <b><i class="fa fa-phone" aria-hidden="true"></i> Phone:</b> 91-20-25709213 /91-20-25709271
+                        </p>
+
+                        <p>
+                            <b><i class="fa fa-envelope-o" aria-hidden="true"></i> Email:</b> <a
+                                href='mailto:sonalp@mcciapune.com'>sonalp@mcciapune.com </a> / <a
+                                href='mailto:gauri@mcciapune.com'>gauri@mcciapune.com</a></p>
+                    </div>
+
+                    <div class="branchOfficeAddress" style="margin-bottom: 15px;min-height: 0;">
+                        <h4>Bhosari Office - Contact Person</h4>
+
+                        <p><i class="fa fa-user" aria-hidden="true"></i> Mr. Lalit Waykole/ Ms. Snigdha Goliwadekar</p>
+
+                        <p>
+                            <b><i class="fa fa-phone" aria-hidden="true"></i> Phone:</b> 91-20-27130700 / 91-20-27130800
+                        </p>
+
+                        <p>
+                            <b><i class="fa fa-envelope-o" aria-hidden="true"></i> Email:</b> <a
+                                href='mailto:lalitw@mcciapune.com'>lalitw@mcciapune.com</a> or <a
+                                href='mailto:snigdhag@mcciapune.com'>snigdhag@mcciapune.com</a></p>
+                    </div>
+
+                    <div class="branchOfficeAddress" style="margin-bottom: 15px;min-height: 0;">
+                        <h4>Hadapsar office - Contact Person</h4>
+
+                        <p><i class="fa fa-user" aria-hidden="true"></i> Ms. Roshni Meisnam</p>
+
+                        <p>
+                            <b><i class="fa fa-phone" aria-hidden="true"></i> Phone:</b> 91-20-26877010</p>
+
+                        <p>
+                            <b><i class="fa fa-envelope-o" aria-hidden="true"></i> Email:</b> <a
+                                href='mailto:roshnim@mcciapune.com'>roshnim@mcciapune.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock%}
+
+
+{% block js_block %}
+<script src="{%static 'custom-js/visarecommendationapp/visa_recommendations.js' %}" type="text/javascript"></script>
+{% endblock %}
+
+</body>
+</html>

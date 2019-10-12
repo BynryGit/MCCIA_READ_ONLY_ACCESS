@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+</head>
+<body>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<!-- internal banner section starts here -->
+<section class="InternalBannerSection" style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h2>MCCIA Annual Awards</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li class="active"><a href="#">Awards</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- internal banner section Start here -->
+<section class="internalSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="awardBox">
+                    <div class="awardBoxHeader">
+                        <h4>Award</h4>
+
+                        <h3>CORPORATE SOCIAL RESPONSIBILITY ( CSR )</h3>
+                    </div>
+                    <img src="{% static 'assets/images/awards-img.jpg' %}"/>
+
+                    <h2>(Instituted in the memory of Mr. B. G. Deshmukh (IAS) )</h2>
+
+                    <p>For the encouragement of CSR activities...</p>
+
+                    <a href="/awardsapp/awards-details">Award Details ></a>
+                </div>
+            </div>
+            <!--<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">-->
+                <!--<div class="awardBox">-->
+                    <!--<div class="awardBoxHeader">-->
+                        <!--<h4>Award</h4>-->
+                        <!--<h3>People's Choice - Industry</h3>-->
+                    <!--</div>-->
+                    <!--<img src="{% static 'assets/images/awards-img.jpg' %}"/>-->
+                    <!--<h2>BEST HUMAN RESPONSE AWARD</h2>-->
+                    <!--<p>This award is to encourage and promote better Employer and Employee relations..</p>-->
+                    <!--<a href="/awardsapp/awards-details1">Award Details ></a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="awardBox">
+                    <div class="awardBoxHeader">
+                        <h4>Award</h4>
+                        <h3>Innovation in Entrepreneurship</h3>
+                    </div>
+                    <img src="{% static 'assets/images/awards-img.jpg' %}"/>
+                    <h2>(Instituted in the memory of Mr. G. S. Parkhe)</h2>
+                    <p>Award for SSI entrepreneurs for innovative product, process, design or service...</p>
+                    <a href="/awardsapp/awards-details2">Award Details ></a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="awardBox">
+                    <h4>Award</h4>
+                    <h3>New Products and Designs</h3>
+                    <img src="{% static 'assets/images/awards-img.jpg' %}"/>
+                    <h2>(Instituted in the memory of Mr. Hari Joshi and Mrs. Malini Joshi)</h2>
+                    <p>Hari Malini Joshi Award is given to entrepreneurs developing a new product, des..</p>
+                    <a href="/awardsapp/awards-details3">Award Details ></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="awardBox">
+                    <h4>Award</h4>
+                    <h3>First Generation Successful Entrepreneur</h3>
+                    <img src="{% static 'assets/images/awards-img.jpg' %}"/>
+                    <h2>(Instituted in the memory of Late Mr. Kiran Natu)</h2>
+                    <p>Awards for First Generation Entrepreneurs..</p>
+                    <a href="/awardsapp/awards-details4">Award Details ></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="awardBox">
+                    <h4>Award</h4>
+                    <h3>Green Initiative</h3>
+                    <img src="{% static 'assets/images/awards-img.jpg' %}"/>
+                    <h2>(Instituted by Dr. R. J. Rathi Charity Trust)</h2>
+                    <p>Award for efforts made by industries towards control and abatement of pollution..</p>
+                    <a href="/awardsapp/awards-details5">Award Details ></a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div class="awardBox">
+                    <h4>Award</h4>
+                    <h3>Women Entrepreneurs</h3>
+                    <img src="{% static 'assets/images/awards-img.jpg' %}"/>
+                    <h2>(Instituted in the memory of Mrs. Ramabai Joshi)</h2>
+                    <p>Ramabai Joshi Award is given on first priority to women entrepreneurs, or to pr..</p>
+                    <a href="/awardsapp/awards-details6">Award Details ></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- internal banner section Ends here -->
+
+{% endblock %}
+</body>
+</html>

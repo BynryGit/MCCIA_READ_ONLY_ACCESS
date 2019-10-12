@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+    <style>
+    <!--img {-->
+    <!--pointer-events: none;-->
+<!--}-->
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+
+<!-- Breadcrumb section starts here -->
+<section class="InternalBannerSection" style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h2>Sustainability Desk</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li class="active"><a href="#">Sustainability Desk</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb section end here -->
+<!-- Award Details section start here -->
+
+<section class="internalSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="AwardDetailPanel">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#information" aria-controls="AwardDetails"
+                               role="tab" data-toggle="tab" aria-expanded="true">
+                                Information</a></li>
+
+                        <li role="presentation" class="">
+                            <a href="#casestudy" aria-controls="ViewAwardees" role="tab"
+                               data-toggle="tab" aria-expanded="false">Case Study </a>
+                        </li>
+
+                        <li role="presentation">
+                            <a href="#youtubelink" aria-controls="ViewAwardees" role="tab"
+                               data-toggle="tab" aria-expanded="false"> What Members
+                                Are Saying?</a>
+                        </li>
+
+                        <li role="presentation" class="">
+                            <a href="#standeechart" aria-controls="ViewAwardees" role="tab"
+                               data-toggle="tab" aria-expanded="false">Sustainable Business</a>
+                        </li>
+
+                        <li role="presentation" class="">
+                            <a href="#supportmember" aria-controls="ViewAwardees" role="tab"
+                               data-toggle="tab" aria-expanded="false"> Supported Member Org.</a>
+                        </li>
+
+                        <li role="presentation" class="">
+                            <a href="#events" aria-controls="ViewAwardees" role="tab"
+                               data-toggle="tab" aria-expanded="false"> Events </a>
+                        </li>
+
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                             id="information">
+                            <div class="AwardInfoPanel">
+                                <section class="bannerSlider">
+                                    <div id="mcciaslider" class="carousel slide" data-ride="carousel">
+                                        <!-- Wrapper for slides -->
+                                        <div class="carousel-inner" role="listbox">
+                                            <div class="item active">
+                                                <img src="{% static 'sustanability_images/Sustainability_1.jpg' %}"
+                                                     style="width: 100%;height:100% ;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_2.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_3.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_4.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_5.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_6.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_7.jpg' %}"
+                                                     style="width: 100%;height:100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_8.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_9.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_10.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_11.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_12.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_13.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_14.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_15.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_16.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_17.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_18.jpg' %}"
+                                                     style="width: 100%;height:100%;;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_19.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_20.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_21.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_22.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/Sustainability_23.jpg' %}"
+                                                     style="width: 100%;height: 100%;">
+                                            </div>
+
+
+                                        </div>
+                                        <!-- Controls -->
+                                        <a class="left carousel-control" href="#mcciaslider" data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="right carousel-control" href="#mcciaslider" data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                </section>
+                            </div>
+
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="casestudy">
+                            <div class="AwardInfoPanel">
+                                <div class="table-responsive TableCustomStyle">
+                                    <p>Articles published in ‘Sampada’, a monthly industrial magazine, which has been
+                                        published for more than 70 years and distributed amongst 3500 companies in and
+                                        around Pune and Maharashtra.</p>
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                            <img src="{% static 'sustanability_images/1.jpg' %}"
+                                                 width="160px" height="140px">
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                                            <p style="color:#353589">1.1. <strong>Article-1</strong></p>
+                                            <div style="margin-left:20px">
+                                                <p><strong>Title:</strong> Industries gaining more profits, revenue and
+                                                    funds by adopting sustainability activities within their plant.</p>
+                                                <p><strong>Published in Sampada: </strong>Issue March 2018</p>
+                                                <p><strong>Case Study:</strong> highlighting economic benefits,
+                                                    materiality analysis, solutions</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                            <img src="{% static 'sustanability_images/2.jpg' %}"
+                                                 width="160px" height="140px">
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                                            <p style="color:#353589">1.2. <strong>Article-2</strong></p>
+                                            <div style="margin-left:20px">
+                                                <p><strong>Title:</strong> Companies are goal oriented but need to be
+                                                    more accountable and rigorous on Sustainability goals, barriers and
+                                                    challenges</p>
+                                                <p><strong>Published in Sampada: </strong>Issue April 2018</p>
+                                                <p><strong>Case Study:</strong> PV system, economic benefits, long term
+                                                    value.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                            <img src="{% static 'sustanability_images/3.jpg' %}"
+                                                 width="160px" height="140px">
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                                            <p style="color:#353589">1.3. <strong>Article-3</strong></p>
+                                            <div style="margin-left:20px">
+                                                <p><strong>Title:</strong> SMEs need to gear up understanding about, and
+                                                    sustaining with global economic transformation.</p>
+                                                <p><strong>Published in Sampada: </strong>Issue May 2018</p>
+                                                <p><strong>Case Study:</strong> key insights of entrepreneur, global
+                                                    economic transformation, business leader’s roadmap, global agenda
+                                                    and likely impact</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                            <img src="{% static 'sustanability_images/4.jpg' %}"
+                                                 width="160px" height="140px">
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                                            <p style="color:#353589">1.4. <strong>Article-4</strong></p>
+                                            <div style="margin-left:20px">
+                                                <p><strong>Title:</strong> Companies can grow much faster through
+                                                    environment friendly business strategy and commitment.</p>
+                                                <p><strong>Published in Sampada: </strong>Issue June 2018</p>
+                                                <p><strong>Case Study:</strong> case studies on improvement areas:
+                                                    emissions, energy, waste, water; insights on environment,
+                                                    operations, investments and economic benefits, viewpoint of
+                                                    Directors</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                            <img src="{% static 'sustanability_images/5.jpg' %}"
+                                                 width="160px" height="140px">
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                                            <p style="color:#353589">1.5. <strong>Article-5</strong></p>
+                                            <div style="margin-left:20px">
+                                                <p><strong>Title:</strong> Executives of companies should carefully
+                                                    monitor the coming changes and develop strategies to take advantage
+                                                    of the new opportunities.</p>
+                                                <p><strong>Published in Sampada: </strong>Issue July 2018</p>
+                                                <p><strong>Case Study:</strong> examples of Industry 4.0</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                            <img src="{% static 'sustanability_images/6.jpg' %}"
+                                                 width="160px" height="140px">
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                                            <p style="color:#353589">1.6. <strong>Article-6</strong></p>
+                                            <div style="margin-left:20px">
+                                                <p><strong>Title:</strong> Executives development through sustainability
+                                                    reporting.</p>
+                                                <p><strong>Published in Sampada: </strong>Issue September 2018</p>
+                                                <p><strong>Case Study:</strong> bottom line benefits, executives
+                                                    development </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                            <img src="{% static 'sustanability_images/1.jpg' %}"
+                                                 width="160px" height="140px">
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                                            <p style="color:#353589">1.7. <strong>Article-7</strong></p>
+                                            <div style="margin-left:20px">
+                                                <p><strong>Title:</strong>Sustainability desk making sustainability
+                                                    resonate in industry members.</p>
+                                                <p><strong>Published in Sampada: </strong>Issue February 2019</p>
+                                                <p><strong>Case Study: </strong> creating sustainability champions
+                                                    within
+                                                    the company</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                            <img src="{% static 'sustanability_images/article_8.png' %}"
+                                                 width="160px" height="140px">
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-6 col-xs-12">
+                                            <p style="color:#353589">1.8. <strong>Article-8</strong></p>
+                                            <div style="margin-left:20px">
+                                                <p><strong>Title:</strong>Businesses are influenced by environmental, social and governance factors.</p>
+                                                <p><strong>Published in Sampada: </strong>Issue June 2019</p>
+                                                <p><strong>Case Study: </strong>  strategic approach, industry indicators, positive and negative impact</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="youtubelink">
+                            <div class="AwardInfoPanel">
+                                <div class="row">
+                                    <div class="table-responsive TableCustomStyle col-md-6 col-sm-6 col-xs-6">
+                                        <iframe width="420" height="345"
+                                                src="https://www.youtube.com/embed/42f9qZ_M8uU"></iframe>
+                                        <p>Mr. Hirendra B. Divgi, Executive Director, <br>Divgi TorqTransfer Systems
+                                            Pvt. Ltd, Pune, India </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div role="tabpanel" class="tab-pane" id="standeechart">
+                            <div class="AwardInfoPanel">
+                                <div class="table-responsive TableCustomStyle">
+                                    <div class="col-md-6 col-sm-12 col-xs-12">
+                                        <img src="{% static 'sustanability_images/STANDEE-1-Sustainability (final).jpg' %}"
+                                             width="400px" height="700px"><br><br>
+                                    </div>
+                                    <div class="table-responsive TableCustomStyle">
+                                        <div class="col-md-6 col-sm-12 col-xs-12">
+                                            <img src="{% static 'sustanability_images/STANDEE-2-Sustainability (final).jpg' %}"
+                                                 width="400" height="700px"><br><br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div role="tabpanel" class="tab-pane" id="supportmember" style="padding: 30px;">
+                            <div class="panel-group" id="accordion2" role="tablist" aria-multiselectable="true">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab">
+                                        <h class="panel-title">
+                                            <a class="collapsed demoClass" data-toggle="collapse"
+                                               data-parent="#accordion2"
+                                               href="#first"
+                                               aria-expanded="false" aria-controls="collapseThree">
+                                                <div class="headingText"><span class="fa fa-plus"></span>Assignment:
+                                                    Sustainability Excellence Report 2017-18 of Magarpatta City in
+                                                    line with GRI Standards (2018 – completed)
+                                                </div>
+                                            </a>
+                                        </h>
+                                    </div>
+                                    <div id="first" class="panel-collapse collapse" role="tabpanel"
+                                         aria-labelledby="first">
+                                        <div class="panel-body">
+
+                                            <p><strong>Report Title:</strong> Reflecting on our Legacy to Create
+                                                Future Cities
+                                            </p>
+                                            <p><strong>Member organisation:</strong> Magarpatta Township Development
+                                                and
+                                                Construction Limited (MTDCL), Pune</p>
+                                            <h4>Key Activities: </h4>
+                                            <div style="margin-left:20px">
+                                                <ul>
+                                                    <li>Advisory services for development of sustainability report
+                                                        content
+                                                        as per
+                                                        GRIs Sustainability Standards, content like impact assessment in
+                                                        line
+                                                        with
+                                                        economy, environment and social,
+                                                        analysing key areas of improvements, helping to set
+                                                        sustainability
+                                                        targets,
+                                                        recommending measures/solutions
+                                                    </li>
+
+                                                    <li> Assessment and development of social return on investment
+                                                    </li>
+
+                                                    <li> Assessment of materiality issues for uncovering new
+                                                        opportunities and
+                                                        indentifying diverse risks inherent
+                                                    </li>
+
+                                                    <li> Provide help for GRIs index content service for disclosure mark
+                                                    </li>
+
+                                                    <li> Provide help for submission of report to Asia’s Sustainability
+                                                        Reporting
+                                                        Award (ASRA Award 2018), by CSR Works International (Corporate
+                                                        Sustainability Reporting) Singapore.
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <h4> Major Achievements by Magarpatta City’s Sustainability Report and
+                                                Actions:</h4>
+                                            <p>An example of - ‘Carbon positive inclusive development’<br>
+                                                GRI, Amsterdam: Received GRIs Content Index Mark for the report
+                                                developed.</p>
+                                            <div class="col-lg-6">
+                                                <img src="{% static 'sustanability_images/ads.jpg' %}" width="300"
+                                                     height="120" class="responsive">
+                                            </div>
+                                            <br>
+                                            <div class="col-lg-12" style="margin-top:15px;">
+                                                <p><strong>Global Award:</strong> Winner in Asia’s Sustainability
+                                                    Reporting Award
+                                                    (ASRA Award 2018), by CSR Works International (Corporate
+                                                    Sustainability
+                                                    Reporting) Singapore – Asia’s Best First Time Sustainability
+                                                    Report.</p>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <img src="{% static 'sustanability_images/ASRA_ Award.jpg' %}"
+                                                     width="500px" height="320px" class="responsive">
+                                                <p>Mr. Satish Magar, MD, Magarpattacity, Receiving Award At
+                                                    Singapore </p>
+                                            </div>
+
+                                            <div class="col-lg-12">
+                                                <p>Link:<a target="new" href="https://magarpattacity.com/">
+                                                    https://magarpattacity.com/</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed demoClass" data-toggle="collapse"
+                                               data-parent="#accordion2"
+                                               href="#two"
+                                               aria-expanded="false" aria-controls="collapseThree">
+                                                <div class="headingText"><span class="fa fa-plus"></span>
+                                                    Assignment: Sustainability Excellence Report 2018-19 of Adar
+                                                    Poonawalla Clean
+                                                    City Initiative (APCCI) in line with GRI <br>Standards
+                                                    (2018-2019 - ongoing).
+                                                </div>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="two" class="panel-collapse collapse" role="tabpanel"
+                                         aria-labelledby="two">
+                                        <div class="panel-body">
+
+                                            <p><strong>Report Title:</strong> Leading Innovation for Technology
+                                                Driven and
+                                                Sustainable Waste Management in Pune City.</p>
+                                            <p><strong>Member organisation:</strong> Serum Institute of India
+                                                Private Limited,
+                                                Pune</p>
+                                            <h4>Key Activities:</h4>
+                                            <div style="margin-left:20px">
+                                                <ul>
+                                                    <li>Development of APCCIs sustainability excellence report as
+                                                        per GRI
+                                                        Sustainability Standards
+                                                    </li>
+                                                    <li>Assessment of impact in line with economy, environment
+                                                        and social,
+                                                        analysing key areas of improvements, helping to set
+                                                        targets
+                                                    </li>
+                                                    <li>Assessment of materiality issues for uncovering new
+                                                        opportunities and
+                                                        diverse risks inherent, developing strategies, recommending
+                                                        measures/solutions,
+                                                    </li>
+                                                    <li> Development of monitoring tool for the sustainability
+                                                        indicators
+                                                    </li>
+                                                    <li> Provide help for GRIs index content service for
+                                                        disclosure mark
+                                                    </li>
+                                                    <li> Provide help for submission of report to Asia’s
+                                                        Sustainability Reporting
+                                                        Award (ASRA Award 2019), by CSR Works International
+                                                        (Corporate
+                                                        Sustainability Reporting) Singapore.
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <h4>Major Achievements by APCCIs Sustainability Report and
+                                                Actions:</h4>
+                                            <p><strong>Model of</strong> - ‘Public Private Partnership:
+                                                Corporate joining hands
+                                                with Govt. essential services’.</p>
+                                            <p><strong>GRI, Amsterdam: </strong>Work in progress for getting
+                                                GRIs Content Index
+                                                Mark for the ‘Sustainability Report’.</p>
+                                            <p><strong>Global Award:</strong> Work in progress for participating
+                                                in Asia’s
+                                                Sustainability Reporting Award (ASRA Award 2018), by CSR Works
+                                                International
+                                                (Corporate Sustainability Reporting) Singapore.</p>
+                                            <p>Link:<a target="new" href="http://www.adarpcleancity.com/ ">http://www.adarpcleancity.com/ </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed demoClass" data-toggle="collapse"
+                                               data-parent="#accordion2"
+                                               href="#three"
+                                               aria-expanded="false" aria-controls="collapseThree">
+                                                <div class="headingText"><span class="fa fa-plus"></span>
+                                                    Assignment: Sustainability Excellence Report 2018-19 of The
+                                                    Eco-Factory Foundation (TEFF) in line with GRI Standards <br>
+                                                    (2019-2020 - ongoing).
+                                                </div>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="three" class="panel-collapse collapse" role="tabpanel"
+                                         aria-labelledby="three">
+                                        <div class="panel-body">
+                                            <p><strong>Report Title:</strong> work in progress……</p>
+                                            <p><strong>Member organisation:</strong> The Eco-Factory Foundation
+                                                (TEFF), Pune</p>
+                                            <p><strong>Key Activities:</strong></p>
+                                            <div style="margin-left:40px;">
+                                                <ul>
+                                                    <li> Development of sustainability excellence report as per GRI
+                                                        Sustainability Standards, by closely working with core team
+                                                        of
+                                                        TEFF
+                                                    </li>
+                                                    <li> Assessment of impact in line with economy, environment and
+                                                        social, analysing key areas of improvements, helping to set
+                                                        targets
+                                                    </li>
+                                                    <li>Assessment of materiality issues for uncovering new
+                                                        opportunities and diverse risks inherent, developing
+                                                        strategies,
+                                                        recommending measures/solutions,
+                                                    </li>
+                                                    <li> Provide help for GRIs index content service for disclosure
+                                                        mark
+                                                    </li>
+                                                    <li> Provide help for submission of report to Asia’s
+                                                        Sustainability
+                                                        Reporting Award (ASRA Award 2019), by CSR Works
+                                                        International
+                                                        (Corporate Sustainability Reporting) Singapore.
+                                                    </li>
+                                                    </p>
+                                                </ul>
+                                            </div>
+                                            <p><strong>Major Achievements by TEFFs Sustainability Report and
+                                                Actions:</strong></p>
+                                            <p><strong> TEFF Model - </strong> Knowledge Center for Sustainable
+                                                Livelihood and Economic Development’</p>
+                                            <p><strong>GRI, Amsterdam:</strong> work in progress……</p>
+                                            <p><strong>Global Award:</strong> work in progress……</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="events" style="padding: 30px;">
+                            <div class="panel-group" id="accordion3" role="tablist" aria-multiselectable="true">
+
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed demoClass" data-toggle="collapse"
+                                               data-parent="#accordion3"
+                                               href="#event-1"
+                                               aria-expanded="false" aria-controls="collapseThree">
+                                                <div class="headingText"><span class="fa fa-plus"></span>
+                                                    17th September 2019 Awareness Workshop: ‘On National Motor
+                                                    Replacement Program’
+                                                </div>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="event-1" class="panel-collapse collapse" role="tabpanel"
+                                         aria-labelledby="event-1">
+                                        <div class="panel-body">
+                                            <p><strong>Summary of deliberations</strong></p>
+
+                                            <p>Awareness and capacity building workshop was jointly organised by MCCIA,
+                                                ISC and EESL</p>
+                                            <div style="padding-left:30px;">
+                                                <ul>
+                                                    <li>
+                                                        Venue: Finolex Board Room, MCCIA Trade Tower, Senapati Bapat
+                                                        Road, Pune 411016.
+                                                    </li>
+                                                    <li>
+                                                        Date: September 17, 2019 from 4 pm to 6 pm.
+                                                    </li>
+                                                    <li>
+                                                        Topic: ‘National Motor Replacement Program (NMRP)’ of EESL. This
+                                                        topic is a part of energy related to sustainability actions and
+                                                        the areas of energy consumption, conservation and efficiency in
+                                                        motors.
+                                                    </li>
+                                                    <li>
+                                                        Facilitator:Energy Efficiency Services Limited (EESL), New
+                                                        Delhi, Institute for Sustainable Communities, New Delhi and
+                                                        Mahratta Chamber of Commerce, Industries and Agriculture
+                                                        (MCCIA), Pune.
+
+                                                    </li>
+                                                    <li>
+                                                        Participants: About 37 participants, mainly MCCIA members from
+                                                        the manufacturing sector and institutes participated in the
+                                                        awareness workshop.
+
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <p>MCCIA had organized an awareness and capacity building workshop on
+                                                ‘National Motor Replacement Program,’ on 17th September, 2019, at
+                                                Finolex Board Room, MCCIA Trade Tower, by MCCIA. About 37 participants
+                                                mainly MCCIA members from manufacturing sector participated in the
+                                                workshop. </p>
+                                            <p><strong>Some photographs of the event</strong></p>
+                                            <!--<img src="{% static 'sustanability_images/seventeen_sep1.jpg' %}"style="width: 50%;height: 50%;">-->
+                                            <!--<img src="{% static 'sustanability_images/seventeen_sep1.jpg' %}"style="width: 50%;height: 50%;">-->
+                                            <!--<img src="{% static 'sustanability_images/seventeen_sep1.jpg' %}"style="width: 50%;height: 50%;">-->
+                                            <!--<img src="{% static 'sustanability_images/seventeen_sep1.jpg' %}"style="width: 50%;height: 50%;">-->
+                                            <!--<img src="{% static 'sustanability_images/seventeen_sep1.jpg' %}"style="width: 50%;height: 50%;">-->
+                                            <img src="{% static 'sustanability_images/seventeen_sep1.JPG' %}"
+                                                 style="width: 100%;height: 100%;">
+
+
+                                        </div>
+
+
+                                        <div class="panel-group" id="accordion9" role="tablist"
+                                             aria-multiselectable="true">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab">
+                                                    <h1 class="panel-title">
+                                                        <a class="collapsed demoClass" data-toggle="collapse"
+                                                           data-parent="#accordion9"
+                                                           href="#readmore9"
+                                                           aria-expanded="false" aria-controls="collapseThree">
+                                                            <div class="headingText"><span
+                                                                    class="fa fa-plus"></span>Read More
+                                                            </div>
+                                                        </a>
+                                                    </h1>
+                                                </div>
+                                                <div id="readmore9" class="panel-collapse collapse"
+                                                     role="tabpanel"
+                                                     aria-labelledby="readmore9">
+                                                    <div class="panel-body">
+                                                        <p>
+                                                            Annexure-1: Agenda of awareness and capacity building
+                                                            workshop on ‘National Motor Replacement Program’
+                                                        </p>
+                                                        <img src="{% static 'sustanability_images/seventeen_sep7.jpg' %}"
+                                                             style="width: 90%;height:70%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab">
+                                                    <h1 class="panel-title">
+                                                        <a class="collapsed demoClass" data-toggle="collapse"
+                                                           data-parent="#accordion9"
+                                                           href="#readmore8"
+                                                           aria-expanded="false" aria-controls="collapseThree">
+                                                            <div class="headingText"><span
+                                                                    class="fa fa-plus"></span>Read More
+                                                            </div>
+                                                        </a>
+                                                    </h1>
+                                                </div>
+                                                <div id="readmore8" class="panel-collapse collapse"
+                                                     role="tabpanel"
+                                                     aria-labelledby="readmore8">
+                                                    <div class="panel-body">
+                                                        <p><strong>Welcome address:Mr. ChetankumarSangole</strong></p>
+                                                        <p>
+                                                            Mr. ChetankumarSangole, welcomed the participants and
+                                                            briefed the background of this awareness workshop. He
+                                                            introduced the speakers and also spoke about the importance
+                                                            of this awareness session.
+                                                            Mr. Pradeep Bhargava (President, MCCIA), Mr. Suresh Kolta
+                                                            (Director, ISC), Mr. Thirumurugan (DGM, EESL), Dr. Bhaskar
+                                                            Natarajan (Director, ISC), Dr.Tarini Sahoo (Program officer,
+                                                            ISC) addressed the participants..
+                                                        </p>
+                                                        <p><strong>Special Address:Mr. Pradeep Bhargava</strong></p>
+                                                        <p>
+                                                            Mr. Pradeep Bhargava mentioned that the National Motor
+                                                            Replacement Program has taken a step towards the Green
+                                                            Agenda program. This program will help to improve efficiency
+                                                            of machines in industries.
+                                                        </p>
+                                                        <p>He mentioned that the low hanging measures which are easy to
+                                                            implement, majority of industries have already taken efforts
+                                                            and implemented such measures to save energy and emissions.
+                                                            However, these efforts are not enough to mitigate climate
+                                                            change risks and achieve energy security. He mentioned that
+                                                            the green plants have capacity to reduce CO2 by absorbing it
+                                                            but we can’t wait for it to improve environment by only
+                                                            planting trees. We can adapt activities to change emissions
+                                                            pattern and efficiency through such improvement programs. It
+                                                            is not necessary to wait as it would be an opportunity lost
+                                                            and hence time to take actions for sustainable
+                                                            operations. </p>
+                                                        <p>He said that technology is changing continuously for e.g.
+                                                            computers changed from the large desktop computers to the
+                                                            small handy laptops, mobile with keys to the smart phones,
+                                                            bigger size TVs to the LCDs and so the motors have to change
+                                                            from less-efficient to high-efficient motors. Transformation
+                                                            is taking place and hencewe have to transfer from IE0/IE1 to
+                                                            IE3 standards motors used in various applications. </p>
+                                                        <p>He shared many of key insights from his experience.</p>
+
+
+                                                        <p><strong>Introductory Remarks: Mr. Suresh Kolta</strong></p>
+                                                        <p>
+                                                            Mr. Suresh Kolta said that India is not only fastest growing
+                                                            country but also the largest emitter of Greenhouse gases. He
+                                                            briefed about his organization ISC (Institute for
+                                                            Sustainable Communities) and mentioned that ISC is a non-
+                                                            profit organisation and it’s objectives are to improve
+                                                            energy efficiency, the environment, health and safety.
+                                                        </p>
+
+                                                        <p><strong>Technical sessions</strong></p>
+                                                        <p><strong>1. Thirumurugan, (DGM, EESL)</strong></p>
+
+                                                        <p>Mr. Thirumurugan, (DGM, EESL), gave brief information about
+                                                            National Motor Replacement Program. He mentioned that EESL
+                                                            was promoted by Ministry of Power, Government of India as a
+                                                            Joint Venture of four reputed public-sector units - NTPC
+                                                            Limited, Power Finance Corporation, Rural Electrification
+                                                            Corporation and POWER GRID. For stepping towards an energy
+                                                            efficient world, EESL designed programs like UJALA, SNLP,
+                                                            Energy efficient buildings, e-Vehicle, AgDSM, Energy
+                                                            efficient ACs, NMRP etc. </p>
+                                                        <p>About NMRP, he mentioned that the primary purpose of this
+                                                            NMRP is to remove the financial barriers in replacing the
+                                                            old inefficient motors to high efficiency IE3 motors to
+                                                            achieve savings. He described the steps involved in the
+                                                            participation for the program. He requested the participants
+                                                            to visit the web portal of NMRP for more information. He
+                                                            requested participants to visit their web site for more
+                                                            details on NMRP <a target="new"
+                                                                               href="http://www.motor.eeslindia.org">
+                                                                http://www.motor.eeslindia.org</a></p>
+                                                        <p><strong>Q&A session to Mr. Thirumurgan:</strong></p>
+                                                        <p>1. Is there any minimum quantity of motors for the
+                                                            replacement program?
+                                                            <br>Ans- Minimum quantity of motor replacement is 50. You
+                                                            can collaborate with other industries for fulfilling limit.
+                                                        </p>
+                                                        <p>2. Which brand of motor is used for supply?
+                                                            <br>Ans- There is a tie up with Rotomotive motors as they
+                                                            accepted all the conditions of NMRP. They customize the
+                                                            motor as per the customers requirement.</p>
+                                                        <p>3. Is there any carbon credits available? Whether these
+                                                            credits passed on to clients?
+                                                            <br>Ans- Yes carbon credits are available but it does not
+                                                            pass to the clients.</p>
+                                                        <p>4. Is buyback program or any concession for old motor
+                                                            available for this replacement program?
+                                                            <br>Ans- No. You can scrap it or use it as a standby motor.
+                                                        </p>
+                                                        <p>5. If installed motor breaks down due to any mechanical or
+                                                            electrical failures then in how much time you can replace
+                                                            that? Is motor is replaced or any part of it is replaced?
+                                                            <br>Ans- Warranty period is of 3 years. Within this period,
+                                                            we will replace it or any of its part as per requirement
+                                                            within 3 working days. For that you have to call to customer
+                                                            care for raising complaint and complaint addressal</p>
+                                                        <p>6. What is the duration of agreement?
+                                                            <br>Ans- Duration of this agreement is of 3 years. There
+                                                            will be a fixed EMI for 3 years. After 3 years motors will
+                                                            belong to the plant with entire savings benefits. </p>
+                                                        <p>7. Is there any similar program for agriculture sector?
+                                                            <br>Ans- Yes, program like AgDSM (Agriculture demand side
+                                                            management program)</p>
+                                                        <p><strong>2. Dr. Bhaskar Natarajan (Director, ISC)</strong></p>
+                                                        <p>Dr. Natarajan briefed on how the electricity sector has been
+                                                            transformed from The Electricity Act 1948 to The Energy
+                                                            Conservation Act 2001, to The Electricity Act 2003. Also, he
+                                                            briefed about the companies act which came up with
+                                                            notification to make companies responsible to disclose the
+                                                            energy consumption in their balance sheet. He said that the
+                                                            companies started to report year-on-year energy consumption
+                                                            w.r.t last year. Because of several energy crisis the rising
+                                                            prices of energy and climate change impacts, The Energy
+                                                            Conservation Act 2001 came into effect which helped several
+                                                            stakeholders to take proactive measures to reduce energy
+                                                            cost and add value to the national energy security and
+                                                            conservation efforts.</p>
+                                                        <p>He briefed about how one of the SME participated in the NMRP
+                                                            of EESL and replaced old inefficient motors with the
+                                                            advanced high efficiency IE3 motors. That benefited them in
+                                                            saving more than 18% of electricity with respect to overall
+                                                            plant. And that SME implemented the program in phased manner
+                                                            but invested their own capital instead of taking financial
+                                                            support from EESL to replace the old motors by IE3 motor
+                                                            under NMRP, to enjoy other benefits of the scheme like low
+                                                            purchase cost, 3 year replacement warranty.</p>
+                                                        <p><strong>3. Dr.Tarinin Sahoo (Program officer, ISC)</strong>
+                                                        </p>
+                                                        <p>Dr. Sahoo mentioned about capacity building initiatives taken
+                                                            by ISC (Institute for sustainable communities). He mentioned
+                                                            that through its SME clean tech program, ISC is helping SMEs
+                                                            to reduce their greenhouse gas emissions by expanding usage
+                                                            of energy efficient, clean technology solutions. ISC’s EHS+
+                                                            (environment, health, safety) centre in India aims to
+                                                            provide factory managers with information and tools to
+                                                            improve environment, health and safety conditions for
+                                                            workers and surrounding communities. First EHS centre build
+                                                            up in 2016 at Pune in partnership with Symbiosis Institute
+                                                            for International Business. The EHS+ centre is offering
+                                                            factory-level trainings, customized to a variety of
+                                                            industries, to move industry standards from basic EHS
+                                                            compliance to more proactive and holistically sustainable
+                                                            practices. 353 factories are covered in this program from
+                                                            2016 to 2019.</p>
+                                                        <p><strong>4. Mr. ChetankumarSangole (Head- Sustainability Desk,
+                                                            MCCIA)</strong></p>
+                                                        <p>Mr. Chetankumar briefed about the initiative of energy survey
+                                                            taken by MCCIA. He also spoke about the findings of the
+                                                            energy survey and encouraged the participants to fill up the
+                                                            10 questions of energy survey. He said that in return of the
+                                                            survey form, we will compile the report to help industry
+                                                            member to locate themselves in performance matrix among the
+                                                            industries. </p>
+                                                        <p>He gave information about the Sustainability desk initiated
+                                                            by MCCIA. Sustainability desk has prepared sustainability
+                                                            report for 3-member organization and currently working on
+                                                            three more. He mentioned that in sustainability actions and
+                                                            reporting, energy is key topic to help member organization
+                                                            to understand its impact on bottom line and linking it with
+                                                            SDGs.</p>
+                                                        <p><strong>Wrap up</strong></p>
+                                                        <p>Dr Natarajan thanked participants for attending the workshop
+                                                            and also thanked speakers for their support and sharing key
+                                                            insights. He also thanked MCCIA for arranging this workshop
+                                                            and asked for their further support for this NMRP.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed demoClass" data-toggle="collapse"
+                                               data-parent="#accordion3"
+                                               href="#event-3"
+                                               aria-expanded="false" aria-controls="collapseThree">
+                                                <div class="headingText"><span class="fa fa-plus"></span>
+                                                    11th June 2019: 3rd Sustainability Awareness Workshop on ‘How
+                                                    Sustainability Can Add Value’
+                                                </div>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="event-3" class="panel-collapse collapse" role="tabpanel"
+                                         aria-labelledby="event-3">
+                                        <div class="panel-body">
+                                            <p><strong>Summary of deliberations</strong></p>
+
+                                            <p>MCCIA had organised an awareness session on ‘How Sustainability can
+                                                add Value’, on 14thJune2019, at Finolex Board Room, MCCIA Trade
+                                                Tower, by MCCIA. About 52 participants mainly MCCIA members from
+                                                manufacturing sector and institutes participated in the awareness
+                                                workshop.</p>
+                                            <p><strong>Some photographs of the event</strong></p>
+                                            <img src="{% static 'sustanability_images/2-3.jpg' %}"
+                                                                 style="width: 90%;height: 90%;">
+                                             <img src="{% static 'sustanability_images/4-5.jpg' %}"
+                                                                 style="width: 90%;height: 90%;">
+
+                                        </div>
+
+
+                                        <div class="panel-group" id="accordion6" role="tablist"
+                                             aria-multiselectable="true">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab">
+                                                    <h1 class="panel-title">
+                                                        <a class="collapsed demoClass" data-toggle="collapse"
+                                                           data-parent="#accordion6"
+                                                           href="#readmore5"
+                                                           aria-expanded="false" aria-controls="collapseThree">
+                                                            <div class="headingText"><span
+                                                                    class="fa fa-plus"></span>Read More
+                                                            </div>
+                                                        </a>
+                                                    </h1>
+                                                </div>
+                                                <div id="readmore5" class="panel-collapse collapse"
+                                                     role="tabpanel"
+                                                     aria-labelledby="readmore5">
+                                                    <div class="panel-body">
+                                                        <p>
+                                                            Agenda of 3rd Sustainability workshop on “how
+                                                            sustainability
+                                                            can add value”
+                                                        </p>
+                                                        <img src="{% static 'sustanability_images/event-3-2.jpg' %}"
+                                                             style="width: 90%;height: 90%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab">
+                                                    <h1 class="panel-title">
+                                                        <a class="collapsed demoClass" data-toggle="collapse"
+                                                           data-parent="#accordion6"
+                                                           href="#readmore6"
+                                                           aria-expanded="false" aria-controls="collapseThree">
+                                                            <div class="headingText"><span
+                                                                    class="fa fa-plus"></span>Read More
+                                                            </div>
+                                                        </a>
+                                                    </h1>
+                                                </div>
+                                                <div id="readmore6" class="panel-collapse collapse"
+                                                     role="tabpanel"
+                                                     aria-labelledby="readmore6">
+                                                    <div class="panel-body">
+                                                        <p><strong>Welcome address</strong></p>
+                                                        <p>
+                                                            Mr Chetankumar Sangole, welcomed participants and
+                                                            briefed
+                                                            about the background of organizing the awareness session
+                                                            on
+                                                            ‘how sustainability can add value’. He also briefed
+                                                            about
+                                                            the objective of the awareness session and mentioned
+                                                            that
+                                                            industry can make use of this opportunity to interact
+                                                            with
+                                                            each other and with the speakers about the various
+                                                            facets of
+                                                            sustainability and the sustainability reporting
+                                                            framework
+                                                            which can add value to their business. He said the
+                                                            sessions
+                                                            are uniquely developed and the speakers will be sharing
+                                                            key
+                                                            insights of how their organisation is working on
+                                                            sustainability activities and how they are embracing
+                                                            sustainability reporting. He introduced speakers and
+                                                            said
+                                                            that Sustainability Desk of MCCIA would like to help
+                                                            small,
+                                                            medium and large organisations.
+                                                        </p>
+                                                        <p>
+                                                            Mr Pradeep Bhargava, President, MCCIA, Mr Prashant
+                                                            Girbane,
+                                                            Director General, MCCIA, Mr Krishnan Komandur. CEO, Adar
+                                                            Poonawalla Clean City Initiative, Ms Tejaswini Kulkarni,
+                                                            Vice President, Environment, Magarpatta City, Mr Abhay
+                                                            Pathak, Deputy General Manager, Corporate
+                                                            Sustainability,
+                                                            Tata Motors Limited, Mr Yogesh P. Katyarmal,
+                                                            Head-Management
+                                                            Systems, Divgi Torq Systems Pvt Ltd, addressed the
+                                                            participants at this important event.
+                                                        </p>
+                                                        <p><strong>Special address</strong></p>
+                                                        <p>
+                                                            Speaking on the occasion, Mr Pradeep Bhargava said,
+                                                            “Having
+                                                            a sustainable approach is no more optional for the
+                                                            companies
+                                                            but is the need of the hour. There is a belief that
+                                                            something like being sustainable is only for very large
+                                                            organisations which is completely wrong. The reality is
+                                                            that
+                                                            90-95 percent of enterprises are not very big but
+                                                            collectivelythey can make significant contribution in
+                                                            various areas of business operations by embracing
+                                                            sustainability. And they themselves are also impacted by
+                                                            certain inherent risks. Hence sustainability is for all
+                                                            of
+                                                            us.”
+                                                        </p>
+                                                        <p>Mr Pradeep Bhargava further said that developing a
+                                                            sustainable approach does not necessarily mean
+                                                            compromising
+                                                            short term. He said that “having a sustainable approach
+                                                            benefits in short term as well as in long term and lack
+                                                            of
+                                                            sustainability can reduce your enterprise’s value
+                                                            drastically”.</p>
+                                                        <p>
+                                                            <strong>Web content launch</strong></p>
+                                                        <p>During the session the ‘Sustainability Web Content’ on
+                                                            the
+                                                            website of MCCIA and the June 2019 issue of Sampada
+                                                            magazine
+                                                            of MCCIA which focussed on ‘Environment’ was launched at
+                                                            the
+                                                            hands of the dignitaries.</p>
+                                                        <p>Web link:<a target="new"
+                                                                   href="https://www.mcciapune.com/sustainabilityapp/sustainability-desk/ ">
+                                                            https://www.mcciapune.com/sustainabilityapp/sustainability-desk/</a>
+                                                        </p>
+                                                        <p><strong>Technical session</strong></p>
+                                                        <p>Mr Krishnan Komandur, CEO, Adar Poonawalla Clean City
+                                                            Initiative (APCCI) spoke about their work in cleaning
+                                                            the
+                                                            Pune city, pothole repairing and water ATMs in the city
+                                                            and
+                                                            how the initiative has adopted and implemented
+                                                            sustainability actions.</p>
+                                                        <P>Ms Tejaswini Kulkarni, VP, Environment, Magarpatta City
+                                                            also
+                                                            shared the work done at Magarpatta city through
+                                                            monitoring
+                                                            environmental performances, addressing social causes and
+                                                            ensuring able governance. She said that these principles
+                                                            and
+                                                            sustainability values were inherent in the
+                                                            conceptualisation, designing, construction and post
+                                                            construction management of Magarpatta city.</P>
+                                                        <P>Mr Abhay Pathak, DGM- Corporate Sustainability, Tata
+                                                            Motors
+                                                            Ltd. spoke of the importance of sustainability reporting
+                                                            and
+                                                            the triple bottom line approach adopted by Tata
+                                                            Motors.</P>
+                                                        <P>Mr Yogesh P. Katyarmal, Head – MIS, Divgi TorqTransfer
+                                                            Systems Pvt. Ltd spoke of the tools for connecting
+                                                            principles, processes and people.</P>
+                                                        <P><strong>Wrap up</strong></P>
+                                                        <p>Mr Prashant Girbane, DG, MCCIA, spoke about the
+                                                            contribution
+                                                            of MCCIA’s Sustainability desk in sensitising the
+                                                            members
+                                                            about the various aspects of sustainability and how the
+                                                            adoption of sustainability practices can benefit them.
+                                                            He
+                                                            thanked participants for attending the workshop and also
+                                                            thanked speakers for their support and sharing key
+                                                            insights
+                                                            and experiences of their organisations.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab">
+                                        <h class="panel-title">
+                                            <a class="collapsed demoClass" data-toggle="collapse"
+                                               data-parent="#accordion3"
+                                               href="#first_event"
+                                               aria-expanded="false" aria-controls="collapseThree">
+                                                <div class="headingText"><span class="fa fa-plus"></span>18th December 2018: GRI and
+                                                    MCCIA Awareness Workshop Sustainability Reporting for SMEs and
+                                                    Sustainable <br>Development Goals (SDGs) for All Companies
+                                                </div>
+                                            </a>
+                                        </h>
+                                    </div>
+                                    <div id="first_event" class="panel-collapse collapse" role="tabpanel"
+                                         aria-labelledby="first_event">
+                                        <div class="panel-body">
+                                            <p>
+                                                Sustainability awareness workshop on ‘Sustainability Reporting for
+                                                SMEs’ and ‘Sustainable Development Goals and Reporting for All
+                                                Companies’ was organised on December 18, 2018,
+                                                at Hall no.6 & 7, 5th Floor, MCCIA Trade Tower, by GRI and MCCIA.
+                                                About 21 industries participated in the awareness workshop and
+                                                gained insights of GRI Sustainability Standards. </p>
+
+                                            Some photographs of the event
+                                            <br>
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/event-1.jpg' %}"
+                                                     style="width: 75%;height: 50%;">
+                                            </div>
+                                            <div class="item">
+                                                <img src="{% static 'sustanability_images/event-2.jpg' %}"
+                                                     style="width: 75%;height: 50%;">
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="panel-group" id="accordion4" role="tablist"
+                                             aria-multiselectable="true">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab">
+                                                    <h1 class="panel-title">
+                                                        <a class="collapsed demoClass" data-toggle="collapse"
+                                                           data-parent="#accordion4"
+                                                           href="#readmore1"
+                                                           aria-expanded="false" aria-controls="collapseThree">
+                                                            <div class="headingText"><span
+                                                                    class="fa fa-plus"></span>Read More
+                                                            </div>
+                                                        </a>
+                                                    </h1>
+                                                </div>
+                                                <div id="readmore1" class="panel-collapse collapse" role="tabpanel"
+                                                     aria-labelledby="readmore1">
+                                                    <div class="panel-body">
+                                                        <p>
+                                                            Agenda of awareness workshop on “sustainability
+                                                            reporting for SMEs” and “SDGs for All Companies”
+                                                        </p>
+                                                        <div class="item">
+                                                            <img src="{% static 'sustanability_images/Event-3.jpg' %}"
+                                                                 style="width: 90%;height: 90%;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab">
+                                                    <h1 class="panel-title">
+                                                        <a class="collapsed demoClass" data-toggle="collapse"
+                                                           data-parent="#accordion4"
+                                                           href="#readmore2"
+                                                           aria-expanded="false" aria-controls="collapseThree">
+                                                            <div class="headingText"><span
+                                                                    class="fa fa-plus"></span>Read More
+                                                            </div>
+                                                        </a>
+                                                    </h1>
+                                                </div>
+                                                <div id="readmore2" class="panel-collapse collapse" role="tabpanel"
+                                                     aria-labelledby="readmore2">
+                                                    <div class="panel-body">
+                                                        <p>
+                                                            In the inaugural session,
+                                                        </p>
+                                                        <p>
+                                                            Mr. Prashant Girbane, Director General, MCCIA, set the
+                                                            agenda and provided the background of the awareness
+                                                            workshop on sustainability. He laid out objectives of
+                                                            the awareness workshop and highlighted how industry
+                                                            would be keen to see case studies that can provide
+                                                            insights do the Sustainability Reporting and its
+                                                            immediate and long-term benefits. He mentioned that
+                                                            companies need more awareness about the new
+                                                            opportunities,
+                                                            as well as risks they face, as sustainability movement
+                                                            is picking pace. He called the collaboration with GRI a
+                                                            start and exhorted the need to have more and regular
+                                                            engagements to take SMEs on board the journey of
+                                                            implementing and reporting Sustainability practices. He
+                                                            informed participants that The Sustainability Desk of
+                                                            MCCIA is keen to work with SMEs and large companies for
+                                                            providing all possible assistance in their
+                                                            sustainability journey and highlighted several
+                                                            information and awareness-generating articles that have
+                                                            already been published by the Head of the Desk.
+                                                        </p>
+                                                        <p>
+                                                            Ms. Pallavi Atre, Sustainability Expert, GRI South Asia,
+                                                            welcomed participants and delivered opening address. She
+                                                            mentioned that GRI Sustainability Standards are a global
+                                                            benchmark for sustainability and around 80% of the top
+                                                            250 companies are using the Standards. She mentioned
+                                                            that collaborations for them are important to reach out
+                                                            to industry (SMEs and large enterprises alike) to spread
+                                                            awareness about why sustainability is important and how
+                                                            sustainability reporting process helps in improving
+                                                            performance along the three elements of people, planet,
+                                                            and prosperity. She said they look forward more
+                                                            such engagements to spread the awareness and education
+                                                            on global trends on sustainable development.
+                                                        </p>
+                                                        <p>
+                                                            Mr. Hirendra Divgi, Executive Director,
+                                                            DivgiTorqTransfer Systems Pvt. Ltd, delivered the
+                                                            special address and mentioned that while industries can
+                                                            see tangible benefits of adopting sustainability
+                                                            activities into their business operations and decisions;
+                                                            this is more effective when internally driven than
+                                                            something imposed by external stakeholders like clients.
+                                                            He said his enterprise started publishing sustainability
+                                                            three years ago and since then every year they have
+                                                            achieved tangible benefits and identified newer areas to
+                                                            improve upon. He highlighted the importance of
+                                                            sustainability reporting process-emphasis, the role of
+                                                            cross-functional teams to manage and operations
+                                                            sustainably every day.
+                                                        </p>
+                                                        <p>
+                                                            During the Technical Session, Ms. Pallavi Atre,
+                                                            Sustainability Expert, GRI South Asia, briefed about the
+                                                            GRI standards and services and provided insights through
+                                                            case studies of industries that adopted sustainability
+                                                            activities and developed sustainability report in line
+                                                            with the GRI Standards. She shared several examples
+                                                            about the benefits in terms of immediate profits that
+                                                            the industry could gain in the journey of their
+                                                            sustainability reporting process.
+                                                            The session also covered the long-term impacts of the
+                                                            sustainability reporting.
+                                                        </p>
+                                                        <p>
+                                                            The session discussed the GRI reporting for small and
+                                                            medium scale organization and how those reports help
+                                                            organizations to walk the path of sustainability.
+
+                                                        </p>
+                                                        <p>
+                                                            Mr. Anand Marathe, Dy.GM, Group Sustainability, Mahindra
+                                                            and Mahindra Ltd, made detailed presentation on their
+                                                            decade-old journey of Sustainability adoption, including
+                                                            the practice of having detailed targets for each group
+                                                            company. Ms. Shubhada Mool, from Tata Motors Ltd, made
+                                                            detailed presentation on their process of sustainability
+                                                            report preparation and how they are engaging their
+                                                            vendors in the process. Her presentation also shared the
+                                                            evolution from sustainability reporting to integrated
+                                                            reporting at Tata Motors.
+                                                        </p>
+                                                        <p>
+                                                            Group exercise made participants think and put action
+                                                            points for their operations and their positive and
+                                                            negative impacts. Participants gained insights about the
+                                                            process of identification of impact areas due to the
+                                                            various operations of their respective companies.
+                                                        </p>
+                                                        <p>
+                                                            The group exercise was planned to make participants
+                                                            relate to the concepts discussed in the session. They
+                                                            did so by considering elements of their operations and
+                                                            identifying action points along with their positive, or
+                                                            negative, impact.
+
+                                                        </p>
+                                                        <p>
+                                                            In the Technical Session, Mr. Hirendra Divgi, Executive
+                                                            Director, DivgiTorqTransfer Systems (Divgi TTS) shared
+                                                            the journey of sustainability at his company.
+                                                        </p>
+                                                        <p>
+                                                            Salient points of his presentation were:
+                                                        </p>
+                                                        <div style="padding-left:30px;">
+                                                            <ul>
+                                                            <li>
+                                                                Divgi TTS manufactures various torque transmission
+                                                                and transfer spectrum products for automotive and
+                                                                commercial segment.
+                                                            </li>
+                                                            <li>
+                                                                DivgiTTS’three industrial units located in MIDC
+                                                                Bhosari, Shivre (Pune) and Sirsi (Karnataka) are
+                                                                connected to a global business chain
+
+                                                            </li>
+                                                            <li>
+                                                                Their first exposure to sustainability took place
+                                                                during an interaction with a client who was managing
+                                                                his business to the highest standards of economic,
+                                                                environmental and social accountability using
+                                                                sustainability reporting. More exposure to various
+                                                                cutting edge ideas - through their joint venture
+                                                                with BorgWarner of the USA and their continuous
+                                                                interaction with India’s leading automotive
+                                                                companies like TATA Group, Mahindra - provided key
+                                                                insights. The team became aware of the need to put
+                                                                some fundamental elements of ‘sustainability’ in
+                                                                educating, training, coaching and constructing an
+                                                                overarching and integrated strategy that would allow
+                                                                being sustainable business performer day-by-day.
+
+                                                            </li>
+                                                            <li>
+                                                                Thinking long term over a 3-year period and setting
+                                                                objectives and goals appropriately is crucial to get
+                                                                maturity in the discipline of sustainability.
+
+                                                            </li>
+                                                            <li>
+                                                                Activities and practice of sustainability process at
+                                                                Divgi TTS, has expanded the collective intellectual
+                                                                bandwidth and imagination of the organization and
+                                                                has allowed them to make meaningful gains in terms
+                                                                of constant growth and profitability.
+
+                                                            </li>
+                                                            <li>
+                                                                It has ensured integration of apparently disparate
+                                                                initiatives into one dynamic whole. These include
+                                                                quality, environment, safety, enterprise resource
+                                                                planning and control, information technology,
+                                                                marketing and advance business development, product
+                                                                planning and development as well as human resource
+                                                                planning and organization development.
+
+                                                            </li>
+                                                            <li>
+                                                                Sustainability activities have been game changer for
+                                                                cultural transformation to become future ready in
+                                                                the 21st century. They have meant people-involvement
+                                                                down to the last person and leadership development
+                                                                to live these values and constant education and
+                                                                training.
+                                                            </li>
+                                                                </ul>
+                                                        </div>
+                                                        <p>
+                                                            Ms. Rubina Sen, Senior Coordinator, GRI South Asia, made
+                                                            detailed presentation on GRI Standards and Tools for SME
+                                                            reporting. She shared case studies from select
+                                                            industries located in various countries. She provided
+                                                            insights into the process of, and explained about, the
+                                                            materiality assessment for identifying risks and
+                                                            opportunities. She also shared the key benefits of using
+                                                            GRI Sustainability Standards. The benefits could broadly
+                                                            be classified into internal and external.
+                                                        </p>
+
+                                                        <p>
+                                                            Some examples of internal benefits would include zero
+                                                            loss due to breakdowns and defects and enhanced brand
+                                                            value, investors’ attention would be examples of
+                                                            external benefits.
+                                                        </p>
+                                                        <p>
+                                                            The 1 publications listed below were launched by
+                                                            dignitaries of the session.
+                                                        </p>
+                                                        <div style="padding-left:30px;">
+                                                            <p>1.
+                                                                GRI_UNGC_Business-Reporting-on-SDGs_Analysis-of-Goals-and-Targets</p>
+                                                            <p>2. GRI_UNGC_Reporting-on-SDGs_Practical_Guide</p>
+                                                            <p>3. Addressing-investor-needs-SDGs-reporting</p>
+                                                        </div>
+                                                        <p>You can search these documents for more information</p>
+                                                        <p>Some photographs of the launch of publications</p>
+                                                        <div class="item">
+                                                            <img src="{% static 'sustanability_images/event-4.jpg' %}"
+                                                                 style="width: 100%;height: 200%;">
+                                                        </div>
+                                                        <br>
+                                                        <p>Ms.Pallavi Atre, Sustainability Expert, GRI South Asia,
+                                                            briefed about the ‘sustainable development goals’
+                                                            (commonly called global goals) under the agenda of the
+                                                            UN’s sustainable development initiative. SDG based
+                                                            reporting is developed by GRI, which integrates inputs
+                                                            from 40 organizations, including 7 UN organizations. The
+                                                            SDG based business reporting has three stages. The
+                                                            workshop covered the stages in detail and discussed the
+                                                            issues, which may arise in each of the stage. The
+                                                            workshop highlighted the inclusion of SDGs in Business
+                                                            processes and also marked the long impacts of
+                                                            inclusion.</p>
+                                                        <p>The GRI Workshop concluded by Mr. Chetankumar Sangole,
+                                                            Head – Sustainability Desk, MCCIA, concluded that there
+                                                            are tangible and measurable results that industry can
+                                                            achieve using Sustainability Reporting and cited
+                                                            examples of various case studies available in the
+                                                            library of GRI. He mentioned the MCCIA Sustainability
+                                                            Desk is following GRI Standards for advising and
+                                                            developing sustainability reports for companies. He
+                                                            thanked the GRI Team who made this engagement possible
+                                                            and for spreading awareness and educating industry
+                                                            participants about GRI Standards and Sustainable
+                                                            Development Goals. He mentioned that
+                                                            collaborations/partnerships are important for putting
+                                                            actions for more and more sustainable development. He
+                                                            mentioned that awareness creation leads to build
+                                                            capacities of decision makers who participate in such
+                                                            initiatives where global know how is linked with local
+                                                            actions for scaling up and strengthen the efforts
+                                                            required. </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <!--event-2-start-->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed demoClass" data-toggle="collapse"
+                                               data-parent="#accordion3"
+                                               href="#event-2"
+                                               aria-expanded="false" aria-controls="collapseThree">
+                                                <div class="headingText"><span class="fa fa-plus"></span>
+                                                    13th March 2018: 1st Sustainability Awareness Workshop on
+                                                    ‘How
+                                                    Sustainability can bring Profits’
+                                                </div>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="event-2" class="panel-collapse collapse" role="tabpanel"
+                                         aria-labelledby="event-2">
+                                        <div class="panel-body">
+                                            <p>MCCIA has set up the Sustainability Desk recently to guide its
+                                                members to adopt sustainability initiatives and achieve tangible
+                                                gains from the same. We had organised an Interactive Session
+                                                focused
+                                                on ‘how sustainability can bring profits’ on 13th March 2018.
+                                                About 12 participants mainly MCCIA members from manufacturing
+                                                sector
+                                                and institutes participated in the awareness workshop.</p>
+                                            <p>Some photographs of the event</p>
+                                             <img src="{% static 'sustanability_images/1-2.jpg' %}"
+                                                                 style="width: 90%;height: 90%;">
+                                        </div>
+                                        <!--</div>-->
+                                        <div class="panel-group" id="accordion5" role="tablist"
+                                             aria-multiselectable="true">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab">
+                                                    <h1 class="panel-title">
+                                                        <a class="collapsed demoClass" data-toggle="collapse"
+                                                           data-parent="#accordion5"
+                                                           href="#readmore3"
+                                                           aria-expanded="false" aria-controls="collapseThree">
+                                                            <div class="headingText"><span
+                                                                    class="fa fa-plus"></span>Read More
+                                                            </div>
+                                                        </a>
+                                                    </h1>
+                                                </div>
+                                                <div id="readmore3" class="panel-collapse collapse"
+                                                     role="tabpanel"
+                                                     aria-labelledby="readmore3">
+                                                    <div class="panel-body">
+                                                        <p>
+                                                            Agenda of 1st Sustainability awareness session on
+                                                            “How
+                                                            sustainability can bring profits”
+                                                        </p>
+                                                        <p>The Tentative Programme is as follows: </p>
+                                                        <div style="margin-left:60px:">
+                                                            <ul>
+                                                                <li>
+                                                                    5:00 pm: Registration
+                                                                </li>
+                                                                <li>
+                                                                    5:15 pm: Welcome address by Mr Sudhanwa
+                                                                    Koperdekar, Director, MCCIA
+                                                                </li>
+                                                                <li>
+                                                                    5:20 pm: Special address by Mr Prashant
+                                                                    Girbane,
+                                                                    DG Designate, MCCIA
+                                                                </li>
+                                                                <li>
+                                                                    5:30 pm: Case study on “Sustainability
+                                                                    activities within Industry, Areas of
+                                                                    improvements, Roadmap and its Financial
+                                                                    impact
+                                                                    on the business” and “Overview of Global
+                                                                    Goals
+                                                                    and Industry Linkages”by Mr Chetankumar
+                                                                    Sangole,
+                                                                    Head – Sustainability Desk, MCCIA
+                                                                </li>
+                                                                <li>
+                                                                    6:45 pm: Interactive Session
+                                                                </li>
+                                                                <li>
+                                                                    7:00 pm: Concluding Remarks by Mr Prashant
+                                                                    Girbane, DG Designate, MCCIA
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" role="tab">
+                                                    <h1 class="panel-title">
+                                                        <a class="collapsed demoClass" data-toggle="collapse"
+                                                           data-parent="#accordion5"
+                                                           href="#readmore4"
+                                                           aria-expanded="false" aria-controls="collapseThree">
+                                                            <div class="headingText"><span
+                                                                    class="fa fa-plus"></span>Read More
+                                                            </div>
+                                                        </a>
+                                                    </h1>
+                                                </div>
+                                                <div id="readmore4" class="panel-collapse collapse"
+                                                     role="tabpanel"
+                                                     aria-labelledby="readmore4">
+                                                    <div class="panel-body">
+                                                        <p>
+                                                            Mr Sudhanwa Kopardekar-Director, MCCIA welcomed
+                                                            participants and briefed about the background of
+                                                            organizing the awareness session on sustainability.
+                                                            He
+                                                            also
+                                                            briefed about the objective of the awareness session
+                                                            and
+                                                            mentioned that industry can make use of the new
+                                                            opportunities and embrace their efforts in the
+                                                            several
+                                                            areas of improvement within the plant. He introduced
+                                                            Mr
+                                                            Prashant Girbane, Senior Advisor of MCCIA and Mr
+                                                            Chetankumar Sangole, Head of Sustainability Desk. He
+                                                            urged participants to have a look into the article
+                                                            written by Mr Chetankumar on ‘sustainability’
+                                                            published
+                                                            in the ‘Sampada’ magazine issue of March 2018.
+                                                        </p>
+                                                        <p>
+                                                            Mr. Prashant Girbane, Chair of the session delivered
+                                                            special address. He mentioned that industries can
+                                                            see
+                                                            tangible benefits of adopting sustainability
+                                                            activities
+                                                            into their business operations and decisions but
+                                                            more
+                                                            importantly in todays time industries can gain
+                                                            continuity and competitive advantage by putting
+                                                            efforts
+                                                            in sustainability activities.
+                                                            He requested participants to share their issues in
+                                                            the
+                                                            various areas of improvements where the economic
+                                                            benefits are still lacking.
+                                                        </p>
+                                                        <p>
+                                                            Mr Chetankumar Sangole, Head of Sustainability Desk,
+                                                            provided brief insights through a case study of one
+                                                            of
+                                                            the industry that adopted sustainability activities.
+                                                            He
+                                                            shared several examples about the benefits in terms
+                                                            of
+                                                            immediate profits that the industry gained in the
+                                                            first
+                                                            year of their roadmap developed by them in the
+                                                            journey
+                                                            of their sustainability activities. He shared on how
+                                                            that company has achieved the targets set by them
+                                                            while
+                                                            workingon specific areas of improvements. He also
+                                                            briefed about the global goals under the agenda
+                                                            of the UNs sustainable development initiative and
+                                                            about
+                                                            how it is directly linked with the industries.
+                                                        </p>
+                                                        <p>
+                                                            <strong>Interactive session</strong>, participants
+                                                            shared their feedback, problems and raised following
+                                                            questions:
+                                                        </p>
+                                                        <p>The Tentative Programme is as follows: </p>
+                                                        <div style="margin-left:60px:">
+                                                            <ul>
+                                                                <li>
+                                                                    Our raw material prices and costs of various
+                                                                    inputs required for production has been
+                                                                    increased but our product value has been
+                                                                    decreasing,
+                                                                    hence, sustainability matters for us but we
+                                                                    were
+                                                                    not aware that what it will help in gaining
+                                                                    immediate profits, improving our business
+                                                                    operations, practices and decisions. So far
+                                                                    we
+                                                                    were in the impression that sustainability
+                                                                    is
+                                                                    only linked with the environmental concerns.
+                                                                    Now
+                                                                    once we understood about sustainability
+                                                                    activities adoption and benefits of
+                                                                    reporting,
+                                                                    Howwe can start with for adopting
+                                                                    sustainability
+                                                                    activities within our company?
+                                                                </li>
+                                                                <p>Mr Chetankumar, responded that, you can start
+                                                                    with materiality matrix/analysis similar to
+                                                                    the
+                                                                    one that during the presentation we have
+                                                                    discussed. This can be lead to immediate
+                                                                    focus
+                                                                    areas prioritization and then develop
+                                                                    roadmap
+                                                                    for improvement and along with targets to
+                                                                    achieve.</p>
+                                                                <li>
+                                                                    Which type of industry can adopt
+                                                                    sustainability
+                                                                    activities and reporting?
+                                                                </li>
+                                                                <P>The sustainability activities can be adopted
+                                                                    by
+                                                                    any micro, small and medium company.
+                                                                    Industries
+                                                                    cannot avoid inclusion of sustainability in
+                                                                    to
+                                                                    their business but if you don't adopt then
+                                                                    your
+                                                                    competitors might take advantage and may go
+                                                                    ahead and will take advantage of it.</P>
+                                                                <li>
+                                                                    How do we start with working on gaining
+                                                                    results?
+                                                                </li>
+                                                                <P>Industries can start with by identifying key
+                                                                    areas of improvement and prioritising the
+                                                                    same
+                                                                    to start with, like energy costs, emissions,
+                                                                    maintenance costs, supply-chain of your
+                                                                    vendors,
+                                                                    use of most productive and efficient
+                                                                    technology,
+                                                                    increasing moral and ownership of employees
+                                                                    through training etc. Develop targets and
+                                                                    2020
+                                                                    roadmap for improvement to achieve targets
+                                                                    year-by-year.</P>
+                                                                <li>
+                                                                    What are the areas of improvements to start
+                                                                    with
+                                                                    in order to balance the profit bottom line?
+                                                                </li>
+                                                                <p>It depends on company-to-company but
+                                                                    certainly
+                                                                    industry can put more efforts on identifying
+                                                                    diverse sets of risks inherent like high
+                                                                    operational costs areas, whether it is
+                                                                    materials
+                                                                    procurement or materials processed or waste
+                                                                    generated or energy costs or logistics costs
+                                                                    or
+                                                                    product value or clients base etc. which is
+                                                                    not
+                                                                    so easy but industry at first can focus in
+                                                                    the
+                                                                    areas of improvement within the factory and
+                                                                    then
+                                                                    engaging the supply chain to work on
+                                                                    sustainability.</p>
+                                                            </ul>
+                                                            <p>Mr Prashant Girbane made the Concluding Remarks.
+                                                                He
+                                                                observed that there are tangible yet measurable
+                                                                results that industry can achieve, roadmaps are
+                                                                available with Sustainability Desk which could
+                                                                be
+                                                                tailored to suit the industry participants and
+                                                                now
+                                                                onwards MCCIAs initiative of Sustainability Desk
+                                                                can
+                                                                support the activities of industry to help them
+                                                                to
+                                                                do assessment through materiality analysis,
+                                                                develop
+                                                                targets, measure progress and improve
+                                                                sustainability
+                                                                activities in the areas of improvements
+                                                                presented by
+                                                                Mr Chetankumar Sangole.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div style="float:left;">
+                        <div class="col-md-2 col-sm-2 col-xs-2">
+                            <div class="Formbuttons">
+                                <a class="btn btn-default subbtn"
+                                   href="javascript:history.back();">BACK</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="float:right;">
+                        <div class="col-lg-12 col-md-12 col-sm-10 col-xs-10">
+                            <div class="branchOfficeAddress"
+                                 style="margin-top: 45px;min-height: 0; ">
+                                <h4>Contact us</h4>
+                                <p><i aria-hidden="true"></i> Mr. Chetankumar Sangole </p>
+                                <p><i aria-hidden="true"></i> Head - Sustainability Desk </p>
+                                <p>
+                                    <b><i aria-hidden="true"></i> Email:</b> <a
+                                        href='mailto:chetankumars@mcciapune.com'>chetankumars@mcciapune.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- Award Details section end here -->
+{% endblock %}
+{% block js_block %}
+<script src="{% static 'custom-js/hallbooking/terms_condition.js' %}" type="text/javascript"></script>
+
+{% endblock %}
+
+
+</body>
+</html>

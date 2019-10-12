@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+
+</head>
+<body>
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<section class="InternalBannerSection" style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <h2> Corporate Legislation </h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#">Committee</a></li>
+                        <li class="active"><a href="#"> Corporate Legislation</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="CommitteeDetailSection">
+    <div class="container">
+        <div class="row grid">
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 agriculturefood2">
+                <div class="FoodProcessingDirectorbox">
+                    <div class="FoodImg">
+                        <img src="http://demo.mcciapune.com/committee/1Agribanner.jpg" alt="" class="img-responsive">
+                    </div>
+                    <div class="row">
+
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 committeesmalldevice">
+                            <div class="DirectorInfor DirectorInforCommittee">
+                                <h4>Chair</h4>
+                                <div class="media">
+                                    <!--<div class="media-left">
+                                        <img class="media-object" src="/assets/images/icons/default-user-image.png" width="70" alt="...">
+                                    </div>-->
+                                    <div class="media-body">
+                                        <!--<p><i class="fa fa-user-o"></i><strong>Ms. Prasad Shukla</strong><br>Director MCCIA</p>
+                                        <p><a href="#" class="btn">Read Profile</a></p>-->
+                                        <p><i class="fa fa-user-o"></i><strong>Mr. Suhas Tuljapurkar</strong></p>
+                                        <!--<p><i class="fa fa-industry"></i>Sangamner Milk and Milk Processing Cooperative-->
+                                            <!--Society Ltd.</p>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 committeesmalldevice">
+                            <div class="DirectorInfor DirectorInforCommittee">
+                                <h4>Officer Incharge</h4>
+                                <div class="media">
+                                    <!--<div class="media-left">
+                                        <img class="media-object" src="/assets/images/icons/default-user-image.png" width="70" alt="...">
+                                    </div>-->
+                                    <div class="media-body">
+                                        <!--<p><i class="fa fa-user-o"></i><strong>Ms. Prasad Shukla</strong><br>Director MCCIA</p>
+                                        <p><a href="#" class="btn">Read Profile</a></p>-->
+                                        <p><i class="fa fa-user-o"></i><strong>Ms. Geeta Hosmane</strong></p>
+                                        <p><i class="fa fa-volume-control-phone"></i>91-20-25709161</p>
+                                        <p><i class="fa fa-envelope-open"></i><a href="mailto:geetah@mcciapune.com">geetah@mcciapune.com</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="FoodProcessingDetailsbox">
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 agriculturefood1">
+                <div class="committeeRightPanelOuter">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 role="button" data-toggle="collapse" data-parent="#accordion"
+                                    href="#OtherCommittees" aria-expanded="true" aria-controls="collapseOne">
+                                    <i class="more-less glyphicon glyphicon-chevron-down"></i>
+                                    Other Committees
+                                </h4>
+                            </div>
+                            <div id="OtherCommittees" class="panel-collapse collapse in" role="tabpanel"
+                                 aria-labelledby="headingOne">
+                                <ul>
+                                    <li><a href="/committeeapp/agriculture/">Agriculture</a></li>
+                                    <li><a href="/committeeapp/ahmednagar/">Ahmednagar</a></li>
+                                    <li><a href="/committeeapp/civil-aviation/">Civil Aviation</a></li>
+                                    <li><a href="/committeeapp/corporate-legislation/">Corporate Legislation</a></li>
+                                    <li><a href="/committeeapp/defence/">Defence</a></li>
+                                    <li><a href="/committeeapp/electronics/">Electronics</a></li>
+                                    <li><a href="/committeeapp/food-processing/">Food Processing</a></li>
+                                    <li><a href="/committeeapp/foreign-trade/">Foreign Trade</a></li>
+                                    <li><a href="/committeeapp/higher-education-skill-development/">Higher Education and Skill Development</a></li>
+                                    <li><a href="/committeeapp/hr/">HR & IR</a></li>
+                                    <li><a href="/committeeapp/IT-ITES/">IT & ITES</a></li>
+                                    <li><a href="/committeeapp/innovation-incubation/">Innovation & Incubation</a></li>
+                                    <li><a href="/committeeapp/sme/">MSME</a></li>
+                                    <li><a href="/committeeapp/taxation/">Taxation</a></li>
+                                    <li><a href="/committeeapp/women-entrepreneurs/">Women Entrepreneurs</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+</body>
+</html>

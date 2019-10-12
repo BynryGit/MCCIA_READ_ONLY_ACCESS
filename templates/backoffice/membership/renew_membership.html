@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!-- BEGIN HEAD -->
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8"/>
+    <title>MCCIA | Renew Member</title>
+    {% include 'backoffice/base_css.html' %}
+</head>
+<!-- END HEAD -->
+
+
+<style type="text/css">
+.custom-date-size {
+    min-width: 105%;
+}
+
+tr td{
+    width:1%;
+    white-space:nowrap;
+}
+
+#processing{
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+    margin: 0px auto;
+    z-index: 9999;
+    background-color: #FFF;
+    background-image: none;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    background-clip: border-box;
+    background-origi html, body {
+    overflow-x: hidden;
+ }n: padding-box;
+    background-repeat: repeat;
+            background-size: inherit;
+            opacity: 0.5;
+        }
+        #loading{
+            width: 36%;
+            height: 22px;
+            position: absolute;
+            top: 26%;
+            left: 32%;
+            margin: -28px 0px 0px -25px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            color: #000;
+        }
+
+        body, html{
+            overflow-x: hidden;
+        }
+
+
+</style>
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid">
+<!-- BEGIN HEADER -->
+<div id="processing" style="display:none;">
+    <div id="loading">
+        <img src="{% static 'assets/loading-bars.gif' %}" style="height : 100px;">
+
+    </div>
+</div>
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+        <!-- BEGIN LOGO -->
+        <div class="page-logo">
+            <a href="index.html">
+                <img src="{% static 'assets/MCCIA-logo.png' %}" alt="logo"
+                     class="logo-default"/> </a>
+
+            <div class="menu-toggler sidebar-toggler">
+                <!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+            </div>
+        </div>
+        <!-- END LOGO -->
+        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse"
+           data-target=".navbar-collapse"> </a>
+        <!-- END RESPONSIVE MENU TOGGLER -->
+        <!-- BEGIN PAGE TOP -->
+        <div class="page-top">
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="dropdown dropdown-user">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+                           data-close-others="true">
+                            <!-- <img alt="" class="img-circle" src="{% static 'assets/layouts/layout2/img/avatar3_small.jpg" /> -->
+                            <span class="username username-hide-on-mobile"> {{ request.session.login_user }} </span>
+                            <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default">
+                            <li>
+                                <a href="/edit-profile/?user_id={{request.session.login_user}}">
+                                    <i class="fa fa-user" aria-hidden="true"></i> My Profile </a>
+                            </li>
+                            <li>
+                                <a href="/log-out/">
+                                    <i class="icon-key"></i> Log Out </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END USER LOGIN DROPDOWN -->
+                </ul>
+            </div>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+        <!-- END PAGE TOP -->
+    </div>
+    <!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+
+<!-- BEGIN HEADER & CONTENT DIVIDER -->
+<div class="clearfix"></div>
+<!-- END HEADER & CONTENT DIVIDER -->
+
+
+<!-- BEGIN CONTAINER -->
+<div class="page-container">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+            {% include 'backoffice/membership/side-panel.html' %}
+        </div>
+    </div>
+    <!-- END SIDEBAR -->
+
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+        <!-- BEGIN CONTENT BODY -->
+        <div class="page-content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="portlet light">
+
+                        <div class="page-bar">
+                            <ul class="page-breadcrumb">
+                                <li>
+                                    <span style="color: #3eb199;font-size: 16px;"> Membership </span>
+                                    <i class="fa fa-angle-right"></i>
+                                </li>
+                                <li>
+                                    <a href="/backofficeapp/members-details/" style="color: #3eb199;font-size: 16px;">Members
+                                        Details</a>
+                                    <i class="fa fa-angle-right"></i>
+                                </li>
+                                <li>
+                                    <span style="color: #00448b;font-size: 16px;">Renew Member</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label>MEMBERSHIP RENEWAL {{formatted_renewal_year}}</label>
+                            </div>
+                        </div>
+                        <br><br>
+
+                        <div id="renew_form_div">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <form id="renew_membership_form" name="renew_membership_form" method="POST"
+                                          onSubmit="renew_member(); return false;">
+                                        {% csrf_token %}
+                                        <div class="validateContainer">
+                                            <div class="FormInnerArea clearfix">
+
+                                                <input type="text" id="slab_id" name="slab_id" value="{{member_obj.membership_slab.id}}" hidden>
+                                                <input type="text" id="member_id" name="member_id" value="{{member_obj.id}}" hidden>
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Membership Name</label>
+                                                        <label class="col-md-4 control-label">{{member_obj.company.company_name}}</label>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label">Membership No</label>
+                                                        <label class="col-md-4 control-label">{{member_obj.member_associate_no}}</label>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label"
+                                                               for="renew_membership_category">Membership
+                                                            Category</label>
+                                                        <div class="col-md-4">
+                                                            <div class="validateField">
+                                                                <select class="form-control"
+                                                                        name="renew_membership_category"
+                                                                        id="renew_membership_category">
+                                                                    <option value="">Select Category</option>
+                                                                    {% for i in membershipCategory %}
+                                                                    <option value="{{i.id}}" {% if i.id == member_obj.membership_category.id %} selected {% endif %}>{{i.membership_category}} - {{i.enroll_type}}
+                                                                    </option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                                <span id="renew_membership_category_error" style="display:none; color: #f33737; font-size: 13px;font-family: 'Swis721 BT';font-weight: bold;">This field is required</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <label>Renew For Year</label>
+                                                        </div>
+
+                                                        <div class="col-md-3">
+                                                            <input type="text"
+                                                               class="form-control" name="renewal_year" id="renewal_year" maxlength="100"
+                                                               value="{{renewal_year}}" placeholder="YYYY-YYYY"
+                                                               onkeypress="return check_year(event)">
+                                                            <span id="renewal_year_error" style="display: none; color: #f33737; font-size: 13px;font-family: 'Swis721 BT';font-weight: bold;">Year should be in YYYY-YYYY format</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label"
+                                                               for="renew_turnover_year"> Annual Turnover Year </label>
+                                                        <div class="col-md-4">
+                                                            <select class="form-control" name="renew_turnover_year"
+                                                                    id="renew_turnover_year">
+                                                                <option value="">YYYY-YYYY</option>
+                                                                {% for year in year_list %}
+                                                                <option value="{{year}}">{{year}}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                            <span id="renew_turnover_year_error" style="display: none; color: #f33737; font-size: 13px;font-family: 'Swis721 BT';font-weight: bold;">This field is required</span>
+                                                        </div>
+                                                        <div class="col-md-1">
+                                                            <label>Rs. (Crs)</label>
+                                                        </div>
+
+                                                        <div class="col-md-3">
+                                                            <input type="text"
+                                                               class="form-control"
+                                                               name="turnover_amount" id="turnover_amount" maxlength="15"
+                                                               value="{% if member_obj.annual_turnover_rupees and member_obj.annual_turnover_rupees != 'NA' %}{{member_obj.annual_turnover_rupees}}{% endif %}"
+                                                               onkeypress="return check_amount(event)"  >
+                                                            <span id="turnover_amount_error" style="display: none; color: #f33737; font-size: 13px;font-family: 'Swis721 BT';font-weight: bold;">Enter valid number</span>
+                                                        </div>
+                                                    </div>
+                                                </div><br>
+
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <label class="col-md-3 control-label" for="renew_membership_slab">Slab</label>
+                                                        <div class="col-md-4">
+                                                            <div class="validateField">
+                                                                <select class="form-control validateRequired"
+                                                                        name="renew_membership_slab" id="renew_membership_slab">
+                                                                </select>
+                                                                <span id="renew_membership_slab_error" style="display: none; color: #f33737; font-size: 13px;font-family: 'Swis721 BT';font-weight: bold;">This field is required</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><br><br>
+
+                                                <div class="row" style="  margin-top: 30px;">
+                                                    <div class="col-md-12 text-center">
+                                                        <button type="button" class="btn btn-outline grey_color "
+                                                                onclick="location.href = '/backofficeapp/members-details/';">
+                                                            Cancel
+                                                        </button>
+                                                        <button type="button" id="renew_submit_btn"
+                                                                class="btn btn-outline done_btn">Submit
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="renew_member_invoice_div" style="display: none;">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <label>Membership Category</label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <input type="text" class="form-control" readonly name="membership_category"
+                                           id="membership_category">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <label>Slab Category</label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <input type="text" class="form-control" readonly name="slab_category" id="slab_category">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <label>Renewal Year</label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <input type="text" class="form-control" readonly name="membership_renew_year"
+                                           id="membership_renew_year">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <label>Subscription Charges</label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <input type="text" class="form-control" readonly name="subscription_charges"
+                                           id="subscription_charges">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <label>GST</label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <input type="text" class="form-control" readonly name="tax_amount" id="tax_amount">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <label>Due Amount</label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <input type="text" class="form-control" name="due_amount" id="due_amount" onkeyup="CalculateTotal();">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <label>Advance Amount</label>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <input type="text" class="form-control" name="advance_amount" id="advance_amount" onkeyup="CalculateTotal();">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                                    <label>Amount Payble</label>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <input type="text" class="form-control" name="amount_payable" id="amount_payable">
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <button type="button" class="btn btn-outline grey_color" id="back_btn">
+                                        Back
+                                    </button>
+                                    <button type="button" id="renew_invoice_submit_btn"
+                                            class="btn btn-outline done_btn">Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- END CONTENT BODY -->
+        </div>
+        <!-- END CONTENT -->
+    </div>  <!-- END PORTLET-->
+</div>
+<!-- END CONTAINER -->
+
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+    <div class="page-footer-inner"> 2018 © Bynry Technologies
+
+    </div>
+    <div class="scroll-to-top">
+        <i class="icon-arrow-up"></i>
+    </div>
+</div>
+
+<!-- END FOOTER -->
+
+{% include 'backoffice/base_js.html' %}
+<script src="{%static 'custom-js/membershipapp/renew_membership_form.js' %}" type="text/javascript"></script>
+
+
+</body>
+</html>

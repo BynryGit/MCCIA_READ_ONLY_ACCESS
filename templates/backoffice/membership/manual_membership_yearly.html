@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'ITC Eras Demi';
+        src:url('/static/assets/fonts/ITC_Eras_Demi.woff');
+        font-weight: normal;
+        font-style: normal;
+        }
+      page {
+        display: block;
+    }
+
+    @media print {
+        body, page {
+            margin: 0;
+            box-shadow: 0;
+        }
+    }
+
+#wrapper {
+  width: 1005px;
+  padding-right:10px;
+  border: 1px solid white;
+  height:1250px;
+
+}
+
+#leftcolumn,
+#rightcolumn {
+  border: 1px solid white;
+  float: left;
+}
+
+#leftcolumn {
+  width: 200px;
+
+}
+
+#rightcolumn {
+  width: 765px;
+  padding-top:432px;
+  border: 1px solid white;
+}
+
+    </style>
+    {% load staticfiles %}
+</head>
+<body>
+<page >
+   <div id="wrapper">
+  <div id="leftcolumn">
+  </div>
+  <div id="rightcolumn" style="font-family:'ITC Eras Demi'; color:black; font-size:30px; text-align: center; ">
+      <b><p>{{company_name}}</p></b>
+  </div>
+       <div style="padding-left:432px; padding-top:665px; font-size:22px;">
+           <p><i><b> {{for_year}}</b></i></p>
+       </div>
+        <div style="padding-left:673px; padding-top:133px;">
+            <img src="{% static 'images/stamp.gif' %}" width="155px" height="155px" >
+       </div>
+        <div style="padding-left:876px; padding-top:59px; font-size:18px;">
+            <p>{{membership_no}}</p>
+       </div>
+        <div style="padding-left:762px;  font-size:18px;">
+            <p>{{payment_date}}</p>
+       </div>
+</div>
+
+</page>
+</body>
+</html>

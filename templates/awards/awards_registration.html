@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+{% load staticfiles %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA</title>
+</head>
+<body>
+
+{% block content %}
+
+<!-- internal banner section starts here -->
+<section class="InternalBannerSection" style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <h2>Award Registration Form</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/awardsapp/awards-home/">Awards</a></li>
+                        <li class="active"><a href="#">Award Registration</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- internal banner section Ends here -->
+
+<section class="FormArea internalSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="FormTitleArea">
+                    <h2>Registration Form</h2><br/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <label>Select Award *</label>
+                <select class="form-control" name="select_award" id="select_award" onchange="show_form();">
+                    <option value="">Select Award</option>
+                    {% for i in award_detail_list %}
+                    <option value="{{i.id}}" {% if i.id == award_id %}selected{% endif %}>{{i.award_name}}</option>
+                    {% endfor%}
+                </select>
+            </div>
+        </div>
+        <br>
+    </div>
+</section>
+<!-- Member form section ends here -->
+
+{% if award_id == 2 or award_id == 3 or award_id == 6 %}
+    {% include "awards/parkhe_hari_ramabai_award.html" %}
+    {% include "awards/award_note.html" %}
+{% elif award_id == 1 %}
+    {% include "awards/bg_deshukh_award.html" %}
+    {% include "awards/award_note.html" %}
+{% elif award_id == 4 %}
+    {% include "awards/natu_award.html" %}
+    {% include "awards/award_note.html" %}
+{% elif award_id == 5 %}
+    {% include "awards/rathi_award.html" %}
+    {% include "awards/award_note.html" %}
+{% endif %}
+
+
+{% endblock %}
+
+{% block js_block %}
+<script src="{%static 'custom-js/awardsapp/awards_registration.js' %}" type="text/javascript"></script>
+<script src="{%static 'assets/js/validation/checkvalidation.js' %}" type="text/javascript"></script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MCCIA | Membership Registration</title>
+</head>
+<body>
+
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<!-- internal banner section starts here -->
+<section class="InternalBannerSection" style="background-image: url({% static 'assets/images/internal-banner.jpg' %});">
+    <div class="InternalInnerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <h2>Feel Free to Use the Registration form below to reach Us</h2>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/membershipapp/membership-form/"> Membership Registration</a></li>
+                        <li class="active"><a href=""> Invoice</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- internal banner section Ends here -->
+<!-- Member form section starts here -->
+<section class="FormArea internalSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="FormTitleArea">
+                    <h2>Invoice</h2><br/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>Membership Category</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label id="membership_category">{{membership_category}}</label>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>Slab Category</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label id="slab_category">{{slab_category}}</label>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>Membership Year</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label id="membership_year">{{membership_year}}</label>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>Subscription Charges</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label id="subscription_charges">{{subscription_charges}}</label>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>Entrance Fee</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label id="entrance_fee">{{entrance_fee}}</label>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>GST</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label id="tax_amount">{{tax_amount}}</label>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label>Amount Payble</label>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <label id="amount_payable">{{amount_payable}}</label>
+                    </div>
+                </div>
+                <br><br>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <button type="submit" class="btn btn-default subbtn checkValidationBtn"
+                                onclick="save_member_invoice_detail()"
+                                value="Submit">Submit
+                        </button>
+                        <button type="submit" class="btn btn-default subbtn checkValidationBtn"
+                                onclick="back_to_membership_form()" id="back_to_membershipform"
+                                value="Submit">Back
+                        </button>
+                        <input type="text" id="member_id" name="member_id" value="{{member_id}}" hidden>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="include_html"></div>
+</section>
+<!-- Member form section ends here -->
+
+{% endblock %}
+
+
+{% block js_block %}
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+var pathname = window.location.pathname; // Returns path only
+
+location_url_ID= pathname.split('/')[2];
+
+var invoice_data = localStorage.getItem("data_obj");
+$('#member_id').val(invoice_data);
+});
+
+
+// function for back to membership form
+
+function back_to_membership_form(){
+
+
+   $("#membership_hidden_data").val($('#member_id').val())
+
+   show_data=JSON.parse($('#member_id').val())
+
+    <!--window.history.back();-->
+    localStorage.setItem("data_obj", JSON.stringify(show_data));
+    window.open('/membershipapp/membership-form/', "_self");
+
+}
+
+
+// Save Membership Invoice Detail
+function save_member_invoice_detail(){
+    var fd = new FormData();
+    fd.append('member_id', $("#member_id").val());
+    fd.append('subsciption_charges', $("#subscription_charges").text());
+    fd.append('entrance_fees', $("#entrance_fee").text());
+    fd.append('tax_amount', $("#tax_amount").text());
+    fd.append('payable_amount', $("#amount_payable").text());
+
+    $.ajax({
+      type: 'POST',
+      url: '/membershipapp/save-member-invoice-detail/',
+      data: fd,
+      processData: false,
+      contentType: false,
+      success: function(response){
+        if (response.success == 'true'){
+            alert('Thank you for Registration. We welcome you in MCCIA.');
+            if ( location_url_ID == "/membership-form/"){
+                 location.href = "/membershipapp/membership-form/";
+
+            }
+            else{
+                location.href = '/backofficeapp/backoffice/'
+            }
+
+        }
+        else{
+            alert('Sorry for inconvenience, an error occurred');
+        }
+      },
+      error: function(response){
+        alert('Sorry for inconvenience, an error occurred');
+        console.log('member_invoice_E = ',response);
+      }
+    });
+}
+</script>
+{% endblock %}
+
+</body>
+</html>
